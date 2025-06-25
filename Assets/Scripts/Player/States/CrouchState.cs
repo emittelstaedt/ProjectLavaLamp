@@ -6,24 +6,14 @@ public class CrouchState : PlayerState
 
     public override void EnterState()
     {
-        player.IsCrouching = false;
-
-        player.CharacterController.enabled = false;
-
-        Vector3 newHeight = new Vector3(1, player.PlayerStats.CrouchHeight, 1);
-        Vector3 originalHeight = player.transform.localScale;
-        float difference = player.PlayerStats.CrouchHeight - player.PlayerStats.NormalHeight;
-        player.transform.localScale = newHeight;
-
-        player.transform.position += Vector3.up * difference;
-
-        player.CharacterController.enabled = true;
+        player.IsCrouching = true;
+        SetHeight(player.PlayerStats.CrouchHeight);
     }
 
     public override void Update()
     {
 
-        Vector2 moveValue = player.PlayerInputs.sprintAction.ReadValue<Vector2>();
+        Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
         Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
 
         if (!player.PlayerInputs.crouchAction.IsPressed())
@@ -44,14 +34,17 @@ public class CrouchState : PlayerState
     public override void ExitState()
     {
         player.IsCrouching = false;
+        SetHeight(player.PlayerStats.NormalHeight);
+    }
 
+    private void SetHeight(float newHeight)
+    {
+        // Disables CharacterController temporarily to prevent its internal variables overriding our changes
         player.CharacterController.enabled = false;
 
-        Vector3 newHeight = new Vector3(1, player.PlayerStats.NormalHeight, 1);
-        Vector3 originalHeight = player.transform.localScale;
-        float difference = player.PlayerStats.NormalHeight - player.PlayerStats.CrouchHeight;
-        player.transform.localScale = newHeight;
+        player.transform.localScale = new Vector3(player.transform.localScale.x, newHeight, player.transform.localScale.z);
 
+        float difference = player.transform.localScale.y - newHeight;
         player.transform.position += Vector3.up * difference;
 
         player.CharacterController.enabled = true;
