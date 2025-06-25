@@ -1,12 +1,17 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     //Camera and player inputs
-    [SerializeField] private Transform playerCamera;
-    public CharacterController CharacterController;
-    private Vector2 playerMouseInput;
+    [SerializeField] private CharacterController characterController;
+    public CharacterController CharacterController => characterController;
+    [SerializeField] private PlayerInputs playerInputs;
+    [SerializeField] private PlayerCameraControls playerCameraControls;
+    public PlayerCameraControls PlayerCameraControls => playerCameraControls;
+    [SerializeField] private PlayerState currentState;
+    [SerializeField] private PlayerStatsSO playerStats;
+    public PlayerStatsSO PlayerStats => playerStats;
+    public PlayerInputs PlayerInputs => playerInputs;
     private float xRotation;
 
     //Physics variables
@@ -48,45 +53,18 @@ public class PlayerController : MonoBehaviour
         get => sprintCooldownTimer;
         set => sprintCooldownTimer = value;
     }
-
-
-    //Input Actions
-    public InputAction moveAction;
-    public InputAction jumpAction;
-    public InputAction crouchAction;
-    public InputAction sprintAction;
-
-    private PlayerState currentState;
-    public PlayerStatsSO playerStats;
     private void Start()
     {
-        CharacterController = GetComponent<CharacterController>();
-
-        moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
-        crouchAction = InputSystem.actions.FindAction("Crouch");
-        sprintAction = InputSystem.actions.FindAction("Sprint");
+        characterController = GetComponent<CharacterController>();
 
         currentState = new IdleState(this);
         currentState.EnterState();
     }
     private void Update()
     {
-        playerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else if (Input.GetMouseButtonDown(0))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
+        playerCameraControls.MovePlayerCamera();
+        playerCameraControls.LockCursor();
         currentState.Update();
-        MovePlayerCamera();
 
         //Check for if enough time has passed to reset the sprint cooldown and sprint timer
         if (isOnSprintCooldown)
@@ -122,7 +100,7 @@ public class PlayerController : MonoBehaviour
     public void MovePlayer(Vector3 horizontal)
     {
         Vector3 finalMove = horizontal + new Vector3(0, velocity.y, 0);
-        CharacterController.Move(finalMove * Time.deltaTime);
+        characterController.Move(finalMove * Time.deltaTime);
     }
 
     public void ApplyGravity()
@@ -133,23 +111,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            velocity.y -= playerStats.Gravity * -2f * Time.deltaTime;
+            velocity.y += playerStats.Gravity * Time.deltaTime;
         }
     }
 
     public bool IsGrounded()
     {
-        return CharacterController.isGrounded;
-    }
-    private void MovePlayerCamera()
-    {
-        if (Cursor.lockState == CursorLockMode.Locked)
-        {
-            xRotation -= playerMouseInput.y * playerStats.Sensitivity;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-            transform.Rotate(0f, playerMouseInput.x * playerStats.Sensitivity, 0f);
-            playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        }
+        return characterController.isGrounded;
     }
 }

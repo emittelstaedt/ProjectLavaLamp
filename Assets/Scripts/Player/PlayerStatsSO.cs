@@ -3,17 +3,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStatsSO", menuName = "Player/PlayerStatsSO")]
 public class PlayerStatsSO : ScriptableObject
 {
-    private float walkSpeed = 5f;
-    private float sprintSpeed = 10f;
-    private float crouchSpeed = 3f;
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float sprintSpeed = 10f;
+    [SerializeField] private float crouchSpeed = 3f;
 
-    private float jumpForce = 10f;
-    private float gravity = -9.81f;
-    private float normalHeight = 2f;
-    private float crouchHeight = 1f;
-    private float sprintDuration = 2f;
-    private float sprintCooldownDuration = 2f;
-    private float sensitivity = 7f;
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float gravity = -19.62f;
+    [SerializeField] private float normalHeight = 1.5f; //Character controller 2f
+    [SerializeField] private float crouchHeight = 0.7f; //Character controller 1f
+    [SerializeField] private float sprintDuration = 2f;
+    [SerializeField] private float sprintCooldownDuration = 2f;
 
     // Public getters (read-only)
     public float WalkSpeed => walkSpeed;
@@ -25,5 +24,4 @@ public class PlayerStatsSO : ScriptableObject
     public float CrouchHeight => crouchHeight;
     public float SprintDuration => sprintDuration;
     public float SprintCooldownDuration => sprintCooldownDuration;
-    public float Sensitivity => sensitivity;
 }

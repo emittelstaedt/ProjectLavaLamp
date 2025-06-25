@@ -6,29 +6,35 @@ public class SprintState : PlayerState
 
     public override void Update()
     {
-        Vector2 moveValue = player.moveAction.ReadValue<Vector2>();
+        Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
         Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
 
-        if (!player.sprintAction.IsPressed() || player.IsCrouching || moveValue.magnitude < 0.1f || player.IsOnSprintCooldown)
+        if (!player.PlayerInputs.sprintAction.IsPressed() || player.IsCrouching || moveValue.magnitude < 0.1f || player.IsOnSprintCooldown)
         {
             player.SwitchState(new WalkState(player));
             return;
         }
 
-        if (player.jumpAction.IsPressed() && player.IsGrounded())
+        if (player.PlayerInputs.crouchAction.IsPressed())
+        {
+            player.SwitchState(new CrouchState(player));
+        }
+
+        if (player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded())
         {
             player.SwitchState(new JumpState(player));
             return;
         }
-        player.ApplyGravity();
-        player.MovePlayer(moveDirection * player.playerStats.SprintSpeed);
 
         player.SprintTimer -= Time.deltaTime;
         if (player.SprintTimer <= 0f)
         {
             player.IsOnSprintCooldown = true;
-            player.SprintCooldownTimer = player.playerStats.SprintCooldownDuration;
+            player.SprintCooldownTimer = player.PlayerStats.SprintCooldownDuration;
             player.SwitchState(new WalkState(player));
         }
+
+        player.ApplyGravity();
+        player.MovePlayer(moveDirection * player.PlayerStats.SprintSpeed);
     }
 }

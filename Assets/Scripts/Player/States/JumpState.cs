@@ -7,16 +7,14 @@ public class JumpState : PlayerState
     public override void EnterState()
     {
         Vector3 newVelocity = player.Velocity;
-        newVelocity.y = player.playerStats.JumpForce;
+        newVelocity.y = player.PlayerStats.JumpForce;
         player.Velocity = newVelocity;
     }
 
     public override void Update()
     {
-        Vector2 moveValue = player.moveAction.ReadValue<Vector2>();
+        Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
         Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
-        player.ApplyGravity();
-        player.MovePlayer(moveDirection * player.playerStats.WalkSpeed);
 
         if (player.IsGrounded() && player.Velocity.y <= 0)
         {
@@ -25,5 +23,8 @@ public class JumpState : PlayerState
             else
                 player.SwitchState(new IdleState(player));
         }
+
+        player.ApplyGravity();
+        player.MovePlayer(moveDirection * player.PlayerStats.WalkSpeed);
     }
 }
