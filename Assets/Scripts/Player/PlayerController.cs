@@ -4,20 +4,20 @@ public class PlayerController : MonoBehaviour
 {
     //Camera and player inputs
     [SerializeField] private CharacterController characterController;
-    public CharacterController CharacterController => characterController;
     [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private PlayerCameraControls playerCameraControls;
-    public PlayerCameraControls PlayerCameraControls => playerCameraControls;
-    [SerializeField] private PlayerState currentState;
     [SerializeField] private PlayerStatsSO playerStats;
-    public PlayerStatsSO PlayerStats => playerStats;
-    public PlayerInputs PlayerInputs => playerInputs;
-
+    private PlayerState currentState;
     private Vector3 velocity;
     private bool isCrouching = false;
     private float sprintTimer;
     private float sprintCooldownTimer;
     private bool isOnSprintCooldown = false;
+
+    public CharacterController CharacterController => characterController;
+    public PlayerCameraControls PlayerCameraControls => playerCameraControls;
+    public PlayerStatsSO PlayerStats => playerStats;
+    public PlayerInputs PlayerInputs => playerInputs;
     public Vector3 Velocity
     {
         get => velocity;

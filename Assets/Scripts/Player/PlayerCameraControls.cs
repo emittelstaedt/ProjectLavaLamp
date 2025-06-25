@@ -6,7 +6,6 @@ public class PlayerCameraControls : MonoBehaviour
 {
     [SerializeField] private Transform playerCamera;
     [SerializeField] private PlayerInputs playerInputs;
-    [SerializeField] private PlayerStatsSO playerStats;
     [SerializeField] private PlayerController player;
     [SerializeField] private float sensitivity = 7f;
     private float xRotation;
