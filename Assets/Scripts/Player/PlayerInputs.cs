@@ -12,7 +12,6 @@ public class PlayerInputs : MonoBehaviour
 
     public void Start()
     {
-        // Assign actions from InputSystem (assuming you have a default input system asset)
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         crouchAction = InputSystem.actions.FindAction("Crouch");

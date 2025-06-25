@@ -9,7 +9,7 @@ public class PlayerCameraControls : MonoBehaviour
     [SerializeField] private PlayerStatsSO playerStats;
     [SerializeField] private PlayerController player;
     [SerializeField] private float sensitivity = 7f;
-    [SerializeField] private float xRotation;
+    private float xRotation;
     
 
     public void MovePlayerCamera()

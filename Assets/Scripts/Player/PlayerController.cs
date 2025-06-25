@@ -12,20 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStatsSO playerStats;
     public PlayerStatsSO PlayerStats => playerStats;
     public PlayerInputs PlayerInputs => playerInputs;
-    private float xRotation;
 
-    //Physics variables
     private Vector3 velocity;
-
-    //Crouching
     private bool isCrouching = false;
-
-    //Sprinting
     private float sprintTimer;
     private float sprintCooldownTimer;
     private bool isOnSprintCooldown = false;
-
-    //Implementing getters and setters
     public Vector3 Velocity
     {
         get => velocity;
@@ -35,14 +27,12 @@ public class PlayerController : MonoBehaviour
     {
         get => isCrouching;
         set => isCrouching = value;
-    }
-
+    }    
     public bool IsOnSprintCooldown
     {
         get => isOnSprintCooldown;
         set => isOnSprintCooldown = value;
     }
-
     public float SprintTimer
     {
         get => sprintTimer;
@@ -53,6 +43,7 @@ public class PlayerController : MonoBehaviour
         get => sprintCooldownTimer;
         set => sprintCooldownTimer = value;
     }
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -60,6 +51,7 @@ public class PlayerController : MonoBehaviour
         currentState = new IdleState(this);
         currentState.EnterState();
     }
+
     private void Update()
     {
         playerCameraControls.MovePlayerCamera();
