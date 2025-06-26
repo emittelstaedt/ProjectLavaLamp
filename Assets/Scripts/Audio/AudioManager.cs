@@ -4,13 +4,12 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance = null;
-    
+    [SerializeField] private SoundClip[] soundClips;
     private AudioPlayer audioPlayer;
     private MixerController mixerController;
-    
-    [SerializeField] private SoundClip[] soundClips;
     private Dictionary<SoundType, SoundClip> soundTypeToClip;
+
+    public static AudioManager Instance = null;
 
     void Awake()
     {
@@ -32,16 +31,11 @@ public class AudioManager : MonoBehaviour
             soundTypeToClip.Add(soundClips[i].Type, soundClips[i]);
         }
         
-        // Get audio and mixer controllers
         audioPlayer = GetComponent<AudioPlayer>();
         mixerController = GetComponent<MixerController>();
     }
     
-    /// <summary>
-    /// Called from event listener.
-    /// Sets the volume for the specified mixer type to the specified amount.
-    /// </summary>
-    public void SetVolume(MixerType mixerType, float volume)
+    public void SetMixerVolume(MixerType mixerType, float volume)
     {
         mixerController.SetVolume(mixerType, volume);
     }

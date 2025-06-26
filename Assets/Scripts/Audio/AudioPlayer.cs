@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
-using System.Collections.Generic;
 
 public class AudioPlayer : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class AudioPlayer : MonoBehaviour
     
     void Awake()
     {
-        // Make an object pool.
         audioPool = new ObjectPool(playSoundPrefab, transform);
     }
     
@@ -131,7 +129,6 @@ public class AudioPlayer : MonoBehaviour
         source.Play();
     }
 
-    // Deactivates the given game object after the given seconds.
     private IEnumerator DeactivateAfterSeconds(GameObject audioObject, float seconds)
     {
         yield return new WaitForSeconds(seconds);

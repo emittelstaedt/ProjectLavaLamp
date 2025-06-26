@@ -51,7 +51,7 @@ public class AudioTestScript : MonoBehaviour
         AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.Unknown, 1f);
         yield return new WaitForSeconds(3);
 
-        AudioManager.Instance.SetVolume(MixerType.SFX, 0.2f);        
+        AudioManager.Instance.SetMixerVolume(MixerType.SFX, 0.2f);        
         AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.Unknown, 1f);
         yield return new WaitForSeconds(5);
         

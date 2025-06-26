@@ -7,18 +7,15 @@ public class ObjectPool
     private Transform parent;
     private List<GameObject> objects = new List<GameObject>();
     
-    // Sets the prefab to be used.
     public ObjectPool(GameObject prefab, Transform parent)
     {
         this.prefab = prefab;
         this.parent = parent;
     }
     
-    // Returns an instance of the prefab from the pool.
     // Objects must be SetActive(false) to give the object back to the pool.
     public GameObject GetInstance()
     {
-        // Ensures the prefab has been set.
         if (prefab == null)
         {
             Debug.LogError("No prefab set in object pool");
@@ -33,14 +30,17 @@ public class ObjectPool
             if (obj == null)
             {
                 objects.RemoveAt(i);
+                continue;
             }
+
             // Ensure that the object has the correct parent.
-            else if (!obj.activeSelf && obj.transform.parent != parent)
+            if (!obj.activeSelf && obj.transform.parent != parent)
             {
                 obj.transform.SetParent(parent);
             }
+
             // Return the first inactive object.
-            if (obj != null && !obj.activeSelf)
+            if (!obj.activeSelf)
             {
                 obj.SetActive(true);
                 return obj;
