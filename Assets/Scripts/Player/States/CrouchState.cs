@@ -12,7 +12,6 @@ public class CrouchState : PlayerState
 
     public override void Update()
     {
-
         Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
         Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
 

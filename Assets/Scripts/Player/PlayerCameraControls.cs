@@ -9,7 +9,6 @@ public class PlayerCameraControls : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private float sensitivity = 7f;
     private float xRotation;
-    
 
     public void MovePlayerCamera()
     {
@@ -22,6 +21,7 @@ public class PlayerCameraControls : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
     }
+
     public void LockCursor()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,5 +35,4 @@ public class PlayerCameraControls : MonoBehaviour
             Cursor.visible = false;
         }
     }
-
 }

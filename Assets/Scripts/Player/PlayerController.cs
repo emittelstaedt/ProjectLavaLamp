@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Camera and player inputs
     [SerializeField] private CharacterController characterController;
     [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private PlayerCameraControls playerCameraControls;
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
                 isOnSprintCooldown = false;
             }
         }
-
 
         if (!isOnSprintCooldown && !(currentState is SprintState) && sprintTimer < playerStats.SprintDuration)
         {

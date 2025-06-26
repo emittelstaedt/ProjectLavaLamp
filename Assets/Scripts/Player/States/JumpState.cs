@@ -19,9 +19,13 @@ public class JumpState : PlayerState
         if (player.IsGrounded() && player.Velocity.y <= 0)
         {
             if (moveValue.magnitude > 0.1f)
+            {
                 player.SwitchState(new WalkState(player));
+            }
             else
+            {
                 player.SwitchState(new IdleState(player));
+            }
         }
 
         player.ApplyGravity();

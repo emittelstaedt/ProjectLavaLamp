@@ -25,10 +25,12 @@ public class WalkState : PlayerState
             player.SwitchState(new JumpState(player));
             return;
         }
+        
         if (player.PlayerInputs.sprintAction.IsPressed() && !player.IsOnSprintCooldown)
         {
             player.SwitchState(new SprintState(player));
         }
+        
         player.ApplyGravity();
         player.MovePlayer(moveDirection * player.PlayerStats.WalkSpeed);
     }

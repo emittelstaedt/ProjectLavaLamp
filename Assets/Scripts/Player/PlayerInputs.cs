@@ -3,12 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : MonoBehaviour
 {
-    public Vector2 PlayerMouseInput { get; private set; }
-
     public InputAction moveAction;
     public InputAction jumpAction;
     public InputAction crouchAction;
     public InputAction sprintAction;
+    public Vector2 PlayerMouseInput { get; private set; }
 
     public void Start()
     {
