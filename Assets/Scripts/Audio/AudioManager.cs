@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
     
     /// <summary>
     /// Plays the given sound at the given position and loops.
-    /// Returns the AudioSource so that the caller can end the loop by setting loop to false on the AudioSource.
+    /// Returns the GameObject so that the caller can disable the object when they want the loop to stop.
     /// </summary>
     public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume, Vector3 position)
     {
@@ -90,6 +90,29 @@ public class AudioManager : MonoBehaviour
         AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
         
         return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, position);
+    }
+    
+    /// <summary>
+    /// Plays the given sound while following the given transform once.
+    /// </summary>
+    public void PlaySound(MixerType mixerType, SoundType soundType, float volume, Transform parent)
+    {
+        AudioClip clip = GetAudioClip(soundType);
+        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
+        
+        audioPlayer.PlaySound(mixerGroup, clip, volume, parent);
+    }
+    
+    /// <summary>
+    /// Plays the given sound as a child of the given transform on loop.
+    /// Returns the GameObject so that the caller can disable the object when they want the loop to stop.
+    /// </summary>
+    public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume, Transform parent)
+    {
+        AudioClip clip = GetAudioClip(soundType);
+        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
+        
+        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, parent);
     }
     
     private AudioClip GetAudioClip(SoundType type)
