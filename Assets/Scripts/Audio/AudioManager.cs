@@ -39,76 +39,78 @@ public class AudioManager : MonoBehaviour
     {
         mixerController.SetVolume(mixerType, volume);
     }
-    
+
     /// <summary>
-    /// Plays the given sound with no position one time.
+    /// Plays sound once in 2D space.
     /// </summary>
     public void PlaySound(MixerType mixerType, SoundType soundType, float volume)
     {
-        AudioClip clip = GetAudioClip(soundType);
-        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
-        
+        var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
+
         audioPlayer.PlaySound(mixerGroup, clip, volume);
     }
 
     /// <summary>
-    /// Plays the given sound with no position and loops.
-    /// Returns the GameObject so that the caller can disable the object when they want the loop to stop.
-    /// </summary>
-    public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume)
-    {
-        AudioClip clip = GetAudioClip(soundType);
-        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
-        
-        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume);
-    }
-    
-    /// <summary>
-    /// Plays the given sound at the given position one time.
+    /// Plays sound once at static 3D position.
     /// </summary>
     public void PlaySound(MixerType mixerType, SoundType soundType, float volume, Vector3 position)
     {
-        AudioClip clip = GetAudioClip(soundType);
-        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
-        
+        var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
+
         audioPlayer.PlaySound(mixerGroup, clip, volume, position);
     }
-    
+
     /// <summary>
-    /// Plays the given sound at the given position and loops.
-    /// Returns the GameObject so that the caller can disable the object when they want the loop to stop.
-    /// </summary>
-    public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume, Vector3 position)
-    {
-        AudioClip clip = GetAudioClip(soundType);
-        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
-        
-        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, position);
-    }
-    
-    /// <summary>
-    /// Plays the given sound while following the given transform once.
+    /// Plays sound once at dynamic 3D position, following the parent.
     /// </summary>
     public void PlaySound(MixerType mixerType, SoundType soundType, float volume, Transform parent)
     {
-        AudioClip clip = GetAudioClip(soundType);
-        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
-        
+        var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
+
         audioPlayer.PlaySound(mixerGroup, clip, volume, parent);
     }
-    
+
     /// <summary>
-    /// Plays the given sound as a child of the given transform on loop.
-    /// Returns the GameObject so that the caller can disable the object when they want the loop to stop.
+    /// Plays sound on loop in 2D space.
+    /// Returns GameObject for the caller to disable to end the loop.
+    /// </summary>
+    public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume)
+    {
+        var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
+
+        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume);
+    }
+
+    /// <summary>
+    /// Plays sound on loop at static 3D position.
+    /// Returns GameObject for the caller to disable to end the loop.
+    /// </summary>
+    public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume, Vector3 position)
+    {
+        var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
+
+        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, position);
+    }
+
+    /// <summary>
+    /// Plays sound on loop at dynamic 3D position, following the parent.
+    /// Returns GameObject for the caller to disable to end the loop.
     /// </summary>
     public GameObject PlaySoundLoop(MixerType mixerType, SoundType soundType, float volume, Transform parent)
     {
-        AudioClip clip = GetAudioClip(soundType);
-        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
-        
+        var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
+
         return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, parent);
     }
-    
+
+    private (AudioMixerGroup, AudioClip) GetMixerAndClip(MixerType mixerType, SoundType soundType)
+    {
+        AudioMixerGroup mixerGroup = mixerController.GetMixerGroup(mixerType);
+        AudioClip clip = GetAudioClip(soundType);
+
+        return (mixerGroup, clip);
+    }
+
     private AudioClip GetAudioClip(SoundType type)
     {
         return soundTypeToClip[type].GetAudioClip();

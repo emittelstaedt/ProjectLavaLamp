@@ -11,116 +11,80 @@ public class AudioPlayer : MonoBehaviour
     {
         audioPool = new ObjectPool(playSoundPrefab, transform);
     }
-    
-    // Plays the given sound with no position one time.
+
+    // Plays sound once in 2D space.
     public void PlaySound(AudioMixerGroup mixerGroup, AudioClip clip, float volume)
     {
-        // Get an audio source from the object pool.
-        GameObject audioObject = audioPool.GetInstance();
-        AudioSource source = audioObject.GetComponent<AudioSource>();
+        var (audioObject, source) = InitializeAudioSourceObject(mixerGroup, 0f);
 
-        source.outputAudioMixerGroup = mixerGroup;
-        source.spatialBlend = 0;
-        
-        // Play sound, then deactivate the object after the sound is done playing.
         source.PlayOneShot(clip, volume);
         StartCoroutine(DeactivateAfterSeconds(audioObject, clip.length));
     }
-    
-    // Plays the given sound with no position on loop.
-    // Returns the GameObject so that the caller can disable the object when they want the loop to stop.
-    public GameObject PlaySoundLoop(AudioMixerGroup mixerGroup, AudioClip clip, float volume)
-    {
-        // Get an audio source from the object pool.
-        GameObject audioObject = audioPool.GetInstance();
-        AudioSource source = audioObject.GetComponent<AudioSource>();
-        
-        source.outputAudioMixerGroup = mixerGroup;
-        source.spatialBlend = 0;
-        
-        // Play until the caller disables the object.
-        PlayLooped(source, clip, volume);
-        return audioObject;
-    }
-    
-    // Plays the given sound at the given position once.
+
+    // Plays sound once at static 3D position.
     public void PlaySound(AudioMixerGroup mixerGroup, AudioClip clip, float volume, Vector3 position)
     {
-        // Get an audio source from the object pool.
-        GameObject audioObject = audioPool.GetInstance();
-        AudioSource source = audioObject.GetComponent<AudioSource>();
-        
-        audioObject.transform.position = position;
-        
-        source.outputAudioMixerGroup = mixerGroup;
-        
-        // Enables 3D sound.
-        source.spatialBlend = 1;
+        var (audioObject, source) = InitializeAudioSourceObject(mixerGroup, 1f);
 
-        // Play the clip, disable the object when done.
+        audioObject.transform.position = position;
+
         source.PlayOneShot(clip, volume);
         StartCoroutine(DeactivateAfterSeconds(audioObject, clip.length));
     }
-    
-    // Plays the given sound at the given position on loop.
-    // Returns the GameObject so that the caller can disable the object when they want the loop to stop.
-    public GameObject PlaySoundLoop(AudioMixerGroup mixerGroup, AudioClip clip, float volume, Vector3 position)
-    {
-        // Get an audio source from the object pool.
-        GameObject audioObject = audioPool.GetInstance();
-        AudioSource source = audioObject.GetComponent<AudioSource>();
-        
-        audioObject.transform.position = position;
 
-        source.outputAudioMixerGroup = mixerGroup;
-        
-        // Enables 3D sound.
-        source.spatialBlend = 1;
-        
-        // Play until the caller disables the object.
-        PlayLooped(source, clip, volume);
-        return audioObject;
-    }
-
-    // Plays the given sound while following the given transform once.
+    // Plays sound once at dynamic 3D position, following the parent.
     public void PlaySound(AudioMixerGroup mixerGroup, AudioClip clip, float volume, Transform parent)
     {
-        // Get an audio source from the object pool.
-        GameObject audioObject = audioPool.GetInstance();
-        AudioSource source = audioObject.GetComponent<AudioSource>();
-        
+        var (audioObject, source) = InitializeAudioSourceObject(mixerGroup, 1f);
+
         audioObject.transform.SetParent(parent, false);
 
-        source.outputAudioMixerGroup = mixerGroup;
-        
-        // Enables 3D sound.
-        source.spatialBlend = 1;
-        
-        // Play the clip, disable the object when done.
         source.PlayOneShot(clip, volume);
         StartCoroutine(DeactivateAfterSeconds(audioObject, clip.length));
     }
 
-    // Plays the given sound while following the given transform on loop.
-    // Returns the GameObject so that the caller can end the loop by setting disabling the object.
-    public GameObject PlaySoundLoop(AudioMixerGroup mixerGroup, AudioClip clip, float volume, Transform parent)
+    // Plays sound on loop in 2D space.
+    public GameObject PlaySoundLoop(AudioMixerGroup mixerGroup, AudioClip clip, float volume)
     {
-        // Get an audio source from the object pool.
-        GameObject audioObject = audioPool.GetInstance();
-        AudioSource source = audioObject.GetComponent<AudioSource>();
-        
-        audioObject.transform.SetParent(parent, false);
+        var (audioObject, source) = InitializeAudioSourceObject(mixerGroup, 0f);
 
-        source.outputAudioMixerGroup = mixerGroup;
-        
-        // Enables 3D sound.
-        source.spatialBlend = 1;
-        
-        // Play until the caller disables the object.
         PlayLooped(source, clip, volume);
         return audioObject;
     }
-    
+
+    // Plays sound on loop at static 3D position.
+    public GameObject PlaySoundLoop(AudioMixerGroup mixerGroup, AudioClip clip, float volume, Vector3 position)
+    {
+        var (audioObject, source) = InitializeAudioSourceObject(mixerGroup, 1f);
+
+        audioObject.transform.position = position;
+        
+        PlayLooped(source, clip, volume);
+        return audioObject;
+    }
+
+    // Plays sound on loop at dynamic 3D position, following the parent.
+    public GameObject PlaySoundLoop(AudioMixerGroup mixerGroup, AudioClip clip, float volume, Transform parent)
+    {
+        var (audioObject, source) = InitializeAudioSourceObject(mixerGroup, 1f);
+
+        audioObject.transform.SetParent(parent, false);
+
+        PlayLooped(source, clip, volume);
+        return audioObject;
+    }
+
+    private (GameObject, AudioSource) InitializeAudioSourceObject(AudioMixerGroup mixerGroup, float spatialBlend)
+    {
+        GameObject audioObject = audioPool.GetInstance();
+        AudioSource source = audioObject.GetComponent<AudioSource>();
+
+        source.outputAudioMixerGroup = mixerGroup;
+        source.spatialBlend = spatialBlend;
+
+        return (audioObject, source);
+    }
+
     private void PlayLooped(AudioSource source, AudioClip clip, float volume)
     {
         source.clip = clip;
@@ -129,6 +93,7 @@ public class AudioPlayer : MonoBehaviour
         source.Play();
     }
 
+    // Return the audio object to the pool after given time.
     private IEnumerator DeactivateAfterSeconds(GameObject audioObject, float seconds)
     {
         yield return new WaitForSeconds(seconds);
