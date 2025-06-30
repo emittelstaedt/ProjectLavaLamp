@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private PlayerState currentState;
     private Vector3 velocity;
     private bool isCrouching = false;
+    private float crouchVelocity;
+    private float targetHeight;
     private float sprintTimer;
     private float sprintCooldownTimer;
     private bool isOnSprintCooldown = false;
@@ -26,7 +28,12 @@ public class PlayerController : MonoBehaviour
     {
         get => isCrouching;
         set => isCrouching = value;
-    }    
+    }
+    public float TargetHeight
+    {
+        get => targetHeight;
+        set => targetHeight = value;
+    }
     public bool IsOnSprintCooldown
     {
         get => isOnSprintCooldown;
@@ -43,12 +50,14 @@ public class PlayerController : MonoBehaviour
         set => sprintCooldownTimer = value;
     }
 
-    private void Start()
+    private void Awake()
     {
         characterController = GetComponent<CharacterController>();
 
         currentState = new IdleState(this);
         currentState.EnterState();
+        
+        targetHeight = playerStats.NormalHeight;
     }
 
     private void Update()
@@ -56,8 +65,9 @@ public class PlayerController : MonoBehaviour
         playerCameraControls.MovePlayerCamera();
         playerCameraControls.LockCursor();
         currentState.Update();
+        UpdateHeight();
 
-        //Check for if enough time has passed to reset the sprint cooldown and sprint timer
+        // Check for if enough time has passed to reset the sprint cooldown and sprint timer
         if (isOnSprintCooldown)
         {
             sprintCooldownTimer -= Time.deltaTime;
@@ -72,6 +82,24 @@ public class PlayerController : MonoBehaviour
             sprintTimer += Time.deltaTime;
             sprintTimer = Mathf.Min(sprintTimer, playerStats.SprintDuration);
         }
+    }
+    
+    private void UpdateHeight()
+    {
+        // Disables CharacterController temporarily to prevent its internal variables overriding our changes.
+        characterController.enabled = false;
+
+        float newHeight = Mathf.SmoothDamp(characterController.height, targetHeight, ref crouchVelocity, playerStats.CrouchTime);
+        characterController.height = newHeight;
+
+        // Height adjustment to keep player grounded.
+        float heightDifference = newHeight - characterController.height;
+        float worldHeightDifference = heightDifference * transform.localScale.y;
+        
+        // Player scales from its center, so only adjust half the world height difference.
+        transform.position += Vector3.up * worldHeightDifference / 2;
+
+        characterController.enabled = true;
     }
 
     public void SwitchState(PlayerState newState)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerCameraControls : MonoBehaviour
 {
-    [SerializeField] private Transform playerCamera;
     [SerializeField] private PlayerInputs playerInputs;
     [SerializeField] private PlayerController player;
     [SerializeField] private float sensitivity = 7f;
@@ -18,7 +17,7 @@ public class PlayerCameraControls : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             player.transform.Rotate(0f, playerInputs.PlayerMouseInput.x * sensitivity, 0f);
-            playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
     }
 

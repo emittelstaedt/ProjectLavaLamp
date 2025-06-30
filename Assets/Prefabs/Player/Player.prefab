@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1021923839301789479}
   - component: {fileID: 8800282207756088808}
   - component: {fileID: 4538224503903233219}
+  - component: {fileID: 823117923101133723}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 1588029433053720444}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: -4.99}
-  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8388951609623056272}
@@ -137,86 +138,21 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &3859258967769648219
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3875038117619048303}
-  - component: {fileID: 6393231289116740324}
-  m_Layer: 0
-  m_Name: PlayerInputs
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3875038117619048303
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859258967769648219}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6907768, y: -1.1161252, z: -0.44371223}
-  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8388951609623056272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6393231289116740324
+--- !u!114 &823117923101133723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859258967769648219}
+  m_GameObject: {fileID: 1588029433053720444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bcf6bf4a50cc7428fde5a99420b2ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 774f532ddd8b8ae41ae366bdf9ea0c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 50e7fc6e-3564-4c79-8068-ca1363b4326a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5f98cc34-3573-468d-b045-b69847d0331a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  crouchAction:
-    m_Name: Crouch
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d894357c-65eb-46b9-ac37-d3f244c66bc7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  sprintAction:
-    m_Name: Sprint
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 94f28511-c9fc-44a2-aa8a-0a26ca1a632a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  playerInputs: {fileID: 6568266244265525563}
+  player: {fileID: 209954417647320303}
+  sensitivity: 7
 --- !u!1 &6905212619853310072
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,9 +164,9 @@ GameObject:
   - component: {fileID: 8388951609623056272}
   - component: {fileID: 2836806540685907327}
   - component: {fileID: 7101443154550594978}
-  - component: {fileID: 6841471586935116261}
   - component: {fileID: 2995380884482932886}
   - component: {fileID: 209954417647320303}
+  - component: {fileID: 6568266244265525563}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -247,13 +183,11 @@ Transform:
   m_GameObject: {fileID: 6905212619853310072}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.554, z: -10}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5147364560910222285}
-  - {fileID: 4775685126536672961}
-  - {fileID: 3875038117619048303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2836806540685907327
@@ -309,29 +243,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6841471586935116261
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6905212619853310072}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!143 &2995380884482932886
 CharacterController:
   m_ObjectHideFlags: 0
@@ -370,55 +281,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2995380884482932886}
-  playerInputs: {fileID: 6393231289116740324}
-  playerCameraControls: {fileID: 2980361450144237483}
+  playerInputs: {fileID: 6568266244265525563}
+  playerCameraControls: {fileID: 823117923101133723}
   playerStats: {fileID: 11400000, guid: 7f0c2d684a70d3a44a8dc2e672c3373b, type: 2}
---- !u!1 &7499876889891063444
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4775685126536672961}
-  - component: {fileID: 2980361450144237483}
-  m_Layer: 0
-  m_Name: PlayerCameraControls
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4775685126536672961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7499876889891063444}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6907768, y: -1.1161252, z: -0.44371223}
-  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8388951609623056272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2980361450144237483
+--- !u!114 &6568266244265525563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7499876889891063444}
+  m_GameObject: {fileID: 6905212619853310072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 774f532ddd8b8ae41ae366bdf9ea0c0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 54bcf6bf4a50cc7428fde5a99420b2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 5147364560910222285}
-  playerInputs: {fileID: 6393231289116740324}
-  playerStats: {fileID: 11400000, guid: 7f0c2d684a70d3a44a8dc2e672c3373b, type: 2}
-  player: {fileID: 209954417647320303}
-  sensitivity: 7
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 50e7fc6e-3564-4c79-8068-ca1363b4326a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  jumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5f98cc34-3573-468d-b045-b69847d0331a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  crouchAction:
+    m_Name: Crouch
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d894357c-65eb-46b9-ac37-d3f244c66bc7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  sprintAction:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 94f28511-c9fc-44a2-aa8a-0a26ca1a632a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0

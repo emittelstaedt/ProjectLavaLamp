@@ -8,8 +8,9 @@ public class PlayerStatsSO : ScriptableObject
     [SerializeField] private float crouchSpeed = 3f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float gravity = -19.62f;
-    [SerializeField] private float normalHeight = 1.5f;
-    [SerializeField] private float crouchHeight = 0.7f;
+    [SerializeField] private float normalHeight = 2f;
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float crouchTime = 0.1f;
     [SerializeField] private float sprintDuration = 2f;
     [SerializeField] private float sprintCooldownDuration = 2f;
 
@@ -21,6 +22,7 @@ public class PlayerStatsSO : ScriptableObject
     public float Gravity => gravity;
     public float NormalHeight => normalHeight;
     public float CrouchHeight => crouchHeight;
+    public float CrouchTime => crouchTime;
     public float SprintDuration => sprintDuration;
     public float SprintCooldownDuration => sprintCooldownDuration;
 }
