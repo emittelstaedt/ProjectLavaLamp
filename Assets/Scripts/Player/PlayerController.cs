@@ -90,11 +90,12 @@ public class PlayerController : MonoBehaviour
         characterController.enabled = false;
 
         float newHeight = Mathf.SmoothDamp(characterController.height, targetHeight, ref crouchVelocity, playerStats.CrouchTime);
-        characterController.height = newHeight;
 
         // Height adjustment to keep player grounded.
-        float heightDifference = newHeight - characterController.height;
+        float heightDifference = newHeight - characterController.height;        
         float worldHeightDifference = heightDifference * transform.localScale.y;
+        
+        characterController.height = newHeight;
         
         // Player scales from its center, so only adjust half the world height difference.
         transform.position += Vector3.up * worldHeightDifference / 2;
