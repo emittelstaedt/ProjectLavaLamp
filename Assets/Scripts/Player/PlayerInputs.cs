@@ -7,6 +7,7 @@ public class PlayerInputs : MonoBehaviour
     public InputAction jumpAction;
     public InputAction crouchAction;
     public InputAction sprintAction;
+    public InputAction interactAction;
     public Vector2 PlayerMouseInput { get; private set; }
 
     public void Start()
@@ -15,6 +16,7 @@ public class PlayerInputs : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         crouchAction = InputSystem.actions.FindAction("Crouch");
         sprintAction = InputSystem.actions.FindAction("Sprint");
+        interactAction = InputSystem.actions.FindAction("Interact");
     }
 
     public void Update()
