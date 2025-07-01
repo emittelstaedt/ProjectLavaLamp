@@ -7,59 +7,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerCameraControls playerCameraControls;
     [SerializeField] private PlayerStatsSO playerStats;
     private PlayerState currentState;
-    private Vector3 velocity;
-    private bool isCrouching = false;
     private float crouchVelocity;
-    private float targetHeight;
-    private float currentSpeed;
     private float sprintTimer;
     private float sprintCooldownTimer;
-    private bool isOnSprintCooldown = false;
+    private float yVelocity;
+    private float targetHeight;
+    private float currentSpeed;
 
-    public CharacterController CharacterController => characterController;
-    public PlayerCameraControls PlayerCameraControls => playerCameraControls;
     public PlayerStatsSO PlayerStats => playerStats;
     public PlayerInputs PlayerInputs => playerInputs;
-    public Vector3 Velocity
+    public float YVelocity
     {
-        get => velocity;
-        set => velocity = value;
-    }
-    public bool IsCrouching
-    {
-        get => isCrouching;
-        set => isCrouching = value;
+        get => yVelocity;
+        set => yVelocity = value;
     }
     public float TargetHeight
     {
         get => targetHeight;
-        set => targetHeight = value;
+        set => targetHeight = Mathf.Max(value, 1);
     }
     public float CurrentSpeed
     {
         get => currentSpeed;
         set => currentSpeed = value;
     }
-    public bool IsOnSprintCooldown
-    {
-        get => isOnSprintCooldown;
-        set => isOnSprintCooldown = value;
-    }
-    public float SprintTimer
-    {
-        get => sprintTimer;
-        set => sprintTimer = value;
-    }
-    public float SprintCooldownTimer
-    {
-        get => sprintCooldownTimer;
-        set => sprintCooldownTimer = value;
-    }
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
-
         currentState = new IdleState(this);
         currentState.EnterState();
         
@@ -70,44 +44,12 @@ public class PlayerController : MonoBehaviour
     {
         playerCameraControls.MovePlayerCamera();
         playerCameraControls.LockCursor();
-        currentState.Update();
+
+        ManageSprintTimers();
         UpdateHeight();
         MovePlayer();
 
-        // Check for if enough time has passed to reset the sprint cooldown and sprint timer
-        if (isOnSprintCooldown)
-        {
-            sprintCooldownTimer -= Time.deltaTime;
-            if (sprintCooldownTimer <= 0f)
-            {
-                isOnSprintCooldown = false;
-            }
-        }
-
-        if (!isOnSprintCooldown && !(currentState is SprintState) && sprintTimer < playerStats.SprintDuration)
-        {
-            sprintTimer += Time.deltaTime;
-            sprintTimer = Mathf.Min(sprintTimer, playerStats.SprintDuration);
-        }
-    }
-    
-    private void UpdateHeight()
-    {
-        // Disables CharacterController temporarily to prevent its internal variables overriding our changes.
-        characterController.enabled = false;
-
-        float newHeight = Mathf.SmoothDamp(characterController.height, targetHeight, ref crouchVelocity, playerStats.CrouchTime);
-
-        // Height adjustment to keep player grounded.
-        float heightDifference = newHeight - characterController.height;        
-        float worldHeightDifference = heightDifference * transform.localScale.y;
-        
-        characterController.height = newHeight;
-        
-        // Player scales from its center, so only adjust half the world height difference.
-        transform.position += Vector3.up * worldHeightDifference / 2;
-
-        characterController.enabled = true;
+        currentState.Update();
     }
 
     public void SwitchState(PlayerState newState)
@@ -115,29 +57,6 @@ public class PlayerController : MonoBehaviour
         currentState.ExitState();
         currentState = newState;
         currentState.EnterState();
-    }
-
-    private void MovePlayer()
-    {
-        Vector2 input = PlayerInputs.moveAction.ReadValue<Vector2>();
-        Vector3 inputDirection = (transform.right * input.x + transform.forward * input.y).normalized;
-
-        ApplyGravity();
-
-        Vector3 movement = (inputDirection * currentSpeed) + Vector3.up * velocity.y;
-        characterController.Move(movement * Time.deltaTime);
-    }
-
-    private void ApplyGravity()
-    {
-        if (IsGrounded() && velocity.y < 0)
-        {
-            velocity.y = -1f;
-        }
-        else
-        {
-            velocity.y += playerStats.Gravity * Time.deltaTime;
-        }
     }
 
     public bool IsGrounded()
@@ -164,5 +83,73 @@ public class PlayerController : MonoBehaviour
         Vector3 topSphereCenter = transform.position + Vector3.up * worldDistanceToTopSphere;
 
         return !Physics.CheckCapsule(bottomSphereCenter, topSphereCenter, radius);
+    }
+
+    public bool IsOnSprintCooldown()
+    {
+        return sprintCooldownTimer > 0f;
+    }
+
+    private void ManageSprintTimers()
+    {
+        if (IsOnSprintCooldown())
+        {
+            sprintCooldownTimer -= Time.deltaTime;
+        }
+        else if (currentState is not SprintState)
+        {
+            sprintTimer += Time.deltaTime;
+            sprintTimer = Mathf.Min(sprintTimer, playerStats.SprintDuration);
+        }
+        else
+        {
+            sprintTimer -= Time.deltaTime;
+            if (sprintTimer <= 0f)
+            {
+                sprintCooldownTimer = playerStats.SprintCooldownDuration;
+            }
+        }
+    }
+
+    private void UpdateHeight()
+    {
+        // Disables CharacterController temporarily to prevent its internal variables overriding our changes.
+        characterController.enabled = false;
+
+        float newHeight = Mathf.SmoothDamp(characterController.height, targetHeight, ref crouchVelocity, playerStats.CrouchTime);
+
+        // Height adjustment to keep player grounded.
+        float heightDifference = newHeight - characterController.height;
+        float worldHeightDifference = heightDifference * transform.localScale.y;
+
+        characterController.height = newHeight;
+
+        // Player scales from its center, so only adjust half the world height difference.
+        transform.position += Vector3.up * worldHeightDifference / 2;
+
+        characterController.enabled = true;
+    }
+
+    private void MovePlayer()
+    {
+        Vector2 input = PlayerInputs.moveAction.ReadValue<Vector2>();
+        Vector3 inputDirection = (transform.right * input.x + transform.forward * input.y).normalized;
+
+        ApplyGravity();
+
+        Vector3 movement = (inputDirection * currentSpeed) + (Vector3.up * yVelocity);
+        characterController.Move(movement * Time.deltaTime);
+    }
+
+    private void ApplyGravity()
+    {
+        if (IsGrounded() && yVelocity < 0)
+        {
+            yVelocity = -1f;
+        }
+        else
+        {
+            yVelocity += playerStats.Gravity * Time.deltaTime;
+        }
     }
 }

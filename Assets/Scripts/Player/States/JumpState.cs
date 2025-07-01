@@ -6,9 +6,7 @@ public class JumpState : PlayerState
 
     public override void EnterState()
     {
-        Vector3 newVelocity = player.Velocity;
-        newVelocity.y = player.PlayerStats.JumpForce;
-        player.Velocity = newVelocity;
+        player.YVelocity = player.PlayerStats.JumpForce;
     }
 
     public override void Update()

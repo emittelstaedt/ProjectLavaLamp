@@ -11,7 +11,7 @@ public class SprintState : PlayerState
 
     public override void Update()
     {
-        if (!player.PlayerInputs.sprintAction.IsPressed() || player.IsCrouching || !player.IsMoving() || player.IsOnSprintCooldown)
+        if (!player.PlayerInputs.sprintAction.IsPressed() || player.IsOnSprintCooldown())
         {
             player.SwitchState(new WalkState(player));
             return;
@@ -26,14 +26,6 @@ public class SprintState : PlayerState
         {
             player.SwitchState(new JumpState(player));
             return;
-        }
-
-        player.SprintTimer -= Time.deltaTime;
-        if (player.SprintTimer <= 0f)
-        {
-            player.IsOnSprintCooldown = true;
-            player.SprintCooldownTimer = player.PlayerStats.SprintCooldownDuration;
-            player.SwitchState(new WalkState(player));
         }
     }
 }

@@ -6,7 +6,6 @@ public class CrouchState : PlayerState
 
     public override void EnterState()
     {
-        player.IsCrouching = true;
         player.TargetHeight = player.PlayerStats.CrouchHeight;
 
         player.CurrentSpeed = player.PlayerStats.CrouchSpeed;
@@ -28,7 +27,6 @@ public class CrouchState : PlayerState
 
     public override void ExitState()
     {
-        player.IsCrouching = false;
         player.TargetHeight = player.PlayerStats.NormalHeight;
     }
 }

@@ -22,13 +22,13 @@ public class WalkState : PlayerState
             player.SwitchState(new CrouchState(player));
         }
 
-        if (player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded() && !player.IsCrouching)
+        if (player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded())
         {
             player.SwitchState(new JumpState(player));
             return;
         }
         
-        if (player.PlayerInputs.sprintAction.IsPressed() && !player.IsOnSprintCooldown)
+        if (player.PlayerInputs.sprintAction.IsPressed() && !player.IsOnSprintCooldown())
         {
             player.SwitchState(new SprintState(player));
         }
