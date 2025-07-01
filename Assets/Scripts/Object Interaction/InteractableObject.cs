@@ -6,17 +6,14 @@ public class InteractableObject : MonoBehaviour
 
     public void Awake()
     {
+        outline = GetComponent<Outline>();
+    
         if (outline == null)
         {
-            outline = GetComponent<Outline>();
-    
-            if (outline == null)
-            {
-                outline = gameObject.AddComponent<Outline>();
-                outline.enabled = false;
-                outline.OutlineWidth = Settings.OutlineWidth;
-                outline.OutlineMode = Outline.Mode.OutlineVisible;
-            }
+            outline = gameObject.AddComponent<Outline>();
+            outline.enabled = false;
+            outline.OutlineWidth = Settings.OutlineWidth;
+            outline.OutlineMode = Outline.Mode.OutlineVisible;
         }
     }
 
@@ -28,8 +25,7 @@ public class InteractableObject : MonoBehaviour
 
     public void StopInteract()
     {
-        outline.OutlineColor = Settings.HoverColor;
-        outline.enabled = true;
+        // Empty for future interaction
     }
 
     public void HandleHighlight()
@@ -40,9 +36,6 @@ public class InteractableObject : MonoBehaviour
 
     public void StopHighlight()
     {
-        if (outline != null)
-        {
-            outline.enabled = false;
-        }
+        outline.enabled = false;
     }
 }
