@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractableObjectSearcher : MonoBehaviour
 {
-    [SerializeField] private PlayerInputs playerInputs;
     private InteractableObject lastInteraction;
     private InteractableObject currentInteraction;
     private RaycastHit rayCastHit;
     private bool wasInteractPressedThisFrame = false;
+    private InputAction interactAction;
+
+    private void Awake()
+    {
+        interactAction = InputSystem.actions.FindAction("Interact");
+    }
 
     void Update()
     {
-        wasInteractPressedThisFrame = playerInputs.interactAction.WasPressedThisFrame();
+        wasInteractPressedThisFrame = interactAction.WasPressedThisFrame();
         HandleRaycast();
     }
 

@@ -11,18 +11,18 @@ public class SprintState : PlayerState
 
     public override void Update()
     {
-        if (!player.PlayerInputs.sprintAction.IsPressed() || player.IsOnSprintCooldown())
+        if (!player.IsSprintButtonPressed || player.IsOnSprintCooldown())
         {
             player.SwitchState(new WalkState(player));
             return;
         }
 
-        if (player.PlayerInputs.crouchAction.IsPressed())
+        if (player.IsCrouchButtonPressed)
         {
             player.SwitchState(new CrouchState(player));
         }
 
-        if (player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded())
+        if (player.IsJumpButtonPressed && player.IsGrounded())
         {
             player.SwitchState(new JumpState(player));
             return;

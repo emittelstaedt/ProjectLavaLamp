@@ -151,9 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774f532ddd8b8ae41ae366bdf9ea0c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInputs: {fileID: 6568266244265525563}
-  player: {fileID: 209954417647320303}
-  sensitivity: 7
+  sensitivity: 0.15
 --- !u!114 &5186613580977488286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea117c3839d8534f81bd7a776e32c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInputs: {fileID: 6568266244265525563}
 --- !u!1 &6905212619853310072
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +177,6 @@ GameObject:
   - component: {fileID: 7101443154550594978}
   - component: {fileID: 2995380884482932886}
   - component: {fileID: 209954417647320303}
-  - component: {fileID: 6568266244265525563}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -295,63 +291,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2995380884482932886}
-  playerInputs: {fileID: 6568266244265525563}
-  playerCameraControls: {fileID: 823117923101133723}
   playerStats: {fileID: 11400000, guid: 7f0c2d684a70d3a44a8dc2e672c3373b, type: 2}
---- !u!114 &6568266244265525563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6905212619853310072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bcf6bf4a50cc7428fde5a99420b2ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 50e7fc6e-3564-4c79-8068-ca1363b4326a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5f98cc34-3573-468d-b045-b69847d0331a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  crouchAction:
-    m_Name: Crouch
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d894357c-65eb-46b9-ac37-d3f244c66bc7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  sprintAction:
-    m_Name: Sprint
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 94f28511-c9fc-44a2-aa8a-0a26ca1a632a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  interactAction:
-    m_Name: Interact
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 60355bfd-9eb1-4208-b369-1ae8116a9049
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0

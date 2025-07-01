@@ -16,12 +16,12 @@ public class IdleState : PlayerState
             player.SwitchState(new WalkState(player));
         }
 
-        if (player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded())
+        if (player.IsJumpButtonPressed && player.IsGrounded())
         {
             player.SwitchState(new JumpState(player));
         }
 
-        if (player.PlayerInputs.crouchAction.IsPressed())
+        if (player.IsCrouchButtonPressed)
         {
             player.SwitchState(new CrouchState(player));
         }

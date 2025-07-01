@@ -1,10 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private PlayerInputs playerInputs;
-    [SerializeField] private PlayerCameraControls playerCameraControls;
     [SerializeField] private PlayerStatsSO playerStats;
     private PlayerState currentState;
     private float crouchVelocity;
@@ -13,9 +12,15 @@ public class PlayerController : MonoBehaviour
     private float yVelocity;
     private float targetHeight;
     private float currentSpeed;
+    private InputAction moveAction;
+    private InputAction jumpAction;
+    private InputAction crouchAction;
+    private InputAction sprintAction;
 
     public PlayerStatsSO PlayerStats => playerStats;
-    public PlayerInputs PlayerInputs => playerInputs;
+    public bool IsJumpButtonPressed => jumpAction.IsPressed();
+    public bool IsCrouchButtonPressed => crouchAction.IsPressed();
+    public bool IsSprintButtonPressed => sprintAction.IsPressed();
     public float YVelocity
     {
         get => yVelocity;
@@ -38,13 +43,15 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState();
         
         targetHeight = playerStats.NormalHeight;
+
+        moveAction = InputSystem.actions.FindAction("Move");
+        jumpAction = InputSystem.actions.FindAction("Jump");
+        crouchAction = InputSystem.actions.FindAction("Crouch");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
     }
 
     private void Update()
     {
-        playerCameraControls.MovePlayerCamera();
-        playerCameraControls.LockCursor();
-
         ManageSprintTimers();
         UpdateHeight();
         MovePlayer();
@@ -66,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsMoving()
     {
-        return playerInputs.moveAction.ReadValue<Vector2>().magnitude > 0.1f;
+        return moveAction.ReadValue<Vector2>().magnitude > 0.1f;
     }
 
     public bool HasRoomToUncrouch()
@@ -132,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector2 input = PlayerInputs.moveAction.ReadValue<Vector2>();
+        Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 inputDirection = (transform.right * input.x + transform.forward * input.y).normalized;
 
         ApplyGravity();
