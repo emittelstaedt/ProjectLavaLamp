@@ -32,14 +32,14 @@ public class InteractableObjectSearcher : MonoBehaviour
                     currentInteraction.StopHighlight();
                 }
 
+                currentInteraction = interactableObject;
+
                 if (wasInteractPressedThisFrame)
                 {
                     HandleInteraction(interactableObject);
                 }
                 else
                 {
-                    currentInteraction = interactableObject;
-
                     if (currentInteraction != lastInteraction)
                     {
                         currentInteraction.HandleHighlight();
@@ -59,8 +59,6 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     private void HandleInteraction(InteractableObject interactableObject)
     {
-        currentInteraction = interactableObject;
-
         if (lastInteraction == currentInteraction)
         {
             currentInteraction.StopInteract();
