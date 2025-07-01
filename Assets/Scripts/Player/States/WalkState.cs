@@ -4,12 +4,14 @@ public class WalkState : PlayerState
 {
     public WalkState(PlayerController player) : base(player) { }
 
+    public override void EnterState()
+    {
+        player.CurrentSpeed = player.PlayerStats.WalkSpeed;
+    }
+
     public override void Update()
     {
-        Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
-        Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
-
-        if (moveValue.magnitude < 0.1f)
+        if (!player.IsMoving())
         {
             player.SwitchState(new IdleState(player));
             return;
@@ -30,8 +32,5 @@ public class WalkState : PlayerState
         {
             player.SwitchState(new SprintState(player));
         }
-        
-        player.ApplyGravity();
-        player.MovePlayer(moveDirection * player.PlayerStats.WalkSpeed);
     }
 }

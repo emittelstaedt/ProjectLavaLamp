@@ -3,15 +3,20 @@ using UnityEngine;
 public class IdleState : PlayerState
 {
     public IdleState(PlayerController player) : base(player) { }
+
+    public override void EnterState()
+    {
+        player.CurrentSpeed = 0f;
+    }
+
     public override void Update()
     {
-        Vector2 move = player.PlayerInputs.moveAction.ReadValue<Vector2>();
-        if(move.magnitude > 0.1f)
+        if (player.IsMoving())
         {
             player.SwitchState(new WalkState(player));
         }
 
-        if(player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded())
+        if (player.PlayerInputs.jumpAction.IsPressed() && player.IsGrounded())
         {
             player.SwitchState(new JumpState(player));
         }
@@ -20,8 +25,5 @@ public class IdleState : PlayerState
         {
             player.SwitchState(new CrouchState(player));
         }
-
-        player.ApplyGravity();
-        player.MovePlayer(Vector3.zero);
     }
 }

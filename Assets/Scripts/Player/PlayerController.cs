@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     private float crouchVelocity;
     private float targetHeight;
+    private float currentSpeed;
     private float sprintTimer;
     private float sprintCooldownTimer;
     private bool isOnSprintCooldown = false;
@@ -33,6 +34,11 @@ public class PlayerController : MonoBehaviour
     {
         get => targetHeight;
         set => targetHeight = value;
+    }
+    public float CurrentSpeed
+    {
+        get => currentSpeed;
+        set => currentSpeed = value;
     }
     public bool IsOnSprintCooldown
     {
@@ -66,6 +72,7 @@ public class PlayerController : MonoBehaviour
         playerCameraControls.LockCursor();
         currentState.Update();
         UpdateHeight();
+        MovePlayer();
 
         // Check for if enough time has passed to reset the sprint cooldown and sprint timer
         if (isOnSprintCooldown)
@@ -110,21 +117,20 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState();
     }
 
-    public Vector3 CalculateMoveDirection(Vector2 moveValue)
+    private void MovePlayer()
     {
-        Vector3 direction = (transform.right * moveValue.x + transform.forward * moveValue.y).normalized;
-        return direction;
+        Vector2 input = PlayerInputs.moveAction.ReadValue<Vector2>();
+        Vector3 inputDirection = (transform.right * input.x + transform.forward * input.y).normalized;
+
+        ApplyGravity();
+
+        Vector3 movement = (inputDirection * currentSpeed) + Vector3.up * velocity.y;
+        characterController.Move(movement * Time.deltaTime);
     }
 
-    public void MovePlayer(Vector3 horizontal)
+    private void ApplyGravity()
     {
-        Vector3 finalMove = horizontal + new Vector3(0, velocity.y, 0);
-        characterController.Move(finalMove * Time.deltaTime);
-    }
-
-    public void ApplyGravity()
-    {
-        if(IsGrounded() && velocity.y < 0)
+        if (IsGrounded() && velocity.y < 0)
         {
             velocity.y = -1f;
         }
@@ -137,5 +143,26 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         return characterController.isGrounded;
+    }
+
+    public bool IsMoving()
+    {
+        return playerInputs.moveAction.ReadValue<Vector2>().magnitude > 0.1f;
+    }
+
+    public bool HasRoomToUncrouch()
+    {
+        float radius = characterController.radius;
+
+        float distanceToBottomSphere = (characterController.height / 2) - radius;
+        float worldDistanceToBottomSphere = distanceToBottomSphere * transform.localScale.y;
+
+        float distanceToTopSphere = playerStats.NormalHeight - (characterController.height / 2) - radius;
+        float worldDistanceToTopSphere = distanceToTopSphere * transform.localScale.y;
+
+        Vector3 bottomSphereCenter = transform.position - Vector3.up * worldDistanceToBottomSphere;
+        Vector3 topSphereCenter = transform.position + Vector3.up * worldDistanceToTopSphere;
+
+        return !Physics.CheckCapsule(bottomSphereCenter, topSphereCenter, radius);
     }
 }

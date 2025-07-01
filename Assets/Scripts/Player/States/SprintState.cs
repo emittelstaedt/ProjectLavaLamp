@@ -4,12 +4,14 @@ public class SprintState : PlayerState
 {
     public SprintState(PlayerController player) : base(player) { }
 
+    public override void EnterState()
+    {
+        player.CurrentSpeed = player.PlayerStats.SprintSpeed;
+    }
+
     public override void Update()
     {
-        Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
-        Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
-
-        if (!player.PlayerInputs.sprintAction.IsPressed() || player.IsCrouching || moveValue.magnitude < 0.1f || player.IsOnSprintCooldown)
+        if (!player.PlayerInputs.sprintAction.IsPressed() || player.IsCrouching || !player.IsMoving() || player.IsOnSprintCooldown)
         {
             player.SwitchState(new WalkState(player));
             return;
@@ -33,8 +35,5 @@ public class SprintState : PlayerState
             player.SprintCooldownTimer = player.PlayerStats.SprintCooldownDuration;
             player.SwitchState(new WalkState(player));
         }
-
-        player.ApplyGravity();
-        player.MovePlayer(moveDirection * player.PlayerStats.SprintSpeed);
     }
 }

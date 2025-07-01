@@ -13,12 +13,9 @@ public class JumpState : PlayerState
 
     public override void Update()
     {
-        Vector2 moveValue = player.PlayerInputs.moveAction.ReadValue<Vector2>();
-        Vector3 moveDirection = player.CalculateMoveDirection(moveValue);
-
-        if (player.IsGrounded() && player.Velocity.y <= 0)
+        if (player.IsGrounded())
         {
-            if (moveValue.magnitude > 0.1f)
+            if (player.IsMoving())
             {
                 player.SwitchState(new WalkState(player));
             }
@@ -27,8 +24,5 @@ public class JumpState : PlayerState
                 player.SwitchState(new IdleState(player));
             }
         }
-
-        player.ApplyGravity();
-        player.MovePlayer(moveDirection * player.PlayerStats.WalkSpeed);
     }
 }
