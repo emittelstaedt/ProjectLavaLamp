@@ -7,12 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStatsSO playerStats;
     private PlayerState currentState;
     private float crouchVelocity;
-    private float sprintTimer;
-    private float sprintCooldownTimer;
     private float yVelocity;
     private float targetHeight;
     private float currentSpeed;
-    private bool hasReleasedSprintButton = true;
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction crouchAction;
@@ -21,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStatsSO PlayerStats => playerStats;
     public bool IsJumpButtonPressed => jumpAction.IsPressed();
     public bool IsCrouchButtonPressed => crouchAction.IsPressed();
-    public bool IsSprintButtonPressed => sprintAction.IsPressed() && hasReleasedSprintButton;
+    public bool IsSprintButtonPressed => sprintAction.IsPressed();
     public float YVelocity
     {
         get => yVelocity;
@@ -37,11 +34,6 @@ public class PlayerController : MonoBehaviour
         get => currentSpeed;
         set => currentSpeed = value;
     }
-    public bool HasReleasedSprintButton
-    {
-        get => hasReleasedSprintButton;
-        set => hasReleasedSprintButton = value;
-    }
 
     private void Awake()
     {
@@ -49,7 +41,6 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState();
         
         targetHeight = playerStats.NormalHeight;
-        sprintTimer = playerStats.SprintDuration;
 
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
@@ -59,7 +50,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ManageSprintTimers();
         UpdateHeight();
         MovePlayer();
 
@@ -97,37 +87,6 @@ public class PlayerController : MonoBehaviour
         Vector3 topSphereCenter = transform.position + Vector3.up * worldDistanceToTopSphere;
 
         return !Physics.CheckCapsule(bottomSphereCenter, topSphereCenter, radius);
-    }
-
-    public bool IsOnSprintCooldown()
-    {
-        return sprintCooldownTimer > 0f;
-    }
-
-    private void ManageSprintTimers()
-    {
-        if (IsOnSprintCooldown())
-        {
-            sprintCooldownTimer -= Time.deltaTime;
-        }
-        else if (currentState is not SprintState)
-        {
-            sprintTimer += Time.deltaTime;
-            sprintTimer = Mathf.Min(sprintTimer, playerStats.SprintDuration);
-
-            if (sprintAction.WasReleasedThisFrame())
-            {
-                hasReleasedSprintButton = true;
-            }
-        }
-        else
-        {
-            sprintTimer -= Time.deltaTime;
-            if (sprintTimer <= 0f)
-            {
-                sprintCooldownTimer = playerStats.SprintCooldownDuration;
-            }
-        }
     }
 
     private void UpdateHeight()

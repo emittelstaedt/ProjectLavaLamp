@@ -11,13 +11,8 @@ public class SprintState : PlayerState
 
     public override void Update()
     {
-        if (!player.IsSprintButtonPressed || player.IsOnSprintCooldown())
+        if (!player.IsSprintButtonPressed)
         {
-            if (player.IsOnSprintCooldown())
-            {
-                player.HasReleasedSprintButton = false;
-            }
-
             player.SwitchState(new WalkState(player));
             return;
         }
