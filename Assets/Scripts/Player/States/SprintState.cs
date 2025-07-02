@@ -13,6 +13,11 @@ public class SprintState : PlayerState
     {
         if (!player.IsSprintButtonPressed || player.IsOnSprintCooldown())
         {
+            if (player.IsOnSprintCooldown())
+            {
+                player.HasReleasedSprintButton = false;
+            }
+
             player.SwitchState(new WalkState(player));
             return;
         }

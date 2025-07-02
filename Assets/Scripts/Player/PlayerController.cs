@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float yVelocity;
     private float targetHeight;
     private float currentSpeed;
+    private bool hasReleasedSprintButton = true;
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction crouchAction;
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStatsSO PlayerStats => playerStats;
     public bool IsJumpButtonPressed => jumpAction.IsPressed();
     public bool IsCrouchButtonPressed => crouchAction.IsPressed();
-    public bool IsSprintButtonPressed => sprintAction.IsPressed();
+    public bool IsSprintButtonPressed => sprintAction.IsPressed() && hasReleasedSprintButton;
     public float YVelocity
     {
         get => yVelocity;
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
     {
         get => currentSpeed;
         set => currentSpeed = value;
+    }
+    public bool HasReleasedSprintButton
+    {
+        get => hasReleasedSprintButton;
+        set => hasReleasedSprintButton = value;
     }
 
     private void Awake()
@@ -55,6 +61,11 @@ public class PlayerController : MonoBehaviour
         ManageSprintTimers();
         UpdateHeight();
         MovePlayer();
+
+        if (sprintAction.WasReleasedThisFrame())
+        {
+            hasReleasedSprintButton = true;
+        }
 
         currentState.Update();
     }
