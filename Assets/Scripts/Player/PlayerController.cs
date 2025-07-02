@@ -128,8 +128,6 @@ public class PlayerController : MonoBehaviour
                 sprintCooldownTimer = playerStats.SprintCooldownDuration;
             }
         }
-
-        Debug.Log($"Sprint Timer: {sprintTimer}, Sprint Cooldown Timer: {sprintCooldownTimer}");
     }
 
     private void UpdateHeight()
