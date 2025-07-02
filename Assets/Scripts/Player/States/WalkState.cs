@@ -28,7 +28,7 @@ public class WalkState : PlayerState
             return;
         }
         
-        if (player.IsSprintButtonPressed)
+        if (player.IsSprintButtonPressed && player.IsMovingForward())
         {
             player.SwitchState(new SprintState(player));
         }

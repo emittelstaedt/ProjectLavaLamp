@@ -11,7 +11,7 @@ public class SprintState : PlayerState
 
     public override void Update()
     {
-        if (!player.IsSprintButtonPressed)
+        if (!player.IsSprintButtonPressed || !player.IsMovingForward())
         {
             player.SwitchState(new WalkState(player));
             return;

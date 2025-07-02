@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStatsSO playerStats;
     private PlayerState currentState;
     private float crouchVelocity;
-    private float yVelocity;
+    private Vector3 velocity;
     private float targetHeight;
     private float currentSpeed;
     private InputAction moveAction;
@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
     public bool IsSprintButtonPressed => sprintAction.IsPressed();
     public float YVelocity
     {
-        get => yVelocity;
-        set => yVelocity = value;
+        get => velocity.y;
+        set => velocity.y = value;
     }
     public float TargetHeight
     {
@@ -73,6 +73,12 @@ public class PlayerController : MonoBehaviour
         return moveAction.ReadValue<Vector2>().magnitude > 0.1f;
     }
 
+    public bool IsMovingForward()
+    {
+        Vector2 input = moveAction.ReadValue<Vector2>();
+        return input.y > 0.1f;
+    }
+
     public bool HasRoomToUncrouch()
     {
         float radius = characterController.radius;
@@ -115,19 +121,19 @@ public class PlayerController : MonoBehaviour
 
         ApplyGravity();
 
-        Vector3 movement = (inputDirection * currentSpeed) + (Vector3.up * yVelocity);
+        Vector3 movement = (inputDirection * currentSpeed) + (Vector3.up * velocity.y);
         characterController.Move(movement * Time.deltaTime);
     }
 
     private void ApplyGravity()
     {
-        if (IsGrounded() && yVelocity < 0)
+        if (IsGrounded() && velocity.y < 0)
         {
-            yVelocity = -1f;
+            velocity.y = -1f;
         }
         else
         {
-            yVelocity += playerStats.Gravity * Time.deltaTime;
+            velocity.y += playerStats.Gravity * Time.deltaTime;
         }
     }
 }
