@@ -63,11 +63,6 @@ public class PlayerController : MonoBehaviour
         UpdateHeight();
         MovePlayer();
 
-        if (sprintAction.WasReleasedThisFrame())
-        {
-            hasReleasedSprintButton = true;
-        }
-
         currentState.Update();
     }
 
@@ -119,6 +114,11 @@ public class PlayerController : MonoBehaviour
         {
             sprintTimer += Time.deltaTime;
             sprintTimer = Mathf.Min(sprintTimer, playerStats.SprintDuration);
+
+            if (sprintAction.WasReleasedThisFrame())
+            {
+                hasReleasedSprintButton = true;
+            }
         }
         else
         {
