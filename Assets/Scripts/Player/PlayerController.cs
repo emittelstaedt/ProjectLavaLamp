@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState();
         
         targetHeight = playerStats.NormalHeight;
+        sprintTimer = playerStats.SprintDuration;
 
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
@@ -127,6 +128,8 @@ public class PlayerController : MonoBehaviour
                 sprintCooldownTimer = playerStats.SprintCooldownDuration;
             }
         }
+
+        Debug.Log($"Sprint Timer: {sprintTimer}, Sprint Cooldown Timer: {sprintCooldownTimer}");
     }
 
     private void UpdateHeight()
