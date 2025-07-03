@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractableObjectSearcher : MonoBehaviour
+public class IInteractableSearcher : MonoBehaviour
 {
-    private InteractableObject lastInteraction;
-    private InteractableObject currentInteraction;
-    private RaycastHit rayCastHit;
-    private bool wasInteractPressedThisFrame = false;
+    private IInteractable lastInteraction;
+    private IInteractable lastObjectLookedAt;
+    private IInteractable currentObjectLookedAt;
     private InputAction interactAction;
 
     private void Awake()
@@ -16,59 +15,75 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     void Update()
     {
-        wasInteractPressedThisFrame = interactAction.WasPressedThisFrame();
         HandleRaycast();
     }
-
-    // Checks if camera is looking at interactable object and turns off highlight if not or handles interaction if it is
+    
     private void HandleRaycast()
     {
-        Ray seekingRay = new Ray(this.transform.position, this.transform.forward);
+        bool isLookingAtNewObject = false;
+        bool canInteract = false;
+
+        RaycastHit rayCastHit;
+        Ray seekingRay = new Ray(transform.position, transform.forward);
+        bool wasInteractPressedThisFrame = interactAction.WasPressedThisFrame();
 
         if (Physics.Raycast(seekingRay, out rayCastHit, 100f))
         {
             Transform hitTransform = rayCastHit.transform;
-            InteractableObject interactableObject = hitTransform.GetComponent<InteractableObject>();
-
-            if (interactableObject != null && rayCastHit.distance <= interactableObject.Settings.InteractionDistance)
-            {
-                // Avoid multiple objects being highlighted at once
-                if (currentInteraction != null && currentInteraction != interactableObject && currentInteraction != lastInteraction)
-                {
-                    currentInteraction.StopHighlight();
-                }
-
-                currentInteraction = interactableObject;
-
-                if (wasInteractPressedThisFrame)
-                {
-                    HandleInteraction(interactableObject);
-                }
-                else
-                {
-                    if (currentInteraction != lastInteraction)
-                    {
-                        currentInteraction.HandleHighlight();
-                    }
-                }
-
-                return;
-            }
+            currentObjectLookedAt = hitTransform.GetComponent<IInteractable>();
+            
+            isLookingAtNewObject = lastObjectLookedAt != null && lastObjectLookedAt != currentObjectLookedAt;
+            canInteract = currentObjectLookedAt != null &&
+                          rayCastHit.distance <= currentObjectLookedAt.GetInteractDistance();
         }
 
-        if (currentInteraction != null && currentInteraction != lastInteraction)
+        if (canInteract)
         {
-            currentInteraction.StopHighlight();
-            currentInteraction = null;
+            if (isLookingAtNewObject)
+            {
+                lastObjectLookedAt.StopHover();
+            }
+            
+            if (wasInteractPressedThisFrame)
+            {
+                HandleInteraction(currentObjectLookedAt);
+            }
+            else if (currentObjectLookedAt != lastInteraction)
+            {
+                currentObjectLookedAt.StartHover();
+            }
+
+            lastObjectLookedAt = currentObjectLookedAt;
+        }
+        else if (lastObjectLookedAt != null)
+        {
+            lastObjectLookedAt.StopHover();
+            lastObjectLookedAt = null;
+        }
+        else if (lastInteraction != null && wasInteractPressedThisFrame)
+        {
+            lastInteraction.StopInteract();
+            lastInteraction = null;
+        }
+        
+        // Stop interacting if player is too far away.
+        if (lastInteraction != null)
+        {
+            Vector3 distanceToLastInteraction = (transform.position - lastInteraction.GetPosition());
+            if (distanceToLastInteraction.magnitude > lastInteraction.GetInteractDistance())
+            {
+                lastInteraction.StopInteract();
+                lastInteraction = null;
+            }
         }
     }
 
-    private void HandleInteraction(InteractableObject interactableObject)
+    private void HandleInteraction(IInteractable newInteraction)
     {
-        if (lastInteraction == currentInteraction)
+        if (lastInteraction == newInteraction)
         {
-            currentInteraction.StopInteract();
-            currentInteraction.StopHighlight();
+            newInteraction.StopInteract();
+            newInteraction.StopHover();
             lastInteraction = null;
         }
         else
@@ -76,11 +91,12 @@ public class InteractableObjectSearcher : MonoBehaviour
             if (lastInteraction != null)
             {
                 lastInteraction.StopInteract();
-                lastInteraction.StopHighlight();
+                lastInteraction.StopHover();
             }
 
-            currentInteraction.StartInteract();
-            lastInteraction = currentInteraction;
+            newInteraction.StopHover();
+            newInteraction.StartInteract();
+            lastInteraction = newInteraction;
         }
     }
 }
