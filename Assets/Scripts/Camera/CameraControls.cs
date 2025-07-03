@@ -22,6 +22,15 @@ public class PlayerCameraControls : MonoBehaviour
     {
         if (Cursor.lockState == CursorLockMode.Locked)
         {
+            // Allows the x rotation of the camera to be set externally.
+            xRotation = transform.rotation.eulerAngles.x;
+            
+            // Accounts for eulerAngles only returning positive numbers.
+            if (xRotation > 90)
+            {
+                xRotation -= 360;
+            }
+
             xRotation -= lookAction.ReadValue<Vector2>().y * sensitivity;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
