@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class IInteractableSearcher : MonoBehaviour
+public class InteractableObjectSearcher : MonoBehaviour
 {
     private IInteractable currentInteraction;
     private IInteractable lastObjectLookedAt;
@@ -49,7 +49,7 @@ public class IInteractableSearcher : MonoBehaviour
             {
                 HandleInteraction(currentObjectLookedAt);
             }
-            // Start hovering when the interaction ends if the player is still looking at the object.
+            // Start hover on the object if it hasn't been interacted with.
             else if (currentObjectLookedAt != currentInteraction)
             {
                 currentObjectLookedAt.StartHover();
@@ -57,7 +57,7 @@ public class IInteractableSearcher : MonoBehaviour
 
             lastObjectLookedAt = currentObjectLookedAt;
         }
-        // Stop hovering when looking away from an object.
+        // Stop hovering when looking from an interactable object to something that can't be interacted with.
         else if (lastObjectLookedAt != null)
         {
             lastObjectLookedAt.StopHover();
@@ -66,8 +66,7 @@ public class IInteractableSearcher : MonoBehaviour
         // Stop interaction if the interact button is pressed while looking away from the interactable.
         else if (currentInteraction != null && wasInteractPressedThisFrame)
         {
-            currentInteraction.StopInteract();
-            currentInteraction = null;
+            ClearCurrentInteraction();
         }
         
         // Stop interacting if player is too far away.
@@ -76,8 +75,7 @@ public class IInteractableSearcher : MonoBehaviour
             Vector3 distanceToCurrentInteraction = (transform.position - currentInteraction.GetPosition());
             if (distanceToCurrentInteraction.magnitude > currentInteraction.GetInteractDistance())
             {
-                currentInteraction.StopInteract();
-                currentInteraction = null;
+                ClearCurrentInteraction();
             }
         }
     }
@@ -86,17 +84,13 @@ public class IInteractableSearcher : MonoBehaviour
     {
         if (currentInteraction == newInteraction)
         {
-            currentInteraction.StopInteract();
-            currentInteraction.StopHover();
-            currentInteraction = null;
+            ClearCurrentInteraction();
         }
         else
         {
-            // Stop the current interaction.
             if (currentInteraction != null)
             {
-                currentInteraction.StopInteract();
-                currentInteraction.StopHover();
+                ClearCurrentInteraction();
             }
 
             // Start the new interaction.
@@ -104,5 +98,11 @@ public class IInteractableSearcher : MonoBehaviour
             newInteraction.StartInteract();
             currentInteraction = newInteraction;
         }
+    }
+    
+    private void ClearCurrentInteraction()
+    {
+        currentInteraction.StopInteract();
+        currentInteraction = null;
     }
 }
