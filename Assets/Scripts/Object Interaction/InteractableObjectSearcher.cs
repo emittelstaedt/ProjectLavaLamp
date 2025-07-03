@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class IInteractableSearcher : MonoBehaviour
 {
-    private IInteractable lastInteraction;
+    private IInteractable currentInteraction;
     private IInteractable lastObjectLookedAt;
     private IInteractable currentObjectLookedAt;
     private InputAction interactAction;
@@ -44,59 +44,65 @@ public class IInteractableSearcher : MonoBehaviour
                 lastObjectLookedAt.StopHover();
             }
             
+            // Toggle interact start/stop when looking at an object.
             if (wasInteractPressedThisFrame)
             {
                 HandleInteraction(currentObjectLookedAt);
             }
-            else if (currentObjectLookedAt != lastInteraction)
+            // Start hovering when the interaction ends if the player is still looking at the object.
+            else if (currentObjectLookedAt != currentInteraction)
             {
                 currentObjectLookedAt.StartHover();
             }
 
             lastObjectLookedAt = currentObjectLookedAt;
         }
+        // Stop hovering when looking away from an object.
         else if (lastObjectLookedAt != null)
         {
             lastObjectLookedAt.StopHover();
             lastObjectLookedAt = null;
         }
-        else if (lastInteraction != null && wasInteractPressedThisFrame)
+        // Stop interaction if the interact button is pressed while looking away from the interactable.
+        else if (currentInteraction != null && wasInteractPressedThisFrame)
         {
-            lastInteraction.StopInteract();
-            lastInteraction = null;
+            currentInteraction.StopInteract();
+            currentInteraction = null;
         }
         
         // Stop interacting if player is too far away.
-        if (lastInteraction != null)
+        if (currentInteraction != null)
         {
-            Vector3 distanceToLastInteraction = (transform.position - lastInteraction.GetPosition());
-            if (distanceToLastInteraction.magnitude > lastInteraction.GetInteractDistance())
+            Vector3 distanceToCurrentInteraction = (transform.position - currentInteraction.GetPosition());
+            if (distanceToCurrentInteraction.magnitude > currentInteraction.GetInteractDistance())
             {
-                lastInteraction.StopInteract();
-                lastInteraction = null;
+                currentInteraction.StopInteract();
+                currentInteraction = null;
             }
         }
     }
 
     private void HandleInteraction(IInteractable newInteraction)
     {
-        if (lastInteraction == newInteraction)
+        if (currentInteraction == newInteraction)
         {
-            newInteraction.StopInteract();
-            newInteraction.StopHover();
-            lastInteraction = null;
+            currentInteraction.StopInteract();
+            currentInteraction.StopHover();
+            currentInteraction = null;
         }
         else
         {
-            if (lastInteraction != null)
+            // Stop the current interaction.
+            if (currentInteraction != null)
             {
-                lastInteraction.StopInteract();
-                lastInteraction.StopHover();
+                currentInteraction.StopInteract();
+                currentInteraction.StopHover();
             }
 
+            // Start the new interaction.
             newInteraction.StopHover();
             newInteraction.StartInteract();
-            lastInteraction = newInteraction;
+            currentInteraction = newInteraction;
         }
     }
 }

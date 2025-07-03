@@ -26,7 +26,7 @@ public class CameraSwapper : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
-    // The action allows the calling function to run code after the transition is complete.
+    // The action delegate code is run when the transition is completed.
     public void SwapCameras(Camera cameraFrom, Camera cameraTo, Action action)
     {
         StartCoroutine(Transition(cameraFrom, cameraTo, action));
