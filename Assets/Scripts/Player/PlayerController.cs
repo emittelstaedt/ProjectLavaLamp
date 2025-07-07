@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         currentState.EnterState();
         
         targetHeight = playerStats.NormalHeight;
+        currentSpeed = playerStats.WalkSpeed;
 
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
@@ -119,10 +120,22 @@ public class PlayerController : MonoBehaviour
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 inputDirection = (transform.right * input.x + transform.forward * input.y).normalized;
 
+        if (currentState is JumpState)
+        {
+            // Keep previous velocity while jumping.
+            Vector3 airInputDirection = inputDirection * currentSpeed;
+            velocity.x = Mathf.Lerp(velocity.x, airInputDirection.x, playerStats.AirControl * Time.deltaTime);
+            velocity.z = Mathf.Lerp(velocity.z, airInputDirection.z, playerStats.AirControl * Time.deltaTime);
+        }
+        else
+        {
+            velocity.x = inputDirection.x * currentSpeed;
+            velocity.z = inputDirection.z * currentSpeed;
+        }
+
         ApplyGravity();
 
-        Vector3 movement = (inputDirection * currentSpeed) + (Vector3.up * velocity.y);
-        characterController.Move(movement * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void ApplyGravity()

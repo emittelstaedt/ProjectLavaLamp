@@ -4,11 +4,6 @@ public class IdleState : PlayerState
 {
     public IdleState(PlayerController player) : base(player) { }
 
-    public override void EnterState()
-    {
-        player.CurrentSpeed = 0f;
-    }
-
     public override void Update()
     {
         if (player.IsMoving())
