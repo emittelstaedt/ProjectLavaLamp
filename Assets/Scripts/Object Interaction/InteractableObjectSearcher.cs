@@ -100,7 +100,7 @@ public class InteractableObjectSearcher : MonoBehaviour
         }
     }
     
-    private void ClearCurrentInteraction()
+    public void ClearCurrentInteraction()
     {
         currentInteraction.StopInteract();
         currentInteraction = null;
