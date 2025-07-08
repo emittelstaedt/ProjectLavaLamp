@@ -1,27 +1,25 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BuildItems : MonoBehaviour, IInteractable
 {
     [SerializeField] private InteractableSettingsSO Settings;
+    [SerializeField] private float closestAllowedDistance;
+    [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private float holdDistance = 3f;
-    [SerializeField] private float closestAllowedDistance = 1.5f;
-    [SerializeField] private float groundOffset = 0.25f;
-    private Vector3[] localCorners = new Vector3[8];
-    private Transform playerCameraTransform;
-    private Outline outline;
-    private Rigidbody itemRigidbody;
-    private Collider itemCollider;
-    private Quaternion rotationOffset;
-    private InteractableObjectSearcher searcher;
     private InputAction rotateXAction;
     private InputAction rotateYAction;
+    private Transform playerCameraTransform;
+    private Collider itemCollider;
+    private Rigidbody itemRigidbody;
+    private Outline outline;
     private float currentDistance;
+    private Vector3 grabOffset;
+    private Quaternion rotationOffset;
+    private Vector3[] localCorners = new Vector3[8];
     private bool isHeld = false;
-
-    public float GetInteractDistance() => Settings.InteractionDistance;
-    public Vector3 GetPosition() => transform.position;
+    private InteractableObjectSearcher searcher;
 
     private void Awake()
     {
@@ -30,8 +28,8 @@ public class BuildItems : MonoBehaviour, IInteractable
 
         playerCameraTransform = Camera.main.transform;
 
-        itemRigidbody = GetComponent<Rigidbody>();
         itemCollider = GetComponent<Collider>();
+        itemRigidbody = GetComponent<Rigidbody>();
 
         outline = GetComponent<Outline>();
         if (outline == null)
@@ -43,54 +41,67 @@ public class BuildItems : MonoBehaviour, IInteractable
         }
     }
 
+    // Uses late update to follow after camera controller script to prevent object stuttering
     private void LateUpdate()
     {
         if (isHeld)
         {
-            currentDistance = holdDistance;
             Vector3 cameraPosition = playerCameraTransform.position;
 
-            checkCorners(cameraPosition);
+            CheckCorners(cameraPosition);
 
             if (rotateXAction.IsPressed())
             {
-                rotationOffset *= Quaternion.Euler(Vector3.right * rotationSpeed * Time.deltaTime);
+                rotationOffset *= Quaternion.Euler(Vector3.right * (rotationSpeed * Time.deltaTime));
             }
 
             if (rotateYAction.IsPressed())
             {
-                rotationOffset *= Quaternion.Euler(Vector3.up * rotationSpeed * Time.deltaTime);
+                rotationOffset *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
             }
 
-            Vector3 targetPosition = playerCameraTransform.position + playerCameraTransform.forward * currentDistance;
-            transform.position = targetPosition;
-            transform.rotation = playerCameraTransform.rotation * rotationOffset;
+            Vector3 targetPosition = playerCameraTransform.position + playerCameraTransform.rotation * grabOffset * currentDistance;
+            transform.SetPositionAndRotation(targetPosition, playerCameraTransform.rotation * rotationOffset);
         }
     }
 
+    public float GetInteractDistance()
+    {
+        return Settings.InteractionDistance;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    } 
+
     public void StartInteract()
     {
-        currentDistance = holdDistance;
+        Vector3 cameraToObject = transform.position - playerCameraTransform.position;
+        Vector3 relativePositionToCamera = Quaternion.Inverse(playerCameraTransform.rotation) * cameraToObject;
 
-        // Finds all the corners of the object based on its local bounds
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer != null)
+        currentDistance = relativePositionToCamera.magnitude;
+        grabOffset = relativePositionToCamera.normalized;
+
+        closestAllowedDistance = currentDistance * (1f - distancePercentageToDrop);
+
+        if (TryGetComponent<MeshRenderer>(out MeshRenderer meshRenderer))
         {
             Bounds localBounds = meshRenderer.localBounds;
 
             Vector3 min = localBounds.min;
             Vector3 max = localBounds.max;
 
-            localCorners = new Vector3[]
+            localCorners = new Vector3[8]
             {
-                new Vector3(min.x, min.y, min.z),
-                new Vector3(max.x, min.y, min.z),
-                new Vector3(min.x, min.y, max.z),
-                new Vector3(max.x, min.y, max.z),
-                new Vector3(min.x, max.y, min.z),
-                new Vector3(max.x, max.y, min.z),
-                new Vector3(min.x, max.y, max.z),
-                new Vector3(max.x, max.y, max.z)
+                new(min.x, min.y, min.z),
+                new(min.x, min.y, max.z),
+                new(min.x, max.y, min.z),
+                new(min.x, max.y, max.z),
+                new(max.x, min.y, min.z),
+                new(max.x, min.y, max.z),
+                new(max.x, max.y, min.z),
+                new(max.x, max.y, max.z)
             };
         }
 
@@ -114,18 +125,22 @@ public class BuildItems : MonoBehaviour, IInteractable
     }
 
     // Creates raycasts to the object's corners to avoid clipping through things during transform movements
-    private void checkCorners(Vector3 cameraPosition)
+    private void CheckCorners(Vector3 cameraPosition)
     {
         for (int i = 0; i < localCorners.Length; i++)
         {
             Vector3 worldCorner = transform.TransformPoint(localCorners[i]);
             Vector3 direction = (worldCorner - cameraPosition).normalized;
+            float rayLength = Vector3.Distance(cameraPosition, worldCorner);
 
-            if (Physics.Raycast(cameraPosition, direction, out RaycastHit hit, holdDistance + 0.1f))
+            if (Physics.Raycast(cameraPosition, direction, out RaycastHit hit, rayLength))
             {
-                if (hit.collider.gameObject != gameObject)
+                if (hit.collider.gameObject != this.gameObject && !hit.collider.CompareTag("Ignore"))
                 {
-                    if (hit.collider.tag != "Ground" && hit.distance < closestAllowedDistance)
+                    float percentage = hit.distance / rayLength;
+                    float newDistance = currentDistance * percentage;
+
+                    if (newDistance < closestAllowedDistance)
                     {
                         searcher = playerCameraTransform.gameObject.GetComponent<InteractableObjectSearcher>();
                         searcher.ClearCurrentInteraction();
@@ -133,8 +148,7 @@ public class BuildItems : MonoBehaviour, IInteractable
                     }
                     else
                     {
-                        float safeDistance = Mathf.Max(closestAllowedDistance - groundOffset, hit.distance - 0.5f);
-                        currentDistance = Mathf.Min(holdDistance, safeDistance);
+                        currentDistance = newDistance;
                     }
                 }
             }
@@ -143,7 +157,7 @@ public class BuildItems : MonoBehaviour, IInteractable
 
     private void SetHeldState(bool isObjectHeld)
     {
-        // Turns off object collider if held to avoid flickering when it hits other colliders
+        // Avoids colliding with player
         itemCollider.enabled = !isObjectHeld;
 
         itemRigidbody.useGravity = !isObjectHeld;
@@ -157,5 +171,4 @@ public class BuildItems : MonoBehaviour, IInteractable
 
         isHeld = isObjectHeld;
     }
-
 }
