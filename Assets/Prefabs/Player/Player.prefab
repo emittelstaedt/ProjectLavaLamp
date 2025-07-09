@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4538224503903233219}
   - component: {fileID: 823117923101133723}
   - component: {fileID: 5186613580977488286}
+  - component: {fileID: 595953068812717599}
   m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -164,6 +165,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea117c3839d8534f81bd7a776e32c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &595953068812717599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588029433053720444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5186613580977488286}
+        m_TargetAssemblyTypeName: InteractableObjectSearcher, Assembly-CSharp
+        m_MethodName: ClearCurrentInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6905212619853310072
 GameObject:
   m_ObjectHideFlags: 0

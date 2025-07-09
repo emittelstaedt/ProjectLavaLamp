@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class BuildItems : MonoBehaviour, IInteractable
 {
+    [SerializeField] private VoidEventChannelSO dropItem;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -19,7 +20,6 @@ public class BuildItems : MonoBehaviour, IInteractable
     private Quaternion objectRotation;
     private Vector3[] localCorners = new Vector3[8];
     private bool isHeld = false;
-    private InteractableObjectSearcher searcher;
 
     private void Awake()
     {
@@ -143,8 +143,7 @@ public class BuildItems : MonoBehaviour, IInteractable
 
                     if (newDistance < closestAllowedDistance)
                     {
-                        searcher = playerCameraTransform.gameObject.GetComponent<InteractableObjectSearcher>();
-                        searcher.ClearCurrentInteraction();
+                        dropItem.OnEventRaised();
                         break;
                     }
                     else
