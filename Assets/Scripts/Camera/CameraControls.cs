@@ -42,12 +42,12 @@ public class PlayerCameraControls : MonoBehaviour
 
     private void LockCursor()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!lookAction.enabled)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        else if (Input.GetMouseButtonDown(0))
+        else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
