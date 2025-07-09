@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class BuildItems : MonoBehaviour, IInteractable
 {
     [SerializeField] private InteractableSettingsSO Settings;
-    [SerializeField] private float closestAllowedDistance;
     [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
     private InputAction rotateXAction;
@@ -16,7 +15,8 @@ public class BuildItems : MonoBehaviour, IInteractable
     private Outline outline;
     private float currentDistance;
     private Vector3 grabOffset;
-    private Quaternion rotationOffset;
+    private float closestAllowedDistance;
+    private Quaternion objectRotation;
     private Vector3[] localCorners = new Vector3[8];
     private bool isHeld = false;
     private InteractableObjectSearcher searcher;
@@ -41,7 +41,7 @@ public class BuildItems : MonoBehaviour, IInteractable
         }
     }
 
-    // Uses late update to follow after camera controller script to prevent object stuttering
+    // Uses late update to follow after camera controller script to prevent object stuttering.
     private void LateUpdate()
     {
         if (isHeld)
@@ -52,16 +52,17 @@ public class BuildItems : MonoBehaviour, IInteractable
 
             if (rotateXAction.IsPressed())
             {
-                rotationOffset *= Quaternion.Euler(Vector3.right * (rotationSpeed * Time.deltaTime));
+                objectRotation *= Quaternion.Euler(Vector3.right * (rotationSpeed * Time.deltaTime));
             }
 
             if (rotateYAction.IsPressed())
             {
-                rotationOffset *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
+                objectRotation *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
             }
 
-            Vector3 targetPosition = playerCameraTransform.position + playerCameraTransform.rotation * grabOffset * currentDistance;
-            transform.SetPositionAndRotation(targetPosition, playerCameraTransform.rotation * rotationOffset);
+            Vector3 targetPosition = playerCameraTransform.position +
+                                     playerCameraTransform.rotation * grabOffset * currentDistance;
+            transform.SetPositionAndRotation(targetPosition, playerCameraTransform.rotation * objectRotation);
         }
     }
 
@@ -124,7 +125,7 @@ public class BuildItems : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
-    // Creates raycasts to the object's corners to avoid clipping through things during transform movements
+    // Raycasts to the object's corners to avoid clipping through things.
     private void CheckCorners(Vector3 cameraPosition)
     {
         for (int i = 0; i < localCorners.Length; i++)
@@ -135,7 +136,7 @@ public class BuildItems : MonoBehaviour, IInteractable
 
             if (Physics.Raycast(cameraPosition, direction, out RaycastHit hit, rayLength))
             {
-                if (hit.collider.gameObject != this.gameObject && !hit.collider.CompareTag("Ignore"))
+                if (hit.collider.gameObject != this.gameObject && !hit.collider.CompareTag("IgnoreItemCollision"))
                 {
                     float percentage = hit.distance / rayLength;
                     float newDistance = currentDistance * percentage;
@@ -157,17 +158,14 @@ public class BuildItems : MonoBehaviour, IInteractable
 
     private void SetHeldState(bool isObjectHeld)
     {
-        // Avoids colliding with player
+        // Avoids colliding with player.
         itemCollider.enabled = !isObjectHeld;
 
         itemRigidbody.useGravity = !isObjectHeld;
         itemRigidbody.linearVelocity = Vector3.zero;
         itemRigidbody.angularVelocity = Vector3.zero;
 
-        if (isObjectHeld)
-        {
-            rotationOffset = Quaternion.Inverse(playerCameraTransform.rotation) * transform.rotation;
-        }
+        objectRotation = Quaternion.Inverse(playerCameraTransform.rotation) * transform.rotation;
 
         isHeld = isObjectHeld;
     }
