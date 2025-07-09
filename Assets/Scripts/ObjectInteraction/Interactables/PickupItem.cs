@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BuildItems : MonoBehaviour, IInteractable
+public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO dropItem;
     [SerializeField] private InteractableSettingsSO Settings;
