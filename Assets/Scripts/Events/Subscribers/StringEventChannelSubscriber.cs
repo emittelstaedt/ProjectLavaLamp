@@ -1,32 +1,6 @@
-using UnityEngine;
-using UnityEngine.Events;
-
-public class StringEventChannelSubscriber : MonoBehaviour
+/// <summary>
+/// Generic event channel subscriber that listens and receives string payload.
+/// </summary>
+public class StringEventChannelSubscriber : GenericEventChannelSubscriber<string, StringEventChannelSO>
 {
-    [Tooltip("The signal to listen for.")]
-    [SerializeField] private StringEventChannelSO eventChannel;
-    [Space]
-    [Tooltip("Response to receiving signal from Event Channel")]
-    [SerializeField] private UnityEvent<string> response;
-
-    public void OnEventRaised(string value)
-    {
-        response?.Invoke(value);
-    }
-
-    private void OnEnable()
-    {
-        if (eventChannel != null)
-        {
-            eventChannel.OnEventRaised += OnEventRaised;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (eventChannel != null)
-        {
-            eventChannel.OnEventRaised -= OnEventRaised;
-        }
-    }
 }
