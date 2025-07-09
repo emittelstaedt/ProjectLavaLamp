@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 395303128}
   m_Layer: 0
   m_Name: Ignore Wall
-  m_TagString: Ignore
+  m_TagString: IgnoreItemCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,8 +545,12 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5147364560910222285, guid: 6e0702d596692ef459ec7bdc04edb30e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147364560910222285, guid: 6e0702d596692ef459ec7bdc04edb30e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6568266244265525563, guid: 6e0702d596692ef459ec7bdc04edb30e, type: 3}
       propertyPath: rotateXAction.m_Name
@@ -746,11 +750,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 682350629277564659, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_Name
       value: Pickup Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalScale.x
@@ -762,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -770,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.21
+      value: -4.99
       objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalRotation.w

@@ -17,7 +17,7 @@ public class InteractableObjectSearcher : MonoBehaviour
     {
         HandleRaycast();
     }
-    
+
     private void HandleRaycast()
     {
         bool isLookingAtNewObject = false;
@@ -31,10 +31,10 @@ public class InteractableObjectSearcher : MonoBehaviour
         {
             Transform hitTransform = rayCastHit.transform;
             currentObjectLookedAt = hitTransform.GetComponent<IInteractable>();
-            
+
             isLookingAtNewObject = lastObjectLookedAt != null && lastObjectLookedAt != currentObjectLookedAt;
             canInteract = currentObjectLookedAt != null &&
-                          rayCastHit.distance <= currentObjectLookedAt.GetInteractDistance();
+                          GetDistanceToInteractable(currentObjectLookedAt) <= currentObjectLookedAt.GetInteractDistance();
         }
 
         if (canInteract)
@@ -43,7 +43,7 @@ public class InteractableObjectSearcher : MonoBehaviour
             {
                 lastObjectLookedAt.StopHover();
             }
-            
+
             // Toggle interact start/stop when looking at an object.
             if (wasInteractPressedThisFrame)
             {
@@ -68,12 +68,11 @@ public class InteractableObjectSearcher : MonoBehaviour
         {
             ClearCurrentInteraction();
         }
-        
+
         // Stop interacting if player is too far away.
         if (currentInteraction != null)
         {
-            Vector3 distanceToCurrentInteraction = (transform.position - currentInteraction.GetPosition());
-            if (distanceToCurrentInteraction.magnitude > currentInteraction.GetInteractDistance())
+            if (GetDistanceToInteractable(currentInteraction) > currentInteraction.GetInteractDistance())
             {
                 ClearCurrentInteraction();
             }
@@ -99,10 +98,16 @@ public class InteractableObjectSearcher : MonoBehaviour
             currentInteraction = newInteraction;
         }
     }
-    
+
     public void ClearCurrentInteraction()
     {
         currentInteraction.StopInteract();
         currentInteraction = null;
+    }
+
+    private float GetDistanceToInteractable(IInteractable interactable)
+    {
+        Vector3 distanceToInteractable = transform.position - interactable.GetPosition();
+        return distanceToInteractable.magnitude;
     }
 }
