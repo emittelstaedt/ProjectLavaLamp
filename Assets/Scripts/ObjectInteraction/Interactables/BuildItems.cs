@@ -143,7 +143,7 @@ public class BuildItems : MonoBehaviour, IInteractable
 
                     if (newDistance < closestAllowedDistance)
                     {
-                        dropItem.OnEventRaised();
+                        dropItem.RaiseEvent();
                         break;
                     }
                     else

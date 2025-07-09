@@ -18,15 +18,15 @@ public class StringEventChannelSubscriber : MonoBehaviour
     {
         if (eventChannel != null)
         {
-            eventChannel.EventRaised += OnEventRaised;
-        }        
+            eventChannel.OnEventRaised += OnEventRaised;
+        }
     }
 
     private void OnDisable()
     {
         if (eventChannel != null)
         {
-            eventChannel.EventRaised -= OnEventRaised;
+            eventChannel.OnEventRaised -= OnEventRaised;
         }
     }
 }

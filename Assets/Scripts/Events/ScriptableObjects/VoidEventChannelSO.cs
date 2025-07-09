@@ -8,10 +8,10 @@ using UnityEngine.Events;
 public class VoidEventChannelSO : ScriptableObject
 {
     [Tooltip("The action to perform.")]
-    public event UnityAction EventRaised;
+    public event UnityAction OnEventRaised;
 
-    public void OnEventRaised()
+    public void RaiseEvent()
     {
-        EventRaised?.Invoke();
+        OnEventRaised?.Invoke();
     }
 }

@@ -18,7 +18,7 @@ public class VoidEventChannelSubscriber : MonoBehaviour
     {
         if (eventChannel != null)
         {
-            eventChannel.EventRaised += OnEventRaised;
+            eventChannel.OnEventRaised += OnEventRaised;
         }
     }
 
@@ -26,7 +26,7 @@ public class VoidEventChannelSubscriber : MonoBehaviour
     {
         if (eventChannel != null)
         {
-            eventChannel.EventRaised -= OnEventRaised;
+            eventChannel.OnEventRaised -= OnEventRaised;
         }
     }
 }
