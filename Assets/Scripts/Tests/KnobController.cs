@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KnobController : MonoBehaviour, IMinigameClickable
+public class KnobController : MonoBehaviour, IScreenClickable
 {
     [SerializeField] private CursorController cursor;
     private bool isTurning = false;
