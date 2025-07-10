@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class CameraSwapper : MonoBehaviour
 {
-    [SerializeField] private Camera tempCamera;
     [SerializeField] private float transitionTime = 0.05f;
+    private Camera tempCamera;
     private Vector3 positionVelocity;
     private Quaternion rotationVelocity;
     
@@ -24,6 +24,8 @@ public class CameraSwapper : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        
+        tempCamera = GetComponent<Camera>();
     }
     
     // The action delegate code is run when the transition is completed.

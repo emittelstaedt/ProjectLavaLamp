@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IMinigameClicker
+public interface IMinigameClickable
 {
     void Click();
     void Unclick();

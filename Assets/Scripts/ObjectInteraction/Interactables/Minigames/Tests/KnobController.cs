@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class KnobController : MonoBehaviour, IMinigameClicker
+public class KnobController : MonoBehaviour, IMinigameClickable
 {
-    [SerializeField] private MinigameClickManager minigameClickManager;
+    [SerializeField] private CursorController cursor;
     private bool isTurning = false;
     private float lastMouseAngle;
     private float currentMouseAngle;
@@ -37,8 +37,7 @@ public class KnobController : MonoBehaviour, IMinigameClicker
     
     private float GetAngleToMouse()
     {
-        Vector2 mousePosition = minigameClickManager.MousePosition;
-        Vector2 direction = mousePosition - (Vector2) transform.localPosition;
+        Vector2 direction = cursor.Position - (Vector2) transform.localPosition;
         return VectorToDegrees(direction);
     }
     
