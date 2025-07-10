@@ -28,8 +28,8 @@ public class ButtonController : MonoBehaviour
     {
         if (!isMoving)
         {
-            if (mode != ButtonMode.Toggle || (mode == ButtonMode.Toggle &&
-                                              transform.localPosition.y == upPositionY))
+            if (mode != ButtonMode.Toggle ||
+                mode == ButtonMode.Toggle && transform.localPosition.y == upPositionY)
             {
                 StartCoroutine(PressAnimation(upPositionY, upPositionY - pressDistance));
             }
