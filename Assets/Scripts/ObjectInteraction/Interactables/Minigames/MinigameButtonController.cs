@@ -1,100 +1,93 @@
 using UnityEngine;
 using System.Collections;
 
-public class MinigameButtonController : MonoBehaviour
+public class ButtonController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO buttonDown;
     [SerializeField] private VoidEventChannelSO buttonUp;
-    [SerializeField] private string pressFunction;
-    [SerializeField] private string unpressFunction;
-    [SerializeField] private ButtonMode mode = ButtonMode.Normal;
-    [SerializeField] private float pressDistance = 0.1f;
-    [SerializeField] private float pressSpeed = 0.5f;
-    private Vector3 defaultPosition;
+    [SerializeField] private ButtonMode mode = ButtonMode.Single;
+    [SerializeField] private float pressTime = 0.1f;
+    private float pressDistance = 0.1f;
+    private float upPositionY;
     private bool isMoving = false;
     private bool isUnpressQueued = false;
     
     private enum ButtonMode
     {
-        Normal,
+        Single,
         Hold,
         Toggle
     }
     
     void Start()
     {
-        defaultPosition = transform.localPosition;
+        upPositionY = transform.localPosition.y;
     }
     
     void OnMouseDown()
     {
-        if(!isMoving && (mode != ButtonMode.Toggle || mode == ButtonMode.Toggle &&
-                                                    transform.localPosition == defaultPosition))
+        if (!isMoving)
         {
-            StartCoroutine(PressAnimation());
-            
-        }
-        else if(!isMoving)
-        {
-            StartCoroutine(UnpressAnimation());
+            if (mode != ButtonMode.Toggle || (mode == ButtonMode.Toggle &&
+                                              transform.localPosition.y == upPositionY))
+            {
+                StartCoroutine(PressAnimation(upPositionY, upPositionY - pressDistance));
+            }
+            else
+            {
+                StartCoroutine(PressAnimation(upPositionY - pressDistance, upPositionY));
+            }
         }
     }
     
     void OnMouseUp()
     {
-        if(!isMoving && mode == ButtonMode.Hold)
+        if (mode == ButtonMode.Hold)
         {
-            StartCoroutine(UnpressAnimation());
-        }
-        else if(mode == ButtonMode.Hold)
-        {
-            isUnpressQueued = true;
+            if (!isMoving)
+            {
+                StartCoroutine(PressAnimation(upPositionY - pressDistance, upPositionY));
+            }
+            else
+            {
+                isUnpressQueued = true;
+            }
         }
     }
     
-    private IEnumerator PressAnimation()
+    private IEnumerator PressAnimation(float start, float end)
     {
         isMoving = true;
         
-        if(buttonDown != null)
+        float timer = 0f;
+        
+        if (start == upPositionY)
         {
-            buttonDown.RaiseEvent();
+            buttonDown?.RaiseEvent();
+        }
+        else
+        {
+            buttonUp?.RaiseEvent();
         }
         
-        while(transform.localPosition.y > defaultPosition.y - pressDistance)
+        while (timer < pressTime)
         {
-            transform.localPosition -= Vector3.up * Time.deltaTime * pressSpeed;
+            timer += Time.deltaTime;
+            Vector3 newPosition = transform.localPosition;
+            newPosition.y = Mathf.Lerp(start, end, timer / pressTime);
+            transform.localPosition = newPosition;
             yield return null;
         }
 
-        if(mode == ButtonMode.Normal || isUnpressQueued)
+        if (start == upPositionY && (mode == ButtonMode.Single || isUnpressQueued))
         {
-            StartCoroutine(UnpressAnimation());
+            StartCoroutine(PressAnimation(end, start));
+            isUnpressQueued = false;
         }
         else
         {
             isMoving = false;
         }
-    }
-    
-    private IEnumerator UnpressAnimation()
-    {
-        isMoving = true;
         
-        if(buttonUp != null)
-        {
-            buttonUp.RaiseEvent();
-        }
-        
-        while(transform.localPosition.y < defaultPosition.y)
-        {
-            transform.localPosition += Vector3.up * Time.deltaTime * pressSpeed;
-            yield return null;
-        }
-        
-        transform.localPosition = defaultPosition;
-        
-        isUnpressQueued = false;
-        isMoving = false;
     }
 }

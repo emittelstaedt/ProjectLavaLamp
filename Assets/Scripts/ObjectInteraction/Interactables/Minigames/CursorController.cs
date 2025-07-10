@@ -3,30 +3,23 @@ using UnityEngine.InputSystem;
 
 public class CursorController : MonoBehaviour
 {
-    private IMinigameClickable currentClickable;
+    private IScreenClickable currentClickable;
     
     public Vector2 Position => (Vector2) transform.localPosition;
 
     public void Click()
     {
         RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, Vector2.zero);
-        if(hit)
+        if (hit)
         {
-            IMinigameClickable clickObject = hit.transform.gameObject.GetComponent<IMinigameClickable>();
-            currentClickable = clickObject;
+            currentClickable = hit.transform.gameObject.GetComponent<IScreenClickable>();
             
-            if(clickObject != null)
-            {
-                clickObject.Click();
-            }
+            currentClickable?.Click();
         }
     }
     
     public void Unclick()
     {
-        if(currentClickable != null)
-        {
-            currentClickable.Unclick();
-        }
+        currentClickable?.Unclick();
     }
 }
