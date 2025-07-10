@@ -9,7 +9,7 @@ public class KnobController : MonoBehaviour, IScreenClickable
     
     void Update()
     {
-        if(isTurning)
+        if (isTurning)
         {
             Turn();
         }
