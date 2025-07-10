@@ -48,30 +48,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         {
             Vector3 cameraPosition = playerCameraTransform.position;
 
-            // Object must have a box collider to properly grab the local corners.
-            if (itemCollider is BoxCollider box)
-            {
-                Vector3 center = box.center;
-                Vector3 offsetFromCenter = box.size * 0.5f;
-
-                Vector3[] boxCornerDirection = 
-                {
-                    new(-1, -1, -1),
-                    new(-1, -1,  1),
-                    new(-1,  1, -1),
-                    new(-1,  1,  1),
-                    new( 1, -1, -1),
-                    new( 1, -1,  1),
-                    new( 1,  1, -1),
-                    new( 1,  1,  1)
-                };
-                
-                for (int i = 0; i < worldCorners.Length; i++)
-                {
-                    Vector3 localCorner = center + Vector3.Scale(offsetFromCenter, boxCornerDirection[i]);
-                    worldCorners[i] = transform.TransformPoint(localCorner);
-                }
-            }
+            SetCorners();
 
             if (rotateXAction.IsPressed())
             {
@@ -83,17 +60,17 @@ public class PickupItem : MonoBehaviour, IInteractable
                 objectRotation *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
             }
 
-            Vector3 targetPosition = playerCameraTransform.position +
-                                     playerCameraTransform.rotation * grabOffset * currentDistance;
+            Vector3 predictedPosition = playerCameraTransform.position +
+                                        playerCameraTransform.rotation * grabOffset * currentDistance;
 
             Quaternion finalRotation = playerCameraTransform.rotation * objectRotation;
 
-            bool isValidMove = PassesCornerCheck(cameraPosition, targetPosition, finalRotation);
+            bool isValidMove = PassesCornerCheck(cameraPosition, predictedPosition, finalRotation);
 
             if (isValidMove)
             {
-                targetPosition = playerCameraTransform.position + 
-                                 playerCameraTransform.rotation * grabOffset * currentDistance;
+                Vector3 targetPosition = playerCameraTransform.position + 
+                                         playerCameraTransform.rotation * grabOffset * currentDistance;
 
                 transform.SetPositionAndRotation(targetPosition, finalRotation);
             }
@@ -143,6 +120,32 @@ public class PickupItem : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
+    private void SetCorners()
+    {
+        // Object must have a box collider to properly grab the local corners.
+        BoxCollider box = GetComponent<BoxCollider>();
+        Vector3 center = box.center;
+        Vector3 offsetFromCenter = box.size * 0.5f;
+
+        Vector3[] boxCornerDirection =
+        {
+            new(-1, -1, -1),
+            new(-1, -1,  1),
+            new(-1,  1, -1),
+            new(-1,  1,  1),
+            new( 1, -1, -1),
+            new( 1, -1,  1),
+            new( 1,  1, -1),
+            new( 1,  1,  1)
+        };
+                
+        for (int i = 0; i < worldCorners.Length; i++)
+        {
+            Vector3 localCorner = center + Vector3.Scale(offsetFromCenter, boxCornerDirection[i]);
+            worldCorners[i] = transform.TransformPoint(localCorner);
+        }
+    }
+
     // Raycasts to the object's corners to avoid clipping through things.
     private bool PassesCornerCheck(Vector3 cameraPosition, Vector3 targetPosition, Quaternion objectRotation)
     {
@@ -175,6 +178,7 @@ public class PickupItem : MonoBehaviour, IInteractable
                 }
             }
         }
+
         currentDistance = temporaryDistance;
         return true;
     }
