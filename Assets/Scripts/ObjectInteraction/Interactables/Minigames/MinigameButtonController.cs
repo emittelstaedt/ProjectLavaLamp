@@ -5,7 +5,7 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO buttonDown;
     [SerializeField] private VoidEventChannelSO buttonUp;
-    [SerializeField] private ButtonMode mode = ButtonMode.Single;
+    [SerializeField] private ButtonMode mode = ButtonMode.SinglePress;
     [SerializeField] private float pressTime = 0.1f;
     private float pressDistance = 0.1f;
     private float upPositionY;
@@ -14,7 +14,7 @@ public class ButtonController : MonoBehaviour
     
     private enum ButtonMode
     {
-        Single,
+        SinglePress,
         Hold,
         Toggle
     }
@@ -79,7 +79,7 @@ public class ButtonController : MonoBehaviour
             yield return null;
         }
 
-        if (start == upPositionY && (mode == ButtonMode.Single || isUnpressQueued))
+        if (start == upPositionY && (mode == ButtonMode.SinglePress || isUnpressQueued))
         {
             StartCoroutine(PressAnimation(end, start));
             isUnpressQueued = false;
