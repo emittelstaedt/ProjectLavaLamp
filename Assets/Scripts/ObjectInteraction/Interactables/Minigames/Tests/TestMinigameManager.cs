@@ -2,33 +2,20 @@ using UnityEngine;
 
 public class TestMinigameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject knob;
-    private SpriteRenderer knobSprite;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        knobSprite = knob.GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private CursorController cursor;
     
     public void Button1()
     {
-        knob.transform.localPosition += new Vector3(0.05f, -0.05f, 0f);
+        cursor.transform.localPosition += new Vector3(0f, -0.05f, 0f);
     }
     
-    public void Button2Down()
+    public void CursorClick()
     {
-        knobSprite.color = Color.green;
+        cursor.Click();
     }
     
-    public void Button2Up()
+    public void CursorUnclick()
     {
-        knobSprite.color = Color.white;
+        cursor.Unclick();
     }
 }

@@ -56,7 +56,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         InputSystem.actions.FindAction("Interact").Disable();
         playerMesh.enabled = true;
         
-        // Covers the screen with its collider.
+        // Covers the screen with the frame's collider.
         collider.size += Vector3.forward * 0.2f;
         
         CameraSwapper.Instance.SwapCameras(moduleCamera, mainCamera, EnablePlayerControls);
