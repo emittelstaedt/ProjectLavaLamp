@@ -14,11 +14,11 @@ public class PickupItem : MonoBehaviour, IInteractable
     private Collider itemCollider;
     private Rigidbody itemRigidbody;
     private Outline outline;
+    private Vector3[] worldCorners = new Vector3[8];
     private float currentDistance;
     private Vector3 grabOffset;
     private float closestAllowedDistance;
     private Quaternion objectRotation;
-    private Vector3[] localCorners = new Vector3[8];
     private bool isHeld = false;
 
     private void Awake()
@@ -48,7 +48,30 @@ public class PickupItem : MonoBehaviour, IInteractable
         {
             Vector3 cameraPosition = playerCameraTransform.position;
 
-            CheckCorners(cameraPosition);
+            // Object must have a box collider to properly grab the local corners.
+            if (itemCollider is BoxCollider box)
+            {
+                Vector3 center = box.center;
+                Vector3 offsetFromCenter = box.size * 0.5f;
+
+                Vector3[] boxCornerDirection = 
+                {
+                    new(-1, -1, -1),
+                    new(-1, -1,  1),
+                    new(-1,  1, -1),
+                    new(-1,  1,  1),
+                    new( 1, -1, -1),
+                    new( 1, -1,  1),
+                    new( 1,  1, -1),
+                    new( 1,  1,  1)
+                };
+                
+                for (int i = 0; i < worldCorners.Length; i++)
+                {
+                    Vector3 localCorner = center + Vector3.Scale(offsetFromCenter, boxCornerDirection[i]);
+                    worldCorners[i] = transform.TransformPoint(localCorner);
+                }
+            }
 
             if (rotateXAction.IsPressed())
             {
@@ -62,7 +85,22 @@ public class PickupItem : MonoBehaviour, IInteractable
 
             Vector3 targetPosition = playerCameraTransform.position +
                                      playerCameraTransform.rotation * grabOffset * currentDistance;
-            transform.SetPositionAndRotation(targetPosition, playerCameraTransform.rotation * objectRotation);
+
+            Quaternion finalRotation = playerCameraTransform.rotation * objectRotation;
+
+            bool isValidMove = PassesCornerCheck(cameraPosition, targetPosition, finalRotation);
+
+            if (isValidMove)
+            {
+                targetPosition = playerCameraTransform.position + 
+                                 playerCameraTransform.rotation * grabOffset * currentDistance;
+
+                transform.SetPositionAndRotation(targetPosition, finalRotation);
+            }
+            else 
+            {
+                dropItem.RaiseEvent();
+            }
         }
     }
 
@@ -74,7 +112,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     public Vector3 GetPosition()
     {
         return transform.position;
-    } 
+    }
 
     public void StartInteract()
     {
@@ -84,27 +122,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         currentDistance = relativePositionToCamera.magnitude;
         grabOffset = relativePositionToCamera.normalized;
 
-        closestAllowedDistance = currentDistance * (1f - distancePercentageToDrop);
-
-        if (TryGetComponent<MeshRenderer>(out MeshRenderer meshRenderer))
-        {
-            Bounds localBounds = meshRenderer.localBounds;
-
-            Vector3 min = localBounds.min;
-            Vector3 max = localBounds.max;
-
-            localCorners = new Vector3[8]
-            {
-                new(min.x, min.y, min.z),
-                new(min.x, min.y, max.z),
-                new(min.x, max.y, min.z),
-                new(min.x, max.y, max.z),
-                new(max.x, min.y, min.z),
-                new(max.x, min.y, max.z),
-                new(max.x, max.y, min.z),
-                new(max.x, max.y, max.z)
-            };
-        }
+        closestAllowedDistance = Mathf.Max(1f, currentDistance * (1f - distancePercentageToDrop));
 
         SetHeldState(true);
     }
@@ -126,13 +144,18 @@ public class PickupItem : MonoBehaviour, IInteractable
     }
 
     // Raycasts to the object's corners to avoid clipping through things.
-    private void CheckCorners(Vector3 cameraPosition)
+    private bool PassesCornerCheck(Vector3 cameraPosition, Vector3 targetPosition, Quaternion objectRotation)
     {
-        for (int i = 0; i < localCorners.Length; i++)
+        Quaternion deltaRotation = objectRotation * Quaternion.Inverse(transform.rotation);
+        float temporaryDistance = currentDistance;
+
+        for (int i = 0; i < worldCorners.Length; i++)
         {
-            Vector3 worldCorner = transform.TransformPoint(localCorners[i]);
-            Vector3 direction = (worldCorner - cameraPosition).normalized;
-            float rayLength = Vector3.Distance(cameraPosition, worldCorner);
+            Vector3 positionOffset = worldCorners[i] - transform.position;
+            Vector3 futureCorner = targetPosition + deltaRotation * positionOffset;
+
+            Vector3 direction = (futureCorner - cameraPosition).normalized;
+            float rayLength = Vector3.Distance(cameraPosition, futureCorner);
 
             if (Physics.Raycast(cameraPosition, direction, out RaycastHit hit, rayLength))
             {
@@ -143,16 +166,17 @@ public class PickupItem : MonoBehaviour, IInteractable
 
                     if (newDistance < closestAllowedDistance)
                     {
-                        dropItem.RaiseEvent();
-                        break;
+                        return false;
                     }
-                    else
+                    else if (newDistance < temporaryDistance)
                     {
-                        currentDistance = newDistance;
+                        temporaryDistance = newDistance;
                     }
                 }
             }
         }
+        currentDistance = temporaryDistance;
+        return true;
     }
 
     private void SetHeldState(bool isObjectHeld)
