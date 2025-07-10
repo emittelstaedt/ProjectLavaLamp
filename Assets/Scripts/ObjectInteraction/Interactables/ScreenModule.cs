@@ -7,7 +7,6 @@ public class ScreenModule : MonoBehaviour, IInteractable
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private float distanceFromCamera = 0.5f;
     private Outline outline;
-    private new BoxCollider collider;
     private Camera mainCamera;
     private Transform playerTransform;
     private MeshRenderer playerMesh;
@@ -17,8 +16,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         mainCamera = Camera.main;
         playerTransform = mainCamera.transform.parent;
         playerMesh = playerTransform.gameObject.GetComponent<MeshRenderer>();
-        collider = GetComponent<BoxCollider>();
-        
+    
         outline = GetComponent<Outline>();
         if (outline == null)
         {
@@ -44,9 +42,6 @@ public class ScreenModule : MonoBehaviour, IInteractable
         InputSystem.actions.FindActionMap("Player").Disable();
         playerMesh.enabled = false;
         
-        // Exposes the screen's collider.
-        collider.size -= Vector3.forward * 0.2f;
-        
         CameraSwapper.Instance.SwapCameras(mainCamera, moduleCamera, EnablePlayerInteract);
         PutPlayerInFrontOfScreen();
     }
@@ -55,9 +50,6 @@ public class ScreenModule : MonoBehaviour, IInteractable
     {
         InputSystem.actions.FindAction("Interact").Disable();
         playerMesh.enabled = true;
-        
-        // Covers the screen with the frame's collider.
-        collider.size += Vector3.forward * 0.2f;
         
         CameraSwapper.Instance.SwapCameras(moduleCamera, mainCamera, EnablePlayerControls);
     }
@@ -93,7 +85,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.LogError("Screen module transition raycast failed");
+            Debug.LogWarning("Screen module transition raycast failed");
         }
 
         Vector3 newPlayerRotation = moduleCamera.transform.rotation.eulerAngles;

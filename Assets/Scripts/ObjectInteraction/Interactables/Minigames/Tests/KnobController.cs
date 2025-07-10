@@ -4,8 +4,8 @@ public class KnobController : MonoBehaviour, IMinigameClickable
 {
     [SerializeField] private CursorController cursor;
     private bool isTurning = false;
-    private float lastMouseAngle;
-    private float currentMouseAngle;
+    private float lastCursorAngle;
+    private float currentCursorAngle;
     
     void Update()
     {
@@ -17,7 +17,7 @@ public class KnobController : MonoBehaviour, IMinigameClickable
 
     public void Click()
     {
-        lastMouseAngle = GetAngleToMouse();
+        lastCursorAngle = GetAngleToCursor();
         isTurning = true;
     }
     
@@ -28,14 +28,14 @@ public class KnobController : MonoBehaviour, IMinigameClickable
     
     private void Turn()
     {
-        currentMouseAngle = GetAngleToMouse();
+        currentCursorAngle = GetAngleToCursor();
         Vector3 newAngle = transform.eulerAngles;
-        newAngle.z += currentMouseAngle - lastMouseAngle;
-        lastMouseAngle = currentMouseAngle;
+        newAngle.z += currentCursorAngle - lastCursorAngle;
+        lastCursorAngle = currentCursorAngle;
         transform.eulerAngles = newAngle;
     }
     
-    private float GetAngleToMouse()
+    private float GetAngleToCursor()
     {
         Vector2 direction = cursor.Position - (Vector2) transform.localPosition;
         return VectorToDegrees(direction);
