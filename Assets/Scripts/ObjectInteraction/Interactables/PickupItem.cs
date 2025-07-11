@@ -48,7 +48,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         {
             Vector3 cameraPosition = playerCameraTransform.position;
 
-            SetCorners();
+            worldCorners = GetWorldCorners();
 
             if (rotateXAction.IsPressed())
             {
@@ -65,10 +65,9 @@ public class PickupItem : MonoBehaviour, IInteractable
 
             Quaternion finalRotation = playerCameraTransform.rotation * objectRotation;
 
-            bool isValidMove = PassesCornerCheck(cameraPosition, predictedPosition, finalRotation);
-
-            if (isValidMove)
+            if (IsValidPosition(cameraPosition, predictedPosition, finalRotation))
             {
+                // Can't use predictedPosition since currentDistance may have changed.
                 Vector3 targetPosition = playerCameraTransform.position + 
                                          playerCameraTransform.rotation * grabOffset * currentDistance;
 
@@ -120,7 +119,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
-    private void SetCorners()
+    private Vector3[] GetWorldCorners()
     {
         // Object must have a box collider to properly grab the local corners.
         BoxCollider box = GetComponent<BoxCollider>();
@@ -138,19 +137,21 @@ public class PickupItem : MonoBehaviour, IInteractable
             new( 1,  1, -1),
             new( 1,  1,  1)
         };
-                
+
+        Vector3[] corners = new Vector3[8];
         for (int i = 0; i < worldCorners.Length; i++)
         {
             Vector3 localCorner = center + Vector3.Scale(offsetFromCenter, boxCornerDirection[i]);
-            worldCorners[i] = transform.TransformPoint(localCorner);
+            corners[i] = transform.TransformPoint(localCorner);
         }
+
+        return corners;
     }
 
     // Raycasts to the object's corners to avoid clipping through things.
-    private bool PassesCornerCheck(Vector3 cameraPosition, Vector3 targetPosition, Quaternion objectRotation)
+    private bool IsValidPosition(Vector3 cameraPosition, Vector3 targetPosition, Quaternion objectRotation)
     {
         Quaternion deltaRotation = objectRotation * Quaternion.Inverse(transform.rotation);
-        float temporaryDistance = currentDistance;
 
         for (int i = 0; i < worldCorners.Length; i++)
         {
@@ -171,15 +172,14 @@ public class PickupItem : MonoBehaviour, IInteractable
                     {
                         return false;
                     }
-                    else if (newDistance < temporaryDistance)
+                    else
                     {
-                        temporaryDistance = newDistance;
+                        currentDistance = newDistance;
                     }
                 }
             }
         }
 
-        currentDistance = temporaryDistance;
         return true;
     }
 
