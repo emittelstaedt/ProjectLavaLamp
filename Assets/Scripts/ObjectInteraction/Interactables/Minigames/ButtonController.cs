@@ -5,6 +5,7 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO buttonDown;
     [SerializeField] private VoidEventChannelSO buttonUp;
+    [SerializeField] private Camera moduleCamera;
     [SerializeField] private ButtonMode mode = ButtonMode.SinglePress;
     [SerializeField] private float pressTime = 0.1f;
     private float pressDistance = 0.1f;
@@ -24,29 +25,38 @@ public class ButtonController : MonoBehaviour
         upPositionY = transform.localPosition.y;
     }
     
+    void Update()
+    {
+        // Unpresses the button if the player stops interacting.
+        if (!moduleCamera.enabled && transform.localPosition.y != upPositionY && !isMoving)
+        {
+            Unpress();
+        }
+    }
+    
     void OnMouseDown()
     {
-        if (!isMoving)
+        if (moduleCamera.enabled && !isMoving)
         {
             if (mode != ButtonMode.Toggle ||
                 mode == ButtonMode.Toggle && transform.localPosition.y == upPositionY)
             {
-                StartCoroutine(PressAnimation(upPositionY, upPositionY - pressDistance));
+                Press();
             }
             else
             {
-                StartCoroutine(PressAnimation(upPositionY - pressDistance, upPositionY));
+                Unpress();
             }
         }
     }
     
     void OnMouseUp()
     {
-        if (mode == ButtonMode.Hold)
+        if (moduleCamera.enabled && mode == ButtonMode.Hold)
         {
             if (!isMoving)
             {
-                StartCoroutine(PressAnimation(upPositionY - pressDistance, upPositionY));
+                Unpress();
             }
             else
             {
@@ -55,7 +65,17 @@ public class ButtonController : MonoBehaviour
         }
     }
     
-    private IEnumerator PressAnimation(float start, float end)
+    private void Press()
+    {
+        StartCoroutine(MoveButton(upPositionY, upPositionY - pressDistance));
+    }
+    
+    private void Unpress()
+    {
+        StartCoroutine(MoveButton(upPositionY - pressDistance, upPositionY));
+    }
+    
+    private IEnumerator MoveButton(float start, float end)
     {
         isMoving = true;
         
@@ -81,7 +101,7 @@ public class ButtonController : MonoBehaviour
 
         if (start == upPositionY && (mode == ButtonMode.SinglePress || isUnpressQueued))
         {
-            StartCoroutine(PressAnimation(end, start));
+            StartCoroutine(MoveButton(end, start));
             isUnpressQueued = false;
         }
         else
