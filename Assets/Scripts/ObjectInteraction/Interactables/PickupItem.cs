@@ -8,21 +8,24 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
+    private LayerMask ignoreCollisionLayer;
     private InputAction rotateXAction;
     private InputAction rotateYAction;
     private Transform playerCameraTransform;
     private Collider itemCollider;
     private Rigidbody itemRigidbody;
     private Outline outline;
-    private Vector3[] worldCorners = new Vector3[8];
     private float currentDistance;
     private Vector3 grabOffset;
     private float closestAllowedDistance;
     private Quaternion objectRotation;
     private bool isHeld = false;
+    private readonly Collider[] potentialHits = new Collider[10];
 
     private void Awake()
     {
+        ignoreCollisionLayer = ~(1 << LayerMask.NameToLayer("IgnoreItemCollision"));
+
         rotateXAction = InputSystem.actions.FindAction("RotateX");
         rotateYAction = InputSystem.actions.FindAction("RotateY");
 
@@ -31,8 +34,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         itemCollider = GetComponent<Collider>();
         itemRigidbody = GetComponent<Rigidbody>();
 
-        outline = GetComponent<Outline>();
-        if (outline == null)
+        if (!TryGetComponent<Outline>(out outline))
         {
             outline = gameObject.AddComponent<Outline>();
             outline.enabled = false;
@@ -46,10 +48,6 @@ public class PickupItem : MonoBehaviour, IInteractable
     {
         if (isHeld)
         {
-            Vector3 cameraPosition = playerCameraTransform.position;
-
-            worldCorners = GetWorldCorners();
-
             if (rotateXAction.IsPressed())
             {
                 objectRotation *= Quaternion.Euler(Vector3.right * (rotationSpeed * Time.deltaTime));
@@ -60,20 +58,20 @@ public class PickupItem : MonoBehaviour, IInteractable
                 objectRotation *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
             }
 
+            Vector3 cameraPosition = playerCameraTransform.position;
             Vector3 predictedPosition = playerCameraTransform.position +
                                         playerCameraTransform.rotation * grabOffset * currentDistance;
-
             Quaternion finalRotation = playerCameraTransform.rotation * objectRotation;
 
-            if (IsValidPosition(cameraPosition, predictedPosition, finalRotation))
+            if (IsValidPosition(cameraPosition, itemCollider, predictedPosition, finalRotation))
             {
-                // Can't use predictedPosition since currentDistance may have changed.
-                Vector3 targetPosition = playerCameraTransform.position + 
+                // Can't use predictedPosition since currentDistance may have changed inside IsValidPosition.
+                Vector3 targetPosition = playerCameraTransform.position +
                                          playerCameraTransform.rotation * grabOffset * currentDistance;
 
                 transform.SetPositionAndRotation(targetPosition, finalRotation);
             }
-            else 
+            else
             {
                 dropItem.RaiseEvent();
             }
@@ -98,7 +96,7 @@ public class PickupItem : MonoBehaviour, IInteractable
         currentDistance = relativePositionToCamera.magnitude;
         grabOffset = relativePositionToCamera.normalized;
 
-        closestAllowedDistance = Mathf.Max(1f, currentDistance * (1f - distancePercentageToDrop));
+        closestAllowedDistance = currentDistance * (1f - distancePercentageToDrop);
 
         SetHeldState(true);
     }
@@ -119,58 +117,48 @@ public class PickupItem : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
-    private Vector3[] GetWorldCorners()
+    private bool IsValidPosition(Vector3 cameraPosition, Collider collider, Vector3 targetPosition, Quaternion objectRotation)
     {
-        // Object must have a box collider to properly grab the local corners.
-        BoxCollider box = GetComponent<BoxCollider>();
-        Vector3 center = box.center;
-        Vector3 offsetFromCenter = box.size * 0.5f;
+        bool isValid = true;
 
-        Vector3[] boxCornerDirection =
+        // Must briefly enable collider to check for collisions.
+        collider.enabled = true;
+        Vector3 extents = collider.bounds.extents;
+
+        int hitCount = Physics.OverlapSphereNonAlloc(targetPosition, extents.magnitude, potentialHits, ignoreCollisionLayer);
+
+        for (int i = 0; i < hitCount; i++)
         {
-            new(-1, -1, -1),
-            new(-1, -1,  1),
-            new(-1,  1, -1),
-            new(-1,  1,  1),
-            new( 1, -1, -1),
-            new( 1, -1,  1),
-            new( 1,  1, -1),
-            new( 1,  1,  1)
-        };
+            Collider potentialHit = potentialHits[i];
 
-        Vector3[] corners = new Vector3[8];
-        for (int i = 0; i < worldCorners.Length; i++)
-        {
-            Vector3 localCorner = center + Vector3.Scale(offsetFromCenter, boxCornerDirection[i]);
-            corners[i] = transform.TransformPoint(localCorner);
-        }
-
-        return corners;
-    }
-
-    // Raycasts to the object's corners to avoid clipping through things.
-    private bool IsValidPosition(Vector3 cameraPosition, Vector3 targetPosition, Quaternion objectRotation)
-    {
-        Quaternion deltaRotation = objectRotation * Quaternion.Inverse(transform.rotation);
-
-        for (int i = 0; i < worldCorners.Length; i++)
-        {
-            Vector3 positionOffset = worldCorners[i] - transform.position;
-            Vector3 futureCorner = targetPosition + deltaRotation * positionOffset;
-
-            Vector3 direction = (futureCorner - cameraPosition).normalized;
-            float rayLength = Vector3.Distance(cameraPosition, futureCorner);
-
-            if (Physics.Raycast(cameraPosition, direction, out RaycastHit hit, rayLength))
+            if (potentialHit.isTrigger)
             {
-                if (hit.collider.gameObject != this.gameObject && !hit.collider.CompareTag("IgnoreItemCollision"))
+                continue;
+            }
+
+            bool penetrates = Physics.ComputePenetration
+            (
+                collider, targetPosition, objectRotation,
+                potentialHit, potentialHit.transform.position, potentialHit.transform.rotation,
+                out Vector3 direction, out float distance
+            );
+
+            if (penetrates)
+            {
+                Vector3 targetToHit = potentialHit.ClosestPoint(targetPosition) - targetPosition;
+                Vector3 boundsEdgePoint = targetPosition + targetToHit - direction * distance;
+
+                float rayLength = Vector3.Distance(cameraPosition, boundsEdgePoint);
+                Vector3 rayDirection = (boundsEdgePoint - cameraPosition).normalized;
+                if (Physics.Raycast(cameraPosition, rayDirection, out RaycastHit hit, rayLength, ignoreCollisionLayer))
                 {
                     float percentage = hit.distance / rayLength;
                     float newDistance = currentDistance * percentage;
 
                     if (newDistance < closestAllowedDistance)
                     {
-                        return false;
+                        isValid = false;
+                        break;
                     }
                     else
                     {
@@ -180,20 +168,21 @@ public class PickupItem : MonoBehaviour, IInteractable
             }
         }
 
-        return true;
+        collider.enabled = false;
+        return isValid;
     }
 
-    private void SetHeldState(bool isObjectHeld)
+    private void SetHeldState(bool isHeld)
     {
-        // Avoids colliding with player.
-        itemCollider.enabled = !isObjectHeld;
+        // Disable the colliders to prevent physics interactions while the object is held.
+        itemCollider.enabled = !isHeld;
 
-        itemRigidbody.useGravity = !isObjectHeld;
+        itemRigidbody.useGravity = !isHeld;
         itemRigidbody.linearVelocity = Vector3.zero;
         itemRigidbody.angularVelocity = Vector3.zero;
 
         objectRotation = Quaternion.Inverse(playerCameraTransform.rotation) * transform.rotation;
 
-        isHeld = isObjectHeld;
+        this.isHeld = isHeld;
     }
 }
