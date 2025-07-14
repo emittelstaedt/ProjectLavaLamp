@@ -58,16 +58,14 @@ public class PickupItem : MonoBehaviour, IInteractable
                 objectRotation *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
             }
 
-            Vector3 cameraPosition = playerCameraTransform.position;
-            Vector3 predictedPosition = playerCameraTransform.position +
-                                        playerCameraTransform.rotation * grabOffset * currentDistance;
-            Quaternion finalRotation = playerCameraTransform.rotation * objectRotation;
+            playerCameraTransform.GetPositionAndRotation(out Vector3 cameraPosition, out Quaternion cameraRotation);
+            Vector3 predictedPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
+            Quaternion finalRotation = cameraRotation * objectRotation;
 
             if (IsValidPosition(cameraPosition, itemCollider, predictedPosition, finalRotation))
             {
                 // Can't use predictedPosition since currentDistance may have changed inside IsValidPosition.
-                Vector3 targetPosition = playerCameraTransform.position +
-                                         playerCameraTransform.rotation * grabOffset * currentDistance;
+                Vector3 targetPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
 
                 transform.SetPositionAndRotation(targetPosition, finalRotation);
             }
@@ -136,14 +134,14 @@ public class PickupItem : MonoBehaviour, IInteractable
                 continue;
             }
 
-            bool penetrates = Physics.ComputePenetration
+            bool doesPenetrate = Physics.ComputePenetration
             (
                 collider, targetPosition, objectRotation,
                 potentialHit, potentialHit.transform.position, potentialHit.transform.rotation,
                 out Vector3 direction, out float distance
             );
 
-            if (penetrates)
+            if (doesPenetrate)
             {
                 Vector3 targetToHit = potentialHit.ClosestPoint(targetPosition) - targetPosition;
                 Vector3 boundsEdgePoint = targetPosition + targetToHit - direction * distance;
