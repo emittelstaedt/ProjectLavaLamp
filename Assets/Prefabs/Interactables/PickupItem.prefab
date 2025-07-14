@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4643573898839653467}
   - component: {fileID: 682350629277564659}
   - component: {fileID: 8948606770311234440}
+  - component: {fileID: 4904889029049960124}
   m_Layer: 0
   m_Name: PickupItem
   m_TagString: Untagged
@@ -150,6 +151,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
+  itemPickedUp: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distancePercentageToDrop: 0.1
   rotationSpeed: 100
+--- !u!114 &4904889029049960124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870643095990860859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdf3cf03da3cb648a17f3fc5c5fb4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8948606770311234440}
+        m_TargetAssemblyTypeName: PickupItem, Assembly-CSharp
+        m_MethodName: SetCurrentItemHeld
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

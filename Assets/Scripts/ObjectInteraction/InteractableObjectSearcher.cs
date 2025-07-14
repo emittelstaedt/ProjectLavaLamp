@@ -25,17 +25,17 @@ public class InteractableObjectSearcher : MonoBehaviour
         bool isLookingAtNewObject = false;
         bool canInteract = false;
 
-        RaycastHit rayCastHit;
-        Ray seekingRay = new Ray(mainCamera.position, mainCamera.forward);
+        Ray seekingRay = new(mainCamera.position, mainCamera.forward);
         bool wasInteractPressedThisFrame = interactAction.WasPressedThisFrame();
 
-        if (Physics.Raycast(seekingRay, out rayCastHit, 100f))
+        if (Physics.Raycast(seekingRay, out RaycastHit rayCastHit, 100f))
         {
             Transform hitTransform = rayCastHit.transform;
             currentObjectLookedAt = hitTransform.GetComponent<IInteractable>();
 
             isLookingAtNewObject = lastObjectLookedAt != null && lastObjectLookedAt != currentObjectLookedAt;
             canInteract = currentObjectLookedAt != null &&
+                          currentObjectLookedAt.CanInteract() &&
                           GetDistanceToInteractable(currentObjectLookedAt) <= currentObjectLookedAt.GetInteractDistance();
         }
 
@@ -89,12 +89,6 @@ public class InteractableObjectSearcher : MonoBehaviour
         }
         else
         {
-            if (currentInteraction != null)
-            {
-                ClearCurrentInteraction();
-            }
-
-            // Start the new interaction.
             newInteraction.StopHover();
             newInteraction.StartInteract();
             currentInteraction = newInteraction;

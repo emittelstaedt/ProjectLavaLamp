@@ -10,7 +10,9 @@ public class ScreenModule : MonoBehaviour, IInteractable
     private Camera mainCamera;
     private Transform playerTransform;
     private MeshRenderer playerMesh;
-    
+    private GameObject currentItemHeld;
+    private bool isBeingUsed;
+
     public void Awake()
     {
         mainCamera = Camera.main;
@@ -36,9 +38,15 @@ public class ScreenModule : MonoBehaviour, IInteractable
     {
         return transform.position;
     }
-    
+
+    public bool CanInteract()
+    {
+        return !isBeingUsed && currentItemHeld == null;
+    }
+
     public void StartInteract()
     {
+        isBeingUsed = true;
         InputSystem.actions.FindActionMap("Player").Disable();
         playerMesh.enabled = false;
         
@@ -52,6 +60,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         playerMesh.enabled = true;
         
         CameraSwapper.Instance.SwapCameras(moduleCamera, mainCamera, EnablePlayerControls);
+        isBeingUsed = false;
     }
     
     public void StartHover()
@@ -64,7 +73,12 @@ public class ScreenModule : MonoBehaviour, IInteractable
     {
         outline.enabled = false;
     }
-    
+
+    public void SetCurrentItemHeld(GameObject newItemHeld)
+    {
+        currentItemHeld = newItemHeld;
+    }
+
     private void EnablePlayerInteract()
     {
         InputSystem.actions.FindAction("Interact").Enable();
@@ -78,8 +92,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     private void PutPlayerInFrontOfScreen()
     {
         playerTransform.position = moduleCamera.transform.position - moduleCamera.transform.rotation * Vector3.forward * distanceFromCamera;
-        RaycastHit hit;
-        if (Physics.Raycast(playerTransform.position, -Vector3.up, out hit))
+        if (Physics.Raycast(playerTransform.position, -Vector3.up, out RaycastHit hit))
         {
             playerTransform.position -= Vector3.up * hit.distance;
         }
@@ -89,7 +102,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         }
 
         Vector3 newPlayerRotation = moduleCamera.transform.rotation.eulerAngles;
-        Vector3 newPlayerCameraRotation = new Vector3(newPlayerRotation.x, 0, 0);
+        Vector3 newPlayerCameraRotation = new (newPlayerRotation.x, 0, 0);
         newPlayerRotation.x = 0;
 
         playerTransform.rotation = Quaternion.Euler(newPlayerRotation);

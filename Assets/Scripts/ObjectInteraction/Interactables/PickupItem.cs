@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO dropItem;
+    [SerializeField] private GameObjectEventChannelSO itemPickedUp;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -20,6 +21,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     private float closestAllowedDistance;
     private Quaternion objectRotation;
     private bool isHeld = false;
+    private GameObject currentItemHeld;
     private readonly Collider[] potentialHits = new Collider[10];
 
     private void Awake()
@@ -86,8 +88,15 @@ public class PickupItem : MonoBehaviour, IInteractable
         return transform.position;
     }
 
+    public bool CanInteract()
+    {
+        return currentItemHeld == null;
+    }
+
     public void StartInteract()
     {
+        itemPickedUp.RaiseEvent(this.gameObject);
+
         Vector3 cameraToObject = transform.position - playerCameraTransform.position;
         Vector3 relativePositionToCamera = Quaternion.Inverse(playerCameraTransform.rotation) * cameraToObject;
 
@@ -101,6 +110,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void StopInteract()
     {
+        itemPickedUp.RaiseEvent(null);
         SetHeldState(false);
     }
 
@@ -115,6 +125,12 @@ public class PickupItem : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
+    public void SetCurrentItemHeld(GameObject newItemHeld)
+    {
+        currentItemHeld = newItemHeld;
+    }
+
+    // Raycasts to the object's corners to avoid clipping through things.
     private bool IsValidPosition(Vector3 cameraPosition, Collider collider, Vector3 targetPosition, Quaternion objectRotation)
     {
         bool isValid = true;
