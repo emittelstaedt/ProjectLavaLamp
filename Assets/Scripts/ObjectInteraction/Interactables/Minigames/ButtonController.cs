@@ -28,7 +28,7 @@ public class ButtonController : MonoBehaviour
     void Update()
     {
         // Unpresses the button if the player stops interacting.
-        if (!moduleCamera.enabled && transform.localPosition.y != upPositionY && !isMoving)
+        if (!IsModuleBeingInteractedWith() && transform.localPosition.y != upPositionY && !isMoving)
         {
             Unpress();
         }
@@ -36,7 +36,7 @@ public class ButtonController : MonoBehaviour
     
     void OnMouseDown()
     {
-        if (moduleCamera.enabled && !isMoving)
+        if (IsModuleBeingInteractedWith() && !isMoving)
         {
             if (mode != ButtonMode.Toggle ||
                 mode == ButtonMode.Toggle && transform.localPosition.y == upPositionY)
@@ -52,7 +52,7 @@ public class ButtonController : MonoBehaviour
     
     void OnMouseUp()
     {
-        if (moduleCamera.enabled && mode == ButtonMode.Hold)
+        if (IsModuleBeingInteractedWith() && mode == ButtonMode.Hold)
         {
             if (!isMoving)
             {
@@ -63,6 +63,11 @@ public class ButtonController : MonoBehaviour
                 isUnpressQueued = true;
             }
         }
+    }
+    
+    private bool IsModuleBeingInteractedWith()
+    {
+        return moduleCamera.enabled;
     }
     
     private void Press()
@@ -108,6 +113,5 @@ public class ButtonController : MonoBehaviour
         {
             isMoving = false;
         }
-        
     }
 }

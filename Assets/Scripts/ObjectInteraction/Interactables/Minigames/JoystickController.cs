@@ -5,21 +5,22 @@ public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Vector2EventChannelSO moveStick;
     [SerializeField] private Camera moduleCamera;
+    [SerializeField][Range(0.0f, 1.0f)] private float speed = 0.3f;
     private float maxTilt = 45f;
-    private float mouseOffset = 0.2f;
-    private float speed = 0.3f;
     private Vector3 defaultForward;
+    private Vector3 tipPosition;
     private Vector3 targetDirection;
     private bool isTrackingMouse = false;
     
     void Awake()
     {
         defaultForward = transform.forward;
+        tipPosition = transform.GetChild(0).position;
     }
 
     void Update()
     {
-        if (moduleCamera.enabled)
+        if (IsModuleBeingInteractedWith())
         {
             if (isTrackingMouse)
             {
@@ -45,6 +46,12 @@ public class JoystickController : MonoBehaviour
         isTrackingMouse = false;
     }
     
+    private bool IsModuleBeingInteractedWith()
+    {
+        return moduleCamera.enabled;
+    }
+    
+    
     private void SendInput()
     {
         Vector2 inputDirection = ((Vector2) (transform.forward - defaultForward)).normalized;
@@ -62,8 +69,9 @@ public class JoystickController : MonoBehaviour
     private void TrackMouse()
     {
         Vector3 mouseScreenPosition = Mouse.current.position.ReadValue();
-        mouseScreenPosition.z = (transform.position - Camera.main.transform.position).magnitude - mouseOffset;
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        mouseScreenPosition.z = Vector3.Dot(tipPosition - moduleCamera.transform.position,
+                                            moduleCamera.transform.forward);
+        Vector3 mouseWorldPosition = moduleCamera.ScreenToWorldPoint(mouseScreenPosition);
         
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;
         Vector3 clampedDirection = Vector3.RotateTowards(defaultForward, direction, maxTilt * Mathf.Deg2Rad, 0f);
