@@ -65,9 +65,8 @@ public class JoystickController : MonoBehaviour
         mouseScreenPosition.z = (transform.position - Camera.main.transform.position).magnitude - mouseOffset;
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         
-        Vector3 joystickDirection = (mouseWorldPosition - transform.position).normalized;
-        Vector3 clampedJoystickDirection = Vector3.RotateTowards(defaultForward, joystickDirection, maxTilt * Mathf.Deg2Rad, 0f);
-        targetDirection = clampedJoystickDirection;
-;
+        Vector3 direction = (mouseWorldPosition - transform.position).normalized;
+        Vector3 clampedDirection = Vector3.RotateTowards(defaultForward, direction, maxTilt * Mathf.Deg2Rad, 0f);
+        targetDirection = clampedDirection;
     }
 }
