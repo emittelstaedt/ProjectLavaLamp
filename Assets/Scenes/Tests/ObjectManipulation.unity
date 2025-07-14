@@ -155,6 +155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup Capsule
       objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.359
@@ -199,7 +203,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4643573898839653467, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -220,9 +225,9 @@ GameObject:
   - component: {fileID: 395303130}
   - component: {fileID: 395303129}
   - component: {fileID: 395303128}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ignore Wall
-  m_TagString: IgnoreItemCollision
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,6 +364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup Item
       objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.42
@@ -440,6 +449,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup Sphere
       objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.359
@@ -480,7 +493,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4643573898839653467, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -510,7 +524,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -529,6 +543,10 @@ PrefabInstance:
     - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_Name
       value: Pickup Item (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -723,6 +741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup Cylinder
       objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.359
@@ -763,11 +785,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4643573898839653467, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1436633235}
   m_SourcePrefab: {fileID: 100100000, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+--- !u!1 &1436633234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+  m_PrefabInstance: {fileID: 1436633233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1436633235
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436633234}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1540518709
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup Sphere (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5748063001935332325, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.359
@@ -1033,11 +1090,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4643573898839653467, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1604401575}
   m_SourcePrefab: {fileID: 100100000, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+--- !u!1 &1604401574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4870643095990860859, guid: 74450b6be3a30384bb8e1f10564b51bc, type: 3}
+  m_PrefabInstance: {fileID: 1604401573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1604401575
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604401574}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1606274754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1268,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
