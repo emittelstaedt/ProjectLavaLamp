@@ -7,7 +7,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private VoidEventChannelSO dropItem;
     [SerializeField] private GameObjectEventChannelSO itemPickedUp;
     [SerializeField] private InteractableSettingsSO Settings;
-    [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
+    [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
     private LayerMask ignoreCollisionLayer;
     private InputAction rotateXAction;
@@ -33,7 +33,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
         playerCameraTransform = Camera.main.transform;
 
-        itemCollider = GetComponent<Collider>();
+        itemCollider = GetComponentInChildren<Collider>();
         itemRigidbody = GetComponent<Rigidbody>();
 
         if (!TryGetComponent<Outline>(out outline))
@@ -188,8 +188,11 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     private void SetHeldState(bool isHeld)
     {
-        // Disable the colliders to prevent physics interactions while the object is held.
-        itemCollider.enabled = !isHeld;
+        Collider[] itemColliders = GetComponentsInChildren<Collider>();
+        foreach (Collider collider in itemColliders)
+        {
+            collider.enabled = !isHeld;
+        }
 
         itemRigidbody.useGravity = !isHeld;
         itemRigidbody.linearVelocity = Vector3.zero;
