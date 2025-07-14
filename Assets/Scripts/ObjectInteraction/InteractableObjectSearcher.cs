@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +8,8 @@ public class InteractableObjectSearcher : MonoBehaviour
     private Transform mainCamera;
     private IInteractable currentInteraction;
     private IInteractable lastObjectLookedAt;
-    private IInteractable currentObjectLookedAt;
     private InputAction interactAction;
+    private readonly RaycastHit[] hits = new RaycastHit[100];
 
     private void Awake()
     {
@@ -17,88 +19,115 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     void Update()
     {
-        HandleRaycast();
+        DetectInteractablesLookedAt();
+
+        if (currentInteraction != null && !IsWithinRange(currentInteraction))
+        {
+             ClearCurrentInteraction();
+        }
     }
 
-    private void HandleRaycast()
+    private void DetectInteractablesLookedAt()
     {
-        bool isLookingAtNewObject = false;
-        bool canInteract = false;
-
+        List<IInteractable> currentObjectsLookedAt = new();
         Ray seekingRay = new(mainCamera.position, mainCamera.forward);
-        bool wasInteractPressedThisFrame = interactAction.WasPressedThisFrame();
 
-        if (Physics.Raycast(seekingRay, out RaycastHit rayCastHit, 100f))
+        int hitCount = Physics.RaycastNonAlloc(seekingRay, hits);
+
+        // Sort hits by distance to prioritize closer interactables.
+        Array.Sort(hits, 0, hitCount, Comparer<RaycastHit>.Create
+        (
+            (a, b) => a.distance.CompareTo(b.distance))
+        );
+
+        for (int i = 0; i < hitCount; i++) 
         {
-            Transform hitTransform = rayCastHit.transform;
-            currentObjectLookedAt = hitTransform.GetComponent<IInteractable>();
+            IInteractable interactable = hits[i].collider.GetComponentInParent<IInteractable>();
 
-            isLookingAtNewObject = lastObjectLookedAt != null && lastObjectLookedAt != currentObjectLookedAt;
-            canInteract = currentObjectLookedAt != null &&
-                          currentObjectLookedAt.CanInteract() &&
-                          GetDistanceToInteractable(currentObjectLookedAt) <= currentObjectLookedAt.GetInteractDistance();
-        }
-
-        if (canInteract)
-        {
-            if (isLookingAtNewObject)
+            if (interactable != null)
             {
-                lastObjectLookedAt.StopHover();
+                currentObjectsLookedAt.Add(interactable);
             }
-
-            // Toggle interact start/stop when looking at an object.
-            if (wasInteractPressedThisFrame)
+            else
             {
-                HandleInteraction(currentObjectLookedAt);
+                // Stop adding objects if line of sight is blocked by a non-interactable object.
+                break;
             }
-            // Start hover on the object if it hasn't been interacted with.
-            else if (currentObjectLookedAt != currentInteraction)
+        }
+
+        HandleFoundInteractables(currentObjectsLookedAt);
+    }
+
+    private void HandleFoundInteractables(List<IInteractable> interactables)
+    {
+        UpdateHoverState(interactables);
+
+        if (interactAction.WasPressedThisFrame())
+        {
+            TryInitiateInteraction(interactables);
+        }
+    }
+
+    private void UpdateHoverState(List<IInteractable> interactables)
+    {
+        IInteractable newHoverTarget = null;
+
+        foreach (IInteractable interactable in interactables)
+        {
+            if (CanInteractWith(interactable))
             {
-                currentObjectLookedAt.StartHover();
+                newHoverTarget = interactable;
+                break;
             }
-
-            lastObjectLookedAt = currentObjectLookedAt;
-        }
-        // Stop hovering when looking from an interactable object to something that can't be interacted with.
-        else if (lastObjectLookedAt != null)
-        {
-            lastObjectLookedAt.StopHover();
-            lastObjectLookedAt = null;
-        }
-        // Stop interaction if the interact button is pressed while looking away from the interactable.
-        else if (currentInteraction != null && wasInteractPressedThisFrame)
-        {
-            ClearCurrentInteraction();
         }
 
-        // Stop interacting if player is too far away.
-        if (currentInteraction != null)
+        if (newHoverTarget != lastObjectLookedAt)
         {
-            if (GetDistanceToInteractable(currentInteraction) > currentInteraction.GetInteractDistance())
+            lastObjectLookedAt?.StopHover();
+            newHoverTarget?.StartHover();
+            lastObjectLookedAt = newHoverTarget;
+        }
+    }
+
+    private void TryInitiateInteraction(List<IInteractable> interactables)
+    {
+        foreach (IInteractable interactable in interactables)
+        {
+            if (CanInteractWith(interactable))
             {
                 ClearCurrentInteraction();
+                
+                interactable.StopHover();
+                interactable.StartInteract();
+                currentInteraction = interactable;
+
+                return;
             }
         }
-    }
 
-    private void HandleInteraction(IInteractable newInteraction)
-    {
-        if (currentInteraction == newInteraction)
+        if (currentInteraction != null)
         {
             ClearCurrentInteraction();
-        }
-        else
-        {
-            newInteraction.StopHover();
-            newInteraction.StartInteract();
-            currentInteraction = newInteraction;
         }
     }
 
     public void ClearCurrentInteraction()
     {
-        currentInteraction.StopInteract();
+        lastObjectLookedAt?.StopHover();
+        lastObjectLookedAt = null;
+
+        currentInteraction?.StopInteract();
         currentInteraction = null;
+    }
+
+    private bool CanInteractWith(IInteractable interactable)
+    {
+        return interactable.CanInteract() && IsWithinRange(interactable);
+    }
+
+    private bool IsWithinRange(IInteractable interactable)
+    {
+        return GetDistanceToInteractable(interactable) <= interactable.GetInteractDistance();
     }
 
     private float GetDistanceToInteractable(IInteractable interactable)
