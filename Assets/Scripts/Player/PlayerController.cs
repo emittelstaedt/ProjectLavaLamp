@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
     [SerializeField] private PlayerStatsSO playerStats;
+    private LayerMask ignoreCollisionLayer;
     private PlayerState currentState;
     private float crouchVelocity;
     private Vector3 velocity;
@@ -37,6 +38,12 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        ignoreCollisionLayer = ~(
+            (1 << LayerMask.NameToLayer("IgnoreItemCollision")) |
+            (1 << LayerMask.NameToLayer("IgnorePostProcess")) |
+            (1 << LayerMask.NameToLayer("Ignore Raycast"))
+        );
+
         currentState = new IdleState(this);
         currentState.EnterState();
         
@@ -93,8 +100,9 @@ public class PlayerController : MonoBehaviour
         Vector3 bottomSphereCenter = transform.position - Vector3.up * worldDistanceToBottomSphere;
         Vector3 topSphereCenter = transform.position + Vector3.up * worldDistanceToTopSphere;
 
-        return !Physics.CheckCapsule(bottomSphereCenter, topSphereCenter, radius);
+        return !Physics.CheckCapsule(bottomSphereCenter, topSphereCenter, radius, ignoreCollisionLayer);
     }
+
 
     private void UpdateHeight()
     {
