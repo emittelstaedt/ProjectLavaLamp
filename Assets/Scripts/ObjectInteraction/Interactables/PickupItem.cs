@@ -64,16 +64,29 @@ public class PickupItem : MonoBehaviour, IInteractable
             Vector3 predictedPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
             Quaternion finalRotation = cameraRotation * objectRotation;
 
-            if (IsValidPosition(cameraPosition, itemCollider, predictedPosition, finalRotation))
+            Collider[] itemColliders = GetComponentsInChildren<Collider>();
+            for (int i = 0; i < itemColliders.Length; i++)
             {
-                // Can't use predictedPosition since currentDistance may have changed inside IsValidPosition.
-                Vector3 targetPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
+                if (itemColliders[i].transform.TryGetComponent<PlacementPoint>(out _))
+                {
+                    // Skip placement points so their colliders don't interfere with item movement.
+                    continue;
+                }
 
-                transform.SetPositionAndRotation(targetPosition, finalRotation);
-            }
-            else
-            {
-                dropItem.RaiseEvent();
+                Vector3 offset = itemColliders[i].transform.position - itemCollider.transform.position;
+
+                if (IsValidPosition(cameraPosition, itemColliders[i], predictedPosition + offset, finalRotation))
+                {
+                    // Can't use predictedPosition since currentDistance may have changed inside IsValidPosition.
+                    Vector3 targetPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
+
+                    transform.SetPositionAndRotation(targetPosition, finalRotation);
+                }
+                else
+                {
+                    dropItem.RaiseEvent();
+                    break;
+                }
             }
         }
     }
@@ -130,7 +143,6 @@ public class PickupItem : MonoBehaviour, IInteractable
         currentItemHeld = newItemHeld;
     }
 
-    // Raycasts to the object's corners to avoid clipping through things.
     private bool IsValidPosition(Vector3 cameraPosition, Collider collider, Vector3 targetPosition, Quaternion objectRotation)
     {
         bool isValid = true;

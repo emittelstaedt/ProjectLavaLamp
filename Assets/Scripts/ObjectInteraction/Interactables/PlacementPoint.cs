@@ -50,23 +50,18 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         lastItemheld.transform.localScale = placementTransform.lossyScale;
         lastItemheld.transform.SetParent(transform.parent, true);
 
-        // Current held item becomes only a renderer for its mesh. Collider stays so the parent rigidbody can use it.
-        Component[] components = lastItemheld.GetComponents<Component>();
-        foreach (Component component in components)
-        {
-            if (component is not Transform &&
-                component is not MeshFilter &&
-                component is not MeshRenderer &&
-                component is not Collider)
-            {
-                Destroy(component);
-            }
-        }  
-
         // Combine meshes so that the outline will show for the entire new combined object.
         MeshFilter parentMeshFilter = transform.parent.GetComponent<MeshFilter>();
         MeshFilter itemMeshFilter = lastItemheld.GetComponent<MeshFilter>();
         parentMeshFilter.sharedMesh = AddChildMeshToParent(parentMeshFilter, itemMeshFilter);
+
+        // Remove the previous item while keeping its children, i.e. its collider and placement points.
+        while (lastItemheld.transform.childCount > 0)
+        {
+            Transform child = lastItemheld.transform.GetChild(0);
+            child.SetParent(transform.parent, true);
+        }
+        Destroy(lastItemheld);
 
         // Stop interacting with this script since continuing to interact not needed.
         stopInteraction.RaiseEvent();

@@ -96,10 +96,10 @@ public class InteractableObjectSearcher : MonoBehaviour
             if (CanInteractWith(interactable))
             {
                 ClearCurrentInteraction();
-                
-                interactable.StopHover();
-                interactable.StartInteract();
+
                 currentInteraction = interactable;
+                currentInteraction.StopHover();
+                currentInteraction.StartInteract();
 
                 return;
             }
