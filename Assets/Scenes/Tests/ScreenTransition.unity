@@ -405,6 +405,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &698907236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5599623678760561674, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+  m_PrefabInstance: {fileID: 1517737582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &698907239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4746915443900104124, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+  m_PrefabInstance: {fileID: 1517737582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698907236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f57167dd84040d4ab1f08e7f45894c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &698907242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698907236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e6f0225069fe137830abb92fd835db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 95d216dbbf5ffdc60a57d2d8aa18021a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 698907239}
+        m_TargetAssemblyTypeName: TestKnobController, Assembly-CSharp
+        m_MethodName: SetYPosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &749912943
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,11 +737,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5090703813549774175, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5090703813549774175, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5644125393570485621, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: speed
@@ -837,6 +881,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2138003862286096833, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       insertIndex: -1
       addedObject: {fileID: 602305313}
+    - targetCorrespondingSourceObject: {fileID: 5599623678760561674, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 698907242}
   m_SourcePrefab: {fileID: 100100000, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

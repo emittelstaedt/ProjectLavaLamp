@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class ScreenModule : MonoBehaviour, IInteractable
 {
+    [SerializeField] private VoidEventChannelSO startInteract;
+    [SerializeField] private VoidEventChannelSO stopInteract;
     [SerializeField] private Camera moduleCamera;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private float distanceFromCamera = 0.5f;
@@ -56,6 +58,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     
     public void StopInteract()
     {
+        stopInteract.RaiseEvent();
         InputSystem.actions.FindAction("Interact").Disable();
         playerMesh.enabled = true;
         
@@ -81,6 +84,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
 
     private void EnablePlayerInteract()
     {
+        startInteract.RaiseEvent();
         InputSystem.actions.FindAction("Interact").Enable();
     }
     

@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b0740c4a3a43a424db8998d6ac837f87, type: 3}
       propertyPath: m_Name
-      value: Button1
+      value: Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -82,6 +82,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -314843321673679145, guid: b0740c4a3a43a424db8998d6ac837f87, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5638457849443459960}
+    - targetCorrespondingSourceObject: {fileID: -314843321673679145, guid: b0740c4a3a43a424db8998d6ac837f87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1183287102964617810}
+    - targetCorrespondingSourceObject: {fileID: -314843321673679145, guid: b0740c4a3a43a424db8998d6ac837f87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 917459989828467551}
   m_SourcePrefab: {fileID: 100100000, guid: b0740c4a3a43a424db8998d6ac837f87, type: 3}
 --- !u!1 &1083355285709501578 stripped
 GameObject:
@@ -126,3 +132,59 @@ MonoBehaviour:
   moduleCamera: {fileID: 0}
   mode: 0
   pressTime: 0.1
+--- !u!114 &1183287102964617810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083355285709501578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 0}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5638457849443459960}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: OnModuleInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &917459989828467551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083355285709501578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 1618a0b19c317cbf59f09754e973f90e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5638457849443459960}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: OnModuleStopInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

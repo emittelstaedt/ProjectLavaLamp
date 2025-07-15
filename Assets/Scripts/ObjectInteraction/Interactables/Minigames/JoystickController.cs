@@ -1,56 +1,52 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Vector2EventChannelSO moveStick;
-    [SerializeField] private Camera moduleCamera;
     [SerializeField][Range(0.0f, 1.0f)] private float speed = 0.3f;
     private float maxTilt = 45f;
+    private bool isModuleBeingInteractedWith = false;
     private Vector3 defaultForward;
     private Vector3 tipPosition;
     private Vector3 targetDirection;
-    private bool isTrackingMouse = false;
     
     void Awake()
     {
         defaultForward = transform.forward;
         tipPosition = transform.GetChild(0).position;
     }
-
-    void Update()
+    
+    void OnMouseUp()
     {
-        if (IsModuleBeingInteractedWith())
+        if (isModuleBeingInteractedWith)
         {
-            if (isTrackingMouse)
-            {
-                TrackMouse();
-            }
-            else
-            {
-                targetDirection = defaultForward;  
-            }
-            
+            StartCoroutine(MoveToDefaultPosition());
+        }
+    }
+    
+    void OnMouseDrag()
+    {
+        if (isModuleBeingInteractedWith)
+        {
+            TrackMouse();
             UpdateRotation();
             SendInput();
         }
     }
     
-    void OnMouseDown()
+    public void OnModuleInteract()
     {
-        isTrackingMouse = true;
+        isModuleBeingInteractedWith = true;
     }
     
-    void OnMouseUp()
+    public void OnModuleStopInteract()
     {
-        isTrackingMouse = false;
+        isModuleBeingInteractedWith = false;
+        
+        StartCoroutine(MoveToDefaultPosition());
     }
-    
-    private bool IsModuleBeingInteractedWith()
-    {
-        return moduleCamera.enabled;
-    }
-    
     
     private void SendInput()
     {
@@ -69,12 +65,23 @@ public class JoystickController : MonoBehaviour
     private void TrackMouse()
     {
         Vector3 mouseScreenPosition = Mouse.current.position.ReadValue();
-        mouseScreenPosition.z = Vector3.Dot(tipPosition - moduleCamera.transform.position,
-                                            moduleCamera.transform.forward);
-        Vector3 mouseWorldPosition = moduleCamera.ScreenToWorldPoint(mouseScreenPosition);
+        mouseScreenPosition.z = Vector3.Dot(tipPosition - Camera.main.transform.position,
+                                            Camera.main.transform.forward);
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;
         Vector3 clampedDirection = Vector3.RotateTowards(defaultForward, direction, maxTilt * Mathf.Deg2Rad, 0f);
         targetDirection = clampedDirection;
+    }
+    
+    private IEnumerator MoveToDefaultPosition()
+    {
+        targetDirection = defaultForward;
+        
+        while ((transform.forward - targetDirection).magnitude > 0.001)
+        {
+            UpdateRotation();
+            yield return null;
+        }
     }
 }

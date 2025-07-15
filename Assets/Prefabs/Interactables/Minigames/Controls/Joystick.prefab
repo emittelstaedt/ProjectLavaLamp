@@ -112,6 +112,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7928556202912232333, guid: bf183adcc67b7bf4ab91b7934d5c4092, type: 3}
       insertIndex: -1
       addedObject: {fileID: 719767272208025492}
+    - targetCorrespondingSourceObject: {fileID: -7928556202912232333, guid: bf183adcc67b7bf4ab91b7934d5c4092, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1584031986601391730}
+    - targetCorrespondingSourceObject: {fileID: -7928556202912232333, guid: bf183adcc67b7bf4ab91b7934d5c4092, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8903971015918142052}
   m_SourcePrefab: {fileID: 100100000, guid: bf183adcc67b7bf4ab91b7934d5c4092, type: 3}
 --- !u!4 &1162395519387251977 stripped
 Transform:
@@ -159,4 +165,59 @@ MonoBehaviour:
   moveStick: {fileID: 11400000, guid: 9962c77e9758a54068799d9cb1188386, type: 2}
   moduleCamera: {fileID: 0}
   speed: 0.3
-  mouseOffset: 0.2
+--- !u!114 &1584031986601391730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731277060112077573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 0}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 719767272208025492}
+        m_TargetAssemblyTypeName: JoystickController, Assembly-CSharp
+        m_MethodName: OnModuleInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8903971015918142052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731277060112077573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 1618a0b19c317cbf59f09754e973f90e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 719767272208025492}
+        m_TargetAssemblyTypeName: JoystickController, Assembly-CSharp
+        m_MethodName: OnModuleStopInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

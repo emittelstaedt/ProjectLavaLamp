@@ -7,6 +7,7 @@ public class KnobController : MonoBehaviour
     [Tooltip("0 results in free rotation.")]
     [SerializeField][Range(0f, 360f)] private float maxTurnAngle = 270f;
     private float currentRotation = 0f;
+    private bool isModuleBeingInteractedWith = false;
     private float rotationOffset;
     private Vector3 defaultDirection;
     private float lastMouseAngle;
@@ -22,13 +23,29 @@ public class KnobController : MonoBehaviour
     
     void OnMouseDown()
     {
-        lastMouseAngle = GetAngleToMouse();
+        if (isModuleBeingInteractedWith)
+        {
+            lastMouseAngle = GetAngleToMouse();
+        }
     }
     
     void OnMouseDrag()
     {
-        Turn();
-        SendInput();
+        if (isModuleBeingInteractedWith)
+        {
+            Turn();
+            SendInput();
+        }
+    }
+    
+    public void OnModuleInteract()
+    {
+        isModuleBeingInteractedWith = true;
+    }
+    
+    public void OnModuleStopInteract()
+    {
+        isModuleBeingInteractedWith = false;
     }
     
     private void Turn()

@@ -5,13 +5,13 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO buttonDown;
     [SerializeField] private VoidEventChannelSO buttonUp;
-    [SerializeField] private Camera moduleCamera;
     [SerializeField] private ButtonMode mode = ButtonMode.SinglePress;
     [SerializeField] private float pressTime = 0.1f;
     private float pressDistance = 0.1f;
     private float upPositionY;
     private bool isMoving = false;
     private bool isUnpressQueued = false;
+    private bool isModuleBeingInteractedWith = false;
     
     private enum ButtonMode
     {
@@ -25,18 +25,9 @@ public class ButtonController : MonoBehaviour
         upPositionY = transform.localPosition.y;
     }
     
-    void Update()
-    {
-        // Unpresses the button if the player stops interacting.
-        if (!IsModuleBeingInteractedWith() && transform.localPosition.y != upPositionY && !isMoving)
-        {
-            Unpress();
-        }
-    }
-    
     void OnMouseDown()
     {
-        if (IsModuleBeingInteractedWith() && !isMoving)
+        if (isModuleBeingInteractedWith && !isMoving)
         {
             if (mode != ButtonMode.Toggle ||
                 mode == ButtonMode.Toggle && transform.localPosition.y == upPositionY)
@@ -52,7 +43,7 @@ public class ButtonController : MonoBehaviour
     
     void OnMouseUp()
     {
-        if (IsModuleBeingInteractedWith() && mode == ButtonMode.Hold)
+        if (isModuleBeingInteractedWith && mode == ButtonMode.Hold)
         {
             if (!isMoving)
             {
@@ -65,9 +56,19 @@ public class ButtonController : MonoBehaviour
         }
     }
     
-    private bool IsModuleBeingInteractedWith()
+    public void OnModuleInteract()
     {
-        return moduleCamera.enabled;
+        isModuleBeingInteractedWith = true;
+    }
+    
+    public void OnModuleStopInteract()
+    {
+        isModuleBeingInteractedWith = false;
+        
+        if (transform.localPosition.y != upPositionY && !isMoving)
+        {
+            Unpress();
+        }
     }
     
     private void Press()

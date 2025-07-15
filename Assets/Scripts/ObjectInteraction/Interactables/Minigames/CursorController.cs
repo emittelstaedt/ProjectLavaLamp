@@ -26,7 +26,7 @@ public class CursorController : MonoBehaviour
         localPosition.y = Mathf.Clamp(localPosition.y, -screenHeight / 2f, screenHeight / 2f);
         transform.localPosition = localPosition;
     }
-
+    
     public void Click()
     {
         RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, Vector2.zero);

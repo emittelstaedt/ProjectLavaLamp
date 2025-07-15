@@ -143,6 +143,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2b969b02ef873980b8a62c4a1eea514, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4232219919948474200}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2b969b02ef873980b8a62c4a1eea514, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1609402237056260698}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2b969b02ef873980b8a62c4a1eea514, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3242086341780641432}
   m_SourcePrefab: {fileID: 100100000, guid: b2b969b02ef873980b8a62c4a1eea514, type: 3}
 --- !u!1 &1276832553851676017 stripped
 GameObject:
@@ -182,6 +188,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944a0a9baeef180fc959db5410b02127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnKnob: {fileID: 0}
+  maxTurnAngle: 270
+--- !u!114 &1609402237056260698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276832553851676017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 0}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4232219919948474200}
+        m_TargetAssemblyTypeName: KnobController, Assembly-CSharp
+        m_MethodName: OnModuleInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3242086341780641432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276832553851676017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 1618a0b19c317cbf59f09754e973f90e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4232219919948474200}
+        m_TargetAssemblyTypeName: KnobController, Assembly-CSharp
+        m_MethodName: OnModuleStopInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1942151903488753611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2b969b02ef873980b8a62c4a1eea514, type: 3}
@@ -272,6 +336,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5178017847336754072, guid: 8d0d33f18cb19b84d8394cd7552a1f59, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3398807695995351811}
+    - targetCorrespondingSourceObject: {fileID: 5178017847336754072, guid: 8d0d33f18cb19b84d8394cd7552a1f59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810206402225345305}
+    - targetCorrespondingSourceObject: {fileID: 5178017847336754072, guid: 8d0d33f18cb19b84d8394cd7552a1f59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6905856124361316026}
   m_SourcePrefab: {fileID: 100100000, guid: 8d0d33f18cb19b84d8394cd7552a1f59, type: 3}
 --- !u!1 &3361302618141844490 stripped
 GameObject:
@@ -311,6 +381,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944a0a9baeef180fc959db5410b02127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnKnob: {fileID: 0}
+  maxTurnAngle: 270
+--- !u!114 &1810206402225345305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3361302618141844490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 0}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3398807695995351811}
+        m_TargetAssemblyTypeName: KnobController, Assembly-CSharp
+        m_MethodName: OnModuleInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6905856124361316026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3361302618141844490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 1618a0b19c317cbf59f09754e973f90e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3398807695995351811}
+        m_TargetAssemblyTypeName: KnobController, Assembly-CSharp
+        m_MethodName: OnModuleStopInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &7938903497470199714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8695013221232412624, guid: 8d0d33f18cb19b84d8394cd7552a1f59, type: 3}
