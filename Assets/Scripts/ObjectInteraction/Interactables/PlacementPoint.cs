@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 public class PlacementPoint : MonoBehaviour, IInteractable
 {
@@ -8,7 +9,6 @@ public class PlacementPoint : MonoBehaviour, IInteractable
     [SerializeField] private Transform placementLocation;
     [SerializeField] private InteractableSettingsSO Settings;
     private Transform placementNode;
-    private Transform buildItem;
     private Outline outline;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
@@ -16,7 +16,6 @@ public class PlacementPoint : MonoBehaviour, IInteractable
     private void Awake()
     {
         placementNode = transform.parent;
-        buildItem = placementNode.parent;
 
         outline = GetComponent<Outline>();
         if (outline == null)
@@ -54,18 +53,19 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         lastItemheld.transform.localScale = placementLocation.lossyScale;
         lastItemheld.transform.SetParent(placementNode, true);
 
-        // Combine meshes so that the outline will show for the entire new combined object.
-        MeshFilter parentMeshFilter = buildItem.GetComponent<MeshFilter>();
-        MeshFilter itemMeshFilter = lastItemheld.GetComponent<MeshFilter>();
-        parentMeshFilter.sharedMesh = AddChildMeshToParent(parentMeshFilter, itemMeshFilter);
-
         // Remove the previous item while keeping its children, i.e. its collider and placement points.
         while (lastItemheld.transform.childCount > 0)
         {
             Transform child = lastItemheld.transform.GetChild(0);
-            child.SetParent(buildItem, true);
+            child.SetParent(placementNode.parent, true);
         }
         Destroy(lastItemheld);
+
+        // Combine meshes so that the outline will show for the entire new combined object.
+        MeshFilter parentMeshFilter = placementNode.parent.GetComponent<MeshFilter>();
+        MeshFilter itemMeshFilter = lastItemheld.GetComponent<MeshFilter>();
+
+        parentMeshFilter.sharedMesh = AddChildMeshToParent(parentMeshFilter, itemMeshFilter);
 
         // Stop interacting with this script since continuing to interact not needed.
         stopInteraction.RaiseEvent();
@@ -113,6 +113,8 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
         Mesh mesh = new();
         mesh.CombineMeshes(combine);
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
 
         return mesh;
     }
