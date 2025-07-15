@@ -210,8 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
+  updateName: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
   requiredItem: Item4
-  placementLocation: {fileID: 1167120228}
+  placementLocation: {fileID: 1167120229}
   Settings: {fileID: 11400000, guid: 9fbe56bc51b931042946dc6e72e50fa3, type: 2}
 --- !u!65 &83624192
 BoxCollider:
@@ -742,6 +743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildItem2
       objectReference: {fileID: 0}
+    - target: {fileID: 3518314167194997459, guid: 2c0703e342b387f4abb3743106bd09d9, type: 3}
+      propertyPath: finishedName
+      value: Item5
+      objectReference: {fileID: 0}
     - target: {fileID: 6928852581676335332, guid: 2c0703e342b387f4abb3743106bd09d9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -862,11 +867,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 838052465810580425, guid: 2c0703e342b387f4abb3743106bd09d9, type: 3}
       propertyPath: requiredItem
-      value: BuildItem2
+      value: Item5
       objectReference: {fileID: 0}
     - target: {fileID: 1416262717078664650, guid: 2c0703e342b387f4abb3743106bd09d9, type: 3}
       propertyPath: m_Name
-      value: BuildItem2 PlacementNode
+      value: Item5 PlacementNode
       objectReference: {fileID: 0}
     - target: {fileID: 2008050953158801539, guid: 2c0703e342b387f4abb3743106bd09d9, type: 3}
       propertyPath: m_LocalPosition.x

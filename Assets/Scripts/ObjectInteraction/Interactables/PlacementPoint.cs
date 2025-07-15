@@ -3,8 +3,9 @@ using UnityEngine;
 public class PlacementPoint : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO stopInteraction;
+    [SerializeField] private VoidEventChannelSO updateName;
     [SerializeField] private string requiredItem;
-    [SerializeField] private GameObject placementLocation;
+    [SerializeField] private Transform placementLocation;
     [SerializeField] private InteractableSettingsSO Settings;
     private Transform placementNode;
     private Transform buildItem;
@@ -49,10 +50,8 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
-        Transform placementTransform = placementLocation.transform;
-
-        lastItemheld.transform.SetPositionAndRotation(placementTransform.position, placementTransform.rotation);
-        lastItemheld.transform.localScale = placementTransform.lossyScale;
+        lastItemheld.transform.SetPositionAndRotation(placementLocation.position, placementLocation.rotation);
+        lastItemheld.transform.localScale = placementLocation.lossyScale;
         lastItemheld.transform.SetParent(placementNode, true);
 
         // Combine meshes so that the outline will show for the entire new combined object.
@@ -74,7 +73,11 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
     public void StopInteract()
     {
+        // Since destory is called at end of frame detach it so the renamer script doesn't see it.
+        placementNode.SetParent(null);
         Destroy(placementNode.gameObject);
+
+        updateName.RaiseEvent();
     }
 
     public void StartHover()
