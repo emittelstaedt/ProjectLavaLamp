@@ -6,12 +6,17 @@ public class PlacementPoint : MonoBehaviour, IInteractable
     [SerializeField] private string requiredItem;
     [SerializeField] private GameObject placementLocation;
     [SerializeField] private InteractableSettingsSO Settings;
+    private Transform placementNode;
+    private Transform buildItem;
+    private Outline outline;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
-    private Outline outline;
 
     private void Awake()
     {
+        placementNode = transform.parent;
+        buildItem = placementNode.parent;
+
         outline = GetComponent<Outline>();
         if (outline == null)
         {
@@ -48,10 +53,10 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
         lastItemheld.transform.SetPositionAndRotation(placementTransform.position, placementTransform.rotation);
         lastItemheld.transform.localScale = placementTransform.lossyScale;
-        lastItemheld.transform.SetParent(transform.parent, true);
+        lastItemheld.transform.SetParent(placementNode, true);
 
         // Combine meshes so that the outline will show for the entire new combined object.
-        MeshFilter parentMeshFilter = transform.parent.GetComponent<MeshFilter>();
+        MeshFilter parentMeshFilter = buildItem.GetComponent<MeshFilter>();
         MeshFilter itemMeshFilter = lastItemheld.GetComponent<MeshFilter>();
         parentMeshFilter.sharedMesh = AddChildMeshToParent(parentMeshFilter, itemMeshFilter);
 
@@ -59,7 +64,7 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         while (lastItemheld.transform.childCount > 0)
         {
             Transform child = lastItemheld.transform.GetChild(0);
-            child.SetParent(transform.parent, true);
+            child.SetParent(buildItem, true);
         }
         Destroy(lastItemheld);
 
@@ -69,7 +74,7 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
     public void StopInteract()
     {
-        Destroy(gameObject);
+        Destroy(placementNode.gameObject);
     }
 
     public void StartHover()
