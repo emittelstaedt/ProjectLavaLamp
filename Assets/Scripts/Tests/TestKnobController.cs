@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KnobController : MonoBehaviour, IScreenClickable
+public class TestKnobController : MonoBehaviour, IScreenClickable
 {
     [SerializeField] private CursorController cursor;
     private bool isTurning = false;
@@ -24,6 +24,20 @@ public class KnobController : MonoBehaviour, IScreenClickable
     public void Unclick()
     {
         isTurning = false;
+    }
+    
+    public void SetXPosition(float newPosition)
+    {
+        Vector3 position = transform.localPosition;
+        position.x = 2f * newPosition - 1f;
+        transform.localPosition = position;
+    }
+    
+    public void SetYPosition(float newPosition)
+    {
+        Vector3 position = transform.localPosition;
+        position.y = 2f * newPosition - 1f;
+        transform.localPosition = position;
     }
     
     private void Turn()
