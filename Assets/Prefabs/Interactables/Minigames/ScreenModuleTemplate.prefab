@@ -345,6 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac93717ee27622d78d9440f8a74b9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startInteract: {fileID: 11400000, guid: f5bda57133b47524fafb7f817f608f23, type: 2}
+  stopInteract: {fileID: 11400000, guid: 1618a0b19c317cbf59f09754e973f90e, type: 2}
   moduleCamera: {fileID: 8174160509817380161}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distanceFromCamera: 0.5
@@ -879,7 +881,7 @@ Transform:
   m_GameObject: {fileID: 5599623678760561674}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.468, z: 1}
+  m_LocalPosition: {x: -1, y: -1, z: 1}
   m_LocalScale: {x: 0.26, y: 0.26, z: 0.26}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1035,6 +1037,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9113524708177908183}
     m_Modifications:
+    - target: {fileID: 1183287102964617810, guid: d9fa26ae683ecb778916b9564665ddca, type: 3}
+      propertyPath: eventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bda57133b47524fafb7f817f608f23, type: 2}
     - target: {fileID: 5638457849443459960, guid: d9fa26ae683ecb778916b9564665ddca, type: 3}
       propertyPath: mode
       value: 2
@@ -1125,6 +1131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9113524708177908183}
     m_Modifications:
+    - target: {fileID: 1609402237056260698, guid: 80e4b2f6e52334f30853a5823f795910, type: 3}
+      propertyPath: eventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bda57133b47524fafb7f817f608f23, type: 2}
+    - target: {fileID: 1810206402225345305, guid: 80e4b2f6e52334f30853a5823f795910, type: 3}
+      propertyPath: eventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bda57133b47524fafb7f817f608f23, type: 2}
     - target: {fileID: 3398807695995351811, guid: 80e4b2f6e52334f30853a5823f795910, type: 3}
       propertyPath: turnKnob
       value: 
@@ -1211,6 +1225,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9113524708177908183}
     m_Modifications:
+    - target: {fileID: 1183287102964617810, guid: d9fa26ae683ecb778916b9564665ddca, type: 3}
+      propertyPath: eventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bda57133b47524fafb7f817f608f23, type: 2}
     - target: {fileID: 5638457849443459960, guid: d9fa26ae683ecb778916b9564665ddca, type: 3}
       propertyPath: moduleCamera
       value: 
@@ -1293,6 +1311,10 @@ PrefabInstance:
       propertyPath: moduleCamera
       value: 
       objectReference: {fileID: 8174160509817380161}
+    - target: {fileID: 1584031986601391730, guid: d38a3a15acf4c0548b5285c663f86d65, type: 3}
+      propertyPath: eventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: f5bda57133b47524fafb7f817f608f23, type: 2}
     - target: {fileID: 7211054429271761447, guid: d38a3a15acf4c0548b5285c663f86d65, type: 3}
       propertyPath: m_Name
       value: Joystick
