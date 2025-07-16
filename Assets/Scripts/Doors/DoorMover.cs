@@ -7,25 +7,17 @@ public class DoorMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+        if (other.CompareTag("Player"))
         {
             openingDoor.RaiseEvent();
-        }
-        else
-        {
-            Debug.Log(other.gameObject.layer);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+        if (other.CompareTag("Player"))
         {
             closingDoor.RaiseEvent();
-        }
-        else
-        {
-            Debug.Log(other.gameObject.layer);
         }
     }
 }
