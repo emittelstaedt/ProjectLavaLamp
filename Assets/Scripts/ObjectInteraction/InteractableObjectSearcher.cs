@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InteractableObjectSearcher : MonoBehaviour
 {
+    [SerializeField] private Transform mainCamera;
     private IInteractable currentInteraction;
     private IInteractable lastObjectLookedAt;
     private IInteractable currentObjectLookedAt;
@@ -24,7 +25,7 @@ public class InteractableObjectSearcher : MonoBehaviour
         bool canInteract = false;
 
         RaycastHit rayCastHit;
-        Ray seekingRay = new Ray(transform.position, transform.forward);
+        Ray seekingRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         bool wasInteractPressedThisFrame = interactAction.WasPressedThisFrame();
 
         if (Physics.Raycast(seekingRay, out rayCastHit, 100f))
@@ -107,7 +108,7 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     private float GetDistanceToInteractable(IInteractable interactable)
     {
-        Vector3 distanceToInteractable = transform.position - interactable.GetPosition();
+        Vector3 distanceToInteractable = mainCamera.transform.position - interactable.GetPosition();
         return distanceToInteractable.magnitude;
     }
 }
