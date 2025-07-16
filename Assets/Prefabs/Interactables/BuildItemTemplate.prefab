@@ -65,8 +65,8 @@ Transform:
   m_GameObject: {fileID: 3133994871796409444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.532, y: 2.1, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2594055537442776171}
@@ -355,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8786259323902444421}
-  - component: {fileID: 2123807401184496697}
+  - component: {fileID: 2158664609387299152}
   m_Layer: 3
   m_Name: PlacementLocation
   m_TagString: Untagged
@@ -378,7 +378,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 918498862532057820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2123807401184496697
+--- !u!114 &2158664609387299152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,10 +387,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609021547892123898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83114ae1bbcf1784e969311c15a8da84, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a2c21b1497f1314e889b94b4136ae66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  expectedScale: {x: 1, y: 1, z: 1}
 --- !u!1 &8273024051312819580
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +406,7 @@ GameObject:
   - component: {fileID: 2138886234381875237}
   - component: {fileID: 838052465810580425}
   - component: {fileID: 8600057342001421017}
-  - component: {fileID: 7459407798970678556}
+  - component: {fileID: 6641623043969089638}
   m_Layer: 3
   m_Name: Item PlacementPoint
   m_TagString: Untagged
@@ -546,7 +547,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7459407798970678556
+--- !u!114 &6641623043969089638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -558,4 +559,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83114ae1bbcf1784e969311c15a8da84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: 1, g: 0.057348125, b: 0, a: 1}
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}

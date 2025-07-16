@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DrawTransformGizmo : MonoBehaviour
+public class DrawTransformBox : MonoBehaviour
 {
     [SerializeField] private Color gizmoColor = Color.green;
 
