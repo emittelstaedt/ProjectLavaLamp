@@ -11,7 +11,7 @@ public class SecurityCameraFollow : MonoBehaviour
         mainCameraTransform = Camera.main.transform;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         Vector3 directionToCamera = mainCameraTransform.position - transform.position;
 
