@@ -10,7 +10,9 @@ public class Mover : MonoBehaviour
     private Vector3 targetPosition;
     private float moveRate;
 
-    private void Start()
+    public void SetCanMove(bool newCanMove) => canMove = newCanMove;
+
+    private void Awake()
     {
         startPosition = transform.position;
         endPosition = startPosition + moveDistance;
@@ -20,28 +22,19 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveRate * Time.deltaTime);
+        if (canMove)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveRate * Time.deltaTime);
+        }
     }
 
     public void Move()
     {
-        if (canMove)
-        {
-            targetPosition = endPosition;
-        }
-        
+        targetPosition = endPosition;
     }
 
     public void MoveBack()
     {
-        if (canMove)
-        {
-            targetPosition = startPosition;
-        }
-    }
-
-    public void SetCanMove(bool value)
-    {
-        canMove = value;
+        targetPosition = startPosition;
     }
 }

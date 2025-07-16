@@ -34,9 +34,7 @@ public class CameraSwapper : MonoBehaviour
     public IEnumerator Transition(Camera cameraFrom, Camera cameraTo, Action action)
     {
         Transform from = cameraFrom.gameObject.transform;
-        Debug.Log("Camera from: " + cameraFrom.gameObject);
         Transform to = cameraTo.gameObject.transform;
-        Debug.Log("Camera to: " + cameraTo.gameObject);
 
         transform.position = from.position;
         Vector3 startPosition = from.position;

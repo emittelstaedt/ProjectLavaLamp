@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        // Ignore layers  for character CheckCapsule function to crouch properly in main scene.
         ignoreCollisionLayer = ~(
             (1 << LayerMask.NameToLayer("IgnoreItemCollision")) |
             (1 << LayerMask.NameToLayer("IgnorePostProcess")) |
@@ -102,7 +103,6 @@ public class PlayerController : MonoBehaviour
 
         return !Physics.CheckCapsule(bottomSphereCenter, topSphereCenter, radius, ignoreCollisionLayer);
     }
-
 
     private void UpdateHeight()
     {
