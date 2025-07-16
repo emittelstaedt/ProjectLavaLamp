@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCameraControls : MonoBehaviour
+public class CameraControls : MonoBehaviour
 {
     [SerializeField] private float sensitivity = .15f;
+    private Transform mainCamera;
     private float xRotation;
     private InputAction lookAction;
 
-    private void Start()
+    private void Awake()
     {
+        mainCamera = Camera.main.transform;
         lookAction = InputSystem.actions.FindAction("Look");
     }
 
@@ -23,7 +25,7 @@ public class PlayerCameraControls : MonoBehaviour
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             // Allows the x rotation of the camera to be set externally.
-            xRotation = transform.rotation.eulerAngles.x;
+            xRotation = mainCamera.localRotation.eulerAngles.x;
             
             // Accounts for eulerAngles only returning positive numbers.
             if (xRotation > 90)
@@ -35,8 +37,8 @@ public class PlayerCameraControls : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             // Camera should be a child of the player to rotate properly.
-            transform.parent.Rotate(0f, lookAction.ReadValue<Vector2>().x * sensitivity, 0f);
-            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            transform.Rotate(0f, lookAction.ReadValue<Vector2>().x * sensitivity, 0f);
+            mainCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
     }
 

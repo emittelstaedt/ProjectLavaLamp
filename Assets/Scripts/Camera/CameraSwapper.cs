@@ -1,14 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using UnityEngine.InputSystem;
 
 public class CameraSwapper : MonoBehaviour
 {
     [SerializeField] private float transitionTime = 0.05f;
     private Camera tempCamera;
-    private Vector3 positionVelocity;
-    private Quaternion rotationVelocity;
     
     public static CameraSwapper Instance = null;
 
@@ -25,7 +22,7 @@ public class CameraSwapper : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         
-        tempCamera = GetComponent<Camera>();
+        tempCamera = GetComponentInChildren<Camera>();
     }
     
     // The action delegate code is run when the transition is completed.
@@ -46,8 +43,8 @@ public class CameraSwapper : MonoBehaviour
         Quaternion startRotation = from.rotation;
         Quaternion endRotation = to.rotation;
         float timer = 0f;
-        
-        cameraFrom.enabled = false;
+
+        cameraFrom.gameObject.SetActive(false);
         tempCamera.enabled = true;
         
         while((transform.position - to.position).magnitude > 0.05f)
@@ -59,8 +56,8 @@ public class CameraSwapper : MonoBehaviour
         }
         
         tempCamera.enabled = false;
-        cameraTo.enabled = true;
-        
+        cameraTo.gameObject.SetActive(true);
+
         action();
     }
 }
