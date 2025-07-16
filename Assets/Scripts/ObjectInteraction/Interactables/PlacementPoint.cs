@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Linq;
 
 public class PlacementPoint : MonoBehaviour, IInteractable
 {
@@ -66,6 +65,23 @@ public class PlacementPoint : MonoBehaviour, IInteractable
         MeshFilter itemMeshFilter = lastItemheld.GetComponent<MeshFilter>();
 
         parentMeshFilter.sharedMesh = AddChildMeshToParent(parentMeshFilter, itemMeshFilter);
+
+        // Renderer bounds are world based rather than MeshFilter's local based bounds.
+        Renderer itemRenderer = lastItemheld.GetComponent<Renderer>();
+        Vector3 bottom = placementLocation.position + Vector3.down * (itemRenderer.bounds.extents.y / 2);
+
+        // Reverse ray in case origin would be in the ground and not hit it.
+        Ray ray = new(bottom, Vector3.up);
+        ray.origin = ray.GetPoint(parentMeshFilter.sharedMesh.bounds.extents.y);
+        ray.direction = -ray.direction;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Ground")))
+        {
+            if (bottom.y < hit.point.y)
+            {
+                placementNode.parent.position += new Vector3(0f, Vector3.Distance(bottom, hit.point), 0f);
+            }
+        }
 
         // Stop interacting with this script since continuing to interact not needed.
         stopInteraction.RaiseEvent();
