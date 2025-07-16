@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2584059224554490295}
   - component: {fileID: 6013282434390384966}
   - component: {fileID: 696029086285068955}
+  - component: {fileID: 7959528353045865232}
   - component: {fileID: 4039643580119792937}
   - component: {fileID: 1031077512529543821}
   - component: {fileID: 2553190137513665238}
-  - component: {fileID: 395400758279000919}
   m_Layer: 0
   m_Name: LeftDoor
   m_TagString: Untagged
@@ -90,6 +90,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7959528353045865232
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5286276484142463005}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!114 &4039643580119792937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToMove: 0
   moveDistance: {x: 0, y: 0, z: 0}
-  isMovable: 0
+  canMove: 1
 --- !u!114 &1031077512529543821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,27 +183,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!65 &395400758279000919
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5286276484142463005}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5424940630448750236
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 5424940630448750236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.044466376, y: 4.5529513, z: 38.61}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -227,10 +228,10 @@ GameObject:
   - component: {fileID: 8036919721398078994}
   - component: {fileID: 2559680870771340011}
   - component: {fileID: 3756330814556881569}
+  - component: {fileID: 8507644841517282816}
   - component: {fileID: 566324411000340730}
   - component: {fileID: 3947785896120491855}
   - component: {fileID: 7774549577456872240}
-  - component: {fileID: 6817531132245996894}
   m_Layer: 0
   m_Name: RightDoor
   m_TagString: Untagged
@@ -306,6 +307,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8507644841517282816
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975386225980234158}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!114 &566324411000340730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToMove: 0
   moveDistance: {x: 0, y: 0, z: 0}
-  isMovable: 0
+  canMove: 1
 --- !u!114 &3947785896120491855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,27 +400,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!65 &6817531132245996894
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6975386225980234158}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7280646746867661952
 GameObject:
   m_ObjectHideFlags: 0
