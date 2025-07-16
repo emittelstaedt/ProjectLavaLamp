@@ -36,7 +36,7 @@ public class TestKnobController : MonoBehaviour, IScreenClickable
     public void SetYPosition(float newPosition)
     {
         Vector3 position = transform.localPosition;
-        position.y = 2f * newPosition - 1f;
+        position.y = 0.5f * newPosition - 1f;
         transform.localPosition = position;
     }
     

@@ -7,45 +7,60 @@ public class JoystickController : MonoBehaviour
     [SerializeField] private Vector2EventChannelSO moveStick;
     [SerializeField][Range(0.0f, 1.0f)] private float speed = 0.3f;
     private float maxTilt = 45f;
-    private bool isModuleBeingInteractedWith = false;
+    private bool isBeingControlled = false;
     private Vector3 defaultForward;
-    private Vector3 tipPosition;
     private Vector3 targetDirection;
+    private float tipOffsetFromCamera;
+    private float distanceToTip;
     
     void Awake()
     {
         defaultForward = transform.forward;
-        tipPosition = transform.GetChild(0).position;
+    }
+    
+    void OnMouseDown()
+    {
+        isBeingControlled = true;
+        StartCoroutine(TakeUserInput());
     }
     
     void OnMouseUp()
     {
-        if (isModuleBeingInteractedWith)
-        {
-            StartCoroutine(MoveToDefaultPosition());
-        }
-    }
-    
-    void OnMouseDrag()
-    {
-        if (isModuleBeingInteractedWith)
-        {
-            TrackMouse();
-            UpdateRotation();
-            SendInput();
-        }
+        isBeingControlled = false;
+        StartCoroutine(MoveToDefaultPosition());
     }
     
     public void OnModuleInteract()
     {
-        isModuleBeingInteractedWith = true;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        
+        // Only calculated the first time the module is interacted with.
+        if (Mathf.Approximately(tipOffsetFromCamera, 0f))
+        {
+            Vector3 tipPosition = transform.GetChild(0).position;
+            tipOffsetFromCamera = Vector3.Dot(tipPosition - Camera.main.transform.position,
+                                              Camera.main.transform.forward);
+            distanceToTip = (tipPosition - transform.position).magnitude;
+        }
     }
     
     public void OnModuleStopInteract()
     {
-        isModuleBeingInteractedWith = false;
+        isBeingControlled = false;
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         
         StartCoroutine(MoveToDefaultPosition());
+    }
+    
+    private IEnumerator TakeUserInput()
+    {
+        while (isBeingControlled)
+        {
+            TrackMouse();
+            UpdateRotation();
+            SendInput();
+            yield return null;
+        }
     }
     
     private void SendInput()
@@ -65,8 +80,8 @@ public class JoystickController : MonoBehaviour
     private void TrackMouse()
     {
         Vector3 mouseScreenPosition = Mouse.current.position.ReadValue();
-        mouseScreenPosition.z = Vector3.Dot(tipPosition - Camera.main.transform.position,
-                                            Camera.main.transform.forward);
+        mouseScreenPosition.z = tipOffsetFromCamera;
+        
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;

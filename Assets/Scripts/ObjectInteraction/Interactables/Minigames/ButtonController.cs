@@ -11,7 +11,6 @@ public class ButtonController : MonoBehaviour
     private float upPositionY;
     private bool isMoving = false;
     private bool isUnpressQueued = false;
-    private bool isModuleBeingInteractedWith = false;
     
     private enum ButtonMode
     {
@@ -27,7 +26,7 @@ public class ButtonController : MonoBehaviour
     
     void OnMouseDown()
     {
-        if (isModuleBeingInteractedWith && !isMoving)
+        if (!isMoving)
         {
             if (mode != ButtonMode.Toggle ||
                 mode == ButtonMode.Toggle && transform.localPosition.y == upPositionY)
@@ -43,7 +42,7 @@ public class ButtonController : MonoBehaviour
     
     void OnMouseUp()
     {
-        if (isModuleBeingInteractedWith && mode == ButtonMode.Hold)
+        if (gameObject.layer != LayerMask.NameToLayer("Ignore Raycast") && mode == ButtonMode.Hold)
         {
             if (!isMoving)
             {
@@ -58,12 +57,12 @@ public class ButtonController : MonoBehaviour
     
     public void OnModuleInteract()
     {
-        isModuleBeingInteractedWith = true;
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
     
     public void OnModuleStopInteract()
     {
-        isModuleBeingInteractedWith = false;
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         
         if (transform.localPosition.y != upPositionY && !isMoving)
         {
