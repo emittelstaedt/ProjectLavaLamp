@@ -10,7 +10,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     [SerializeField] private float distanceFromCamera = 0.5f;
     private Outline outline;
     private Camera mainCamera;
-    private Transform playerTransform;
+    private PlayerController playerTransform;
     private MeshRenderer playerMesh;
     private GameObject currentItemHeld;
     private bool isBeingUsed;
@@ -18,7 +18,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     public void Awake()
     {
         mainCamera = Camera.main;
-        playerTransform = mainCamera.transform.parent;
+        playerTransform = mainCamera.transform.GetComponentInParent<PlayerController>();
         playerMesh = playerTransform.gameObject.GetComponent<MeshRenderer>();
     
         outline = GetComponent<Outline>();
@@ -92,14 +92,14 @@ public class ScreenModule : MonoBehaviour, IInteractable
     {
         InputSystem.actions.FindActionMap("Player").Enable();
     }
-    
+
     private void PutPlayerInFrontOfScreen()
     {
-        playerTransform.position = moduleCamera.transform.position +
-                                   moduleCamera.transform.rotation * Vector3.back * distanceFromCamera;
-        if (Physics.Raycast(playerTransform.position, Vector3.down, out RaycastHit hit))
+        Vector3 targetPosition = moduleCamera.transform.position - moduleCamera.transform.forward * distanceFromCamera;
+
+        if (Physics.Raycast(targetPosition, Vector3.down, out RaycastHit hit))
         {
-            playerTransform.position += Vector3.down * hit.distance;
+            playerTransform.SetFootPosition(targetPosition + Vector3.down * hit.distance);
         }
         else
         {
@@ -110,7 +110,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         Vector3 newPlayerCameraRotation = new (newPlayerRotation.x, 0, 0);
         newPlayerRotation.x = 0;
 
-        playerTransform.rotation = Quaternion.Euler(newPlayerRotation);
+        playerTransform.transform.rotation = Quaternion.Euler(newPlayerRotation);
         mainCamera.transform.localRotation = Quaternion.Euler(newPlayerCameraRotation);
     }
 }

@@ -88,6 +88,14 @@ public class PlayerController : MonoBehaviour
         return input.y > 0.1f;
     }
 
+    public void SetFootPosition(Vector3 newPosition)
+    {
+        characterController.enabled = false;
+        newPosition.y += playerStats.NormalHeight / 2f;
+        transform.position = newPosition;
+        characterController.enabled = true;
+    }
+
     public bool HasRoomToUncrouch()
     {
         float radius = characterController.radius;
