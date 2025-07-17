@@ -215,8 +215,8 @@ Transform:
   m_GameObject: {fileID: 1464869688443414530}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0.000000015454312, w: 0.000000015454312}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.613921, y: 0.613921, z: 0.613921}
+  m_LocalPosition: {x: 0, y: 0.99, z: 0}
+  m_LocalScale: {x: 1, y: 0.613921, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2969198226293687507}
@@ -303,7 +303,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0002359077, y: 0.70710677, z: 0.70710677, w: -0.0002359077}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 232601173936109035}
@@ -393,7 +393,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 566324411000340730, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: timeToMove
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 566324411000340730, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: moveDistance.x
@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1992946983473187939, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1992946983473187939, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -521,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 2871469715313346890, guid: 868ca2777bff5aa4db7cc066cd4f0803, type: 3}
     - target: {fileID: 2584059224554490295, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.613921
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2584059224554490295, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalScale.y
@@ -529,11 +529,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2584059224554490295, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.613921
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2584059224554490295, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584059224554490295, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 2584059224554490295, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -565,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 950a5066d1195d9449984bbd9e9dac74, type: 2}
     - target: {fileID: 4039643580119792937, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: timeToMove
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4039643580119792937, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: moveDistance.x
@@ -587,6 +591,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5697581609357087480, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: closingDoor
+      value: 
+      objectReference: {fileID: 11400000, guid: ad55a9b82faf63c428515fe6d60575ff, type: 2}
+    - target: {fileID: 5697581609357087480, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: openingDoor
+      value: 
+      objectReference: {fileID: 11400000, guid: 950a5066d1195d9449984bbd9e9dac74, type: 2}
     - target: {fileID: 6013282434390384966, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -599,13 +611,17 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7280646746867661952, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: m_Name
+      value: ElevatorDoorTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 7774549577456872240, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: eventChannel
       value: 
       objectReference: {fileID: 11400000, guid: ad55a9b82faf63c428515fe6d60575ff, type: 2}
     - target: {fileID: 8036919721398078994, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.613921
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8036919721398078994, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalScale.y
@@ -613,11 +629,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8036919721398078994, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.613921
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 8036919721398078994, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036919721398078994, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: 8036919721398078994, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_LocalRotation.w
