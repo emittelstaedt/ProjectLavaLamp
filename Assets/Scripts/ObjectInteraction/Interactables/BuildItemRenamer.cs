@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class BuildItemRenamer : MonoBehaviour
 {
-    [Tooltip("Update to this when there are no placement nodes remaing. Blank keeps current name.")]
+    [Tooltip("Update to this when there are no placement nodes remaining. Blank keeps current name.")]
     [SerializeField] private string finishedName;
 
     public void CheckIfFinishedBuilding()
     {
-        PlacementPoint[] placementPoints = GetComponentsInChildren<PlacementPoint>();
+        PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>();
         
         if (placementPoints.Length == 0)
         {

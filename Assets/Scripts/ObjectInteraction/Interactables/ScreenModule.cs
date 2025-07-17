@@ -91,10 +91,11 @@ public class ScreenModule : MonoBehaviour, IInteractable
     
     private void PutPlayerInFrontOfScreen()
     {
-        playerTransform.position = moduleCamera.transform.position - moduleCamera.transform.rotation * Vector3.forward * distanceFromCamera;
-        if (Physics.Raycast(playerTransform.position, -Vector3.up, out RaycastHit hit))
+        playerTransform.position = moduleCamera.transform.position +
+                                   moduleCamera.transform.rotation * Vector3.back * distanceFromCamera;
+        if (Physics.Raycast(playerTransform.position, Vector3.down, out RaycastHit hit))
         {
-            playerTransform.position -= Vector3.up * hit.distance;
+            playerTransform.position += Vector3.down * hit.distance;
         }
         else
         {

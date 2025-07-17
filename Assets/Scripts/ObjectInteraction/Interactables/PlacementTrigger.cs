@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class PlacementPoint : MonoBehaviour, IInteractable
+public class PlacementTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO stopInteraction;
     [SerializeField] private VoidEventChannelSO updateName;
     [SerializeField] private string requiredItem;
-    [SerializeField] private Transform placementLocation;
+    [SerializeField] private Transform placementContainer;
     [SerializeField] private InteractableSettingsSO Settings;
     private Transform placementNode;
     private Outline outline;
@@ -48,8 +48,8 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
-        lastItemheld.transform.SetPositionAndRotation(placementLocation.position, placementLocation.rotation);
-        lastItemheld.transform.localScale = placementLocation.lossyScale;
+        lastItemheld.transform.SetPositionAndRotation(placementContainer.position, placementContainer.rotation);
+        lastItemheld.transform.localScale = placementContainer.lossyScale;
         lastItemheld.transform.SetParent(placementNode, true);
 
         // Remove the previous item while keeping its children, i.e. its collider and placement points.
@@ -68,7 +68,7 @@ public class PlacementPoint : MonoBehaviour, IInteractable
 
         // Renderer bounds are world based rather than MeshFilter's local based bounds.
         Renderer itemRenderer = lastItemheld.GetComponent<Renderer>();
-        Vector3 bottom = placementLocation.position + Vector3.down * (itemRenderer.bounds.extents.y / 2);
+        Vector3 bottom = placementContainer.position + Vector3.down * (itemRenderer.bounds.extents.y / 2);
 
         // Reverse ray in case origin would be in the ground and not hit it.
         Ray ray = new(bottom, Vector3.up);
@@ -83,13 +83,13 @@ public class PlacementPoint : MonoBehaviour, IInteractable
             }
         }
 
-        // Stop interacting with this script since continuing to interact not needed.
+        // Once an item has been placed the placement point is no longer needed so stop interacting with it.
         stopInteraction.RaiseEvent();
     }
 
     public void StopInteract()
     {
-        // Since destory is called at end of frame detach it so the renamer script doesn't see it.
+        // Since destroy happens at end of frame detach it so the renamer script doesn't think placement points remain.
         placementNode.SetParent(null);
         Destroy(placementNode.gameObject);
 

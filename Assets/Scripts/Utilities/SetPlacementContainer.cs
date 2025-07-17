@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SetPlacementLocation : MonoBehaviour
+public class SetPlacementContainer : MonoBehaviour
 {
     [SerializeField] private Color gizmoColor = Color.red;
     [Tooltip("The scale of the item being placed here.")]

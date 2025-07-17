@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO dropItem;
-    [SerializeField] private GameObjectEventChannelSO itemPickedUp;
+    [SerializeField] private GameObjectEventChannelSO heldItemChanged;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -69,7 +69,7 @@ public class PickupItem : MonoBehaviour, IInteractable
             {
                 Transform itemTransform = itemColliders[i].transform;
 
-                if (itemTransform.TryGetComponent<PlacementPoint>(out _))
+                if (itemTransform.TryGetComponent<PlacementTrigger>(out _))
                 {
                     // Skip placement points so their colliders don't interfere with item movement.
                     continue;
@@ -112,7 +112,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
-        itemPickedUp.RaiseEvent(this.gameObject);
+        heldItemChanged.RaiseEvent(this.gameObject);
 
         Vector3 cameraToObject = transform.position - playerCameraTransform.position;
         Vector3 relativePositionToCamera = Quaternion.Inverse(playerCameraTransform.rotation) * cameraToObject;
@@ -127,7 +127,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void StopInteract()
     {
-        itemPickedUp.RaiseEvent(null);
+        heldItemChanged.RaiseEvent(null);
         SetHeldState(false);
     }
 

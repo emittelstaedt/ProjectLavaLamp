@@ -35,10 +35,7 @@ public class InteractableObjectSearcher : MonoBehaviour
         int hitCount = Physics.RaycastNonAlloc(seekingRay, hits);
 
         // Sort hits by distance to prioritize closer interactables.
-        Array.Sort(hits, 0, hitCount, Comparer<RaycastHit>.Create
-        (
-            (a, b) => a.distance.CompareTo(b.distance))
-        );
+        Array.Sort(hits, 0, hitCount, Comparer<RaycastHit>.Create((a, b) => a.distance.CompareTo(b.distance)));
 
         for (int i = 0; i < hitCount; i++) 
         {
