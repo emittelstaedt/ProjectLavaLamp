@@ -67,15 +67,19 @@ public class PickupItem : MonoBehaviour, IInteractable
             Collider[] itemColliders = GetComponentsInChildren<Collider>();
             for (int i = 0; i < itemColliders.Length; i++)
             {
-                if (itemColliders[i].transform.TryGetComponent<PlacementPoint>(out _))
+                Transform itemTransform = itemColliders[i].transform;
+
+                if (itemTransform.TryGetComponent<PlacementPoint>(out _))
                 {
                     // Skip placement points so their colliders don't interfere with item movement.
                     continue;
                 }
 
-                Vector3 offset = itemColliders[i].transform.position - itemCollider.transform.position;
+                Vector3 positionOffset = predictedPosition + 
+                                         (itemTransform.position - itemCollider.transform.position);
+                Quaternion rotationOffset = finalRotation * itemTransform.localRotation;
 
-                if (IsValidPosition(cameraPosition, itemColliders[i], predictedPosition + offset, finalRotation))
+                if (IsValidPosition(cameraPosition, itemColliders[i], positionOffset, rotationOffset))
                 {
                     // Can't use predictedPosition since currentDistance may have changed inside IsValidPosition.
                     Vector3 targetPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
