@@ -15,9 +15,9 @@ public class SetPlacementLocation : MonoBehaviour
 
         Matrix4x4 desiredLocalMatrix = parentWorldMatrix.inverse * desiredWorldMatrix;
 
-        Vector3 x = new(desiredLocalMatrix.m00, desiredLocalMatrix.m01, desiredLocalMatrix.m02);
-        Vector3 y = new(desiredLocalMatrix.m10, desiredLocalMatrix.m11, desiredLocalMatrix.m12);
-        Vector3 z = new(desiredLocalMatrix.m20, desiredLocalMatrix.m21, desiredLocalMatrix.m22);
+        Vector3 x = new(desiredLocalMatrix.m00, desiredLocalMatrix.m10, desiredLocalMatrix.m20);
+        Vector3 y = new(desiredLocalMatrix.m01, desiredLocalMatrix.m11, desiredLocalMatrix.m21);
+        Vector3 z = new(desiredLocalMatrix.m02, desiredLocalMatrix.m12, desiredLocalMatrix.m22);
 
         transform.localScale = new(x.magnitude, y.magnitude, z.magnitude);
     }
