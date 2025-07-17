@@ -13,7 +13,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     private InputAction rotateXAction;
     private InputAction rotateYAction;
     private Transform playerCameraTransform;
-    private Collider itemCollider;
+    private Collider[] itemColliders;
     private Rigidbody itemRigidbody;
     private Outline outline;
     private float currentDistance;
@@ -33,7 +33,8 @@ public class PickupItem : MonoBehaviour, IInteractable
 
         playerCameraTransform = Camera.main.transform;
 
-        itemCollider = GetComponentInChildren<Collider>();
+        itemColliders = GetComponentsInChildren<Collider>();
+
         itemRigidbody = GetComponent<Rigidbody>();
 
         if (!TryGetComponent<Outline>(out outline))
@@ -64,7 +65,6 @@ public class PickupItem : MonoBehaviour, IInteractable
             Vector3 predictedPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
             Quaternion finalRotation = cameraRotation * objectRotation;
 
-            Collider[] itemColliders = GetComponentsInChildren<Collider>();
             for (int i = 0; i < itemColliders.Length; i++)
             {
                 Transform itemTransform = itemColliders[i].transform;
@@ -75,8 +75,9 @@ public class PickupItem : MonoBehaviour, IInteractable
                     continue;
                 }
 
+                // Calculate the position offset based on the collider's position relative to the base collider.
                 Vector3 positionOffset = predictedPosition + 
-                                         (itemTransform.position - itemCollider.transform.position);
+                                         (itemTransform.position - itemColliders[0].transform.position);
                 Quaternion rotationOffset = finalRotation * itemTransform.localRotation;
 
                 if (IsValidPosition(cameraPosition, itemColliders[i], positionOffset, rotationOffset))
@@ -145,6 +146,11 @@ public class PickupItem : MonoBehaviour, IInteractable
     public void SetCurrentItemHeld(GameObject newItemHeld)
     {
         currentItemHeld = newItemHeld;
+    }
+
+    public void UpdateChildrenColliders()
+    {
+        itemColliders = GetComponentsInChildren<Collider>();
     }
 
     private bool IsValidPosition(Vector3 cameraPosition, Collider collider, Vector3 targetPosition, Quaternion objectRotation)
