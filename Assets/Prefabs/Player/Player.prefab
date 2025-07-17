@@ -115,7 +115,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5000001
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 0.15
-  mainCamera: {fileID: 2043622118180972247}
 --- !u!114 &6715487801881789034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea117c3839d8534f81bd7a776e32c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2043622118180972247}
 --- !u!114 &7952415085105415944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +247,10 @@ PrefabInstance:
     - target: {fileID: 835393889155456894, guid: bb44b91a79d9d974cb2fd4157acf1c5a, type: 3}
       propertyPath: m_Name
       value: DitherCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 835393889155456894, guid: bb44b91a79d9d974cb2fd4157acf1c5a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 835393889155456894, guid: bb44b91a79d9d974cb2fd4157acf1c5a, type: 3}
       propertyPath: m_TagString
