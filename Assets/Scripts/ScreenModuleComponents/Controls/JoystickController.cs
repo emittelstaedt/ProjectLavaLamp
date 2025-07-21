@@ -5,9 +5,9 @@ using System.Collections;
 public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Vector2EventChannelSO moveStick;
-    [SerializeField][Range(0.0f, 1.0f)] private float speed = 0.3f;
+    [SerializeField] [Range(0f, 1f)] private float speed = 0.3f;
     private float maxTilt = 45f;
-    private bool isBeingControlled = false;
+    private bool isBeingControlled;
     private Vector3 defaultForward;
     private Vector3 targetDirection;
     private float tipOffsetFromCamera;
@@ -93,7 +93,7 @@ public class JoystickController : MonoBehaviour
     {
         targetDirection = defaultForward;
         
-        while ((transform.forward - targetDirection).magnitude > 0.001)
+        while ((transform.forward - targetDirection).magnitude > 0.001f)
         {
             UpdateRotation();
             yield return null;

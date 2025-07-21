@@ -6,9 +6,9 @@ public class KnobController : MonoBehaviour
 {
     [SerializeField] private FloatEventChannelSO turnKnob;
     [Tooltip("0 results in free rotation.")]
-    [SerializeField][Range(0f, 360f)] private float maxTurnAngle = 270f;
-    private bool isBeingControlled = false;
-    private float currentRotation = 0f;
+    [SerializeField] [Range(0f, 360f)] private float maxTurnAngle = 0f;
+    private bool isBeingControlled;
+    private float currentRotation;
     private float lastMouseAngle;
     private float currentMouseAngle;  
     private float rotationOffset;
@@ -69,10 +69,10 @@ public class KnobController : MonoBehaviour
         currentMouseAngle = GetAngleToMouse();
         float angleDifference = currentMouseAngle - lastMouseAngle;
         
-        // Accounts for currentMouseAngle flipping betwee high positive and high negative.
+        // Accounts for currentMouseAngle flipping between high positive and high negative.
         if (Mathf.Abs(angleDifference) > 180f)
         {
-            angleDifference = -Mathf.Sign(angleDifference) * (360f - Mathf.Abs(angleDifference));
+            angleDifference = Mathf.Sign(angleDifference) * (Mathf.Abs(angleDifference) - 360f);
         }
         
         currentRotation += angleDifference;
@@ -91,16 +91,9 @@ public class KnobController : MonoBehaviour
     
     private void SendInput()
     {
-        if (Mathf.Approximately(maxTurnAngle, 0f))
-        {
-            // Float equal to 1 per rotation (can be negative).
-            turnKnob?.RaiseEvent(currentRotation / 360f);
-        }
-        else
-        {
-            // Float between 0 and 1.
-            turnKnob?.RaiseEvent(currentRotation / maxTurnAngle);
-        }
+        // Sends a value between 0 and 1 when maxTurnAngle is not 0. Otherwise, send a value equal to 1 per rotation.
+        float divisor = Mathf.Approximately(maxTurnAngle, 0f) ? 360f : maxTurnAngle;
+        turnKnob?.RaiseEvent(currentRotation / divisor);
     }
 
     // Returns an angle from -180 to 180.

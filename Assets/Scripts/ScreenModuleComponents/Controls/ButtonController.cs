@@ -5,7 +5,7 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO buttonDown;
     [SerializeField] private VoidEventChannelSO buttonUp;
-    [SerializeField] private ButtonMode mode = ButtonMode.SinglePress;
+    [SerializeField] private ButtonMode mode = ButtonMode.Hold;
     [SerializeField] private float pressTime = 0.1f;
     private float pressDistance = 0.1f;
     private float upPositionY;
@@ -42,6 +42,7 @@ public class ButtonController : MonoBehaviour
     
     void OnMouseUp()
     {
+        // Check the layermask to see if the player is interacting with a module.
         if (gameObject.layer != LayerMask.NameToLayer("Ignore Raycast") && mode == ButtonMode.Hold)
         {
             if (!isMoving)
