@@ -5,7 +5,7 @@ using System.Collections;
 public class CameraSwapper : MonoBehaviour
 {
     [SerializeField] private float transitionTime = 0.05f;
-    private Camera tempCamera;
+    private GameObject tempCamera;
     
     public static CameraSwapper Instance = null;
 
@@ -22,7 +22,7 @@ public class CameraSwapper : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         
-        tempCamera = GetComponentInChildren<Camera>();
+        tempCamera = transform.GetChild(0).gameObject;
     }
     
     // The action delegate code is run when the transition is completed.
@@ -38,14 +38,12 @@ public class CameraSwapper : MonoBehaviour
 
         transform.position = from.position;
         Vector3 startPosition = from.position;
-        Vector3 endPosition = to.position;
 
         Quaternion startRotation = from.rotation;
-        Quaternion endRotation = to.rotation;
         float timer = 0f;
 
         cameraFrom.gameObject.SetActive(false);
-        tempCamera.enabled = true;
+        tempCamera.SetActive(true);
         
         while((transform.position - to.position).magnitude > 0.05f)
         {
@@ -55,7 +53,7 @@ public class CameraSwapper : MonoBehaviour
             yield return null;
         }
         
-        tempCamera.enabled = false;
+        tempCamera.SetActive(false);
         cameraTo.gameObject.SetActive(true);
 
         action();
