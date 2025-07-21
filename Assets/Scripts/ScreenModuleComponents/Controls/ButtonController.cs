@@ -5,54 +5,42 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO buttonDown;
     [SerializeField] private VoidEventChannelSO buttonUp;
-    [SerializeField] private ButtonMode mode = ButtonMode.Hold;
+    [SerializeField] private Mode mode = Mode.Hold;
     [SerializeField] private float pressTime = 0.1f;
     private float pressDistance = 0.1f;
-    private float upPositionY;
-    private bool isMoving = false;
-    private bool isUnpressQueued = false;
+    private float defaultYPosition;
+    private float pressVelocity;
+    private bool isTargetStatePressed;
+    private Coroutine moveButton;
     
-    private enum ButtonMode
+    private enum Mode
     {
-        SinglePress,
         Hold,
         Toggle
     }
     
-    void Start()
+    void Awake()
     {
-        upPositionY = transform.localPosition.y;
+        defaultYPosition = transform.localPosition.y;
     }
-    
+
     void OnMouseDown()
     {
-        if (!isMoving)
+        if (mode == Mode.Hold || !isTargetStatePressed)
         {
-            if (mode != ButtonMode.Toggle ||
-                mode == ButtonMode.Toggle && transform.localPosition.y == upPositionY)
-            {
-                Press();
-            }
-            else
-            {
-                Unpress();
-            }
+            SetPressed(true);
+        }
+        else
+        {
+            SetPressed(false);
         }
     }
     
     void OnMouseUp()
     {
-        // Check the layermask to see if the player is interacting with a module.
-        if (gameObject.layer != LayerMask.NameToLayer("Ignore Raycast") && mode == ButtonMode.Hold)
+        if (mode == Mode.Hold)
         {
-            if (!isMoving)
-            {
-                Unpress();
-            }
-            else
-            {
-                isUnpressQueued = true;
-            }
+            SetPressed(false);
         }
     }
     
@@ -64,55 +52,53 @@ public class ButtonController : MonoBehaviour
     public void OnModuleStopInteract()
     {
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        
-        if (transform.localPosition.y != upPositionY && !isMoving)
-        {
-            Unpress();
-        }
-    }
-    
-    private void Press()
-    {
-        StartCoroutine(MoveButton(upPositionY, upPositionY - pressDistance));
-    }
-    
-    private void Unpress()
-    {
-        StartCoroutine(MoveButton(upPositionY - pressDistance, upPositionY));
-    }
-    
-    private IEnumerator MoveButton(float start, float end)
-    {
-        isMoving = true;
-        
-        float timer = 0f;
-        
-        if (start == upPositionY)
-        {
-            buttonDown?.RaiseEvent();
-        }
-        else
-        {
-            buttonUp?.RaiseEvent();
-        }
-        
-        while (timer < pressTime)
-        {
-            timer += Time.deltaTime;
-            Vector3 newPosition = transform.localPosition;
-            newPosition.y = Mathf.Lerp(start, end, timer / pressTime);
-            transform.localPosition = newPosition;
-            yield return null;
-        }
 
-        if (start == upPositionY && (mode == ButtonMode.SinglePress || isUnpressQueued))
+        SetPressed(false);
+    }
+    
+    private void SetPressed(bool isTargetStatePressed)
+    {
+        if (this.isTargetStatePressed != isTargetStatePressed)
         {
-            StartCoroutine(MoveButton(end, start));
-            isUnpressQueued = false;
+            this.isTargetStatePressed = isTargetStatePressed;
+
+            if (isTargetStatePressed)
+            {
+                buttonDown?.RaiseEvent();
+            }
+            else
+            {
+                buttonUp?.RaiseEvent();
+            }
+
+            if (moveButton != null)
+            {
+                StopCoroutine(moveButton);
+            }
+
+            moveButton = StartCoroutine(MoveButton());
+        }
+    }
+    
+    private IEnumerator MoveButton()
+    {
+        float targetYPosition;
+        if (!isTargetStatePressed)
+        {
+            targetYPosition = defaultYPosition;
         }
         else
         {
-            isMoving = false;
+            targetYPosition = defaultYPosition - pressDistance;
+        }
+        
+        while (Mathf.Abs(transform.localPosition.y - targetYPosition) > 0.001f)
+        {
+            Vector3 position = transform.localPosition;
+            position.y = Mathf.SmoothDamp(position.y, targetYPosition, ref pressVelocity, pressTime);
+            
+            transform.localPosition = position;
+            yield return null;
         }
     }
 }
