@@ -9,6 +9,7 @@ public class JoystickController : MonoBehaviour
     private float maxTilt = 45f;
     private bool isBeingControlled;
     private Vector3 defaultForward;
+    private Vector3 defaultRight;
     private Vector3 targetDirection;
     private float tipOffsetFromCamera;
     private float distanceToTip;
@@ -16,6 +17,7 @@ public class JoystickController : MonoBehaviour
     void Awake()
     {
         defaultForward = transform.forward;
+        defaultRight = transform.right;
     }
     
     void OnMouseDown()
@@ -65,16 +67,18 @@ public class JoystickController : MonoBehaviour
     
     private void SendInput()
     {
-        Vector2 inputDirection = ((Vector2) (transform.forward - defaultForward)).normalized;
+        Vector3 localDirection = transform.localRotation * Vector3.forward;
+        Vector2 inputDirection = (new Vector2(localDirection.x, localDirection.z)).normalized;
         Vector2 input = inputDirection * (Vector3.Angle(transform.forward, defaultForward) / maxTilt);
-        
+
         moveStick.RaiseEvent(input);
     }
     
     private void UpdateRotation()
     {
         float deltaDistance = speed * Vector3.Angle(transform.forward, targetDirection) * Time.deltaTime;
-        transform.LookAt(transform.position + Vector3.MoveTowards(transform.forward, targetDirection, deltaDistance));
+        transform.LookAt(transform.position + Vector3.MoveTowards(transform.forward, targetDirection, deltaDistance),
+                         transform.up);
     }
     
     private void TrackMouse()
