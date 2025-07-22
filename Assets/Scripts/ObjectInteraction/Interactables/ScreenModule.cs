@@ -10,7 +10,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     [SerializeField] private float distanceFromCamera = 0.5f;
     private Outline outline;
     private Camera mainCamera;
-    private PlayerController playerTransform;
+    private PlayerController playerController;
     private MeshRenderer playerMesh;
     private GameObject currentItemHeld;
     private bool isBeingUsed;
@@ -18,8 +18,8 @@ public class ScreenModule : MonoBehaviour, IInteractable
     public void Awake()
     {
         mainCamera = Camera.main;
-        playerTransform = mainCamera.transform.GetComponentInParent<PlayerController>();
-        playerMesh = playerTransform.gameObject.GetComponent<MeshRenderer>();
+        playerController = mainCamera.transform.GetComponentInParent<PlayerController>();
+        playerMesh = playerController.gameObject.GetComponent<MeshRenderer>();
     
         outline = GetComponent<Outline>();
         if (outline == null)
@@ -99,7 +99,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
 
         if (Physics.Raycast(targetPosition, Vector3.down, out RaycastHit hit))
         {
-            playerTransform.SetFootPosition(targetPosition + Vector3.down * hit.distance);
+            playerController.SetFootPosition(targetPosition + Vector3.down * hit.distance);
         }
         else
         {
@@ -110,7 +110,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         Vector3 newPlayerCameraRotation = new (newPlayerRotation.x, 0, 0);
         newPlayerRotation.x = 0;
 
-        playerTransform.transform.rotation = Quaternion.Euler(newPlayerRotation);
+        playerController.transform.rotation = Quaternion.Euler(newPlayerRotation);
         mainCamera.transform.localRotation = Quaternion.Euler(newPlayerCameraRotation);
     }
 }
