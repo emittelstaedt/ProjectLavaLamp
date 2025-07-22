@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 using System.Collections;
 
 public class ButtonController : MonoBehaviour
@@ -7,7 +7,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private VoidEventChannelSO buttonUp;
     [SerializeField] private Mode mode = Mode.Hold;
     [SerializeField] private float pressTime = 0.1f;
-    private float pressDistance = 0.1f;
+    private readonly float pressDistance = 0.1f;
     private float defaultYPosition;
     private float pressVelocity;
     private bool isTargetStatePressed;
@@ -62,13 +62,13 @@ public class ButtonController : MonoBehaviour
         {
             this.isTargetStatePressed = isTargetStatePressed;
 
-            if (isTargetStatePressed)
+            if (isTargetStatePressed && buttonDown != null)
             {
-                buttonDown?.RaiseEvent();
+                buttonDown.RaiseEvent();
             }
-            else
+            else if (!isTargetStatePressed && buttonUp != null)
             {
-                buttonUp?.RaiseEvent();
+                buttonUp.RaiseEvent();
             }
 
             if (moveButton != null)

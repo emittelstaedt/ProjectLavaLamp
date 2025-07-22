@@ -6,18 +6,16 @@ public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Vector2EventChannelSO moveStick;
     [SerializeField] [Range(0f, 1f)] private float speed = 0.3f;
-    private float maxTilt = 45f;
+    [SerializeField] private Transform tipTransform;
+    private readonly float maxTilt = 45f;
     private bool isBeingControlled;
     private Vector3 defaultForward;
-    private Vector3 defaultRight;
     private Vector3 targetDirection;
     private float tipOffsetFromCamera;
-    private float distanceToTip;
     
     void Awake()
     {
         defaultForward = transform.forward;
-        defaultRight = transform.right;
     }
     
     void OnMouseDown()
@@ -39,10 +37,8 @@ public class JoystickController : MonoBehaviour
         // Only calculated the first time the module is interacted with.
         if (Mathf.Approximately(tipOffsetFromCamera, 0f))
         {
-            Vector3 tipPosition = transform.GetChild(0).position;
-            tipOffsetFromCamera = Vector3.Dot(tipPosition - Camera.main.transform.position,
-                                              Camera.main.transform.forward);
-            distanceToTip = (tipPosition - transform.position).magnitude;
+            Vector3 difference = tipTransform.position - Camera.main.transform.position;
+            tipOffsetFromCamera = Vector3.Dot(difference, Camera.main.transform.forward);
         }
     }
     
@@ -67,18 +63,20 @@ public class JoystickController : MonoBehaviour
     
     private void SendInput()
     {
-        Vector3 localDirection = transform.localRotation * Vector3.forward;
-        Vector2 inputDirection = (new Vector2(localDirection.x, localDirection.z)).normalized;
-        Vector2 input = inputDirection * (Vector3.Angle(transform.forward, defaultForward) / maxTilt);
-
-        moveStick.RaiseEvent(input);
+        if (moveStick != null)
+        {
+            Vector3 localDirection = transform.localRotation * Vector3.forward;
+            Vector2 inputDirection = (new Vector2(localDirection.x, localDirection.z)).normalized;
+            Vector2 input = inputDirection * (Vector3.Angle(transform.forward, defaultForward) / maxTilt);
+            moveStick.RaiseEvent(input);
+        }
     }
     
     private void UpdateRotation()
     {
         float deltaDistance = speed * Vector3.Angle(transform.forward, targetDirection) * Time.deltaTime;
-        transform.LookAt(transform.position + Vector3.MoveTowards(transform.forward, targetDirection, deltaDistance),
-                         transform.up);
+        Vector3 direction = Vector3.MoveTowards(transform.forward, targetDirection, deltaDistance);
+        transform.LookAt(transform.position + direction, transform.up);
     }
     
     private void TrackMouse()

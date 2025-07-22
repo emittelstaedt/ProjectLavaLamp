@@ -7,6 +7,7 @@ public class KnobController : MonoBehaviour
     [SerializeField] private FloatEventChannelSO turnKnob;
     [Tooltip("0 results in free rotation.")]
     [SerializeField] [Range(0f, 360f)] private float maxTurnAngle = 0f;
+    [SerializeField] private Transform tipTransform;
     private bool isBeingControlled;
     private float currentRotation;
     private float lastMouseAngle;
@@ -41,10 +42,10 @@ public class KnobController : MonoBehaviour
         // Only calculated the first time the module is interacted with.
         if (Mathf.Approximately(tipOffsetFromCamera, 0f))
         {
-            Vector3 tipPosition = transform.GetChild(0).position;
-            tipOffsetFromCamera = Vector3.Dot(tipPosition - Camera.main.transform.position,
-                                              Camera.main.transform.forward);
-            distanceToTip = (tipPosition - transform.position).magnitude;
+            Vector3 difference = tipTransform.position - Camera.main.transform.position;
+            tipOffsetFromCamera = Vector3.Dot(difference, Camera.main.transform.forward);
+            
+            distanceToTip = (tipTransform.position - transform.position).magnitude;
         }
     }
     
@@ -92,8 +93,11 @@ public class KnobController : MonoBehaviour
     private void SendInput()
     {
         // Sends a value between 0 and 1 when maxTurnAngle is not 0. Otherwise, send a value equal to 1 per rotation.
-        float divisor = Mathf.Approximately(maxTurnAngle, 0f) ? 360f : maxTurnAngle;
-        turnKnob?.RaiseEvent(currentRotation / divisor);
+        if (turnKnob != null)
+        {
+            float divisor = Mathf.Approximately(maxTurnAngle, 0f) ? 360f : maxTurnAngle;
+            turnKnob.RaiseEvent(currentRotation / divisor);
+        }
     }
 
     // Returns an angle from -180 to 180.
