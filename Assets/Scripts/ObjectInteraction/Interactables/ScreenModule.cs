@@ -5,9 +5,11 @@ public class ScreenModule : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO startInteract;
     [SerializeField] private VoidEventChannelSO stopInteract;
+    [SerializeField] private PlayerTransformEventChannelSO movePlayer;
     [SerializeField] private Camera moduleCamera;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private float distanceFromCamera = 0.5f;
+    private Quaternion cachedCameraRotation;
     private Outline outline;
     private Camera mainCamera;
     private PlayerController playerController;
@@ -99,18 +101,30 @@ public class ScreenModule : MonoBehaviour, IInteractable
 
         if (Physics.Raycast(targetPosition, Vector3.down, out RaycastHit hit))
         {
-            playerController.SetFootPosition(targetPosition + Vector3.down * hit.distance);
+            Vector3 finalPosition = targetPosition + Vector3.down * hit.distance;
+
+            Quaternion newPlayerRotation = Quaternion.Euler(
+                0,
+                moduleCamera.transform.rotation.eulerAngles.y,
+                moduleCamera.transform.rotation.eulerAngles.z
+            );
+
+            Quaternion newCameraRotation = Quaternion.Euler(
+                moduleCamera.transform.rotation.eulerAngles.x,
+                0,
+                0
+            );
+
+            movePlayer.RaiseEvent(new PlayerTransformPayload
+            {
+                Position = finalPosition,
+                Rotation = (newPlayerRotation),
+                CameraRotation = (newCameraRotation)
+            });
         }
         else
         {
             Debug.LogWarning("Screen module transition raycast failed");
         }
-
-        Vector3 newPlayerRotation = moduleCamera.transform.rotation.eulerAngles;
-        Vector3 newPlayerCameraRotation = new (newPlayerRotation.x, 0, 0);
-        newPlayerRotation.x = 0;
-
-        playerController.transform.rotation = Quaternion.Euler(newPlayerRotation);
-        mainCamera.transform.localRotation = Quaternion.Euler(newPlayerCameraRotation);
     }
 }

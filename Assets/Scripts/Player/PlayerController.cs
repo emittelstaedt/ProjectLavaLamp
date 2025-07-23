@@ -1,3 +1,4 @@
+using UnityEditor.Il2Cpp;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
     [SerializeField] private PlayerStatsSO playerStats;
+    [SerializeField] private PlayerTransformEventChannelSO movePlayer;
+    [SerializeField] private Transform playerCamera;
     private LayerMask ignoreCollisionLayer;
     private PlayerState currentState;
     private float crouchVelocity;
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         currentState = new IdleState(this);
         currentState.EnterState();
-        
+
         targetHeight = playerStats.NormalHeight;
         currentSpeed = playerStats.WalkSpeed;
 
@@ -55,6 +58,22 @@ public class PlayerController : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         crouchAction = InputSystem.actions.FindAction("Crouch");
         sprintAction = InputSystem.actions.FindAction("Sprint");
+    }
+
+    private void OnEnable()
+    {
+        if (movePlayer != null)
+        {
+            movePlayer.OnEventRaised += HandleMovePlayer;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (movePlayer != null)
+        {
+            movePlayer.OnEventRaised -= HandleMovePlayer;
+        }
     }
 
     private void Update()
@@ -88,11 +107,18 @@ public class PlayerController : MonoBehaviour
         return input.y > 0.1f;
     }
 
-    public void SetFootPosition(Vector3 newPosition)
+    public void SetFootPositionAndRotation(PlayerTransformPayload payload)
     {
         characterController.enabled = false;
-        newPosition.y += characterController.height / 2f;
-        transform.position = newPosition;
+
+        // Player Foot Placement.
+        Vector3 adjustedPosition = payload.Position;
+        adjustedPosition.y += characterController.height / 2f;
+        transform.position = adjustedPosition;
+
+        transform.rotation = payload.Rotation;
+        playerCamera.localRotation = payload.CameraRotation;
+
         characterController.enabled = true;
     }
 
@@ -164,5 +190,10 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y += playerStats.Gravity * Time.deltaTime;
         }
+    }
+
+    private void HandleMovePlayer(PlayerTransformPayload payload)
+    {
+        SetFootPositionAndRotation(payload);
     }
 }
