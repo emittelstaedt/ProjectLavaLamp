@@ -40,6 +40,12 @@ public class TestKnobController : MonoBehaviour, IScreenClickable
         transform.localPosition = position;
     }
     
+    public void ChangeScale(float scale)
+    {
+        float newScale = 0.06f + 0.4f * scale;
+        transform.localScale = Vector3.one * newScale;
+    }
+    
     private void Turn()
     {
         currentCursorAngle = GetAngleToCursor();

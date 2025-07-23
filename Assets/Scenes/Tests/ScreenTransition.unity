@@ -448,6 +448,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &698907247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698907236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e6f0225069fe137830abb92fd835db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 7b6543f5fd5b49ac6abb5486b7b6f267, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 698907239}
+        m_TargetAssemblyTypeName: TestKnobController, Assembly-CSharp
+        m_MethodName: ChangeScale
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &749912943
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +746,10 @@ PrefabInstance:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 77174096}
+    - target: {fileID: 2600579286218302541, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 3420786248235647370, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_Name
       value: ScreenModuleTemplate
@@ -802,6 +834,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7564622818947768489, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+      propertyPath: sliding
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b6543f5fd5b49ac6abb5486b7b6f267, type: 2}
+    - target: {fileID: 7564622818947768489, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+      propertyPath: defaultValue
+      value: 0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 7923342653082720258, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: maxTurnAngle
       value: 0
@@ -868,27 +908,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9113524708177908183, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8957385
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9113524708177908183, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.369654
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113524708177908183, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.22832073
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113524708177908183, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.09422357
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113524708177908183, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -44.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9113524708177908183, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -28.6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -907,6 +947,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5599623678760561674, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
       insertIndex: -1
       addedObject: {fileID: 698907242}
+    - targetCorrespondingSourceObject: {fileID: 5599623678760561674, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 698907247}
   m_SourcePrefab: {fileID: 100100000, guid: 79dc072d3ae48fedb945750968addf29, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
