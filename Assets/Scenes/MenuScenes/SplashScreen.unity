@@ -307,25 +307,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5042142230629832362, guid: 691e5b602643d0443834f8443039ddd4, type: 3}
   m_PrefabInstance: {fileID: 3601528421478146532}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2089095170
-MonoBehaviour:
+--- !u!111 &2089095171
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089095164}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92fa2a8ce4092c4bbffdb1c375e3b3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseRotationAmount: 0.2
-  baseBreathingSpeed: 0.5
-  basePositionAmount: 0.02
-  useLocalPosition: 1
-  amplitudeVariation: 0.02
-  speedVariation: 0.1
-  variationChangeSpeed: 0.3
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 0b9be5cc057ffff43bfef878e6cc8a56, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 0b9be5cc057ffff43bfef878e6cc8a56, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1001 &3601528421478146532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,6 +336,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 8849579028689351621, guid: a529f1a1c8a6b20498ae7b7552d5e8df, type: 3}
+    - target: {fileID: 1581496760537582845, guid: 691e5b602643d0443834f8443039ddd4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 64.86289
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581496760537582845, guid: 691e5b602643d0443834f8443039ddd4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -89.57043
+      objectReference: {fileID: 0}
     - target: {fileID: 2176251360844258773, guid: 691e5b602643d0443834f8443039ddd4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -143.4
@@ -476,7 +482,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5042142230629832362, guid: 691e5b602643d0443834f8443039ddd4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2089095170}
+      addedObject: {fileID: 2089095171}
   m_SourcePrefab: {fileID: 100100000, guid: 691e5b602643d0443834f8443039ddd4, type: 3}
 --- !u!4 &3601528421478146533 stripped
 Transform:
