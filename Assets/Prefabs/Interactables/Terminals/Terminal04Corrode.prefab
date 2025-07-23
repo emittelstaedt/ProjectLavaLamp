@@ -780,8 +780,8 @@ GameObject:
   - component: {fileID: 725570151699881145}
   - component: {fileID: 2559341069857222985}
   - component: {fileID: 3420040303943116772}
-  - component: {fileID: 8804379099545418111}
   - component: {fileID: 3946155045571410420}
+  - component: {fileID: -5064715172478927680}
   m_Layer: 0
   m_Name: Terminal04Corrode
   m_TagString: Untagged
@@ -859,28 +859,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8804379099545418111
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8196936921885453208}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2469262684800766919, guid: 4b0f2c4d821dde7428c88c895f88c103, type: 3}
 --- !u!114 &3946155045571410420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +876,27 @@ MonoBehaviour:
   moduleCamera: {fileID: 2798371996976605904}
   Settings: {fileID: 11400000, guid: 9fbe56bc51b931042946dc6e72e50fa3, type: 2}
   distanceFromCamera: 0.5
+--- !u!65 &-5064715172478927680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196936921885453208}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.3693705, y: 5.170498, z: 2.4988272}
+  m_Center: {x: -0.016519012, y: 1.048655, z: 0.08980311}
 --- !u!1 &8811674694241853581
 GameObject:
   m_ObjectHideFlags: 0
