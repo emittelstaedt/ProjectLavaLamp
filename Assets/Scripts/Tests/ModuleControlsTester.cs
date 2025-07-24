@@ -3,9 +3,15 @@ using UnityEngine;
 public class TestKnobController : MonoBehaviour, IScreenClickable
 {
     [SerializeField] private CursorController cursor;
-    private bool isTurning = false;
+    private bool isTurning;
+    private SpriteRenderer spriteRenderer;
     private float lastCursorAngle;
     private float currentCursorAngle;
+    
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     
     void Update()
     {
@@ -44,6 +50,16 @@ public class TestKnobController : MonoBehaviour, IScreenClickable
     {
         float newScale = 0.06f + 0.4f * scale;
         transform.localScale = Vector3.one * newScale;
+    }
+    
+    public void SetColorGreen()
+    {
+        spriteRenderer.color = Color.green;
+    }
+    
+    public void SetColorWhite()
+    {
+        spriteRenderer.color = Color.white;
     }
     
     private void Turn()
