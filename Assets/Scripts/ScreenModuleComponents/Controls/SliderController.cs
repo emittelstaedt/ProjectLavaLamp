@@ -5,7 +5,7 @@ using System.Collections;
 public class SliderController : MonoBehaviour
 {
     [SerializeField] private FloatEventChannelSO sliding;
-    [SerializeField] [Range(0f, 1f)] private float startingValue = 0f;
+    [SerializeField] [Range(0f, 1f)] private float startingValue;
     [SerializeField] private Transform top;
     [SerializeField] private Transform bottom;
     private bool isBeingControlled;
@@ -63,12 +63,12 @@ public class SliderController : MonoBehaviour
     
     private void Slide()
     {
+        currentValue = Mathf.Clamp(GetMouseValue() - mouseValueOffset, 0f, 1f);
+        SetPosition(currentValue);
+        
         if (sliding != null)
         {
-            currentValue = Mathf.Clamp(GetMouseValue() - mouseValueOffset, 0f, 1f);
-            
             sliding.RaiseEvent(currentValue);
-            SetPosition(currentValue);
         }
     }
     
