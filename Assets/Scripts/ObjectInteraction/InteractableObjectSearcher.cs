@@ -8,13 +8,16 @@ public class InteractableObjectSearcher : MonoBehaviour
     private Transform mainCamera;
     private IInteractable currentInteraction;
     private IInteractable lastObjectLookedAt;
+    private IUsable currentUsable;
     private InputAction interactAction;
+    private InputAction useItemAction;
     private readonly RaycastHit[] hits = new RaycastHit[100];
 
     private void Awake()
     {
         mainCamera = Camera.main.transform;
         interactAction = InputSystem.actions.FindAction("Interact");
+        useItemAction = InputSystem.actions.FindAction("UseItem");
     }
 
     void Update()
@@ -63,6 +66,10 @@ public class InteractableObjectSearcher : MonoBehaviour
         {
             TryInitiateInteraction(interactables);
         }
+        else if (useItemAction.WasPressedThisFrame())
+        {
+            currentUsable?.UseItem();
+        }
     }
 
     private void UpdateHoverState(List<IInteractable> interactables)
@@ -98,6 +105,11 @@ public class InteractableObjectSearcher : MonoBehaviour
                 currentInteraction.StopHover();
                 currentInteraction.StartInteract();
 
+                if (currentInteraction is Component component)
+                {
+                    currentUsable = component.GetComponent<IUsable>();
+                }
+
                 return;
             }
         }
@@ -110,6 +122,8 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     public void ClearCurrentInteraction()
     {
+        currentUsable = null;
+
         lastObjectLookedAt?.StopHover();
         lastObjectLookedAt = null;
 
