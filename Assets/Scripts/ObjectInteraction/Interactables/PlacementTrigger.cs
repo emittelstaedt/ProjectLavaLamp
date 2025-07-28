@@ -116,6 +116,10 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
                 placementNode.parent.position += directionToMove * distanceToMove;
             }
         }
+
+        // Play a locking sound when items are combined.
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemCombine, 0.3f, transform.position);
+
         DestroyImmediate(meshCollider);
 
         // Once an item has been placed the placement point is no longer needed so stop interacting with it.
