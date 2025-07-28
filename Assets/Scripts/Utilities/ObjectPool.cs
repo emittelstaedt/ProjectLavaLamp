@@ -36,6 +36,7 @@ public class ObjectPool
             // Ensure that the object has the correct parent.
             if (!obj.activeSelf && obj.transform.parent != parent)
             {
+                obj.transform.position = Vector3.zero;
                 obj.transform.SetParent(parent);
             }
 

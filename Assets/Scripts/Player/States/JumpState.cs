@@ -13,6 +13,9 @@ public class JumpState : PlayerState
     {
         if (player.IsGrounded())
         {
+            // Play landing sound once player hits ground.
+            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.Land, 0.5f, player.transform);
+
             if (player.IsMoving())
             {
                 player.SwitchState(new WalkState(player));

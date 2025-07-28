@@ -7,6 +7,12 @@ public class WalkState : PlayerState
     public override void EnterState()
     {
         player.CurrentSpeed = player.PlayerStats.WalkSpeed;
+        StartFootSteps(SoundType.Walk, 0.4f, 0.45f);
+    }
+
+    public override void ExitState()
+    {
+        StopFootSteps();
     }
 
     public override void Update()
@@ -27,7 +33,7 @@ public class WalkState : PlayerState
             player.SwitchState(new JumpState(player));
             return;
         }
-        
+
         if (player.IsSprintButtonPressed && player.IsMovingForward())
         {
             player.SwitchState(new SprintState(player));
