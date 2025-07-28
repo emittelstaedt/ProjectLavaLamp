@@ -44,7 +44,7 @@ public abstract class PlayerState
                 yield return null;
             }
 
-            AudioManager.Instance.PlaySound(MixerType.SFX, soundType, 0.55f, player.transform);
+            AudioManager.Instance.PlaySound(MixerType.SFX, soundType, 0.1f, player.transform);
 
             float loopInterval = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(loopInterval);

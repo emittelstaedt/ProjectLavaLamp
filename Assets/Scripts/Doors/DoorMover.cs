@@ -13,7 +13,7 @@ public class DoorMover : MonoBehaviour
             hasEntered = true;
             openingDoor.RaiseEvent();
 
-            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorOpen, 0.5f, transform.position);
+            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorOpen, 1f, transform.position);
         }
     }
 
@@ -24,7 +24,7 @@ public class DoorMover : MonoBehaviour
             hasEntered = false;
             closingDoor.RaiseEvent();
 
-            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorClose, 0.6f, transform.position);
+            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorClose, 1.4f, transform.position);
         }
     }
 }

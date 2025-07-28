@@ -11,8 +11,7 @@ public enum SoundType
     CoffeeSlurp,
     CoffeeBrew,
     Alarm,
-    Success,
-    InChute,
-    OutChute,
-    MessageNotification
+    ChuteIn,
+    ChuteOut,
+    MessageAlert
 };

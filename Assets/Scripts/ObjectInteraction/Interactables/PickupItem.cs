@@ -7,7 +7,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private VoidEventChannelSO dropItem;
     [SerializeField] private GameObjectEventChannelSO heldItemChanged;
     [SerializeField] private InteractableSettingsSO Settings;
-    [SerializeField][Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
+    [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
     private LayerMask ignoreCollisionLayer;
     private InputAction rotateXAction;
@@ -21,9 +21,9 @@ public class PickupItem : MonoBehaviour, IInteractable
     private float closestAllowedDistance;
     private Quaternion objectRotation;
     private bool isHeld = false;
-    private bool wasPlaced;
     private GameObject currentItemHeld;
     private readonly Collider[] potentialHits = new Collider[10];
+    private float autoDropTimer;
 
     private void Awake()
     {
@@ -94,6 +94,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
                     // Play a thud sound when object gets auto dropped by colliding with another collider.
                     AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
+                    autoDropTimer = Time.time;
 
                     break;
                 }
@@ -104,7 +105,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     // If object hits the ground, play dropping sound.
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && Time.time - autoDropTimer > 0.1f)
         {
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
         }

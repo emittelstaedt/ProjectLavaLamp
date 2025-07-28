@@ -7,7 +7,7 @@ public class WalkState : PlayerState
     public override void EnterState()
     {
         player.CurrentSpeed = player.PlayerStats.WalkSpeed;
-        StartFootSteps(SoundType.Walk, 0.4f, 0.45f);
+        StartFootSteps(SoundType.Walk, 0.45f, 0.5f);
     }
 
     public override void ExitState()

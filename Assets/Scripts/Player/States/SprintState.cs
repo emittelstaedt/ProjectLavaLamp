@@ -7,7 +7,7 @@ public class SprintState : PlayerState
     public override void EnterState()
     {
         player.CurrentSpeed = player.PlayerStats.SprintSpeed;
-        StartFootSteps(SoundType.Sprint, 0.25f, 0.3f);
+        StartFootSteps(SoundType.Sprint, 0.2f, 0.25f);
     }
 
     public override void ExitState()
