@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3104121461044695243}
   - component: {fileID: 6217386034390086045}
   - component: {fileID: 3505195616726503424}
-  - component: {fileID: 133524799039991527}
+  - component: {fileID: 335114521095484718}
   m_Layer: 3
   m_Name: Box
   m_TagString: Untagged
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropItem: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   heldItemChanged: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
+  heldItemCollision: {fileID: 11400000, guid: 7f7f4d05b79b74e43ae9c1ff32c04b4f, type: 2}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distancePercentageToDrop: 0.1
   rotationSpeed: 100
@@ -188,11 +189,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99faa6ef036208946ad8d2ca443fc789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropItem: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   boxItems: {fileID: 0}
   minimumSmashSpeed: 11
   despawnDelay: 3
   despawnTime: 0.5
---- !u!114 &133524799039991527
+--- !u!114 &335114521095484718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,13 +206,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcdf3cf03da3cb648a17f3fc5c5fb4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
+  eventChannel: {fileID: 11400000, guid: 7f7f4d05b79b74e43ae9c1ff32c04b4f, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3505195616726503424}
         m_TargetAssemblyTypeName: BoxExploder, Assembly-CSharp
-        m_MethodName: OnHeldItemChange
+        m_MethodName: HeldItemCollision
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -6,6 +6,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO dropItem;
     [SerializeField] private GameObjectEventChannelSO heldItemChanged;
+    [SerializeField] private GameObjectEventChannelSO heldItemCollision;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -23,6 +24,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     private bool isHeld = false;
     private GameObject currentItemHeld;
     private readonly Collider[] potentialHits = new Collider[10];
+    private bool playingSound;
 
     private void Awake()
     {
@@ -90,6 +92,11 @@ public class PickupItem : MonoBehaviour, IInteractable
                 else
                 {
                     dropItem.RaiseEvent();
+                    if (heldItemCollision != null)
+                    {
+                        heldItemCollision.RaiseEvent(gameObject);
+                    }
+
                     break;
                 }
             }
@@ -98,7 +105,16 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     private void OnCollisionEnter(Collision collision)
     {
-        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
+        if (!playingSound)
+        {
+            playingSound = true;
+            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        playingSound = false;
     }
 
     public float GetInteractDistance()

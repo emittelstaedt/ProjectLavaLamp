@@ -5,37 +5,45 @@ using System.Collections;
 public class BoxExploder : MonoBehaviour
 {
     [SerializeField] private BoxItemsSO boxItems;
-    [SerializeField] private float minimumSmashSpeed = 50f;
+    [SerializeField] private float minimumSmashSpeed = 15f;
     [SerializeField] private float despawnDelay = 3f;
     [SerializeField] private float despawnTime = 0.5f;
     private Fracture fracture;
     private new Rigidbody rigidbody;
     private Vector3[] positions;
     private float[] deltaTimes;
-    private int speedAccuracy = 7;
-    private bool isHeld;
+    private int speedSampleCount = 5;
 
     void Awake()
     {
         fracture = GetComponent<Fracture>();
         rigidbody = GetComponent<Rigidbody>();
+
+        positions = new Vector3[speedSampleCount];
+        deltaTimes = new float[speedSampleCount];
+        for (int i = 0; i < speedSampleCount; i++)
+        {
+            positions[i] = transform.position;
+        }
     }
 
-    public void OnHeldItemChange(GameObject item)
+    void Update()
     {
-        if (item == gameObject)
+        for (int i = speedSampleCount - 1; i > 0; i--)
         {
-            isHeld = true;
-            StartCoroutine(SavePositions());
+            positions[i] = positions[i - 1];
+            deltaTimes[i] = deltaTimes[i - 1];
         }
-        else if (isHeld)
-        {
-            isHeld = false;
 
-            if (GetCurrentSpeed() > minimumSmashSpeed)
-            {
-                InitiateSmash();
-            }
+        positions[0] = transform.position;
+        deltaTimes[0] = Time.deltaTime;
+    }
+
+    public void HeldItemCollision(GameObject heldItem)
+    {
+        if (heldItem == gameObject && GetCurrentSpeed() > minimumSmashSpeed)
+        {
+            InitiateSmash();
         }
     }
 
@@ -74,43 +82,11 @@ public class BoxExploder : MonoBehaviour
         float distanceMoved = 0f;
         float timePassed = 0f;
 
-        for (int i = 1; i < speedAccuracy; i++)
+        for (int i = 1; i < speedSampleCount; i++)
         {
             distanceMoved += Vector3.Distance(positions[i - 1], positions[i]);
             timePassed += deltaTimes[i];
         }
         return distanceMoved / timePassed;
-    }
-
-    private IEnumerator SavePositions()
-    {
-        positions = new Vector3[speedAccuracy];
-        deltaTimes = new float[speedAccuracy];
-
-        int frameCount = 0;
-        while (isHeld)
-        {
-            yield return new WaitForEndOfFrame();
-
-            for (int i = frameCount - 1; i > 0; i--)
-            {
-                positions[i] = positions[i - 1];
-                deltaTimes[i] = deltaTimes[i - 1];
-            }
-
-            positions[0] = transform.position;
-            deltaTimes[0] = Time.deltaTime;
-            
-            // Fills in empty spots with the oldest entry.
-            if (frameCount < speedAccuracy)
-            {
-                frameCount++;
-                for (int i = frameCount; i < speedAccuracy; i++)
-                {
-                    positions[i] = positions[frameCount - 1];
-                    deltaTimes[i] = deltaTimes[frameCount - 1];
-                }
-            }
-        }
     }
 }
