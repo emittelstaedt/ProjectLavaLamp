@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JumpState : PlayerState
@@ -9,12 +10,15 @@ public class JumpState : PlayerState
         player.YVelocity = player.PlayerStats.JumpForce;
     }
 
+    public override void ExitState()
+    {
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.Land, 0.4f, player.transform);
+    }
+
     public override void Update()
     {
         if (player.IsGrounded())
         {
-            // Play landing sound once player hits ground.
-            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.Land, 0.5f, player.transform);
 
             if (player.IsMoving())
             {

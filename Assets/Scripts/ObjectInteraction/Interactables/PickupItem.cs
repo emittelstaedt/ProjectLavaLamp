@@ -23,7 +23,6 @@ public class PickupItem : MonoBehaviour, IInteractable
     private bool isHeld = false;
     private GameObject currentItemHeld;
     private readonly Collider[] potentialHits = new Collider[10];
-    private float autoDropTimer;
 
     private void Awake()
     {
@@ -92,34 +91,15 @@ public class PickupItem : MonoBehaviour, IInteractable
                 {
                     dropItem.RaiseEvent();
 
-                    // Play a thud sound when object gets auto dropped by colliding with another collider.
-                    AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
-                    autoDropTimer = Time.time;
-
                     break;
                 }
             }
         }
     }
 
-    // If object hits the ground, play dropping sound.
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") && Time.time - autoDropTimer > 0.1f)
-        {
-            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
-        }
-
-        // Check if item dropped on an item with rigidbody but no collider.
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
-        {
-            if (hit.rigidbody != null && Time.time - autoDropTimer > 0.1f)
-            {
-                AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);   
-            }
-
-        }
-
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
     }
 
     public float GetInteractDistance()
