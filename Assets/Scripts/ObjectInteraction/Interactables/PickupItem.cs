@@ -90,7 +90,6 @@ public class PickupItem : MonoBehaviour, IInteractable
                 else
                 {
                     dropItem.RaiseEvent();
-
                     break;
                 }
             }
