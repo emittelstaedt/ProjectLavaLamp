@@ -10,6 +10,7 @@ public class BoxExploder : MonoBehaviour
     [SerializeField] private float despawnTime = 0.5f;
     private Fracture fracture;
     private new Rigidbody rigidbody;
+    private float halfBoxSize;
     private Vector3[] positions;
     private float[] deltaTimes;
     private int speedSampleCount = 5;
@@ -18,6 +19,8 @@ public class BoxExploder : MonoBehaviour
     {
         fracture = GetComponent<Fracture>();
         rigidbody = GetComponent<Rigidbody>();
+
+        halfBoxSize = GetComponentInChildren<BoxCollider>().size.x / 2;
 
         positions = new Vector3[speedSampleCount];
         deltaTimes = new float[speedSampleCount];
@@ -53,10 +56,9 @@ public class BoxExploder : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             // Ensures objects fly in different directions.
-            float maxDifference = 0.5f;
-            Vector3 randomization = new(Random.Range(-maxDifference, maxDifference),
-                                        Random.Range(-maxDifference, maxDifference),
-                                        Random.Range(-maxDifference, maxDifference));
+            Vector3 randomization = new(Random.Range(-halfBoxSize, halfBoxSize),
+                                        Random.Range(-halfBoxSize, halfBoxSize),
+                                        Random.Range(-halfBoxSize, halfBoxSize));
 
             Instantiate(items[i] , transform.position + randomization, Quaternion.identity);
         }
@@ -64,6 +66,7 @@ public class BoxExploder : MonoBehaviour
         rigidbody.useGravity = true;
         fracture.CauseFracture();
 
+        // The object OpenFracture places the fragments under.
         GameObject fragmentParent = GameObject.Find($"{name}Fragments");
 
         // Set fragments to be on the ignore item collision layer.
@@ -74,7 +77,7 @@ public class BoxExploder : MonoBehaviour
         }
 
         DespawnObject despawner = fragmentParent.AddComponent<DespawnObject>();
-        despawner.StartDespawn(despawnDelay, despawnTime);
+        despawner.StartDespawn(despawnTime, despawnDelay);
     }
 
     private float GetCurrentSpeed()

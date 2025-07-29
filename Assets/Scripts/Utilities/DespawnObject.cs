@@ -3,12 +3,17 @@ using System.Collections;
 
 public class DespawnObject : MonoBehaviour
 {
-    public void StartDespawn(float despawnDelay, float despawnTime)
+    public void StartDespawn(float despawnTime, float despawnDelay)
     {
-        StartCoroutine(Despawn(despawnDelay, despawnTime));
+        StartCoroutine(Despawn(despawnTime, despawnDelay));
     }
 
-    private IEnumerator Despawn(float despawnDelay, float despawnTime)
+    public void StartDespawn(float despawnTime)
+    {
+        StartCoroutine(Despawn(despawnTime, 0f));
+    }
+
+    private IEnumerator Despawn(float despawnTime, float despawnDelay)
     {
         yield return new WaitForSeconds(despawnDelay);
         

@@ -21,10 +21,9 @@ public class PickupItem : MonoBehaviour, IInteractable
     private Vector3 grabOffset;
     private float closestAllowedDistance;
     private Quaternion objectRotation;
-    private bool isHeld = false;
+    private bool isHeld;
     private GameObject currentItemHeld;
     private readonly Collider[] potentialHits = new Collider[10];
-    private bool playingSound;
 
     private void Awake()
     {
@@ -103,18 +102,9 @@ public class PickupItem : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter()
     {
-        if (!playingSound)
-        {
-            playingSound = true;
-            AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        playingSound = false;
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
     }
 
     public float GetInteractDistance()
