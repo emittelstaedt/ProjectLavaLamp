@@ -5,6 +5,7 @@ using System.Collections;
 public class SliderController : MonoBehaviour
 {
     [SerializeField] private FloatEventChannelSO sliding;
+    [SerializeField] private Camera moduleCamera;
     [SerializeField] [Range(0f, 1f)] private float startingValue;
     [SerializeField] private Transform top;
     [SerializeField] private Transform bottom;
@@ -13,11 +14,14 @@ public class SliderController : MonoBehaviour
     private Vector2 screenBottom;
     private float currentValue;
     private float mouseValueOffset;
-    
+
     void Awake()
     {
         currentValue = startingValue;
         SetPosition(currentValue);
+
+        screenTop = moduleCamera.WorldToScreenPoint(top.position);
+        screenBottom = moduleCamera.WorldToScreenPoint(bottom.position);
     }
 
     void OnMouseDown()
@@ -37,13 +41,6 @@ public class SliderController : MonoBehaviour
     public void OnModuleInteract()
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
-        
-        // Only calculated the first time the module is interacted with.
-        if (screenTop == Vector2.zero && screenBottom == Vector2.zero)
-        {
-            screenTop = Camera.main.WorldToScreenPoint(top.position);
-            screenBottom = Camera.main.WorldToScreenPoint(bottom.position);
-        }
     }
     
     public void OnModuleStopInteract()

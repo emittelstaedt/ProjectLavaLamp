@@ -5,6 +5,7 @@ using System.Collections;
 public class KnobController : MonoBehaviour
 {
     [SerializeField] private FloatEventChannelSO turnKnob;
+    [SerializeField] private Camera moduleCamera;
     [Tooltip("0 results in free rotation.")]
     [SerializeField] [Range(0f, 360f)] private float maxTurnAngle = 0f;
     [SerializeField] private Transform tipTransform;
@@ -16,11 +17,16 @@ public class KnobController : MonoBehaviour
     private Vector3 defaultDirection;
     private float tipOffsetFromCamera;
     private float distanceToTip;
-    
+
     void Awake()
     {
         defaultDirection = transform.up;
         rotationOffset = transform.eulerAngles.z;
+        
+        Vector3 difference = tipTransform.position - moduleCamera.transform.position;
+        tipOffsetFromCamera = Vector3.Dot(difference, moduleCamera.transform.forward);
+        
+        distanceToTip = (tipTransform.position - transform.position).magnitude;
     }
     
     void OnMouseDown()
@@ -38,15 +44,6 @@ public class KnobController : MonoBehaviour
     public void OnModuleInteract()
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
-        
-        // Only calculated the first time the module is interacted with.
-        if (Mathf.Approximately(tipOffsetFromCamera, 0f))
-        {
-            Vector3 difference = tipTransform.position - Camera.main.transform.position;
-            tipOffsetFromCamera = Vector3.Dot(difference, Camera.main.transform.forward);
-            
-            distanceToTip = (tipTransform.position - transform.position).magnitude;
-        }
     }
     
     public void OnModuleStopInteract()

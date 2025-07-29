@@ -5,6 +5,7 @@ using System.Collections;
 public class JoystickController : MonoBehaviour
 {
     [SerializeField] private Vector2EventChannelSO moveStick;
+    [SerializeField] private Camera moduleCamera;
     [SerializeField] [Range(0f, 1f)] private float speed = 0.3f;
     [SerializeField] private Transform tipTransform;
     private readonly float maxTilt = 45f;
@@ -12,10 +13,13 @@ public class JoystickController : MonoBehaviour
     private Vector3 defaultForward;
     private Vector3 targetDirection;
     private float tipOffsetFromCamera;
-    
+
     void Awake()
     {
         defaultForward = transform.forward;
+        
+        Vector3 difference = tipTransform.position - moduleCamera.transform.position;
+        tipOffsetFromCamera = Vector3.Dot(difference, moduleCamera.transform.forward);
     }
     
     void OnMouseDown()
@@ -33,13 +37,6 @@ public class JoystickController : MonoBehaviour
     public void OnModuleInteract()
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
-        
-        // Only calculated the first time the module is interacted with.
-        if (Mathf.Approximately(tipOffsetFromCamera, 0f))
-        {
-            Vector3 difference = tipTransform.position - Camera.main.transform.position;
-            tipOffsetFromCamera = Vector3.Dot(difference, Camera.main.transform.forward);
-        }
     }
     
     public void OnModuleStopInteract()
