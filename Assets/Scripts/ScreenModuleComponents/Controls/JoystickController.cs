@@ -81,7 +81,7 @@ public class JoystickController : MonoBehaviour
         Vector3 mouseScreenPosition = Mouse.current.position.ReadValue();
         mouseScreenPosition.z = tipOffsetFromCamera;
         
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        Vector3 mouseWorldPosition = moduleCamera.ScreenToWorldPoint(mouseScreenPosition);
         
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;
         Vector3 clampedDirection = Vector3.RotateTowards(defaultForward, direction, maxTilt * Mathf.Deg2Rad, 0f);
