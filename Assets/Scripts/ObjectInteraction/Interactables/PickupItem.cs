@@ -109,6 +109,17 @@ public class PickupItem : MonoBehaviour, IInteractable
         {
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
         }
+
+        // Check if item dropped on an item with rigidbody but no collider.
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
+        {
+            if (hit.rigidbody != null && Time.time - autoDropTimer > 0.1f)
+            {
+                AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);   
+            }
+
+        }
+
     }
 
     public float GetInteractDistance()
