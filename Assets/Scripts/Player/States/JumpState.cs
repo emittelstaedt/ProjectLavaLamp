@@ -18,7 +18,6 @@ public class JumpState : PlayerState
     {
         if (player.IsGrounded())
         {
-
             if (player.IsMoving())
             {
                 player.SwitchState(new WalkState(player));
