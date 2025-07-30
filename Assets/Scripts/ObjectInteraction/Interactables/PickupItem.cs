@@ -154,6 +154,13 @@ public class PickupItem : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
+    public void SetSettings(VoidEventChannelSO dropItem, GameObjectEventChannelSO heldItemChanged, InteractableSettingsSO Settings)
+    {
+        this.dropItem = dropItem;
+        this.heldItemChanged = heldItemChanged;
+        this.Settings = Settings;
+    }
+
     public void SetCurrentItemHeld(GameObject newItemHeld)
     {
         currentItemHeld = newItemHeld;

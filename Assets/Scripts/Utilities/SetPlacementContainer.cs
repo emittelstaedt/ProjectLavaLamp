@@ -6,6 +6,11 @@ public class SetPlacementContainer : MonoBehaviour
     [Tooltip("The scale of the item being placed here.")]
     [SerializeField] private Vector3 expectedScale = Vector3.one;
 
+    public void Reset()
+    {
+        expectedScale = transform.localScale;
+    }
+
     private void Awake()
     {
         // Sets the local scale to match the expected scale. Does some matrix math to account for rotation.

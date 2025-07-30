@@ -15,6 +15,12 @@ public abstract class GenericEventChannelSubscriber<T, TChannel> : MonoBehaviour
         response?.Invoke(value);
     }
 
+    public void SetChannelAndResponse(TChannel eventChannel, UnityEvent<T> response)
+    {
+        this.eventChannel = eventChannel;
+        this.response = response;
+    }
+
     protected void OnEnable()
     {
         if (eventChannel != null)

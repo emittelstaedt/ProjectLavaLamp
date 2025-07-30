@@ -14,6 +14,12 @@ public class VoidEventChannelSubscriber : MonoBehaviour
         response?.Invoke();
     }
 
+    public void SetChannelAndResponse(VoidEventChannelSO eventChannel, UnityEvent response)
+    {
+        this.eventChannel = eventChannel;
+        this.response = response;
+    }
+
     private void OnEnable()
     {
         if (eventChannel != null)
