@@ -52,8 +52,19 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
+        // Gets the base child mesh in case objects have been added to parent mesh.
+        Vector3 itemSize = GetWorldBoundSize(lastItemheld.transform.GetChild(0).gameObject);
+        Vector3 containerScale = placementContainer.lossyScale;
+        Vector3 scaleRatio = new
+        (
+            containerScale.x / itemSize.x, 
+            containerScale.y / itemSize.y, 
+            containerScale.z / itemSize.z
+        );
+
+        // Sets the base mesh to the placement container 
+        lastItemheld.transform.localScale = Vector3.Scale(lastItemheld.transform.localScale, scaleRatio);
         lastItemheld.transform.SetPositionAndRotation(placementContainer.position, placementContainer.rotation);
-        lastItemheld.transform.localScale = placementContainer.lossyScale;
         lastItemheld.transform.SetParent(placementNode, true);
 
         // Remove the previous item while keeping its children, i.e. its collider and placement points.
@@ -144,6 +155,11 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
+    public void SetRequiredItem(string requiredItem)
+    {
+        this.requiredItem = requiredItem;
+    }
+
     public void SetCurrentItemHeld(GameObject newItemHeld)
     {
         currentItemHeld = newItemHeld;
@@ -151,6 +167,20 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         {
             lastItemheld = currentItemHeld;
         }
+    }
+
+    private Vector3 GetWorldBoundSize(GameObject gameObject)
+    {
+        Mesh mesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
+
+        Quaternion backup = gameObject.transform.rotation;
+        gameObject.transform.rotation = Quaternion.identity;
+
+        Vector3 scaledSize = Vector3.Scale(mesh.bounds.size, gameObject.transform.lossyScale);
+
+        gameObject.transform.rotation = backup;
+
+        return scaledSize;
     }
 
     private Mesh AddChildMeshToParent(MeshFilter parent, MeshFilter child)
