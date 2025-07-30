@@ -52,16 +52,7 @@ public class BoxExploder : MonoBehaviour
 
     private void InitiateSmash()
     {
-        GameObject[] items = boxItems.Items;
-        for (int i = 0; i < items.Length; i++)
-        {
-            // Ensures objects fly in different directions.
-            Vector3 randomization = new(Random.Range(-halfBoxSize, halfBoxSize),
-                                        Random.Range(-halfBoxSize, halfBoxSize),
-                                        Random.Range(-halfBoxSize, halfBoxSize));
-
-            Instantiate(items[i] , transform.position + randomization, Quaternion.identity);
-        }
+        InstantiateBoxItems();
 
         rigidbody.useGravity = true;
         fracture.CauseFracture();
@@ -78,6 +69,25 @@ public class BoxExploder : MonoBehaviour
 
         DespawnObject despawner = fragmentParent.AddComponent<DespawnObject>();
         despawner.StartDespawn(despawnTime, despawnDelay);
+    }
+
+    private void InstantiateBoxItems()
+    {
+        if (boxItems != null)
+        {
+            GameObject[] items = boxItems.Items;
+            for (int i = 0; i < items.Length; i++)
+            {
+                // Ensures objects fly in different directions.
+                Vector3 randomization = new(Random.Range(-halfBoxSize, halfBoxSize),
+                                            Random.Range(-halfBoxSize, halfBoxSize),
+                                            Random.Range(-halfBoxSize, halfBoxSize));
+
+                GameObject item = Instantiate(items[i] , transform.position + randomization, Quaternion.identity);
+                // Removes "(Clone)" from the name.
+                item.name = items[i].name;
+            }
+        }
     }
 
     private float GetCurrentSpeed()
