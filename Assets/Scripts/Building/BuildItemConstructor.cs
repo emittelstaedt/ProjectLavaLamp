@@ -35,6 +35,17 @@ public class BuildItemConstructor : MonoBehaviour
         }
         ConstructPickupItem(parent);
         parent.transform.SetParent(null);
+
+        string itemSaveLocation = saveLocation + parent.name + ".prefab";
+        if (!File.Exists(itemSaveLocation))
+        {
+            GameObject prefab = PrefabUtility.SaveAsPrefabAsset(parent, itemSaveLocation);
+            prefab.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            Debug.Log($"Skipping object {parent.name} as it already exists.");
+        }
     }
 
 
@@ -77,16 +88,6 @@ public class BuildItemConstructor : MonoBehaviour
         UnityEditor.Events.UnityEventTools.AddPersistentListener(gameObjectResponse, pickupItem.SetCurrentItemHeld);
         UnityEditor.Events.UnityEventTools.AddVoidPersistentListener(voidResponse, buildItemRenamer.CheckIfFinishedBuilding);
         UnityEditor.Events.UnityEventTools.AddVoidPersistentListener(voidResponse, pickupItem.UpdateChildrenColliders);
-
-        string itemSaveLocation = saveLocation + parent.name + ".prefab";
-        if (!File.Exists(itemSaveLocation))
-        {
-            PrefabUtility.SaveAsPrefabAsset(parent, itemSaveLocation);
-        }
-        else
-        {
-            Debug.Log($"Skipping object {parent.name} as it already exists.");
-        }
     }
 
     private void SetPlacementNode(GameObject node, GameObject item)
