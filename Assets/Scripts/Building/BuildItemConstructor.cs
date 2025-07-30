@@ -69,7 +69,7 @@ public class BuildItemConstructor : MonoBehaviour
 
         parent.AddComponent<Rigidbody>();
         PickupItem pickupItem = parent.AddComponent<PickupItem>();
-        BuildItemRenamer buildItemRenamer = parent.AddComponent<BuildItemRenamer>();
+        BuildOrderEnforcer buildItemRenamer = parent.AddComponent<BuildOrderEnforcer>();
         GameObjectEventChannelSubscriber gameObjectSubscriber = parent.AddComponent<GameObjectEventChannelSubscriber>();
         VoidEventChannelSubscriber voidSubscriber = parent.AddComponent<VoidEventChannelSubscriber>();
 
