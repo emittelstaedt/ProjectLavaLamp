@@ -51,6 +51,8 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         fullCup.transform.localScale = lastItemheld.transform.localScale;
         fullCup.name = fullCupPrefab.name;
 
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.CoffeeBrew, 1f, transform.position);
+
         Destroy(lastItemheld);
 
         numberOfUses--;

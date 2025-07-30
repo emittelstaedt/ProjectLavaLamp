@@ -15,6 +15,8 @@ public class Coffee : MonoBehaviour, IUsable
         emptyCup.transform.localScale = transform.localScale;
         emptyCup.name = emptyCupPrefab.name;
 
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.CoffeeSlurp, .5f);
+
         Destroy(gameObject);
     }
 }
