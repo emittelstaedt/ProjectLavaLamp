@@ -115,6 +115,7 @@ public class PostProcessManager : MonoBehaviour
 
     private static void InterpParameter(VolumeParameter output, VolumeParameter from, VolumeParameter to, float interpRatio)
     {
+        // The Interp function is non-public so use reflection to get around C#'s access restrictions.
         var method = output.GetType().GetMethod
         (
             "Interp", 

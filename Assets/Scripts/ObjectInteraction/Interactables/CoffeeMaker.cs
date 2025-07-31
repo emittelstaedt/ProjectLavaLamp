@@ -85,8 +85,6 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         }
     }
 
-
-
     private IEnumerator MoveCoffeeToMachine(GameObject emptyCup, Vector3 location)
     {
         // Reduce empty cup to just mesh renderer.
