@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 125557511545706711}
   - component: {fileID: 7914380855951378639}
   - component: {fileID: 589927535708780007}
-  - component: {fileID: 4326468973714941591}
   - component: {fileID: 5438429106482369745}
   - component: {fileID: 2587549803107300851}
+  - component: {fileID: 4326468973714941591}
+  - component: {fileID: 5931386980582133781}
+  - component: {fileID: 3734620829566324364}
   m_Layer: 3
   m_Name: CoffeeMachine
   m_TagString: Untagged
@@ -30,10 +32,11 @@ Transform:
   m_GameObject: {fileID: 2840420836543382002}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.57312244, y: 0.57022774, z: 0.80386245}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.8912011, y: 0.88669986, z: 1.25}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 4398285539582711890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7914380855951378639
@@ -89,27 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4326468973714941591
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2840420836543382002}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.918273, y: 1.3623801, z: 1.2821952}
-  m_Center: {x: 0.41390875, y: 1.7816912, z: 1.9743811}
 --- !u!114 &5438429106482369745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +108,9 @@ MonoBehaviour:
   requiredItem: CoffeeCupEmpty
   fullCupPrefab: {fileID: 7544416146807603691, guid: 76303dcb27b4b5148a291f2cbab0a128, type: 3}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
+  numberOfUses: 1
+  transitionTime: 0.1
+  coffeeLocationBottom: {fileID: 4398285539582711890}
 --- !u!114 &2587549803107300851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +139,111 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!65 &4326468973714941591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840420836543382002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5411141, y: 1.3623801, z: 0.1250556}
+  m_Center: {x: 0.22532882, y: 1.781691, z: 1.3958151}
+--- !u!65 &5931386980582133781
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840420836543382002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.918273, y: 1.3623801, z: 0.513663}
+  m_Center: {x: 0.41390878, y: 1.7816911, z: 2.360384}
+--- !u!65 &3734620829566324364
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840420836543382002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9035933, y: 1.3623801, z: 1.2821951}
+  m_Center: {x: -0.093431175, y: 1.7816911, z: 1.9743811}
+--- !u!1 &7197240572140029513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4398285539582711890}
+  - component: {fileID: 5331822595533630174}
+  m_Layer: 3
+  m_Name: CoffeePlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4398285539582711890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197240572140029513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.736, y: 1.771, z: 1.461}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 125557511545706711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5331822595533630174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197240572140029513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83114ae1bbcf1784e969311c15a8da84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
