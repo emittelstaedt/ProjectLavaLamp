@@ -48,7 +48,6 @@ public class BuildItemConstructor : MonoBehaviour
         }
     }
 
-
     private void ConstructPickupItem(GameObject parent)
     {
         parent.layer = LayerMask.NameToLayer("IgnoreItemCollision");
@@ -85,9 +84,21 @@ public class BuildItemConstructor : MonoBehaviour
         voidSubscriber.SetChannelAndResponse(itemPlaced, voidResponse);
 
         // Properly serialize the response fields inside the prefab so they show in the inspector.
-        UnityEditor.Events.UnityEventTools.AddPersistentListener(gameObjectResponse, pickupItem.SetCurrentItemHeld);
-        UnityEditor.Events.UnityEventTools.AddVoidPersistentListener(voidResponse, buildItemRenamer.CheckIfFinishedBuilding);
-        UnityEditor.Events.UnityEventTools.AddVoidPersistentListener(voidResponse, pickupItem.UpdateChildrenColliders);
+        UnityEditor.Events.UnityEventTools.AddPersistentListener
+        (
+            gameObjectResponse, 
+            pickupItem.SetCurrentItemHeld
+        );
+        UnityEditor.Events.UnityEventTools.AddVoidPersistentListener
+        (
+            voidResponse, 
+            buildItemRenamer.CheckIfFinishedBuilding
+        );
+        UnityEditor.Events.UnityEventTools.AddVoidPersistentListener
+        (
+            voidResponse, 
+            pickupItem.UpdateChildrenColliders
+        );
     }
 
     private void SetPlacementNode(GameObject node, GameObject item)

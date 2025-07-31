@@ -62,7 +62,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
             containerScale.z / itemSize.z
         );
 
-        // Sets the base mesh to the placement container 
+        // Sets the base mesh to the placement container.
         lastItemheld.transform.localScale = Vector3.Scale(lastItemheld.transform.localScale, scaleRatio);
         lastItemheld.transform.SetPositionAndRotation(placementContainer.position, placementContainer.rotation);
         lastItemheld.transform.SetParent(placementNode, true);
