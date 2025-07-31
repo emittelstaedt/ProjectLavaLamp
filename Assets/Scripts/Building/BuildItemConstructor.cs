@@ -12,11 +12,16 @@ public class BuildItemConstructor : MonoBehaviour
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private VoidEventChannelSO itemPlaced;
     [SerializeField] private string saveLocation = "Assets/Prefabs/";
+    private Vector3 scale;
 
     [ContextMenu("Construct Build Items")]
     private void Construct()
     {
         GameObject root = transform.GetChild(0).gameObject;
+
+        scale = root.transform.localScale;
+        root.transform.localScale = Vector3.one;
+
         ConstructBuildItem(root);
     }
 
@@ -41,6 +46,14 @@ public class BuildItemConstructor : MonoBehaviour
         {
             GameObject prefab = PrefabUtility.SaveAsPrefabAsset(parent, itemSaveLocation);
             prefab.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            prefab.transform.localScale = scale;
+
+            // Resize placement containers after object has been scaled.
+            SetPlacementContainer[] containers = prefab.transform.GetComponentsInChildren<SetPlacementContainer>();
+            foreach (SetPlacementContainer container in containers)
+            {
+                container.Reset();
+            }
         }
         else
         {
@@ -118,11 +131,6 @@ public class BuildItemConstructor : MonoBehaviour
 
         container.transform.SetPositionAndRotation(position, rotation);
         container.transform.localScale = scale;
-
-        if (container.transform.TryGetComponent<SetPlacementContainer>(out SetPlacementContainer placementContainer))
-        {
-            placementContainer.Reset();
-        }
 
         if (container.transform.TryGetComponent<PlacementTrigger>(out PlacementTrigger placementTrigger))
         {

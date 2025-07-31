@@ -8,7 +8,7 @@ public class SetPlacementContainer : MonoBehaviour
 
     public void Reset()
     {
-        expectedScale = transform.localScale;
+        expectedScale = transform.lossyScale;
     }
 
     private void Awake()
