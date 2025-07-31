@@ -91,6 +91,10 @@ public class InteractableObjectSearcher : MonoBehaviour
             newHoverTarget?.StartHover();
             lastObjectLookedAt = newHoverTarget;
         }
+        else if (newHoverTarget == null)
+        {
+            currentInteraction?.StopHover();
+        }
     }
 
     private void TryInitiateInteraction(List<IInteractable> interactables)
@@ -128,6 +132,7 @@ public class InteractableObjectSearcher : MonoBehaviour
         lastObjectLookedAt = null;
 
         currentInteraction?.StopInteract();
+        currentInteraction?.StopHover();
         currentInteraction = null;
     }
 

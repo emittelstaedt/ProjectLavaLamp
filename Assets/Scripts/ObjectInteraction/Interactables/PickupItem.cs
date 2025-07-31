@@ -7,6 +7,9 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private VoidEventChannelSO dropItem;
     [SerializeField] private GameObjectEventChannelSO heldItemChanged;
     [SerializeField] private GameObjectEventChannelSO heldItemCollision;
+    [SerializeField] private VoidEventChannelSO defaultCrosshair;
+    [SerializeField] private VoidEventChannelSO openHandCrosshair;
+    [SerializeField] private VoidEventChannelSO closedHandCrosshair;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -16,7 +19,6 @@ public class PickupItem : MonoBehaviour, IInteractable
     private Transform playerCameraTransform;
     private Collider[] itemColliders;
     private Rigidbody itemRigidbody;
-    private Outline outline;
     private float currentDistance;
     private Vector3 grabOffset;
     private float closestAllowedDistance;
@@ -37,14 +39,6 @@ public class PickupItem : MonoBehaviour, IInteractable
         itemColliders = GetComponentsInChildren<Collider>();
 
         itemRigidbody = GetComponent<Rigidbody>();
-
-        if (!TryGetComponent<Outline>(out outline))
-        {
-            outline = gameObject.AddComponent<Outline>();
-            outline.enabled = false;
-            outline.OutlineWidth = Settings.OutlineWidth;
-            outline.OutlineMode = Outline.Mode.OutlineVisible;
-        }
     }
 
     // Uses late update to follow after camera controller script to prevent object stuttering.
@@ -145,13 +139,22 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void StartHover()
     {
-        outline.OutlineColor = Settings.HoverColor;
-        outline.enabled = true;
+        if (openHandCrosshair != null)
+        {
+            openHandCrosshair.RaiseEvent();
+        }
     }
 
     public void StopHover()
     {
-        outline.enabled = false;
+        if (isHeld && closedHandCrosshair != null)
+        {
+            closedHandCrosshair.RaiseEvent();
+        }
+        else if (defaultCrosshair != null)
+        {
+            defaultCrosshair.RaiseEvent();
+        }
     }
 
     public void SetSettings(VoidEventChannelSO dropItem, GameObjectEventChannelSO heldItemChanged, InteractableSettingsSO Settings)
@@ -159,6 +162,13 @@ public class PickupItem : MonoBehaviour, IInteractable
         this.dropItem = dropItem;
         this.heldItemChanged = heldItemChanged;
         this.Settings = Settings;
+    }
+
+    public void SetCrosshairChannels(VoidEventChannelSO defaultCrosshair, VoidEventChannelSO openHandCrosshair, VoidEventChannelSO closedHandCrosshair)
+    {
+        this.defaultCrosshair = defaultCrosshair;
+        this.openHandCrosshair = openHandCrosshair;
+        this.closedHandCrosshair = closedHandCrosshair;
     }
 
     public void SetCurrentItemHeld(GameObject newItemHeld)
@@ -228,6 +238,11 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     private void SetHeldState(bool isHeld)
     {
+        if (isHeld && closedHandCrosshair != null)
+        {
+            closedHandCrosshair.RaiseEvent();
+        }
+
         Collider[] itemColliders = GetComponentsInChildren<Collider>();
         foreach (Collider collider in itemColliders)
         {

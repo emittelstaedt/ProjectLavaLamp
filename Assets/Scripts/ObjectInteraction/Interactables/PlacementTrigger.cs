@@ -4,12 +4,13 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO stopInteraction;
     [SerializeField] private VoidEventChannelSO updateName;
+    [SerializeField] private VoidEventChannelSO clearCrosshair;
+    [SerializeField] private VoidEventChannelSO thumbsUpCrosshair;
     [SerializeField] private string requiredItem;
     [SerializeField] private Transform placementContainer;
     [SerializeField] private InteractableSettingsSO Settings;
     private LayerMask ignoreCollisionLayer;
     private Transform placementNode;
-    private Outline outline;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
     private readonly Collider[] potentialHits = new Collider[10];
@@ -19,15 +20,6 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         ignoreCollisionLayer = ~(1 << LayerMask.NameToLayer("IgnoreItemCollision"));
 
         placementNode = transform.parent;
-
-        outline = GetComponent<Outline>();
-        if (outline == null)
-        {
-            outline = gameObject.AddComponent<Outline>();
-            outline.enabled = false;
-            outline.OutlineWidth = 5;
-            outline.OutlineMode = Outline.Mode.OutlineVisible;
-        }
     }
 
     public float GetInteractDistance()
@@ -146,13 +138,18 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
 
     public void StartHover()
     {
-        outline.OutlineColor = Settings.HoverColor;
-        outline.enabled = true;
+        if (thumbsUpCrosshair != null)
+        {
+            thumbsUpCrosshair.RaiseEvent();
+        }
     }
 
     public void StopHover()
     {
-        outline.enabled = false;
+        if (clearCrosshair != null)
+        {
+            clearCrosshair.RaiseEvent();
+        }
     }
 
     public void SetRequiredItem(string requiredItem)

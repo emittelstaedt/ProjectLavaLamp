@@ -11,6 +11,9 @@ public class BuildItemConstructor : MonoBehaviour
     [SerializeField] private GameObjectEventChannelSO heldItemChanged;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private VoidEventChannelSO itemPlaced;
+    [SerializeField] private VoidEventChannelSO defaultCrosshair;
+    [SerializeField] private VoidEventChannelSO openHandCrosshair;
+    [SerializeField] private VoidEventChannelSO closedHandCrosshair;
     [SerializeField] private string saveLocation = "Assets/Prefabs/";
     private Vector3 scale;
 
@@ -86,6 +89,7 @@ public class BuildItemConstructor : MonoBehaviour
         VoidEventChannelSubscriber voidSubscriber = parent.AddComponent<VoidEventChannelSubscriber>();
 
         pickupItem.SetSettings(dropItem, heldItemChanged, Settings);
+        pickupItem.SetCrosshairChannels(defaultCrosshair, openHandCrosshair, closedHandCrosshair);
 
         UnityEvent<GameObject> gameObjectResponse = new();
         gameObjectResponse.AddListener(pickupItem.SetCurrentItemHeld);
