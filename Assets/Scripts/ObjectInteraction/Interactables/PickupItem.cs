@@ -10,6 +10,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] private VoidEventChannelSO defaultCrosshair;
     [SerializeField] private VoidEventChannelSO openHandCrosshair;
     [SerializeField] private VoidEventChannelSO closedHandCrosshair;
+    [SerializeField] private StringEventChannelSO itemNameHover;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -143,6 +144,11 @@ public class PickupItem : MonoBehaviour, IInteractable
         {
             openHandCrosshair.RaiseEvent();
         }
+
+        if (itemNameHover !=  null)
+        {
+            itemNameHover.RaiseEvent(this.name);
+        }
     }
 
     public void StopHover()
@@ -154,6 +160,11 @@ public class PickupItem : MonoBehaviour, IInteractable
         else if (defaultCrosshair != null)
         {
             defaultCrosshair.RaiseEvent();
+
+            if (itemNameHover != null)
+            {
+                itemNameHover.RaiseEvent("");
+            }
         }
     }
 
@@ -164,11 +175,13 @@ public class PickupItem : MonoBehaviour, IInteractable
         this.Settings = Settings;
     }
 
-    public void SetCrosshairChannels(VoidEventChannelSO defaultCrosshair, VoidEventChannelSO openHandCrosshair, VoidEventChannelSO closedHandCrosshair)
+    public void SetCrosshairChannels(VoidEventChannelSO defaultCrosshair, VoidEventChannelSO openHandCrosshair, 
+                                     VoidEventChannelSO closedHandCrosshair, StringEventChannelSO itemNameHover)
     {
         this.defaultCrosshair = defaultCrosshair;
         this.openHandCrosshair = openHandCrosshair;
         this.closedHandCrosshair = closedHandCrosshair;
+        this.itemNameHover = itemNameHover;
     }
 
     public void SetCurrentItemHeld(GameObject newItemHeld)
