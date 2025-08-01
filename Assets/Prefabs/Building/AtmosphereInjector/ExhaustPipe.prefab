@@ -268,7 +268,7 @@ MonoBehaviour:
   updateName: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
   clearCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
-  requiredItem: ExhaustEnd
+  requiredItem: ExhaustEmitter
   placementContainer: {fileID: 7201444515958286686}
   Settings: {fileID: 11400000, guid: 9fbe56bc51b931042946dc6e72e50fa3, type: 2}
 --- !u!114 &2511702775400876887
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5195853172293653791}
   - component: {fileID: 6796177290816497070}
   m_Layer: 3
-  m_Name: ExhaustMiddleUnfinished
+  m_Name: ExhaustPipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,6 +449,7 @@ MonoBehaviour:
   defaultCrosshair: {fileID: 11400000, guid: b79907616dd50a8408124f1811d8d3e9, type: 2}
   openHandCrosshair: {fileID: 11400000, guid: cd6d5f06450f88b4f8a7c287fa1fcef9, type: 2}
   closedHandCrosshair: {fileID: 11400000, guid: b58cd5f0fa272ca4caa2b41e96049b60, type: 2}
+  itemNameHover: {fileID: 11400000, guid: 3ec7d94aa3af59047b0a195c571eeffa, type: 2}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distancePercentageToDrop: 0.1
   rotationSpeed: 100
@@ -464,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867101452e7cdcd4d9fc18f76fa4a555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishedName: ExhaustMiddle
+  finishedName: Exhaust
   mustBePlaced: 0
 --- !u!114 &5195853172293653791
 MonoBehaviour:
