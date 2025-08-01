@@ -10,6 +10,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     [SerializeField] private int numberOfUses = 1;
     [SerializeField] private float transitionTime = .5f;
     [SerializeField] private Transform coffeeLocationBottom;
+    [SerializeField] private ParticleSystem coffeeSteam;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
     private Outline outline;
@@ -51,9 +52,14 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     {
         stopInteraction.RaiseEvent();
 
+        Quaternion currentRotation = lastItemheld.transform.rotation;
+        lastItemheld.transform.rotation = Quaternion.identity;
+
         float cupHeight = lastItemheld.GetComponent<MeshRenderer>().bounds.extents.y;
         Vector3 cupOffset = new(0f, cupHeight, 0f);
         Vector3 coffeeLocation = coffeeLocationBottom.transform.position + cupOffset;
+
+        lastItemheld.transform.rotation = currentRotation;
 
         isPlacingCoffee = true;
         StartCoroutine(MoveCoffeeToMachine(lastItemheld, coffeeLocation));
@@ -116,9 +122,13 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         }
         emptyCup.transform.SetPositionAndRotation(location, Quaternion.identity);
 
+        coffeeSteam.Play();
+
         // Waits until the audio is done playing. Manual number since audio manager doesn't support this.
         AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.CoffeeBrew, 1f, transform.position);
         yield return new WaitForSeconds(2.5f);
+
+        coffeeSteam.Stop();
 
         GameObject fullCup = Instantiate(fullCupPrefab, lastItemheld.transform.position, lastItemheld.transform.rotation);
         fullCup.transform.localScale = lastItemheld.transform.localScale;
