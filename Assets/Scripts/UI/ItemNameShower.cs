@@ -9,11 +9,6 @@ public class ItemNameShower : MonoBehaviour
     private void Awake()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
-
-        if (textMeshPro == null )
-        {
-            Debug.LogWarning("erorr");
-        }
     }
 
     public void UpdateText(string name)
