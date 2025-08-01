@@ -13,5 +13,6 @@ public enum SoundType
     Alarm,
     ChuteIn,
     ChuteOut,
-    MessageAlert
+    MessageAlert,
+    MinigameComplete
 };
