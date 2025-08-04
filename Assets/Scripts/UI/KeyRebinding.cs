@@ -128,6 +128,7 @@ public class KeyRebinding : MonoBehaviour
                 string rebinds = actionReference.action.SaveBindingOverridesAsJson();
                 PlayerPrefs.SetString(actionReference.action.name + "_rebinds", rebinds);
                 PlayerPrefs.Save();
+                InputSystem.actions.FindActionMap("Player").Disable();
             })
             .Start();
     }
