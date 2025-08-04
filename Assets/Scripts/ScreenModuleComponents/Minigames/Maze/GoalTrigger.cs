@@ -11,7 +11,11 @@ public class GoalTrigger : MonoBehaviour
         {
             mazeManager.LoadNextMaze();
             mazeManager.TurnOffScreen();
-            stopInteract?.RaiseEvent();
+
+            if (stopInteract != null)
+            {
+                stopInteract.RaiseEvent();
+            }
 
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
         }

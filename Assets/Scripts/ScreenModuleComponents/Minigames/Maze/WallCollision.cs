@@ -13,7 +13,7 @@ public class WallCollision : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<CursorController>() != null)
         {
-            mazeManager?.ResetPlayerToStart();
+            mazeManager.ResetPlayerToStart();
         } 
     }
 }
