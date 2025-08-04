@@ -1,6 +1,6 @@
 public enum MixerType
 {
-    Global,
+    Master,
     Music,
     SFX,
     Voices,

@@ -15,7 +15,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     private GameObject currentItemHeld;
     private bool isBeingUsed;
 
-    public void Awake()
+    public void Start()
     {
         mainCamera = Camera.main;
         playerController = mainCamera.transform.GetComponentInParent<PlayerController>();
