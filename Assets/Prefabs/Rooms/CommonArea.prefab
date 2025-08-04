@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3186421767611493746}
   - component: {fileID: 5575010759434562802}
   m_Layer: 0
-  m_Name: Spot Light (1)
+  m_Name: SpotLight2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1530700117534152842}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7070735, y: -0.006859987, z: -0.0068601053, w: 0.7070735}
-  m_LocalPosition: {x: -0.57, y: 6.017043, z: -1.1}
+  m_LocalPosition: {x: -0.02, y: 6.01, z: -1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 8845057729812416670}
   - component: {fileID: 3980290024406202406}
   m_Layer: 0
-  m_Name: Point Light (2)
+  m_Name: PointLight2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1102,7 +1102,7 @@ GameObject:
   - component: {fileID: 3570690998303070903}
   - component: {fileID: 5650336940290134999}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: PointLight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1580,7 +1580,7 @@ GameObject:
   - component: {fileID: 7063870164540946262}
   - component: {fileID: 820085651123951949}
   m_Layer: 0
-  m_Name: SpotLight
+  m_Name: SpotLight3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1615,7 +1615,7 @@ Light:
   m_Intensity: 7
   m_Range: 10
   m_SpotAngle: 179
-  m_InnerSpotAngle: 113.35952
+  m_InnerSpotAngle: 129.85089
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1721,10 +1721,10 @@ Transform:
   - {fileID: 3910487239706338924}
   - {fileID: 1890338034650443131}
   - {fileID: 6886341306373586966}
+  - {fileID: 2704060518179331769}
   - {fileID: 7536656035357771189}
   - {fileID: 8968103875314425228}
   - {fileID: 6579881644572216507}
-  - {fileID: 2704060518179331769}
   m_Father: {fileID: 5853891654813604440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6354627254754910651
@@ -1986,7 +1986,7 @@ GameObject:
   - component: {fileID: 6491968534367046381}
   - component: {fileID: 3964772900937384829}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: PointLight3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2344,7 +2344,7 @@ GameObject:
   - component: {fileID: 5111790555663370045}
   - component: {fileID: 5785387193203151688}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: SpotLight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2359,7 +2359,7 @@ Transform:
   m_GameObject: {fileID: 9123597959955467474}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7070735, y: -0.006859987, z: -0.0068601053, w: 0.7070735}
-  m_LocalPosition: {x: -0.57, y: 6.017043, z: -11.11}
+  m_LocalPosition: {x: -0.57, y: 6.017043, z: -10.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2524,18 +2524,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 3873743263947160675}
     m_Modifications:
     - target: {fileID: 125557511545706711, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8912011
-      objectReference: {fileID: 0}
-    - target: {fileID: 125557511545706711, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.88669986
-      objectReference: {fileID: 0}
-    - target: {fileID: 125557511545706711, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 125557511545706711, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.876
       objectReference: {fileID: 0}
@@ -2574,10 +2562,6 @@ PrefabInstance:
     - target: {fileID: 125557511545706711, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 125557511545706711, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2840420836543382002, guid: 5ef7e2f865581de40b4704249f81274f, type: 3}
       propertyPath: m_Name
