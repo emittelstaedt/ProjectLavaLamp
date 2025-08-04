@@ -34,7 +34,16 @@ public class AudioManager : MonoBehaviour
         audioPlayer = GetComponent<AudioPlayer>();
         mixerController = GetComponent<MixerController>();
     }
-    
+
+    private void Start()
+    {
+        foreach (MixerType type in System.Enum.GetValues(typeof(MixerType)))
+        {
+            float typeVolume = PlayerPrefs.GetFloat(type + "Volume", 0.15f);
+            SetMixerVolume(type, typeVolume);
+        }
+    }
+
     public void SetMixerVolume(MixerType mixerType, float volume)
     {
         mixerController.SetVolume(mixerType, volume);

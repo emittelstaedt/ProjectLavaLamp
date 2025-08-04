@@ -13,7 +13,6 @@ public class PlayerStatsSO : ScriptableObject
     [SerializeField] private float crouchHeight = 1f;
     [SerializeField] private float crouchTime = 0.1f;
     [SerializeField] private float sprintDuration = 2f;
-    [SerializeField] private float sprintCooldownDuration = 2f;
 
     public float WalkSpeed => walkSpeed;
     public float SprintSpeed => sprintSpeed;
@@ -25,5 +24,4 @@ public class PlayerStatsSO : ScriptableObject
     public float CrouchHeight => crouchHeight;
     public float CrouchTime => crouchTime;
     public float SprintDuration => sprintDuration;
-    public float SprintCooldownDuration => sprintCooldownDuration;
 }

@@ -1,12 +1,19 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraControls : MonoBehaviour
 {
-    [SerializeField] private float sensitivity = .15f;
+    [SerializeField] private static float sensitivity = 0.15f;
     private Transform mainCamera;
     private float xRotation;
     private InputAction lookAction;
+
+    public static float Sensitivity
+    {
+        get => sensitivity;
+        set => sensitivity = value;
+    }
 
     private void Awake()
     {
