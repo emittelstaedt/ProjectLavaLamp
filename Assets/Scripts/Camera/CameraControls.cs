@@ -12,13 +12,15 @@ public class CameraControls : MonoBehaviour
     {
         mainCamera = Camera.main.transform;
         lookAction = InputSystem.actions.FindAction("Look");
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Update()
     {
         sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", sensitivity);
         MovePlayerCamera();
-        LockCursor();
     }
 
     private void MovePlayerCamera()
@@ -43,17 +45,17 @@ public class CameraControls : MonoBehaviour
         }
     }
 
-    private void LockCursor()
+    public void SetCursorVisibility(bool isVisible)
     {
-        if (!lookAction.enabled)
+        if (isVisible)
         {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
+
+        Cursor.visible = isVisible;
     }
 }

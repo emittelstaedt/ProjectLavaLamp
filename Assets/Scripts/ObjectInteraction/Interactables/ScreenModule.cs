@@ -5,6 +5,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO startInteract;
     [SerializeField] private VoidEventChannelSO stopInteract;
+    [SerializeField] private BoolEventChannelSO setCursorVisibility;
     [SerializeField] private Camera moduleCamera;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private float distanceFromCamera = 0.5f;
@@ -14,13 +15,18 @@ public class ScreenModule : MonoBehaviour, IInteractable
     private MeshRenderer playerMesh;
     private GameObject currentItemHeld;
     private bool isBeingUsed;
+    private InputAction interactAction;
+    private InputActionMap playerActionMap;
 
     public void Start()
     {
         mainCamera = Camera.main;
         playerController = mainCamera.transform.GetComponentInParent<PlayerController>();
         playerMesh = playerController.gameObject.GetComponent<MeshRenderer>();
-    
+
+        interactAction = InputSystem.actions.FindAction("Interact");
+        playerActionMap = InputSystem.actions.FindActionMap("Player");
+
         outline = GetComponent<Outline>();
         if (outline == null)
         {
@@ -49,7 +55,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     public void StartInteract()
     {
         isBeingUsed = true;
-        InputSystem.actions.FindActionMap("Player").Disable();
+        playerActionMap.Disable();
         playerMesh.enabled = false;
         
         CameraSwapper.Instance.SwapCameras(mainCamera, moduleCamera, EnablePlayerInteract);
@@ -59,7 +65,8 @@ public class ScreenModule : MonoBehaviour, IInteractable
     public void StopInteract()
     {
         stopInteract.RaiseEvent();
-        InputSystem.actions.FindAction("Interact").Disable();
+        setCursorVisibility.RaiseEvent(false);
+        interactAction.Disable();
         playerMesh.enabled = true;
         
         CameraSwapper.Instance.SwapCameras(moduleCamera, mainCamera, EnablePlayerControls);
@@ -85,12 +92,13 @@ public class ScreenModule : MonoBehaviour, IInteractable
     private void EnablePlayerInteract()
     {
         startInteract.RaiseEvent();
-        InputSystem.actions.FindAction("Interact").Enable();
+        setCursorVisibility.RaiseEvent(true);
+        interactAction.Enable();
     }
     
     private void EnablePlayerControls()
     {
-        InputSystem.actions.FindActionMap("Player").Enable();
+        playerActionMap.Enable();
     }
 
     private void PutPlayerInFrontOfScreen()

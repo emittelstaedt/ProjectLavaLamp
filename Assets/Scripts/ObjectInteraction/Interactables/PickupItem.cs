@@ -15,8 +15,8 @@ public class PickupItem : MonoBehaviour, IInteractable
     [SerializeField] [Range(0f, 1f)] private float distancePercentageToDrop = 0.1f;
     [SerializeField] private float rotationSpeed = 100f;
     private LayerMask ignoreCollisionLayer;
-    private InputAction rotateXAction;
-    private InputAction rotateYAction;
+    private InputAction rotateAction;
+    private InputAction lookAction;
     private Transform playerCameraTransform;
     private Collider[] itemColliders;
     private Rigidbody itemRigidbody;
@@ -32,8 +32,8 @@ public class PickupItem : MonoBehaviour, IInteractable
     {
         ignoreCollisionLayer = ~(1 << LayerMask.NameToLayer("IgnoreItemCollision"));
 
-        rotateXAction = InputSystem.actions.FindAction("RotateX");
-        rotateYAction = InputSystem.actions.FindAction("RotateY");
+        rotateAction = InputSystem.actions.FindAction("Rotate");
+        lookAction = InputSystem.actions.FindAction("Look");
 
         playerCameraTransform = Camera.main.transform;
 
@@ -47,14 +47,18 @@ public class PickupItem : MonoBehaviour, IInteractable
     {
         if (isHeld)
         {
-            if (rotateXAction.IsPressed())
+            if (rotateAction.IsPressed())
             {
-                objectRotation *= Quaternion.Euler(Vector3.right * (rotationSpeed * Time.deltaTime));
-            }
+                lookAction.Disable();
 
-            if (rotateYAction.IsPressed())
+                Vector2 mouseDelta = Input.mousePositionDelta * (rotationSpeed * Time.deltaTime);
+
+                objectRotation = Quaternion.AngleAxis(mouseDelta.x, Vector3.down) * 
+                                 Quaternion.AngleAxis(mouseDelta.y, Vector3.right) * objectRotation;
+            }
+            else
             {
-                objectRotation *= Quaternion.Euler(Vector3.up * (rotationSpeed * Time.deltaTime));
+                lookAction.Enable();
             }
 
             playerCameraTransform.GetPositionAndRotation(out Vector3 cameraPosition, out Quaternion cameraRotation);
@@ -267,6 +271,8 @@ public class PickupItem : MonoBehaviour, IInteractable
         itemRigidbody.angularVelocity = Vector3.zero;
 
         objectRotation = Quaternion.Inverse(playerCameraTransform.rotation) * transform.rotation;
+
+        lookAction.Enable();
 
         this.isHeld = isHeld;
     }
