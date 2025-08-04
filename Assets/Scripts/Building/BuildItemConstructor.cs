@@ -19,41 +19,54 @@ public class BuildItemConstructor : MonoBehaviour
     private Vector3 scale;
 
     [ContextMenu("Construct Build Items")]
-    private void Construct()
+    private void ConstructBuildItems()
     {
         GameObject root = transform.GetChild(0).gameObject;
 
         scale = root.transform.localScale;
         root.transform.localScale = Vector3.one;
 
-        ConstructBuildItem(root);
+        CreateBuildItem(root);
     }
 
-    private void ConstructBuildItem(GameObject parent)
+    private void CreateBuildItem(GameObject parent)
     {
         int childCount = parent.transform.childCount;
         for (int i = 0; i < childCount; i++)
         {
             GameObject child = parent.transform.GetChild(0).gameObject;
 
-            ConstructBuildItem(child);
+            CreateBuildItem(child);
 
-            GameObject node = Instantiate(placementNode, parent.transform);
-            node.name = child.name + "PlacementNode";
-            SetPlacementNode(node, child);
+            GameObject childNode = Instantiate(placementNode, parent.transform);
+            childNode.name = child.name + "PlacementNode";
+            SetPlacementNode(childNode, child);
         }
-        ConstructPickupItem(parent);
+
+        GameObject grandparent = parent.transform.parent.gameObject;
+        if (grandparent != null && grandparent != this.gameObject)
+        {
+            GameObject grandparentNode = Instantiate(placementNode, parent.transform);
+            grandparentNode.name = grandparent.name + "PlacementNode";
+            SetPlacementNode(grandparentNode, grandparent);
+        }
+
+        CreatePickupItem(parent);
         parent.transform.SetParent(null);
 
         string itemSaveLocation = saveLocation + parent.name + ".prefab";
         if (!File.Exists(itemSaveLocation))
         {
-            GameObject prefab = PrefabUtility.SaveAsPrefabAsset(parent, itemSaveLocation);
-            prefab.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            prefab.transform.localScale = scale;
+            PrefabUtility.SaveAsPrefabAsset(parent, itemSaveLocation);
+
+            using var editingScope = new PrefabUtility.EditPrefabContentsScope(itemSaveLocation);
+            var root = editingScope.prefabContentsRoot;
+
+            root.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            root.transform.localScale = scale;
 
             // Resize placement containers after object has been scaled.
-            SetPlacementContainer[] containers = prefab.transform.GetComponentsInChildren<SetPlacementContainer>();
+            SetPlacementContainer[] containers = root.transform.GetComponentsInChildren<SetPlacementContainer>();
             foreach (SetPlacementContainer container in containers)
             {
                 container.Reset();
@@ -65,7 +78,7 @@ public class BuildItemConstructor : MonoBehaviour
         }
     }
 
-    private void ConstructPickupItem(GameObject parent)
+    private void CreatePickupItem(GameObject parent)
     {
         parent.layer = LayerMask.NameToLayer("IgnoreItemCollision");
         GameObject child = Instantiate(parent, parent.transform);
