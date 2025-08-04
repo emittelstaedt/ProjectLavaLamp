@@ -9,11 +9,13 @@ public class PauseMenuButtons : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject mainMenuCamera;
     [SerializeField] private PauseMenuManager pauseMenuManager;
+    [SerializeField] private GameObject confirmMainMenuPanel;
     
     private string sceneName = "MainGameOfficeBase";
 
     public void SetAction(string action)
     {
+        Time.timeScale = 1f;
         Invoke(action, 0.6f);
     }
 
@@ -31,10 +33,18 @@ public class PauseMenuButtons : MonoBehaviour
         OptionsMenuButtons.LastMenu = currentMenu;
         currentMenu.SetActive(false);
         optionsMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     private void LoadMainMenu()
     {
+        confirmMainMenuPanel.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ConfirmMainMenuLoad()
+    {
+        confirmMainMenuPanel.SetActive(false);
         UnpauseGame();
 
         mainMenuCamera.SetActive(true);
@@ -44,13 +54,9 @@ public class PauseMenuButtons : MonoBehaviour
         SceneLoader.Instance.UnloadScene(sceneName);
     }
 
-    private void QuitGame()
+    public void CancelMainMenuLoad()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
+        confirmMainMenuPanel.SetActive(false);
     }
 
     private IEnumerator SetMainMenuAudioListener()

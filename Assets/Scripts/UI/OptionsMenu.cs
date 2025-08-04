@@ -59,6 +59,7 @@ public class OptionsMenuButtons : MonoBehaviour
 
     public void SetAction(string action)
     {
+        Time.timeScale = 1f;
         Invoke(action, 0.6f);
     }
 
@@ -104,12 +105,14 @@ public class OptionsMenuButtons : MonoBehaviour
     {
         currentMenu.SetActive(false);
         lastMenu.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     private void SetStaticSelected(GameObject selectedButton, bool active)
     {
         if (selectedButton == null)
         {
+            Time.timeScale = 0f;
             return;
         }
 
@@ -118,6 +121,7 @@ public class OptionsMenuButtons : MonoBehaviour
         {
             selectedAnimator.SetBool("isActiveButton", active);
         }
+        Time.timeScale = 0f;
     }
 
     private void RefreshLastSubMenuHighlight()

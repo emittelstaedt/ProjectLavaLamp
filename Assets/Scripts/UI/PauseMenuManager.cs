@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject mainMenu;
     private bool wasUnpaused;
     private string sceneName = "MainGameOfficeBase";
     private bool isOpen = false;
@@ -49,25 +51,22 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
 
-        isOpen = !isOpen;
-        pauseMenu.SetActive(isOpen);
+        if (!optionsMenu.activeInHierarchy && !mainMenu.activeInHierarchy)
+        {
+            isOpen = !isOpen;
+            pauseMenu.SetActive(isOpen);
 
-        if (isOpen)
-        {
-            InputSystem.actions.FindActionMap("Player").Disable();
-        }
-        else
-        {
-            InputSystem.actions.FindActionMap("Player").Enable();
-            wasUnpaused = false;
-        }
-    }
-
-    public void ResumeGame()
-    {
-        if (isOpen)
-        {
-            TogglePause();
+            if (isOpen)
+            {
+                Time.timeScale = 0f;
+                InputSystem.actions.FindActionMap("Player").Disable();
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                InputSystem.actions.FindActionMap("Player").Enable();
+                wasUnpaused = false;
+            }
         }
     }
 }
