@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEditor;
 using System.IO;
+using System.Collections.Generic;
 
 public class BuildItemConstructor : MonoBehaviour
 {
@@ -16,11 +17,39 @@ public class BuildItemConstructor : MonoBehaviour
     [SerializeField] private VoidEventChannelSO closedHandCrosshair;
     [SerializeField] private StringEventChannelSO itemNameHover;
     [SerializeField] private string saveLocation = "Assets/Prefabs/";
+    [Tooltip("These objects will be allowed to be place in any order.")]
+    [SerializeField] private List<string> itemList;
     private Vector3 scale;
+
+    [ContextMenu("Generate Object List")]
+    private void GenerateObjectList()
+    {
+        itemList = new List<string>();
+
+        IterateChildren(transform);
+    }
+
+    private void IterateChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            if (!itemList.Contains(child.name))
+            {
+                itemList.Add(child.name);
+            }
+
+            IterateChildren(child);
+        }
+    }
 
     [ContextMenu("Construct Build Items")]
     private void ConstructBuildItems()
     {
+        if (itemList.Count == 0)
+        {
+            Debug.LogWarning("Item list is empty! All items will have one way placing.");
+        }
+
         GameObject root = transform.GetChild(0).gameObject;
 
         scale = root.transform.localScale;
@@ -44,7 +73,7 @@ public class BuildItemConstructor : MonoBehaviour
         }
 
         GameObject grandparent = parent.transform.parent.gameObject;
-        if (grandparent != null && grandparent != this.gameObject)
+        if (grandparent != null && grandparent != this.gameObject && itemList.Contains(grandparent.name))
         {
             GameObject grandparentNode = Instantiate(placementNode, parent.transform);
             grandparentNode.name = grandparent.name + "PlacementNode";
