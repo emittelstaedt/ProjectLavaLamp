@@ -1,14 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public abstract class CursorController : MonoBehaviour
+public abstract class ScreenModuleCursor : MonoBehaviour
 {
     [SerializeField] private float speed = 0.3f;
     [SerializeField] private Camera screenCamera;
     private IScreenClickable currentClickable;
     private float screenWidth;
     private float screenHeight;
-    private Coroutine blinkCoroutine;
 
     public Vector2 Position => (Vector2)transform.localPosition;
 
@@ -16,7 +15,6 @@ public abstract class CursorController : MonoBehaviour
     {
         screenHeight = screenCamera.orthographicSize * 2f;
         screenWidth = screenHeight * screenCamera.aspect;
-
     }
 
     public virtual void Move(Vector2 movement)

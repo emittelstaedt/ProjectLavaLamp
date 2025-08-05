@@ -7,8 +7,8 @@ public class ScreenCameraLinker : MonoBehaviour
 {
     [Tooltip("The camera to render to the screen.")]
     [SerializeField] new private Camera camera;
-    [Tooltip("The screen height in pixels.")]
-    [SerializeField] private int screenHeight = 500;
+    [Tooltip("The screen height in pixels for screen resolution.")]
+    [SerializeField] private int pixelHeight = 500;
     [SerializeField] private string materialPath = "Assets/Art/Materials/";
     [SerializeField] private string renderTexturePath = "Assets/Art/Textures/";
     [SerializeField] new private string name;
@@ -16,10 +16,10 @@ public class ScreenCameraLinker : MonoBehaviour
     [ContextMenu("Link camera to screen")]
     private void LinkCameraToScreen()
     {
-        int screenWidth = (int) (screenHeight * (transform.lossyScale.x / transform.lossyScale.y));
+        int pixelWidth = (int) (pixelHeight * (transform.lossyScale.x / transform.lossyScale.y));
 
         Renderer renderer = GetComponent<Renderer>();
-        RenderTexture newRenderTexture = new(screenWidth, screenHeight, 24);
+        RenderTexture newRenderTexture = new(pixelWidth, pixelHeight, 24);
         Material newMaterial = new(Shader.Find("Universal Render Pipeline/Lit"));
 
         string fullRenderTexturePath = GetFullPath(renderTexturePath, ".renderTexture");
@@ -49,7 +49,7 @@ public class ScreenCameraLinker : MonoBehaviour
         Debug.Log("New render texture created at: " + fullRenderTexturePath);
     }
 
-    [ContextMenu("Resync Ratio")]
+    [ContextMenu("Resync Aspect Ratio")]
     private void SyncRenderTextureRatio()
     {
         string fullRenderTexturePath = GetFullPath(renderTexturePath, ".renderTexture");
@@ -66,7 +66,7 @@ public class ScreenCameraLinker : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Resync failed. Please manually delete the material and render texture, then link the camera to the screen.");
+            Debug.LogError("Resync failed. Please manually delete the material in" + fullMaterialPath + ", and render texture in" + renderTexturePath + ", then link the camera to the screen. The files may be missing or renamed.");
         }
     }
 

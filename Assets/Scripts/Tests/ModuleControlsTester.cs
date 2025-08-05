@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TestKnobController : MonoBehaviour, IScreenClickable
 {
-    [SerializeField] private CursorController cursor;
+    [SerializeField] private ScreenModuleCursor cursor;
     private bool isTurning;
     private SpriteRenderer spriteRenderer;
     private float lastCursorAngle;

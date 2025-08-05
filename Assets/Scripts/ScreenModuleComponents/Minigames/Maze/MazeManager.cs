@@ -3,12 +3,14 @@ using UnityEngine;
 public class MazeManager : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO startMazeInteract;
+    [SerializeField] private VoidEventChannelSO stopInteract;
     [SerializeField] private Transform cursor;
     [SerializeField] private GameObject offScreen;
     [SerializeField] private GameObject[] mazePrefabs;
     private Vector3 startPosition;
     private int currentMazeIndex;
     private int previousMazeIndex;
+    private bool hasStartedMaze;
     void Awake()
     {
         startPosition = cursor.position;
@@ -21,6 +23,13 @@ public class MazeManager : MonoBehaviour
 
     public void StartMazeInteraction()
     {
+        if (hasStartedMaze)
+        {
+            return;
+        }
+
+        hasStartedMaze = true;
+
         if (startMazeInteract != null)
         {
             startMazeInteract.RaiseEvent();
@@ -50,5 +59,19 @@ public class MazeManager : MonoBehaviour
         previousMazeIndex = currentMazeIndex;
 
         mazePrefabs[currentMazeIndex].SetActive(true);
+        hasStartedMaze = false;
+    }
+
+    public void StopMazeInteraction()
+    {
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
+
+        if (stopInteract != null)
+        {
+            stopInteract.RaiseEvent();
+        }
+
+        TurnScreenOff(true);
+        LoadNextMaze();
     }
 }

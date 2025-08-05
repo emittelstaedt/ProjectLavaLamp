@@ -97,7 +97,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1817259142199688351}
   - component: {fileID: 3033699607230686464}
-  - component: {fileID: 5644125393570485621}
   - component: {fileID: 4749933817401706158}
   m_Layer: 0
   m_Name: Cursor
@@ -176,20 +175,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5644125393570485621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711329920937629755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb8f935a9b9908dd958427990f92e12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  screenCamera: {fileID: 1355757400716110438}
 --- !u!114 &4749933817401706158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +191,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5644125393570485621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CursorController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -503,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f026956c1e116ebb0bcb13f8713154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 5644125393570485621}
+  cursor: {fileID: 0}
 --- !u!114 &5852073372344231933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f57167dd84040d4ab1f08e7f45894c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 5644125393570485621}
+  cursor: {fileID: 0}
 --- !u!61 &3820085621000329614
 BoxCollider2D:
   m_ObjectHideFlags: 0

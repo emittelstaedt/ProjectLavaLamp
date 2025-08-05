@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TestMinigameManager : MonoBehaviour
 {
-    [SerializeField] private CursorController cursor;
+    [SerializeField] private ScreenModuleCursor cursor;
     
     public void Button1()
     {

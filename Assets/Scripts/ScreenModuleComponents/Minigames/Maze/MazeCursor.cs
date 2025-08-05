@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MazeCursor : CursorController
+public class MazeCursor : ScreenModuleCursor
 {
     [SerializeField] private float idleTimeToBlink = 1.0f;
     [SerializeField] private float blinkInterval = 0.25f;
@@ -39,8 +39,11 @@ public class MazeCursor : CursorController
         lastPosition = transform.position;
     }
 
-    private bool ShouldCancelBlink() => transform.localPosition != lastPosition || transform.localPosition == startPosition;
-
+    private bool ShouldCancelBlink()
+    {
+        return transform.localPosition != lastPosition || transform.localPosition == startPosition;
+    }
+    
     private IEnumerator BlinkAndResetRoutine()
     {
         float timer = 0f;
