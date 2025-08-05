@@ -10,17 +10,13 @@ public class PauseMenuButtons : MonoBehaviour
     [SerializeField] private GameObject mainMenuCamera;
     [SerializeField] private PauseMenuManager pauseMenuManager;
     [SerializeField] private GameObject confirmMainMenuPanel;
+    [SerializeField] private GameObject loadingCanvas;
     
     private string sceneName = "MainGameOfficeBase";
 
-    public void SetAction(string action)
+    public void UnpauseGame()
     {
         Time.timeScale = 1f;
-        Invoke(action, 0.6f);
-    }
-
-    private void UnpauseGame()
-    {
         pauseMenuManager.WasUnpaused = true;
         currentMenu.SetActive(false);
 
@@ -28,16 +24,18 @@ public class PauseMenuButtons : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    private void LoadOptionsMenu()
+    public void LoadOptionsMenu()
     {
+        Time.timeScale = 1f;
         OptionsMenuButtons.LastMenu = currentMenu;
         currentMenu.SetActive(false);
         optionsMenu.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    private void LoadMainMenu()
+    public void LoadMainMenu()
     {
+        Time.timeScale = 1f;
         confirmMainMenuPanel.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -46,6 +44,8 @@ public class PauseMenuButtons : MonoBehaviour
     {
         confirmMainMenuPanel.SetActive(false);
         UnpauseGame();
+
+        loadingCanvas.SetActive(true);
 
         mainMenuCamera.SetActive(true);
         mainMenu.gameObject.SetActive(true);
