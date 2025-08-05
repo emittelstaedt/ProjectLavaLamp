@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4428510699932657800}
   - component: {fileID: 639762964535421010}
   - component: {fileID: 2170346344031153116}
-  - component: {fileID: 3161063043818701345}
   - component: {fileID: 4557760539459926658}
+  - component: {fileID: 1820940000432505628}
   m_Layer: 0
   m_Name: InnerWall (7)
   m_TagString: Untagged
@@ -136,19 +136,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3161063043818701345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701842118555961081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &4557760539459926658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +152,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -177,6 +164,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1820940000432505628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701842118555961081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &2617998083443817786
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,8 +189,8 @@ GameObject:
   - component: {fileID: 4860418659135803930}
   - component: {fileID: 1001649354122026771}
   - component: {fileID: 5766377579285898172}
-  - component: {fileID: 3995510081358294976}
   - component: {fileID: 90438980996294614}
+  - component: {fileID: 3999402302009606069}
   m_Layer: 0
   m_Name: InnerWall (6)
   m_TagString: Untagged
@@ -313,19 +314,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3995510081358294976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2617998083443817786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &90438980996294614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +330,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -354,6 +342,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3999402302009606069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617998083443817786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3050733853078493123
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,8 +367,8 @@ GameObject:
   - component: {fileID: 6005561292726180217}
   - component: {fileID: 839952850184758892}
   - component: {fileID: 8610319771988297998}
-  - component: {fileID: 4457464835797604309}
   - component: {fileID: 2048649236172316204}
+  - component: {fileID: 3378391514404643728}
   m_Layer: 0
   m_Name: InnerWall (12)
   m_TagString: Untagged
@@ -490,19 +492,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4457464835797604309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3050733853078493123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &2048649236172316204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +508,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -531,6 +520,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3378391514404643728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3050733853078493123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3067473668323879021
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,8 +587,8 @@ GameObject:
   - component: {fileID: 97650114785706615}
   - component: {fileID: 7884746983308581202}
   - component: {fileID: 2750725634576279955}
-  - component: {fileID: 5045963166347257172}
   - component: {fileID: 8749798465187785825}
+  - component: {fileID: 1633982675077009156}
   m_Layer: 0
   m_Name: InnerWall (9)
   m_TagString: Untagged
@@ -709,19 +712,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5045963166347257172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3675550122308186004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &8749798465187785825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,7 +728,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -750,6 +740,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1633982675077009156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675550122308186004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4849505596289398668
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,8 +765,8 @@ GameObject:
   - component: {fileID: 3569745079314604355}
   - component: {fileID: 25273587878588958}
   - component: {fileID: 227744055812950819}
-  - component: {fileID: 1357480144834949814}
   - component: {fileID: 5742144300768458522}
+  - component: {fileID: 2321811421073581200}
   m_Layer: 0
   m_Name: InnerWall (8)
   m_TagString: Untagged
@@ -886,19 +890,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1357480144834949814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4849505596289398668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &5742144300768458522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +906,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -927,6 +918,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2321811421073581200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4849505596289398668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4857649486053035659
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,8 +943,8 @@ GameObject:
   - component: {fileID: 8303096011383357714}
   - component: {fileID: 8075661450646006189}
   - component: {fileID: 5503197591464351}
-  - component: {fileID: 5959401607704839575}
   - component: {fileID: 8651353081981304270}
+  - component: {fileID: 173889479145724650}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -1063,20 +1068,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5959401607704839575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4857649486053035659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33acaf82be2bcb847a3db9d7ef4d67fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stopInteract: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
 --- !u!114 &8651353081981304270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,10 +1084,10 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: TurnScreenOff
-        m_Mode: 6
+        m_MethodName: StopMazeInteraction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1105,7 +1096,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: LoadNextMaze
         m_Mode: 1
@@ -1117,6 +1108,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &173889479145724650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4857649486053035659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5049800953450790652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,8 +1133,8 @@ GameObject:
   - component: {fileID: 4073614902547231064}
   - component: {fileID: 8946982425344598404}
   - component: {fileID: 8794344941195355318}
-  - component: {fileID: 14967938310830418}
   - component: {fileID: 4794175798794102978}
+  - component: {fileID: 3876573938950882552}
   m_Layer: 0
   m_Name: InnerWall (14)
   m_TagString: Untagged
@@ -1253,19 +1258,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &14967938310830418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049800953450790652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &4794175798794102978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,7 +1274,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -1294,6 +1286,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3876573938950882552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049800953450790652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6922882228262747367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,8 +1311,8 @@ GameObject:
   - component: {fileID: 4182068849735250105}
   - component: {fileID: 3877091896294074924}
   - component: {fileID: 1468284119064863634}
-  - component: {fileID: 212258636640764599}
   - component: {fileID: 2300218390281254846}
+  - component: {fileID: 1283000899483287575}
   m_Layer: 0
   m_Name: InnerWall (13)
   m_TagString: Untagged
@@ -1430,19 +1436,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &212258636640764599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6922882228262747367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &2300218390281254846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,7 +1452,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -1471,6 +1464,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1283000899483287575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922882228262747367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8087466693694910977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,8 +1489,8 @@ GameObject:
   - component: {fileID: 3108051828378745702}
   - component: {fileID: 9131338441920201789}
   - component: {fileID: 4218498896044922662}
-  - component: {fileID: 3931572160231898074}
   - component: {fileID: 4165965421272723590}
+  - component: {fileID: 6719941038485907998}
   m_Layer: 0
   m_Name: InnerWall (10)
   m_TagString: Untagged
@@ -1607,19 +1614,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3931572160231898074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8087466693694910977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &4165965421272723590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,7 +1630,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -1648,6 +1642,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6719941038485907998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087466693694910977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8154300546135516700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,8 +1667,8 @@ GameObject:
   - component: {fileID: 1990417197959846231}
   - component: {fileID: 3654051722064136349}
   - component: {fileID: 6866801271278851135}
-  - component: {fileID: 1678309748713169431}
   - component: {fileID: 342758897162043271}
+  - component: {fileID: 5104805888496127629}
   m_Layer: 0
   m_Name: InnerWall (11)
   m_TagString: Untagged
@@ -1784,19 +1792,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1678309748713169431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8154300546135516700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &342758897162043271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1813,7 +1808,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -1825,6 +1820,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5104805888496127629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8154300546135516700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8177002928542520084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,8 +1845,8 @@ GameObject:
   - component: {fileID: 793084930973017487}
   - component: {fileID: 997276806588068378}
   - component: {fileID: 1948492144298232708}
-  - component: {fileID: 9009891764960402882}
   - component: {fileID: 8084251901401532671}
+  - component: {fileID: 4748441378070929105}
   m_Layer: 0
   m_Name: InnerWall (15)
   m_TagString: Untagged
@@ -1961,19 +1970,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9009891764960402882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177002928542520084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &8084251901401532671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,7 +1986,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: ResetPlayerToStart
         m_Mode: 1
@@ -2002,3 +1998,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4748441378070929105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177002928542520084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}

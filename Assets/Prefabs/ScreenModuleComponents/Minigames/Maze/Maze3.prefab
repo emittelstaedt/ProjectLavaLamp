@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7974831926529546908}
   - component: {fileID: 5180263109256403713}
   - component: {fileID: 4745799664477238465}
-  - component: {fileID: 8981986874238050814}
   - component: {fileID: 4087584970216712740}
+  - component: {fileID: 5076252259622868773}
   m_Layer: 0
   m_Name: InnerWall (21)
   m_TagString: Untagged
@@ -136,19 +136,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8981986874238050814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346374748804279545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &4087584970216712740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +164,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5076252259622868773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346374748804279545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &394657163461910539
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,8 +189,8 @@ GameObject:
   - component: {fileID: 7977849501665829677}
   - component: {fileID: 7801590782674180282}
   - component: {fileID: 7588825321879415642}
-  - component: {fileID: 5388080347452033736}
   - component: {fileID: 8755310838051038390}
+  - component: {fileID: 4804378442736634545}
   m_Layer: 0
   m_Name: InnerWall (24)
   m_TagString: Untagged
@@ -313,19 +314,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5388080347452033736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394657163461910539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &8755310838051038390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +342,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4804378442736634545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394657163461910539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &1329131375768049236
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,8 +367,8 @@ GameObject:
   - component: {fileID: 8422491179808953629}
   - component: {fileID: 6444184040248240648}
   - component: {fileID: 4632495796387423730}
-  - component: {fileID: 3645813838573532795}
   - component: {fileID: 6341968328140633906}
+  - component: {fileID: 3905213627541803910}
   m_Layer: 0
   m_Name: InnerWall (23)
   m_TagString: Untagged
@@ -490,19 +492,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3645813838573532795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329131375768049236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &6341968328140633906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +520,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3905213627541803910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329131375768049236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &1451801091277205066
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +546,7 @@ GameObject:
   - component: {fileID: 872802225814249293}
   - component: {fileID: 2751642288943868179}
   - component: {fileID: 4909736952862220904}
-  - component: {fileID: 3697860070277531460}
+  - component: {fileID: 1222940558313129687}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -683,7 +686,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: TurnScreenOff
         m_Mode: 6
@@ -695,7 +698,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
         m_MethodName: LoadNextMaze
         m_Mode: 1
@@ -707,7 +710,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3697860070277531460
+      - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
+        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
+        m_MethodName: StopMazeInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1222940558313129687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -716,11 +731,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1451801091277205066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33acaf82be2bcb847a3db9d7ef4d67fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopInteract: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &1661905030795033997
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,8 +747,8 @@ GameObject:
   - component: {fileID: 6667446916316223665}
   - component: {fileID: 6019256996323320011}
   - component: {fileID: 7932788527610392955}
-  - component: {fileID: 1726473005639941246}
   - component: {fileID: 1572989570574466183}
+  - component: {fileID: 5586881065952617027}
   m_Layer: 0
   m_Name: InnerWall (3)
   m_TagString: Untagged
@@ -857,19 +872,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1726473005639941246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661905030795033997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &1572989570574466183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +900,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5586881065952617027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661905030795033997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &1889818913914031199
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,8 +925,8 @@ GameObject:
   - component: {fileID: 1163714458996927551}
   - component: {fileID: 1882235268664847891}
   - component: {fileID: 8453611238462263130}
-  - component: {fileID: 8666160665462659308}
   - component: {fileID: 7030327442141086627}
+  - component: {fileID: 3016357014946190243}
   m_Layer: 0
   m_Name: InnerWall (18)
   m_TagString: Untagged
@@ -1034,19 +1050,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8666160665462659308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889818913914031199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &7030327442141086627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,6 +1078,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3016357014946190243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889818913914031199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3056894504469299385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,8 +1103,8 @@ GameObject:
   - component: {fileID: 4330321122058591547}
   - component: {fileID: 1210488496010342093}
   - component: {fileID: 2147398144848170433}
-  - component: {fileID: 7089949451566784562}
   - component: {fileID: 6366058337384606976}
+  - component: {fileID: 5019560622836552896}
   m_Layer: 0
   m_Name: InnerWall (13)
   m_TagString: Untagged
@@ -1211,19 +1228,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7089949451566784562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3056894504469299385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &6366058337384606976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,6 +1256,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5019560622836552896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056894504469299385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3064267524029129249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,8 +1281,8 @@ GameObject:
   - component: {fileID: 907445712737260445}
   - component: {fileID: 3633857489581047582}
   - component: {fileID: 5096996083375205221}
-  - component: {fileID: 4890708662903650144}
   - component: {fileID: 577636855323014163}
+  - component: {fileID: 7228124945581314255}
   m_Layer: 0
   m_Name: InnerWall (8)
   m_TagString: Untagged
@@ -1388,19 +1406,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4890708662903650144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3064267524029129249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &577636855323014163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,6 +1434,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7228124945581314255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064267524029129249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3196366770223103388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,8 +1459,8 @@ GameObject:
   - component: {fileID: 3284007356712149910}
   - component: {fileID: 1831416455604541062}
   - component: {fileID: 6327251723703741741}
-  - component: {fileID: 2550655262594654777}
   - component: {fileID: 5930670995074945196}
+  - component: {fileID: 6558467075626469471}
   m_Layer: 0
   m_Name: InnerWall (17)
   m_TagString: Untagged
@@ -1565,19 +1584,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2550655262594654777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3196366770223103388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &5930670995074945196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1606,6 +1612,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6558467075626469471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196366770223103388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3606507881240427865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,8 +1637,8 @@ GameObject:
   - component: {fileID: 5095730957155654039}
   - component: {fileID: 4184059641429601863}
   - component: {fileID: 6212059607881579526}
-  - component: {fileID: 7996109363091807409}
   - component: {fileID: 3171434017599791254}
+  - component: {fileID: 396841045416752474}
   m_Layer: 0
   m_Name: InnerWall (11)
   m_TagString: Untagged
@@ -1742,19 +1762,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7996109363091807409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3606507881240427865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &3171434017599791254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,6 +1790,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &396841045416752474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3606507881240427865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3758149573872833784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,8 +1815,8 @@ GameObject:
   - component: {fileID: 4418306153662966937}
   - component: {fileID: 6649970086328760336}
   - component: {fileID: 850412523668360593}
-  - component: {fileID: 642567897760132369}
   - component: {fileID: 8123560195234955167}
+  - component: {fileID: 2077659736762220807}
   m_Layer: 0
   m_Name: InnerWall (09)
   m_TagString: Untagged
@@ -1919,19 +1940,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &642567897760132369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3758149573872833784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &8123560195234955167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,6 +1968,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2077659736762220807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758149573872833784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3781601508017362102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,8 +1993,8 @@ GameObject:
   - component: {fileID: 5251938058599254519}
   - component: {fileID: 3876066793619584167}
   - component: {fileID: 8159966014901114240}
-  - component: {fileID: 3273473923956891898}
   - component: {fileID: 7215590007359353889}
+  - component: {fileID: 5421374590125678010}
   m_Layer: 0
   m_Name: InnerWall (12)
   m_TagString: Untagged
@@ -2096,19 +2118,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3273473923956891898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3781601508017362102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &7215590007359353889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,6 +2146,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5421374590125678010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3781601508017362102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4311843747744784034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,8 +2225,8 @@ GameObject:
   - component: {fileID: 979089496642662047}
   - component: {fileID: 3286072259240517665}
   - component: {fileID: 4893391678904963456}
-  - component: {fileID: 5409238916203150272}
   - component: {fileID: 1973801308987454233}
+  - component: {fileID: 797329392560731356}
   m_Layer: 0
   m_Name: InnerWall (1)
   m_TagString: Untagged
@@ -2327,19 +2350,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5409238916203150272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351342897442469776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &1973801308987454233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2368,6 +2378,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &797329392560731356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351342897442469776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6161973145310894195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,8 +2403,8 @@ GameObject:
   - component: {fileID: 4014738772357945662}
   - component: {fileID: 8865489083891015345}
   - component: {fileID: 8108544179014975685}
-  - component: {fileID: 4169244176990717040}
   - component: {fileID: 3551159842444650364}
+  - component: {fileID: 5918345803092903749}
   m_Layer: 0
   m_Name: InnerWall (10)
   m_TagString: Untagged
@@ -2504,19 +2528,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4169244176990717040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6161973145310894195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &3551159842444650364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2545,6 +2556,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5918345803092903749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6161973145310894195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6319190590835087843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,8 +2581,8 @@ GameObject:
   - component: {fileID: 1580558181585724997}
   - component: {fileID: 5650356032941191541}
   - component: {fileID: 2428884696444473668}
-  - component: {fileID: 6290571873480903000}
   - component: {fileID: 5404645169702351354}
+  - component: {fileID: 7533053392072397280}
   m_Layer: 0
   m_Name: InnerWall (15)
   m_TagString: Untagged
@@ -2681,19 +2706,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6290571873480903000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6319190590835087843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &5404645169702351354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2722,6 +2734,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7533053392072397280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319190590835087843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6660797538156954848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,8 +2759,8 @@ GameObject:
   - component: {fileID: 4015421643749506850}
   - component: {fileID: 3708982010466597709}
   - component: {fileID: 9053486661151946981}
-  - component: {fileID: 5473522048676495525}
   - component: {fileID: 2470907449666641800}
+  - component: {fileID: 4469238183286871709}
   m_Layer: 0
   m_Name: InnerWall (19)
   m_TagString: Untagged
@@ -2858,19 +2884,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5473522048676495525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6660797538156954848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &2470907449666641800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2899,6 +2912,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4469238183286871709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660797538156954848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6670562283906331082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,8 +2937,8 @@ GameObject:
   - component: {fileID: 5895616300462497588}
   - component: {fileID: 8857863202769064042}
   - component: {fileID: 8617149784675980369}
-  - component: {fileID: 1306528173371501667}
   - component: {fileID: 5046996939242388845}
+  - component: {fileID: 2957623794383213613}
   m_Layer: 0
   m_Name: InnerWall
   m_TagString: Untagged
@@ -3035,19 +3062,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1306528173371501667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6670562283906331082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &5046996939242388845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,6 +3090,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2957623794383213613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6670562283906331082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6673652277526760903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,8 +3115,8 @@ GameObject:
   - component: {fileID: 7488008809833116424}
   - component: {fileID: 1891972075703354964}
   - component: {fileID: 6014094466613537506}
-  - component: {fileID: 2164018236506398410}
   - component: {fileID: 1423717330741085660}
+  - component: {fileID: 6870184085152078482}
   m_Layer: 0
   m_Name: InnerWall (7)
   m_TagString: Untagged
@@ -3212,19 +3240,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2164018236506398410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6673652277526760903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &1423717330741085660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3253,6 +3268,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6870184085152078482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673652277526760903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &7059402674923414869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,8 +3293,8 @@ GameObject:
   - component: {fileID: 4768773570873001999}
   - component: {fileID: 1753322889200578632}
   - component: {fileID: 3034432679077330103}
-  - component: {fileID: 2167157544633832780}
   - component: {fileID: 8737589753064105169}
+  - component: {fileID: 224802912856988698}
   m_Layer: 0
   m_Name: InnerWall (14)
   m_TagString: Untagged
@@ -3389,19 +3418,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2167157544633832780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7059402674923414869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &8737589753064105169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3430,6 +3446,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &224802912856988698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059402674923414869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &7593627049484005626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,8 +3471,8 @@ GameObject:
   - component: {fileID: 4253926865090162170}
   - component: {fileID: 2559560306942481049}
   - component: {fileID: 845192218851759058}
-  - component: {fileID: 3895351750252300139}
   - component: {fileID: 5727223816827204404}
+  - component: {fileID: 2264048456489343424}
   m_Layer: 0
   m_Name: InnerWall (22)
   m_TagString: Untagged
@@ -3566,19 +3596,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3895351750252300139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593627049484005626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &5727223816827204404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,6 +3624,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2264048456489343424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593627049484005626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8244059881751030346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,8 +3649,8 @@ GameObject:
   - component: {fileID: 1897652928451276285}
   - component: {fileID: 4334102767221498958}
   - component: {fileID: 847578641139124146}
-  - component: {fileID: 7784153449701064606}
   - component: {fileID: 7796283608913385393}
+  - component: {fileID: 1188770812107516006}
   m_Layer: 0
   m_Name: InnerWall (20)
   m_TagString: Untagged
@@ -3743,19 +3774,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7784153449701064606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8244059881751030346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &7796283608913385393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3784,6 +3802,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1188770812107516006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244059881751030346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8430528286217816159
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,8 +3827,8 @@ GameObject:
   - component: {fileID: 6059999062009401489}
   - component: {fileID: 7159762407010748295}
   - component: {fileID: 8571163427396140500}
-  - component: {fileID: 4999462043891316674}
   - component: {fileID: 4269875072857968240}
+  - component: {fileID: 190911124062956645}
   m_Layer: 0
   m_Name: InnerWall (16)
   m_TagString: Untagged
@@ -3920,19 +3952,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4999462043891316674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8430528286217816159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &4269875072857968240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3961,6 +3980,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &190911124062956645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430528286217816159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &9110355671043361808
 GameObject:
   m_ObjectHideFlags: 0
@@ -3972,8 +4005,8 @@ GameObject:
   - component: {fileID: 5889479156032784372}
   - component: {fileID: 7569022334591625394}
   - component: {fileID: 4151560380036333169}
-  - component: {fileID: 1483408162015168822}
   - component: {fileID: 8337384778274340702}
+  - component: {fileID: 729605734439886459}
   m_Layer: 0
   m_Name: InnerWall (2)
   m_TagString: Untagged
@@ -4097,19 +4130,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1483408162015168822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9110355671043361808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!114 &8337384778274340702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4138,3 +4158,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &729605734439886459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110355671043361808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}

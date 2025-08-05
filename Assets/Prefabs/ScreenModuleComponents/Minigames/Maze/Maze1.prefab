@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1460109977439646967}
   - component: {fileID: 1346452400765290006}
   - component: {fileID: 5750774899514271297}
-  - component: {fileID: 5210987977550072419}
-  - component: {fileID: 3574673749956674862}
+  - component: {fileID: 3464989464678193107}
   m_Layer: 0
   m_Name: InnerWall (21)
   m_TagString: Untagged
@@ -121,7 +120,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -165,7 +164,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5210987977550072419
+--- !u!114 &3464989464678193107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,38 +173,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 506989577143273651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &3574673749956674862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506989577143273651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: ResetPlayerToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &521739974779693357
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,8 +190,7 @@ GameObject:
   - component: {fileID: 431463353078853545}
   - component: {fileID: 275540730350219605}
   - component: {fileID: 8739769417473088133}
-  - component: {fileID: 5532844277037812803}
-  - component: {fileID: 8620466059065593262}
+  - component: {fileID: 4882004786027133408}
   m_Layer: 0
   m_Name: InnerWall (51)
   m_TagString: Untagged
@@ -327,7 +298,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -371,7 +342,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5532844277037812803
+--- !u!114 &4882004786027133408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,26 +351,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 521739974779693357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &8620466059065593262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521739974779693357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &868271221547073820
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,8 +368,7 @@ GameObject:
   - component: {fileID: 2580699705807542631}
   - component: {fileID: 3560038441225490690}
   - component: {fileID: 8939817093415058811}
-  - component: {fileID: 6540781419221985831}
-  - component: {fileID: 2714491921502008705}
+  - component: {fileID: 9188499955137609631}
   m_Layer: 0
   m_Name: InnerWall (38)
   m_TagString: Untagged
@@ -521,7 +476,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -565,7 +520,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6540781419221985831
+--- !u!114 &9188499955137609631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,26 +529,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 868271221547073820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &2714491921502008705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868271221547073820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &878305683877287628
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +546,7 @@ GameObject:
   - component: {fileID: 6459480468366756056}
   - component: {fileID: 7487294740142622866}
   - component: {fileID: 591550767175106414}
-  - component: {fileID: 7425143384465140790}
+  - component: {fileID: 509274195664357192}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -770,7 +710,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7425143384465140790
+--- !u!114 &509274195664357192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -779,11 +719,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 878305683877287628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33acaf82be2bcb847a3db9d7ef4d67fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopInteract: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &968783350136572347
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,9 +737,7 @@ GameObject:
   - component: {fileID: 6410420374174463452}
   - component: {fileID: 7790809369879248806}
   - component: {fileID: 1602837345612266042}
-  - component: {fileID: 8997309426799974684}
-  - component: {fileID: 9185757795721085860}
-  - component: {fileID: 8307269411836732247}
+  - component: {fileID: 6967541510224606881}
   m_Layer: 0
   m_Name: WhiteCurvedLine (7)
   m_TagString: Untagged
@@ -907,7 +845,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1004,7 +942,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8997309426799974684
+--- !u!114 &6967541510224606881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1013,39 +951,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 968783350136572347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &9185757795721085860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968783350136572347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
---- !u!114 &8307269411836732247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968783350136572347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1535654372138176592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,8 +968,7 @@ GameObject:
   - component: {fileID: 4295548934195047060}
   - component: {fileID: 8902500024605320634}
   - component: {fileID: 396823516686300436}
-  - component: {fileID: 6223595836670940140}
-  - component: {fileID: 8549026076947341985}
+  - component: {fileID: 3642908369268801385}
   m_Layer: 0
   m_Name: InnerWall (33)
   m_TagString: Untagged
@@ -1167,7 +1076,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1211,7 +1120,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6223595836670940140
+--- !u!114 &3642908369268801385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1220,38 +1129,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1535654372138176592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &8549026076947341985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535654372138176592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: ResetPlayerToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1699393809181512490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,8 +1146,7 @@ GameObject:
   - component: {fileID: 2353242268690145865}
   - component: {fileID: 4655238302609430502}
   - component: {fileID: 1400407226696886693}
-  - component: {fileID: 5520071801664331792}
-  - component: {fileID: 627926430844625269}
+  - component: {fileID: 5795823812579390050}
   m_Layer: 0
   m_Name: InnerWall (47)
   m_TagString: Untagged
@@ -1373,7 +1254,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1417,7 +1298,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5520071801664331792
+--- !u!114 &5795823812579390050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1426,26 +1307,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1699393809181512490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &627926430844625269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699393809181512490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2808574160531682264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,8 +1324,7 @@ GameObject:
   - component: {fileID: 7386631029577120423}
   - component: {fileID: 7492860324735497476}
   - component: {fileID: 7787911992973639807}
-  - component: {fileID: 3737509920812882990}
-  - component: {fileID: 9100091456450422362}
+  - component: {fileID: 6262484478588821922}
   m_Layer: 0
   m_Name: InnerWall (39)
   m_TagString: Untagged
@@ -1567,7 +1432,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1611,7 +1476,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3737509920812882990
+--- !u!114 &6262484478588821922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1620,26 +1485,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2808574160531682264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &9100091456450422362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2808574160531682264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2895805292730152327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,9 +1502,7 @@ GameObject:
   - component: {fileID: 9217994866811105564}
   - component: {fileID: 2975784898673917032}
   - component: {fileID: 8074371984301166913}
-  - component: {fileID: 5822017382752326476}
-  - component: {fileID: 6375257389095772281}
-  - component: {fileID: 7107166432537664068}
+  - component: {fileID: 1198785181223083470}
   m_Layer: 0
   m_Name: WhiteCurvedLine (1)
   m_TagString: Untagged
@@ -1762,7 +1610,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1807,7 +1655,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5822017382752326476
+--- !u!114 &1198785181223083470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1816,39 +1664,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2895805292730152327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &6375257389095772281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2895805292730152327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
---- !u!114 &7107166432537664068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2895805292730152327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3498273408954425407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,8 +1681,7 @@ GameObject:
   - component: {fileID: 6486559955414882139}
   - component: {fileID: 1063878178137944831}
   - component: {fileID: 1769821395761386625}
-  - component: {fileID: 4264689478495562526}
-  - component: {fileID: 1700370783784209304}
+  - component: {fileID: 4791097698502964968}
   m_Layer: 0
   m_Name: InnerWall (5)
   m_TagString: Untagged
@@ -1970,7 +1789,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2014,7 +1833,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4264689478495562526
+--- !u!114 &4791097698502964968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2023,38 +1842,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3498273408954425407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &1700370783784209304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3498273408954425407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: ResetPlayerToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &3597525978095958396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,7 +1862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4752888589583155803
 Transform:
   m_ObjectHideFlags: 0
@@ -2136,8 +1928,7 @@ GameObject:
   - component: {fileID: 379368438676543199}
   - component: {fileID: 4586047838200277781}
   - component: {fileID: 7413560264405581309}
-  - component: {fileID: 4261484301018701326}
-  - component: {fileID: 5589388737197814579}
+  - component: {fileID: 7271875027942443007}
   m_Layer: 0
   m_Name: InnerWall (55)
   m_TagString: Untagged
@@ -2245,7 +2036,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2289,7 +2080,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4261484301018701326
+--- !u!114 &7271875027942443007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2298,26 +2089,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3688059327261234892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &5589388737197814579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3688059327261234892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4142814183146964909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,8 +2106,7 @@ GameObject:
   - component: {fileID: 1579706678577477117}
   - component: {fileID: 714992341964218663}
   - component: {fileID: 6349524731045542305}
-  - component: {fileID: 7879490556979961383}
-  - component: {fileID: 2318607694684782756}
+  - component: {fileID: 5826938203440070154}
   m_Layer: 0
   m_Name: InnerWall (52)
   m_TagString: Untagged
@@ -2439,7 +2214,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2483,7 +2258,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7879490556979961383
+--- !u!114 &5826938203440070154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2492,26 +2267,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4142814183146964909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &2318607694684782756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142814183146964909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4148155277123179981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,8 +2284,7 @@ GameObject:
   - component: {fileID: 2247497644956859376}
   - component: {fileID: 6977659948099986349}
   - component: {fileID: 4254946960071660161}
-  - component: {fileID: 7520527683427715886}
-  - component: {fileID: 5440468033144673910}
+  - component: {fileID: 6009421666897204496}
   m_Layer: 0
   m_Name: InnerWall (11)
   m_TagString: Untagged
@@ -2633,7 +2392,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2677,7 +2436,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7520527683427715886
+--- !u!114 &6009421666897204496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2686,38 +2445,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4148155277123179981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &5440468033144673910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4148155277123179981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: ResetPlayerToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4257436104875398828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,9 +2463,7 @@ GameObject:
   - component: {fileID: 4125402168576572446}
   - component: {fileID: 266523966214026108}
   - component: {fileID: 7958534498678476991}
-  - component: {fileID: 7101136198939467783}
-  - component: {fileID: 1765724390761943350}
-  - component: {fileID: 9147496127283730215}
+  - component: {fileID: 3358726308180411935}
   m_Layer: 0
   m_Name: WhiteCurvedLine (4)
   m_TagString: Untagged
@@ -2841,7 +2571,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2938,7 +2668,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7101136198939467783
+--- !u!114 &3358726308180411935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2947,39 +2677,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4257436104875398828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &1765724390761943350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257436104875398828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
---- !u!114 &9147496127283730215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4257436104875398828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4281769165659253638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,8 +2694,7 @@ GameObject:
   - component: {fileID: 8782708915595372237}
   - component: {fileID: 627623603322565314}
   - component: {fileID: 1537199914888557839}
-  - component: {fileID: 5493587151451041542}
-  - component: {fileID: 2042115540850962890}
+  - component: {fileID: 8747866920284897775}
   m_Layer: 0
   m_Name: InnerWall (15)
   m_TagString: Untagged
@@ -3101,7 +2802,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3145,7 +2846,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5493587151451041542
+--- !u!114 &8747866920284897775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3154,38 +2855,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4281769165659253638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &2042115540850962890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4281769165659253638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: ResetPlayerToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4289815804579079640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,8 +2872,7 @@ GameObject:
   - component: {fileID: 5391324023553944477}
   - component: {fileID: 6449767358642327834}
   - component: {fileID: 4679145938038680811}
-  - component: {fileID: 5347120514060072899}
-  - component: {fileID: 4996362342834182265}
+  - component: {fileID: 2297299907170258916}
   m_Layer: 0
   m_Name: InnerWall (49)
   m_TagString: Untagged
@@ -3307,7 +2980,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3341,7 +3014,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5347120514060072899
+--- !u!114 &2297299907170258916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3350,26 +3023,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4289815804579079640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &4996362342834182265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4289815804579079640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4302753684378475656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3382,8 +3040,7 @@ GameObject:
   - component: {fileID: 2744803397520263078}
   - component: {fileID: 8670404768931730119}
   - component: {fileID: 4053778978909683354}
-  - component: {fileID: 6857089918244481804}
-  - component: {fileID: 7785080577812499580}
+  - component: {fileID: 6526957473991799415}
   m_Layer: 0
   m_Name: InnerWall (36)
   m_TagString: Untagged
@@ -3491,7 +3148,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3535,7 +3192,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6857089918244481804
+--- !u!114 &6526957473991799415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3544,26 +3201,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4302753684378475656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &7785080577812499580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302753684378475656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4684537549474513186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,8 +3218,7 @@ GameObject:
   - component: {fileID: 6758734743073945839}
   - component: {fileID: 4817254815613365889}
   - component: {fileID: 5919156517624746382}
-  - component: {fileID: 839203712450005671}
-  - component: {fileID: 7430533577048245902}
+  - component: {fileID: 946771357354213676}
   m_Layer: 0
   m_Name: InnerWall (46)
   m_TagString: Untagged
@@ -3685,7 +3326,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3729,7 +3370,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &839203712450005671
+--- !u!114 &946771357354213676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3738,26 +3379,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4684537549474513186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &7430533577048245902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4684537549474513186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5108035890134607331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3770,8 +3396,7 @@ GameObject:
   - component: {fileID: 7396174053177217538}
   - component: {fileID: 6694188661054441992}
   - component: {fileID: 1026005455817509563}
-  - component: {fileID: 7824029519519016951}
-  - component: {fileID: 6347484714405671238}
+  - component: {fileID: 2666776092611424774}
   m_Layer: 0
   m_Name: InnerWall (10)
   m_TagString: Untagged
@@ -3879,7 +3504,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3923,7 +3548,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7824029519519016951
+--- !u!114 &2666776092611424774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3932,38 +3557,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5108035890134607331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &6347484714405671238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5108035890134607331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: ResetPlayerToStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5156011048169522919
 GameObject:
   m_ObjectHideFlags: 0
@@ -3976,8 +3574,7 @@ GameObject:
   - component: {fileID: 4151469362872119377}
   - component: {fileID: 8541508720939896354}
   - component: {fileID: 1732119935578197847}
-  - component: {fileID: 5035294037789733671}
-  - component: {fileID: 1773352240362675676}
+  - component: {fileID: 913208619420497539}
   m_Layer: 0
   m_Name: InnerWall (53)
   m_TagString: Untagged
@@ -4085,7 +3682,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4129,7 +3726,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5035294037789733671
+--- !u!114 &913208619420497539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4138,26 +3735,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5156011048169522919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &1773352240362675676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5156011048169522919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5506538825147161948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4170,8 +3752,7 @@ GameObject:
   - component: {fileID: 704396430843826974}
   - component: {fileID: 8583349611230361328}
   - component: {fileID: 4099781073011134529}
-  - component: {fileID: 7586492408827743644}
-  - component: {fileID: 2107846911442326508}
+  - component: {fileID: 1135408888059505460}
   m_Layer: 0
   m_Name: InnerWall (34)
   m_TagString: Untagged
@@ -4279,7 +3860,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4323,7 +3904,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7586492408827743644
+--- !u!114 &1135408888059505460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4332,26 +3913,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5506538825147161948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &2107846911442326508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5506538825147161948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5577870409721067212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4364,8 +3930,7 @@ GameObject:
   - component: {fileID: 1909408217967072997}
   - component: {fileID: 1786536438255431750}
   - component: {fileID: 3543135949564933305}
-  - component: {fileID: 8344383249302998653}
-  - component: {fileID: 4307509552557661048}
+  - component: {fileID: 1771104587304653708}
   m_Layer: 0
   m_Name: InnerWall (54)
   m_TagString: Untagged
@@ -4473,7 +4038,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4517,7 +4082,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8344383249302998653
+--- !u!114 &1771104587304653708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4526,26 +4091,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5577870409721067212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &4307509552557661048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5577870409721067212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5608541313951540863
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,8 +4108,7 @@ GameObject:
   - component: {fileID: 5204709896992482349}
   - component: {fileID: 3135016311274861053}
   - component: {fileID: 244676011386944348}
-  - component: {fileID: 1256569101962337954}
-  - component: {fileID: 7238461162715382658}
+  - component: {fileID: 1761866941274588420}
   m_Layer: 0
   m_Name: InnerWall (42)
   m_TagString: Untagged
@@ -4667,7 +4216,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4711,7 +4260,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1256569101962337954
+--- !u!114 &1761866941274588420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4720,26 +4269,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5608541313951540863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &7238461162715382658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5608541313951540863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5636603843858929232
 GameObject:
   m_ObjectHideFlags: 0
@@ -4752,9 +4286,8 @@ GameObject:
   - component: {fileID: 3454095283838447615}
   - component: {fileID: 1548292400051926115}
   - component: {fileID: 5808415316241532628}
-  - component: {fileID: 8849949614278413658}
-  - component: {fileID: 3486527753564430407}
   - component: {fileID: 1462644935848078024}
+  - component: {fileID: 3944902763877060162}
   m_Layer: 0
   m_Name: WhiteCurvedLine (8)
   m_TagString: Untagged
@@ -4862,7 +4395,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4931,32 +4464,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &8849949614278413658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5636603843858929232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &3486527753564430407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5636603843858929232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
 --- !u!114 &1462644935848078024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4985,6 +4492,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3944902763877060162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5636603843858929232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
+  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5698465922790947978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,8 +4518,7 @@ GameObject:
   - component: {fileID: 1948191496144130890}
   - component: {fileID: 1732591731337913936}
   - component: {fileID: 6472183081200370432}
-  - component: {fileID: 4779248485273775736}
-  - component: {fileID: 4358378501901525792}
+  - component: {fileID: 6136068561438324975}
   m_Layer: 0
   m_Name: InnerWall (41)
   m_TagString: Untagged
@@ -5106,7 +4626,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5150,7 +4670,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4779248485273775736
+--- !u!114 &6136068561438324975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5159,26 +4679,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5698465922790947978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &4358378501901525792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5698465922790947978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5934141644409495575
 GameObject:
   m_ObjectHideFlags: 0
@@ -5192,9 +4697,7 @@ GameObject:
   - component: {fileID: 4299758061549088515}
   - component: {fileID: 212966165723477004}
   - component: {fileID: 8458139298657594668}
-  - component: {fileID: 1326174446506426103}
-  - component: {fileID: 1924991703585456734}
-  - component: {fileID: 3693057690511725865}
+  - component: {fileID: 287264708459547784}
   m_Layer: 0
   m_Name: WhiteCurvedLine (2)
   m_TagString: Untagged
@@ -5302,7 +4805,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5396,7 +4899,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1326174446506426103
+--- !u!114 &287264708459547784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5405,39 +4908,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5934141644409495575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &1924991703585456734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5934141644409495575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
---- !u!114 &3693057690511725865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5934141644409495575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6035340626824711550
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,8 +4925,7 @@ GameObject:
   - component: {fileID: 8787723359741927166}
   - component: {fileID: 4543211515595669417}
   - component: {fileID: 3377130333404364356}
-  - component: {fileID: 1867459134023058021}
-  - component: {fileID: 1270044903968665292}
+  - component: {fileID: 6405612907363594385}
   m_Layer: 0
   m_Name: InnerWall (48)
   m_TagString: Untagged
@@ -5559,7 +5033,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5593,7 +5067,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1867459134023058021
+--- !u!114 &6405612907363594385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5602,26 +5076,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6035340626824711550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &1270044903968665292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6035340626824711550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6591186790816765914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,8 +5093,7 @@ GameObject:
   - component: {fileID: 3536175411190976743}
   - component: {fileID: 8485092092085267365}
   - component: {fileID: 5246050270777526193}
-  - component: {fileID: 4886262173618087557}
-  - component: {fileID: 6015201331940527496}
+  - component: {fileID: 4741809465984004336}
   m_Layer: 0
   m_Name: InnerWall (32)
   m_TagString: Untagged
@@ -5743,7 +5201,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5787,7 +5245,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4886262173618087557
+--- !u!114 &4741809465984004336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5796,26 +5254,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6591186790816765914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &6015201331940527496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591186790816765914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6666533792809897007
 GameObject:
   m_ObjectHideFlags: 0
@@ -5828,7 +5271,7 @@ GameObject:
   - component: {fileID: 8466004963343010121}
   - component: {fileID: 1630129547815795109}
   - component: {fileID: 7264541085446291660}
-  - component: {fileID: 3167634761496584800}
+  - component: {fileID: 9116602586031337147}
   m_Layer: 0
   m_Name: WhiteCurvedLine
   m_TagString: Untagged
@@ -5964,7 +5407,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5979,7 +5422,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &3167634761496584800
+--- !u!114 &9116602586031337147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5988,9 +5431,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6666533792809897007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &7278684042430214401
 GameObject:
@@ -6004,8 +5448,7 @@ GameObject:
   - component: {fileID: 7883249411190804499}
   - component: {fileID: 3302132071979071316}
   - component: {fileID: 4489091775755451261}
-  - component: {fileID: 8504449009519671272}
-  - component: {fileID: 823358570007679660}
+  - component: {fileID: 7671770232698237712}
   m_Layer: 0
   m_Name: InnerWall (45)
   m_TagString: Untagged
@@ -6113,7 +5556,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6157,7 +5600,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8504449009519671272
+--- !u!114 &7671770232698237712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6166,26 +5609,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7278684042430214401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &823358570007679660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278684042430214401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7286838331456877273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6198,8 +5626,7 @@ GameObject:
   - component: {fileID: 8919450573897615301}
   - component: {fileID: 8769529810685750135}
   - component: {fileID: 6780766190199141870}
-  - component: {fileID: 2155375709686989854}
-  - component: {fileID: 5192961691741142314}
+  - component: {fileID: 6674653569763785703}
   m_Layer: 0
   m_Name: InnerWall (29)
   m_TagString: Untagged
@@ -6307,7 +5734,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6351,7 +5778,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2155375709686989854
+--- !u!114 &6674653569763785703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6360,26 +5787,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7286838331456877273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &5192961691741142314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7286838331456877273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7730788284062069385
 GameObject:
   m_ObjectHideFlags: 0
@@ -6393,9 +5805,7 @@ GameObject:
   - component: {fileID: 632973104349485905}
   - component: {fileID: 5759422198037053542}
   - component: {fileID: 647290453587802401}
-  - component: {fileID: 948826182620775000}
-  - component: {fileID: 526509593968081753}
-  - component: {fileID: 2118812476562309696}
+  - component: {fileID: 5524206502591758338}
   m_Layer: 0
   m_Name: WhiteCurvedLine (5)
   m_TagString: Untagged
@@ -6503,7 +5913,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6597,7 +6007,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &948826182620775000
+--- !u!114 &5524206502591758338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6606,39 +6016,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7730788284062069385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &526509593968081753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7730788284062069385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
---- !u!114 &2118812476562309696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7730788284062069385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8249816767914529158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6652,9 +6034,7 @@ GameObject:
   - component: {fileID: 7936614798361487073}
   - component: {fileID: 6928490754271797869}
   - component: {fileID: 1102673044810847575}
-  - component: {fileID: 8523655995911995801}
-  - component: {fileID: 1115216896825574400}
-  - component: {fileID: 6172280129086879882}
+  - component: {fileID: 9196121269459398146}
   m_Layer: 0
   m_Name: WhiteCurvedLine (3)
   m_TagString: Untagged
@@ -6762,7 +6142,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6854,7 +6234,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8523655995911995801
+--- !u!114 &9196121269459398146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6863,39 +6243,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8249816767914529158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &1115216896825574400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8249816767914529158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeCollision: {fileID: 0}
---- !u!114 &6172280129086879882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8249816767914529158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8434373763490649730
 GameObject:
   m_ObjectHideFlags: 0
@@ -6908,8 +6260,7 @@ GameObject:
   - component: {fileID: 2971558939948779754}
   - component: {fileID: 2045360369382355939}
   - component: {fileID: 4557348068975964010}
-  - component: {fileID: 3159365454074835664}
-  - component: {fileID: 5870169488476803049}
+  - component: {fileID: 2725271344228282178}
   m_Layer: 0
   m_Name: InnerWall (37)
   m_TagString: Untagged
@@ -7017,7 +6368,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -7061,7 +6412,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3159365454074835664
+--- !u!114 &2725271344228282178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7070,26 +6421,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8434373763490649730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &5870169488476803049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8434373763490649730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8478752678336782515
 GameObject:
   m_ObjectHideFlags: 0
@@ -7101,8 +6437,7 @@ GameObject:
   - component: {fileID: 1475219669974930422}
   - component: {fileID: 5154654034935175911}
   - component: {fileID: 8632920563994795393}
-  - component: {fileID: 3587438389604906166}
-  - component: {fileID: 4303112585092205912}
+  - component: {fileID: 8371557477675229239}
   m_Layer: 0
   m_Name: InnerWall (50)
   m_TagString: Untagged
@@ -7208,7 +6543,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3587438389604906166
+--- !u!114 &8371557477675229239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7217,26 +6552,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8478752678336782515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &4303112585092205912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8478752678336782515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8782879951669908285
 GameObject:
   m_ObjectHideFlags: 0
@@ -7249,8 +6569,7 @@ GameObject:
   - component: {fileID: 5796737637121309686}
   - component: {fileID: 5537124048402295262}
   - component: {fileID: 411153784416621642}
-  - component: {fileID: 3642080041604727864}
-  - component: {fileID: 5309834547137948882}
+  - component: {fileID: 302530261278258669}
   m_Layer: 0
   m_Name: InnerWall (43)
   m_TagString: Untagged
@@ -7358,7 +6677,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -7402,7 +6721,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3642080041604727864
+--- !u!114 &302530261278258669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7411,26 +6730,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8782879951669908285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &5309834547137948882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782879951669908285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8854767119249419081
 GameObject:
   m_ObjectHideFlags: 0
@@ -7443,8 +6747,7 @@ GameObject:
   - component: {fileID: 5410233884263088784}
   - component: {fileID: 2160214024919092165}
   - component: {fileID: 1535485639200901985}
-  - component: {fileID: 2706897757094076477}
-  - component: {fileID: 6816919579382609688}
+  - component: {fileID: 8379299096982296468}
   m_Layer: 0
   m_Name: InnerWall (44)
   m_TagString: Untagged
@@ -7552,7 +6855,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -7596,7 +6899,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2706897757094076477
+--- !u!114 &8379299096982296468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7605,26 +6908,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8854767119249419081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &6816919579382609688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854767119249419081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9020316696877875433
 GameObject:
   m_ObjectHideFlags: 0
@@ -7637,8 +6925,7 @@ GameObject:
   - component: {fileID: 7517273317796750130}
   - component: {fileID: 2444507223104367815}
   - component: {fileID: 5978548585769011461}
-  - component: {fileID: 1189429797607616578}
-  - component: {fileID: 5387642757674564207}
+  - component: {fileID: 5286401577516190333}
   m_Layer: 0
   m_Name: InnerWall (30)
   m_TagString: Untagged
@@ -7746,7 +7033,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -7790,7 +7077,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1189429797607616578
+--- !u!114 &5286401577516190333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7799,23 +7086,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9020316696877875433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c75069d85afad347a9ecfac2976efc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
---- !u!114 &5387642757674564207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9020316696877875433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 0}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
