@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class MazeManager : MonoBehaviour
 {
+    [SerializeField] private VoidEventChannelSO startMazeInteract;
     [SerializeField] private Transform cursor;
     [SerializeField] private GameObject offScreen;
     [SerializeField] private GameObject[] mazePrefabs;
     private Vector3 startPosition;
     private int currentMazeIndex;
     private int previousMazeIndex;
-
     void Awake()
     {
         startPosition = cursor.position;
@@ -16,17 +16,20 @@ public class MazeManager : MonoBehaviour
         currentMazeIndex = Random.Range(0, mazePrefabs.Length);
         mazePrefabs[currentMazeIndex].SetActive(true);
 
-        TurnOffScreen();
+        TurnScreenOff(true);
     }
 
-    public void TurnOffScreen()
+    public void StartMazeInteraction()
     {
-        offScreen.SetActive(true);
+        if (startMazeInteract != null)
+        {
+            startMazeInteract.RaiseEvent();
+        }
     }
 
-    public void TurnOnScreen()
+    public void TurnScreenOff(bool isActive)
     {
-        offScreen.SetActive(false);
+        offScreen.SetActive(isActive);
     }
 
     public void ResetPlayerToStart()

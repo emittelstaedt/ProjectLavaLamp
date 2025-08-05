@@ -2,18 +2,13 @@ using UnityEngine;
 
 public class WallCollision : MonoBehaviour
 {
-    private MazeManager mazeManager;
+    [SerializeField] private VoidEventChannelSO mazeCollision;
 
-    void Awake()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        mazeManager = GetComponentInParent<MazeManager>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<CursorController>() != null)
+        if (mazeCollision != null)
         {
-            mazeManager.ResetPlayerToStart();
-        } 
+            mazeCollision.RaiseEvent();
+        }
     }
 }

@@ -3,14 +3,16 @@ using UnityEngine;
 public class GoalTrigger : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO stopInteract;
-    [SerializeField] private MazeManager mazeManager;
+    [SerializeField] private VoidEventChannelSO mazeComplete;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<CursorController>())
         {
-            mazeManager.LoadNextMaze();
-            mazeManager.TurnOffScreen();
+            if (mazeComplete != null)
+            {
+                mazeComplete.RaiseEvent();
+            }
 
             if (stopInteract != null)
             {
