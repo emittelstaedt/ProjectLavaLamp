@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -45,6 +46,9 @@ public class ScreenCameraLinker : MonoBehaviour
         camera.targetTexture = newRenderTexture;
         renderer.material = newMaterial;
 
+        EditorUtility.SetDirty(camera);
+        EditorUtility.SetDirty(renderer);
+
         Debug.Log("New material created at: " + fullMaterialPath);
         Debug.Log("New render texture created at: " + fullRenderTexturePath);
     }
@@ -66,13 +70,14 @@ public class ScreenCameraLinker : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Resync failed. Please manually delete the material in" + fullMaterialPath + ", and render texture in" + renderTexturePath + ", then link the camera to the screen. The files may be missing or renamed.");
+            Debug.Log($"{fullMaterialPath} and {fullRenderTexturePath} are missing. If they have " +
+          "been renamed, please delete them. Then, link the camera to the screen again.");
         }
     }
 
     private string GetFullPath(string path, string extension)
     {
-        if (path[path.Length - 1] != '/')
+        if (path[^1] != '/')
         {
             path += '/';
         }
@@ -87,3 +92,4 @@ public class ScreenCameraLinker : MonoBehaviour
         }
     }
 }
+#endif

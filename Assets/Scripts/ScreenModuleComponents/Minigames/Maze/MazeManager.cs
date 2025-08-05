@@ -11,6 +11,7 @@ public class MazeManager : MonoBehaviour
     private int currentMazeIndex;
     private int previousMazeIndex;
     private bool hasStartedMaze;
+    
     void Awake()
     {
         startPosition = cursor.position;

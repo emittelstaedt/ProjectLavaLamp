@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 public abstract class ScreenModuleCursor : MonoBehaviour
 {
     [SerializeField] private float speed = 0.3f;
-    [SerializeField] private Camera screenCamera;
+    [SerializeField] private Camera moduleCamera;
     private IScreenClickable currentClickable;
     private float screenWidth;
     private float screenHeight;
@@ -13,8 +12,8 @@ public abstract class ScreenModuleCursor : MonoBehaviour
 
     protected virtual void Awake()
     {
-        screenHeight = screenCamera.orthographicSize * 2f;
-        screenWidth = screenHeight * screenCamera.aspect;
+        screenHeight = moduleCamera.orthographicSize * 2f;
+        screenWidth = screenHeight * moduleCamera.aspect;
     }
 
     public virtual void Move(Vector2 movement)
