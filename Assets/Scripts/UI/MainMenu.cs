@@ -1,44 +1,44 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject MainMenuCamera;
+    [SerializeField] private GameObject loadingCanvas;
     private string sceneName = "MainGameOfficeBase";
 
-    public void SetAction(string action)
+    private void OnEnable()
     {
-        Invoke(action, 0.6f);
+        Time.timeScale = 1f;
     }
 
-    private void LoadOptionsMenu()
+    public void LoadOptionsMenu()
     {
         OptionsMenuButtons.LastMenu = currentMenu;
+        loadingCanvas.SetActive(true);
         currentMenu.SetActive(false);
         optionsMenu.gameObject.SetActive(true);
     }
 
-    private void LoadGame()
+    public void LoadGame()
     {
+        loadingCanvas.SetActive(true);
+
         MainMenuCamera.GetComponent<AudioListener>().enabled = false;
         currentMenu.SetActive(false);
 
         SceneLoader.Instance.LoadScene(sceneName);
-        Invoke(nameof(DisableMainMenuCamera), 0.5f);
+        MainMenuCamera.gameObject.SetActive(false);
     }
 
-    private void QuitGame()
+    public void QuitGame()
     {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else
             Application.Quit();
         #endif
-    }
-
-    private void DisableMainMenuCamera()
-    {
-        MainMenuCamera.gameObject.SetActive(false);
     }
 }

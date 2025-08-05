@@ -5,6 +5,7 @@ public class OptionsMenuButtons : MonoBehaviour
 {
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject loadingCanvas;
     [SerializeField] private GameObject[] subMenus;
     private static GameObject lastMenu;
     private static GameObject lastSubMenu;
@@ -57,12 +58,6 @@ public class OptionsMenuButtons : MonoBehaviour
             || name == "DisplayPanelButton";
     }
 
-    public void SetAction(string action)
-    {
-        Time.timeScale = 1f;
-        Invoke(action, 0.6f);
-    }
-
     private void ResetSubmenus()
     {
         foreach (GameObject menu in subMenus)
@@ -74,8 +69,9 @@ public class OptionsMenuButtons : MonoBehaviour
         }
     }
 
-    private void LoadAudio()
+    public void LoadAudio()
     {
+        Time.timeScale = 1f;
         ResetSubmenus();
 
         transform.Find("AudioPanelCanvas")?.gameObject.SetActive(true);
@@ -83,8 +79,9 @@ public class OptionsMenuButtons : MonoBehaviour
         SetStaticSelected(lastSubMenu, true);
     }
 
-    private void LoadControls()
+    public void LoadControls()
     {
+        Time.timeScale = 1f;
         ResetSubmenus();
 
         transform.Find("ControlsPanelCanvas")?.gameObject.SetActive(true);
@@ -92,8 +89,9 @@ public class OptionsMenuButtons : MonoBehaviour
         SetStaticSelected(lastSubMenu, true);
     }
 
-    private void LoadDisplay()
+    public void LoadDisplay()
     {
+        Time.timeScale = 1f;
         ResetSubmenus();
 
         transform.Find("DisplayPanelCanvas")?.gameObject.SetActive(true);
@@ -101,11 +99,20 @@ public class OptionsMenuButtons : MonoBehaviour
         SetStaticSelected(lastSubMenu, true);
     }
 
-    private void ReturnToPreviousScene()
+    public void ReturnToPreviousScene()
     {
+        Time.timeScale = 1f;
         currentMenu.SetActive(false);
-        lastMenu.gameObject.SetActive(true);
+
+        loadingCanvas.SetActive(true);
+
+        if (LastSubMenu != null)
+        {
+            SetStaticSelected(lastSubMenu, false);
+        }
         Time.timeScale = 0f;
+        lastMenu.gameObject.SetActive(true);
+        
     }
 
     private void SetStaticSelected(GameObject selectedButton, bool active)
