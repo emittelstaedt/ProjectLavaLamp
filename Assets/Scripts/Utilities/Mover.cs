@@ -14,7 +14,7 @@ public class Mover : MonoBehaviour
 
     private void Awake()
     {
-        startPosition = transform.position;
+        startPosition = transform.localPosition;
         endPosition = startPosition + moveDistance;
         targetPosition = startPosition;
         moveRate = moveDistance.magnitude / timeToMove;
@@ -24,7 +24,7 @@ public class Mover : MonoBehaviour
     {
         if (canMove)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveRate * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, moveRate * Time.deltaTime);
         }
     }
 
