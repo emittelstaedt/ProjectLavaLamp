@@ -120,7 +120,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &521739974779693357
 GameObject:
@@ -298,7 +297,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -354,7 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &868271221547073820
 GameObject:
@@ -476,7 +474,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -532,7 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &878305683877287628
 GameObject:
@@ -688,8 +685,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3085843875117514400, guid: 9239dbab2bce5774197835f3eb32538c, type: 3}
         m_TargetAssemblyTypeName: MazeManager, Assembly-CSharp
-        m_MethodName: TurnScreenOff
-        m_Mode: 6
+        m_MethodName: StopMazeInteraction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -722,8 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
-  mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
+  mazeCollision: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
 --- !u!1 &968783350136572347
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +841,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -892,7 +888,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -954,7 +950,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &1535654372138176592
 GameObject:
@@ -1076,7 +1071,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1132,7 +1127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &1699393809181512490
 GameObject:
@@ -1254,7 +1248,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1310,7 +1304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &2808574160531682264
 GameObject:
@@ -1432,7 +1425,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1488,7 +1481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &2895805292730152327
 GameObject:
@@ -1610,7 +1602,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1667,7 +1659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3498273408954425407
 GameObject:
@@ -1789,7 +1780,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1845,7 +1836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &3597525978095958396
 GameObject:
@@ -1862,7 +1852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4752888589583155803
 Transform:
   m_ObjectHideFlags: 0
@@ -2036,7 +2026,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2092,7 +2082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4142814183146964909
 GameObject:
@@ -2214,7 +2203,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2270,7 +2259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4148155277123179981
 GameObject:
@@ -2392,7 +2380,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2448,7 +2436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4257436104875398828
 GameObject:
@@ -2571,7 +2558,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2618,7 +2605,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2680,7 +2667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4281769165659253638
 GameObject:
@@ -2802,7 +2788,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2858,7 +2844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4289815804579079640
 GameObject:
@@ -2980,7 +2965,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3026,7 +3011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4302753684378475656
 GameObject:
@@ -3148,7 +3132,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3204,7 +3188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &4684537549474513186
 GameObject:
@@ -3326,7 +3309,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3382,7 +3365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5108035890134607331
 GameObject:
@@ -3504,7 +3486,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3560,7 +3542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5156011048169522919
 GameObject:
@@ -3682,7 +3663,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3738,7 +3719,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5506538825147161948
 GameObject:
@@ -3860,7 +3840,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3916,7 +3896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5577870409721067212
 GameObject:
@@ -4038,7 +4017,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4094,7 +4073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5608541313951540863
 GameObject:
@@ -4216,7 +4194,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4272,7 +4250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5636603843858929232
 GameObject:
@@ -4395,7 +4372,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4442,7 +4419,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4504,7 +4481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5698465922790947978
 GameObject:
@@ -4626,7 +4602,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4682,7 +4658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &5934141644409495575
 GameObject:
@@ -4805,7 +4780,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4853,7 +4828,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4911,7 +4886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6035340626824711550
 GameObject:
@@ -5033,12 +5007,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.15067807, y: 0.0075200363}
-  m_Radius: 0.32500827
+  m_Offset: {x: 0.0005101557, y: 0.0077814804}
+  m_Radius: 0.484456
 --- !u!114 &3377130333404364356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5079,7 +5053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6591186790816765914
 GameObject:
@@ -5201,7 +5174,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5257,7 +5230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &6666533792809897007
 GameObject:
@@ -5407,7 +5379,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5434,7 +5406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &7278684042430214401
 GameObject:
@@ -5556,7 +5527,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5612,7 +5583,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &7286838331456877273
 GameObject:
@@ -5734,7 +5704,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5790,7 +5760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &7730788284062069385
 GameObject:
@@ -5913,7 +5882,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -5960,7 +5929,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6019,7 +5988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8249816767914529158
 GameObject:
@@ -6142,7 +6110,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6189,7 +6157,7 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6246,7 +6214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8434373763490649730
 GameObject:
@@ -6368,7 +6335,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6424,7 +6391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8478752678336782515
 GameObject:
@@ -6555,7 +6521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8782879951669908285
 GameObject:
@@ -6677,7 +6642,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6733,7 +6698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &8854767119249419081
 GameObject:
@@ -6855,7 +6819,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6911,7 +6875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
 --- !u!1 &9020316696877875433
 GameObject:
@@ -7033,7 +6996,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -7089,5 +7052,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac069886b788341892b9eafadb1276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeComplete: {fileID: 11400000, guid: 841e2384c248db344b6dc430dac8a905, type: 2}
   mazeCollision: {fileID: 11400000, guid: d46ea22cabebd3d4fb63ba9743f6ebdf, type: 2}
