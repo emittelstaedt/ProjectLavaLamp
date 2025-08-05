@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f026956c1e116ebb0bcb13f8713154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 1861412903315526073}
+  cursor: {fileID: 0}
 --- !u!114 &3878153685233208942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 9211013653217372198}
   - component: {fileID: 7293426687100442064}
   - component: {fileID: 2319968172816890042}
+  - component: {fileID: 3012553182971293099}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -517,6 +518,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3012553182971293099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438125516377510603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f004738116d165c46970ac89f4679b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  screenHeight: 500
+  materialPath: Assets/Art/Materials/
+  renderTexturePath: Assets/Art/Textures/
+  name: 
 --- !u!1 &3510812735726087431
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +666,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1818043864262121009}
   - component: {fileID: 4695078135703219811}
-  - component: {fileID: 1861412903315526073}
   - component: {fileID: 7024934285996693241}
   m_Layer: 0
   m_Name: Cursor
@@ -727,20 +744,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1861412903315526073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657662798405967841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb8f935a9b9908dd958427990f92e12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  screenCamera: {fileID: 3460136157399878947}
 --- !u!114 &7024934285996693241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,7 +760,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1861412903315526073}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CursorController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -782,6 +785,7 @@ GameObject:
   - component: {fileID: 2636660919065864223}
   - component: {fileID: 7697809320678370628}
   - component: {fileID: -1773369918984242090}
+  - component: {fileID: 9213474913618849452}
   m_Layer: 0
   m_Name: Terminal02
   m_TagString: Untagged
@@ -897,6 +901,23 @@ MonoBehaviour:
   moduleCamera: {fileID: 2230537028653532396}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distanceFromCamera: 0.5
+--- !u!114 &9213474913618849452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6439339545364985603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f004738116d165c46970ac89f4679b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  screenHeight: 500
+  materialPath: Assets/Art/Materials/
+  renderTexturePath: Assets/Art/Textures/
+  name: 
 --- !u!1 &7329760049976857360
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f57167dd84040d4ab1f08e7f45894c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 1861412903315526073}
+  cursor: {fileID: 0}
 --- !u!61 &6827516366811554937
 BoxCollider2D:
   m_ObjectHideFlags: 0

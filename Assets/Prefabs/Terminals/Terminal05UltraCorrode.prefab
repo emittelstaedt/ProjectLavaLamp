@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f57167dd84040d4ab1f08e7f45894c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 7875489060108842818}
+  cursor: {fileID: 0}
 --- !u!61 &4413693858891149852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 862394038741097458}
   - component: {fileID: 4555639140992365930}
   - component: {fileID: 3861565667709715837}
+  - component: {fileID: 1635662419217742509}
   m_Layer: 0
   m_Name: Terminal05UltraCorrode
   m_TagString: Untagged
@@ -397,6 +398,23 @@ MonoBehaviour:
   moduleCamera: {fileID: 2048862360701128671}
   Settings: {fileID: 11400000, guid: 9fbe56bc51b931042946dc6e72e50fa3, type: 2}
   distanceFromCamera: 0.5
+--- !u!114 &1635662419217742509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864463892556060292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f004738116d165c46970ac89f4679b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  screenHeight: 500
+  materialPath: Assets/Art/Materials/
+  renderTexturePath: Assets/Art/Textures/
+  name: 
 --- !u!1 &5028284908154639585
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +623,6 @@ GameObject:
   m_Component:
   - component: {fileID: 536488184047319177}
   - component: {fileID: 6123247157343120037}
-  - component: {fileID: 7875489060108842818}
   - component: {fileID: 8185875024442966818}
   m_Layer: 0
   m_Name: Cursor
@@ -684,20 +701,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7875489060108842818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730529650867565606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb8f935a9b9908dd958427990f92e12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  screenCamera: {fileID: 6039690247569410691}
 --- !u!114 &8185875024442966818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,7 +717,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7875489060108842818}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CursorController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
@@ -876,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f026956c1e116ebb0bcb13f8713154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 7875489060108842818}
+  cursor: {fileID: 0}
 --- !u!114 &8711581816372387556
 MonoBehaviour:
   m_ObjectHideFlags: 0
