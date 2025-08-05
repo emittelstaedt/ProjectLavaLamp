@@ -3,7 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BoxItemsSO", menuName = "Building/BoxItemSO")]
 public class BoxItemsSO : ScriptableObject
 {
-    [SerializeField] private GameObject[] items;
+    [SerializeField] [Range(0f, 1f)] private float explosiveness = 0.5f;
+    [SerializeField] private BoxItem[] items;
 
-    public GameObject[] Items => items;
+    public float Explosiveness => explosiveness;
+    public BoxItem[] Items => items;
 }

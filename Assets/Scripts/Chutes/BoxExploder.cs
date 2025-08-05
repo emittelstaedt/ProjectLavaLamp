@@ -10,17 +10,19 @@ public class BoxExploder : MonoBehaviour
     [SerializeField] private float despawnTime = 0.5f;
     private Fracture fracture;
     private new Rigidbody rigidbody;
-    private float halfBoxSize;
     private Vector3[] positions;
     private float[] deltaTimes;
     private int speedSampleCount = 5;
+
+    public BoxItemsSO BoxItems
+    {
+        set => boxItems = value;
+    }
 
     void Awake()
     {
         fracture = GetComponent<Fracture>();
         rigidbody = GetComponent<Rigidbody>();
-
-        halfBoxSize = GetComponentInChildren<BoxCollider>().size.x / 2;
 
         positions = new Vector3[speedSampleCount];
         deltaTimes = new float[speedSampleCount];
@@ -69,23 +71,31 @@ public class BoxExploder : MonoBehaviour
 
         DespawnObject despawner = fragmentParent.AddComponent<DespawnObject>();
         despawner.StartDespawn(despawnTime, despawnDelay);
+
+        // Prevents other boxes with the same name from trying to despawn these fragments.
+        fragmentParent.name = $"{name}DespawningFragments";
     }
 
     private void InstantiateBoxItems()
     {
         if (boxItems != null)
         {
-            GameObject[] items = boxItems.Items;
+            BoxItem[] items = boxItems.Items;
+            float distanceFromCenter = 1 - boxItems.Explosiveness;
             for (int i = 0; i < items.Length; i++)
             {
-                // Ensures objects fly in different directions.
-                Vector3 randomization = new(Random.Range(-halfBoxSize, halfBoxSize),
-                                            Random.Range(-halfBoxSize, halfBoxSize),
-                                            Random.Range(-halfBoxSize, halfBoxSize));
+                for (int j = 0; j < items[i].Count; j++)
+                {
+                    // Ensures objects fly in different directions.
+                    Vector3 randomization = new(Random.Range(-distanceFromCenter, distanceFromCenter),
+                                                Random.Range(-distanceFromCenter, distanceFromCenter),
+                                                Random.Range(-distanceFromCenter, distanceFromCenter));
+                    Vector3 position = transform.position + randomization;
 
-                GameObject item = Instantiate(items[i] , transform.position + randomization, Quaternion.identity);
-                // Removes "(Clone)" from the name.
-                item.name = items[i].name;
+                    GameObject item = Instantiate(items[i].Object, position, Quaternion.identity);
+                    // Removes "(Clone)" from the name.
+                    item.name = items[i].Object.name;
+                }
             }
         }
     }
