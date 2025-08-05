@@ -9,11 +9,18 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
     [SerializeField] private string requiredItem;
     [SerializeField] private Transform placementContainer;
     [SerializeField] private InteractableSettingsSO Settings;
+    [Tooltip("Makes the entire object being placed fit into the placement container.")]
+    [SerializeField] private bool scaleEntireObject;
     private LayerMask ignoreCollisionLayer;
     private Transform placementNode;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
     private readonly Collider[] potentialHits = new Collider[10];
+
+    public string RequiredItem
+    {
+        set => requiredItem = value;
+    }
 
     private void Awake()
     {
@@ -42,21 +49,46 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         return false;
     }
 
+
+
     public void StartInteract()
     {
-        // Gets the base child mesh in case objects have been added to parent mesh.
-        Vector3 itemSize = GetWorldBoundSize(lastItemheld.transform.GetChild(0).gameObject);
+        Vector3 newPosition = placementContainer.position;
         Vector3 containerScale = placementContainer.lossyScale;
-        Vector3 scaleRatio = new
-        (
-            containerScale.x / itemSize.x, 
-            containerScale.y / itemSize.y, 
-            containerScale.z / itemSize.z
-        );
+        
+        if (scaleEntireObject)
+        {
+            MeshRenderer itemRenderer = lastItemheld.GetComponent<MeshRenderer>();
+            lastItemheld.transform.rotation = placementContainer.rotation;
 
-        // Sets the base mesh to the placement container.
-        lastItemheld.transform.localScale = Vector3.Scale(lastItemheld.transform.localScale, scaleRatio);
-        lastItemheld.transform.SetPositionAndRotation(placementContainer.position, placementContainer.rotation);
+            Vector3 itemSize = itemRenderer.bounds.size;
+            Vector3 scaleRatio = new
+            (
+                containerScale.x / itemSize.x,
+                containerScale.y / itemSize.y,
+                containerScale.z / itemSize.z
+            );
+
+            float minimumScale = Mathf.Min(scaleRatio.x, scaleRatio.y, scaleRatio.z);
+            lastItemheld.transform.localScale *= minimumScale;
+
+            newPosition += lastItemheld.transform.position - itemRenderer.bounds.center;
+        }
+        else
+        {
+            // Gets the base child mesh in case objects have been added to parent mesh.
+            Vector3 itemSize = GetWorldBoundSize(lastItemheld.transform.GetChild(0).gameObject);
+            Vector3 scaleRatio = new
+            (
+                containerScale.x / itemSize.x,
+                containerScale.y / itemSize.y,
+                containerScale.z / itemSize.z
+            );
+
+            lastItemheld.transform.localScale = Vector3.Scale(lastItemheld.transform.localScale, scaleRatio);
+        }
+
+        lastItemheld.transform.SetPositionAndRotation(newPosition, placementContainer.rotation);
         lastItemheld.transform.SetParent(placementNode, true);
 
         // Remove the previous item while keeping its children, i.e. its collider and placement points.

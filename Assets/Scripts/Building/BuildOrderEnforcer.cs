@@ -6,11 +6,12 @@ public class BuildOrderEnforcer : MonoBehaviour
     [SerializeField] private string finishedName;
     [Tooltip("Enable this if the object must be attached to something else before you can attach things to it.")]
     [SerializeField] private bool mustBePlaced;
+    [SerializeField] private VoidEventChannelSO buildFinished;
     private GameObject[] placementNodes;
 
     private void Awake()
     {
-        PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>();
+        PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>(true);
 
         placementNodes = new GameObject[placementPoints.Length];
         for (int i = 0; i < placementPoints.Length; i++)
@@ -31,11 +32,16 @@ public class BuildOrderEnforcer : MonoBehaviour
 
     public void CheckIfFinishedBuilding()
     {
-        PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>();
+        PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>(true);
         
         if (placementPoints.Length == 0)
         {
             UpdateName(finishedName);
+
+            if (buildFinished != null)
+            {
+                buildFinished.RaiseEvent();
+            }
         }
     }
 
