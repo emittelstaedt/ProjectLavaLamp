@@ -13,13 +13,12 @@ public class VolumeSlider : MonoBehaviour
         float savedVolume = PlayerPrefs.GetFloat(mixerType.ToString() + "Volume", slider.value);
         slider.value = savedVolume;
 
-        slider.onValueChanged.AddListener(OnSliderChanged);
         UpdateText(slider.value);
 
         OnSliderChanged(savedVolume);
     }
 
-    private void OnSliderChanged(float value)
+    public void OnSliderChanged(float value)
     {
         AudioManager.Instance.SetMixerVolume(mixerType, value);
 

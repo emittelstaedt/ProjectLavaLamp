@@ -3,26 +3,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class KeyRebinding : MonoBehaviour
 {   
     [SerializeField] private Button rebindButton;
     [SerializeField] private InputActionReference actionReference;
-    [SerializeField] private int bindingIndex;
+    [SerializeField] private string bindingName;
     [SerializeField] private TMP_Text bindingText;
     [SerializeField] private TMP_Text warningText;
     [SerializeField] private GameObject warningBackground;
     [SerializeField] private float delay = 2f;
 
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
+    private int bindingIndex;
 
     private void Start()
     {
-        if (rebindButton != null)
-        {
-            rebindButton.onClick.AddListener(StartRebinding);
-        }
-
+        bindingIndex = GetBindingIndexByName();
         string savedRebinds = PlayerPrefs.GetString(actionReference.action.name + "_rebinds", null);
         if (!string.IsNullOrEmpty(savedRebinds))
         {
@@ -39,7 +37,7 @@ public class KeyRebinding : MonoBehaviour
             return;
         }
 
-        var binding = actionReference.action.bindings[bindingIndex];
+        InputBinding binding = actionReference.action.bindings[bindingIndex];
         string displayString = "";
         
         if (binding.effectivePath != "<None>")
@@ -49,7 +47,7 @@ public class KeyRebinding : MonoBehaviour
         bindingText.text = displayString;
     }
 
-    private void StartRebinding()
+    public void StartRebinding()
     {
         if (actionReference == null)
         {
@@ -68,9 +66,9 @@ public class KeyRebinding : MonoBehaviour
                 string newBindingPath = actionReference.action.bindings[bindingIndex].effectivePath;
 
                 // Checks for conflicting keybindings in all actions except the current one.
-                foreach (var map in actionReference.action.actionMap.asset.actionMaps)
+                foreach (InputActionMap map in actionReference.action.actionMap.asset.actionMaps)
                 {
-                    foreach (var action in map.actions)
+                    foreach (InputAction action in map.actions)
                     {
                         if (action == actionReference.action)
                             continue;
@@ -92,7 +90,7 @@ public class KeyRebinding : MonoBehaviour
                             PlayerPrefs.SetString(action.name + "_rebinds", action.SaveBindingOverridesAsJson());
                             
                             // Resets the text for all the keybindings.
-                            foreach (var button in FindObjectsByType<KeyRebinding>(FindObjectsSortMode.None))
+                            foreach (KeyRebinding button in FindObjectsByType<KeyRebinding>(FindObjectsSortMode.None))
                             {
                                 if (button.actionReference.action == action && button.bindingIndex == conflictIndex)
                                 {
@@ -129,17 +127,32 @@ public class KeyRebinding : MonoBehaviour
                 PlayerPrefs.SetString(actionReference.action.name + "_rebinds", rebinds);
                 PlayerPrefs.Save();
                 InputSystem.actions.FindActionMap("Player").Disable();
+                InputSystem.actions.FindAction("Pause").Enable();
             })
             .Start();
     }
 
-    IEnumerator HideWarningAfterDelay(float delay)
+    private IEnumerator HideWarningAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (warningText != null)
         {
             warningBackground.gameObject.SetActive(false);
         }
+    }
+
+    private int GetBindingIndexByName()
+    {
+        InputBinding[] bindings = actionReference.action.bindings.ToArray();
+        for (int i = 0; i < bindings.Length; i++)
+        {
+            if (String.Compare(bindings[i].name, bindingName, true) == 0 || String.IsNullOrEmpty(bindings[i].name))
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     private void OnDisable()
