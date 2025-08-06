@@ -263,10 +263,9 @@ public class PickupItem : MonoBehaviour, IInteractable
             closedHandCrosshair.RaiseEvent();
         }
 
-        Collider[] itemColliders = GetComponentsInChildren<Collider>();
-        foreach (Collider collider in itemColliders)
+        for (int i = 0; i < itemColliders.Length; i++)
         {
-            collider.enabled = !isHeld;
+            itemColliders[i].enabled = !isHeld;
         }
 
         itemRigidbody.useGravity = !isHeld;
