@@ -5,7 +5,6 @@ public class OptionsMenuButtons : MonoBehaviour
 {
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject loadingCanvas;
     [SerializeField] private GameObject[] subMenus;
     private static GameObject lastMenu;
     private static GameObject lastSubMenu;
@@ -74,7 +73,11 @@ public class OptionsMenuButtons : MonoBehaviour
         Time.timeScale = 1f;
         ResetSubmenus();
 
-        transform.Find("AudioPanelCanvas")?.gameObject.SetActive(true);
+        if (transform.Find("AudioPanelCanvas") != null)
+        {
+            transform.Find("AudioPanelCanvas").gameObject.SetActive(true);
+        }
+
         lastSubMenu = GameObject.Find("AudioPanelButton");
         SetStaticSelected(lastSubMenu, true);
     }
@@ -84,7 +87,11 @@ public class OptionsMenuButtons : MonoBehaviour
         Time.timeScale = 1f;
         ResetSubmenus();
 
-        transform.Find("ControlsPanelCanvas")?.gameObject.SetActive(true);
+        if (transform.Find("ControlsPanelCanvas") != null)
+        {
+            transform.Find("ControlsPanelCanvas").gameObject.SetActive(true);
+        }
+
         lastSubMenu = GameObject.Find("ControlsPanelButton");
         SetStaticSelected(lastSubMenu, true);
     }
@@ -94,7 +101,11 @@ public class OptionsMenuButtons : MonoBehaviour
         Time.timeScale = 1f;
         ResetSubmenus();
 
-        transform.Find("DisplayPanelCanvas")?.gameObject.SetActive(true);
+        if (transform.Find("DisplayPanelCanvas") != null)
+        {
+            transform.Find("DisplayPanelCanvas").gameObject.SetActive(true);
+        }
+
         lastSubMenu = GameObject.Find("DisplayPanelButton");
         SetStaticSelected(lastSubMenu, true);
     }
@@ -103,8 +114,6 @@ public class OptionsMenuButtons : MonoBehaviour
     {
         Time.timeScale = 1f;
         currentMenu.SetActive(false);
-
-        loadingCanvas.SetActive(true);
 
         if (LastSubMenu != null)
         {

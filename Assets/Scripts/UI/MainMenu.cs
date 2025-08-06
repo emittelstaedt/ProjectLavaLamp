@@ -5,8 +5,8 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject confirmQuitPanel;
     [SerializeField] private GameObject MainMenuCamera;
-    [SerializeField] private GameObject loadingCanvas;
     private string sceneName = "MainGameOfficeBase";
 
     private void OnEnable()
@@ -17,15 +17,12 @@ public class MainMenu : MonoBehaviour
     public void LoadOptionsMenu()
     {
         OptionsMenuButtons.LastMenu = currentMenu;
-        loadingCanvas.SetActive(true);
         currentMenu.SetActive(false);
         optionsMenu.gameObject.SetActive(true);
     }
 
     public void LoadGame()
     {
-        loadingCanvas.SetActive(true);
-
         MainMenuCamera.GetComponent<AudioListener>().enabled = false;
         currentMenu.SetActive(false);
 
@@ -35,10 +32,20 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        confirmQuitPanel.gameObject.SetActive(true);
+    }
+
+    public void ConfirmQuit()
+    {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else
             Application.Quit();
         #endif
+    }
+
+    public void CancelQuit()
+    {
+        confirmQuitPanel.SetActive(false);
     }
 }

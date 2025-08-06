@@ -10,7 +10,7 @@ public class PauseMenuButtons : MonoBehaviour
     [SerializeField] private GameObject mainMenuCamera;
     [SerializeField] private PauseMenuManager pauseMenuManager;
     [SerializeField] private GameObject confirmMainMenuPanel;
-    [SerializeField] private GameObject loadingCanvas;
+    [SerializeField] private GameObject loadingScreen;
     
     private string sceneName = "MainGameOfficeBase";
 
@@ -45,7 +45,7 @@ public class PauseMenuButtons : MonoBehaviour
         confirmMainMenuPanel.SetActive(false);
         UnpauseGame();
 
-        loadingCanvas.SetActive(true);
+        loadingScreen.SetActive(true);
 
         mainMenuCamera.SetActive(true);
         mainMenu.gameObject.SetActive(true);
