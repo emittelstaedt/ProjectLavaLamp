@@ -117,8 +117,8 @@ AnimatorController:
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Planetstate
-    m_Type: 3
-    m_DefaultFloat: 0
+    m_Type: 1
+    m_DefaultFloat: 100
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -143,9 +143,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
+  - m_ConditionMode: 3
     m_ConditionEvent: Planetstate
-    m_EventTreshold: 2
+    m_EventTreshold: 60
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3766729386097789076}
   m_Solo: 0
@@ -168,9 +168,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
+  - m_ConditionMode: 3
     m_ConditionEvent: Planetstate
-    m_EventTreshold: 3
+    m_EventTreshold: 40
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6256363045567961332}
   m_Solo: 0
@@ -193,9 +193,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
+  - m_ConditionMode: 3
     m_ConditionEvent: Planetstate
-    m_EventTreshold: 1
+    m_EventTreshold: 80
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3879424783778251450}
   m_Solo: 0
@@ -218,9 +218,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
+  - m_ConditionMode: 3
     m_ConditionEvent: Planetstate
-    m_EventTreshold: 4
+    m_EventTreshold: 20
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6236257795072802134}
   m_Solo: 0
