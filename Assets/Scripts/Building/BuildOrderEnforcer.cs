@@ -33,8 +33,17 @@ public class BuildOrderEnforcer : MonoBehaviour
     public void CheckIfFinishedBuilding()
     {
         PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>(true);
-        
-        if (placementPoints.Length == 0)
+
+        int placementCount = 0;
+        for (int i = 0; i < placementPoints.Length; i++)
+        {
+            if (!placementPoints[i].IsUpstreamPlacement)
+            {
+                placementCount++;
+            }
+        }
+
+        if (placementCount == 0)
         {
             UpdateName(finishedName);
 
@@ -43,6 +52,17 @@ public class BuildOrderEnforcer : MonoBehaviour
                 buildFinished.RaiseEvent();
             }
         }
+    }
+
+    public void SetBuildOrder(string finishedName, bool mustBePlaced)
+    {
+        this.finishedName = finishedName;
+        this.mustBePlaced = mustBePlaced;
+    }
+
+    public (string, bool) GetBuildOrder()
+    {
+        return (finishedName, mustBePlaced);
     }
 
     private void UpdateName(string newName)
