@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 193202891555979137}
   - component: {fileID: 7926611624725212999}
   - component: {fileID: 7335685034881385507}
-  - component: {fileID: 4139405809601027992}
+  - component: {fileID: 9044038217072788546}
+  - component: {fileID: 1014072477764820878}
+  - component: {fileID: 7685517757112588412}
   m_Layer: 0
-  m_Name: Siren
+  m_Name: SirenLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 96750125194337278}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000026822087, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00043535233, y: -0.0017436221, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112,7 +114,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4139405809601027992
+--- !u!114 &9044038217072788546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +123,90 @@ MonoBehaviour:
   m_GameObject: {fileID: 96750125194337278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91514a890e6226240a60d3436613596c, type: 3}
+  m_Script: {fileID: 11500000, guid: 11df0448f6d63824fa1518bfe537463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  volume: 0.5
+--- !u!114 &1014072477764820878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96750125194337278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 0}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7335685034881385507}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9044038217072788546}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StartSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7685517757112588412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96750125194337278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 0}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7335685034881385507}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9044038217072788546}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &714931812414243961
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,8 +302,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4925220338219135731}
+  - component: {fileID: 1911328405878888549}
   m_Layer: 0
-  m_Name: SirenClean
+  m_Name: Siren
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 1507908120643649035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3317451, y: 0.1, z: -0.049}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -245,6 +328,27 @@ Transform:
   - {fileID: 4187340896643013053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1911328405878888549
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507908120643649035}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37207294, y: 0.4626996, z: 0.31724167}
+  m_Center: {x: 0.0025304556, y: 0.014665134, z: -0.0053583086}
 --- !u!1 &6262207720959266863
 GameObject:
   m_ObjectHideFlags: 0
