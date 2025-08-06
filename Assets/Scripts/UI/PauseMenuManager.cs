@@ -6,9 +6,9 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
+    private InputAction pauseAction;
     private bool wasUnpaused;
     private string sceneName = "MainGameOfficeBase";
-    private bool isOpen = false;
 
     public static PauseMenuManager Instance = null;
     public bool WasUnpaused
@@ -29,6 +29,8 @@ public class PauseMenuManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        pauseAction = InputSystem.actions.FindAction("Pause");
     }
 
     void Update()
@@ -38,7 +40,7 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) || wasUnpaused)
+        if (pauseAction.WasPressedThisFrame() || wasUnpaused)
         {
             TogglePause();
         }
@@ -53,13 +55,13 @@ public class PauseMenuManager : MonoBehaviour
 
         if (!optionsMenu.activeInHierarchy && !mainMenu.activeInHierarchy)
         {
-            isOpen = !isOpen;
-            pauseMenu.SetActive(isOpen);
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
 
-            if (isOpen)
+            if (pauseMenu.activeSelf)
             {
                 Time.timeScale = 0f;
                 InputSystem.actions.FindActionMap("Player").Disable();
+                InputSystem.actions.FindAction("Pause").Enable();
             }
             else
             {
