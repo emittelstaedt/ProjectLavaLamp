@@ -77,7 +77,7 @@ public class BuildItemConstructor : MonoBehaviour
         {
             GameObject grandparentNode = Instantiate(placementNode, parent.transform);
             grandparentNode.name = grandparent.name + "PlacementNode";
-            SetPlacementNode(grandparentNode, grandparent);
+            SetPlacementNode(grandparentNode, grandparent, true);
         }
 
         CreatePickupItem(parent);
@@ -161,17 +161,17 @@ public class BuildItemConstructor : MonoBehaviour
         );
     }
 
-    private void SetPlacementNode(GameObject node, GameObject item)
+    private void SetPlacementNode(GameObject node, GameObject item, bool isUpstreamNode = false)
     {
         for (int i = 0; i < node.transform.childCount; i++)
         {
             Transform child = node.transform.GetChild(i);
 
-            CopyToContainer(child.gameObject, item);
+            CopyToContainer(child.gameObject, item, isUpstreamNode);
         }
     }
 
-    public void CopyToContainer(GameObject container, GameObject item)
+    public void CopyToContainer(GameObject container, GameObject item, bool isUpstreamNode = false)
     {
         item.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation);
         Vector3 scale = GetBoundsScale(item);
@@ -182,6 +182,7 @@ public class BuildItemConstructor : MonoBehaviour
         if (container.transform.TryGetComponent<PlacementTrigger>(out PlacementTrigger placementTrigger))
         {
             placementTrigger.SetRequiredItem(item.name);
+            placementTrigger.IsUpstreamPlacement = isUpstreamNode;
         }
     }
 

@@ -1,27 +1,38 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlacementTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField] private VoidEventChannelSO stopInteraction;
-    [SerializeField] private VoidEventChannelSO updateName;
+    [SerializeField] private VoidEventChannelSO itemPlaced;
     [SerializeField] private VoidEventChannelSO clearCrosshair;
     [SerializeField] private VoidEventChannelSO thumbsUpCrosshair;
     [SerializeField] private string requiredItem;
     [SerializeField] private Transform placementContainer;
     [SerializeField] private InteractableSettingsSO Settings;
     [Tooltip("Makes the entire object being placed fit into the placement container.")]
-    [SerializeField] private bool scaleEntireObject;
+    [SerializeField] private bool scaleEntireObject; 
+    [SerializeField] private bool isUpstreamPlacement;
     private LayerMask ignoreCollisionLayer;
     private Transform placementNode;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
     private readonly Collider[] potentialHits = new Collider[10];
 
+    public bool IsUpstreamPlacement
+    {
+        get => isUpstreamPlacement; 
+        set => isUpstreamPlacement = value;
+    }
+
     private void Awake()
     {
         ignoreCollisionLayer = ~(1 << LayerMask.NameToLayer("IgnoreItemCollision"));
 
         placementNode = transform.parent;
+
+        transform.parent.name = requiredItem + "PlacementNode";
     }
 
     public float GetInteractDistance()
@@ -38,7 +49,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
     {
         if (currentItemHeld != null)
         {
-            return requiredItem.Equals(currentItemHeld.name);
+            return requiredItem.Equals(currentItemHeld.name, StringComparison.OrdinalIgnoreCase);
         }
 
         return false;
@@ -46,6 +57,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
+        Transform baseItem = lastItemheld.transform.GetChild(0);
         Vector3 newPosition = placementContainer.position;
         Vector3 containerScale = placementContainer.lossyScale;
         
@@ -80,6 +92,74 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
             Transform child = lastItemheld.transform.GetChild(0);
             child.SetParent(placementNode.parent, true);
         }
+
+        if (isUpstreamPlacement)
+        {
+            placementNode.parent.name = lastItemheld.name;
+
+            BuildOrderEnforcer lastItemBuildOrder = lastItemheld.GetComponentInParent<BuildOrderEnforcer>();
+            BuildOrderEnforcer thisBuildOrder = placementNode.GetComponentInParent<BuildOrderEnforcer>();
+
+            thisBuildOrder.SetBuildOrder
+            (
+                lastItemBuildOrder.GetBuildOrder().Item1, 
+                lastItemBuildOrder.GetBuildOrder().Item2
+            );
+        }
+        else
+        {
+            baseItem = placementNode.parent.GetChild(0);
+        }
+
+        Dictionary<Vector3, Transform> placementMap = new(new Vector3Comparer());
+
+        // Works in reverse order so changing the parent of a duplicate doesn't affect the loop. 
+        for (int i = placementNode.parent.childCount - 1; i >= 0; i--)
+        {
+            Transform child = GetPlacementLocation(placementNode.parent.GetChild(i));
+
+            if (placementMap.ContainsKey(child.position))
+            {
+                Transform duplicateCandidate = GetPlacementLocation(placementMap[child.position]);
+
+                // Ignore itself and the this placement container since it will be deleted anyways.
+                if (child == duplicateCandidate || child == placementContainer || duplicateCandidate == placementContainer)
+                {
+                    continue;
+                }
+
+                Transform order1 = GetPlacementNodeIfMatches(child, duplicateCandidate);
+                Transform order2 = GetPlacementNodeIfMatches(duplicateCandidate, child);
+
+                Transform duplicateNode = order1 != null ? order1 : order2;
+                if (duplicateNode != null)
+                {
+                    // Deletes the extra placement node if it exists for the item being placed.
+                    duplicateNode.SetParent(null);
+                    Destroy(duplicateNode.gameObject);
+                    break;
+                }
+            }
+            else
+            {
+                placementMap.Add(child.position, child);
+            }
+        }
+
+        // Update local positions so that the base item is at the origin.
+        Transform previousBaseItem = placementNode.parent.GetChild(0);
+        baseItem.SetAsFirstSibling();
+
+        Vector3 localOffset = -baseItem.localPosition;
+        foreach (Transform child in placementNode.parent)
+        {
+            child.localPosition += localOffset;
+        }
+
+        // Update world position so that the object doesn't appear to move.
+        Vector3 worldOffset = placementNode.parent.position - previousBaseItem.position;
+        placementNode.parent.position += worldOffset;
+
         Destroy(lastItemheld);
 
         // Combine meshes so that the outline will show for the entire new combined object.
@@ -148,7 +228,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         placementNode.SetParent(null);
         Destroy(placementNode.gameObject);
 
-        updateName.RaiseEvent();
+        itemPlaced.RaiseEvent();
     }
 
     public void StartHover()
@@ -170,6 +250,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
     public void SetRequiredItem(string requiredItem)
     {
         this.requiredItem = requiredItem;
+        transform.parent.name = requiredItem + "PlacementNode";
     }
 
     public void SetCurrentItemHeld(GameObject newItemHeld)
@@ -189,6 +270,45 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
             numerator.y / denominator.y,
             numerator.z / denominator.z
         );
+    }
+    private Transform GetPlacementLocation(Transform parent)
+    {
+        if (parent.name.EndsWith("PlacementNode", StringComparison.OrdinalIgnoreCase))
+        {
+            // Gets the placement container if it's a placement node.
+            parent = parent.GetChild(1);
+        }
+
+        return parent;
+    }
+
+    private Transform GetPlacementNodeIfMatches(Transform possibleNode, Transform possibleCollider)
+    {
+        string nodeSuffix = "PlacementNode";
+        string colliderSuffix = "Collider";
+
+        string nodeName;
+        string colliderName = possibleCollider.name;
+
+        if (possibleNode.name.Equals("PlacementContainer", StringComparison.OrdinalIgnoreCase))
+        {
+            possibleNode = possibleNode.parent;
+            nodeName = possibleNode.name;
+        }
+        else
+        {
+            return null;
+        }
+
+        if (nodeName.EndsWith(nodeSuffix, StringComparison.OrdinalIgnoreCase) && 
+            colliderName.EndsWith(colliderSuffix, StringComparison.OrdinalIgnoreCase))
+        {
+            string base1 = nodeName[..^nodeSuffix.Length];
+            string base2 = colliderName[..^colliderSuffix.Length];
+            return base1 == base2 ? possibleNode : null;
+        }
+
+        return null;
     }
 
     private Vector3 GetWorldBoundSize(GameObject gameObject)
