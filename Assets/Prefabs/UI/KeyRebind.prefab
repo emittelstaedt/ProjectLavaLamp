@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2550731460293278477}
   - component: {fileID: 9186764365343818638}
   m_Layer: 5
-  m_Name: KeyBindingName
+  m_Name: RotateBindingName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6784620421011790533}
   - component: {fileID: 7799256350958563684}
   m_Layer: 5
-  m_Name: KeyCurrentBinding
+  m_Name: RotateCurrentBinding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,10 +322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9970a1487e079d54186863c8580527e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionReference: {fileID: 0}
-  bindingIndex: 0
-  rebindButton: {fileID: 0}
-  bindingText: {fileID: 0}
+  rebindButton: {fileID: 7376926451649194776}
+  actionReference: {fileID: -6684912079078706619, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  bindingName: Up
+  bindingText: {fileID: 7799256350958563684}
+  warningText: {fileID: 0}
+  warningBackground: {fileID: 0}
+  delay: 2
 --- !u!1 &6114116140685689977
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +342,7 @@ GameObject:
   - component: {fileID: 8540202820785156994}
   - component: {fileID: 7376926451649194776}
   m_Layer: 5
-  m_Name: KeyRebindButton
+  m_Name: RotateRebindButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,4 +449,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8540202820785156994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -5169945930144781649}
+        m_TargetAssemblyTypeName: KeyRebinding, Assembly-CSharp
+        m_MethodName: StartRebinding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
