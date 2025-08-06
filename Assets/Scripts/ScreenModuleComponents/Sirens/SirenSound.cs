@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SirenSound : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 1f)] private float volume = 0.5f;
+    [SerializeField] [Range(0f, 1f)] private float volume = 1f;
     private GameObject soundGameObject;
 
     public void StartSirenSound()
@@ -12,11 +12,7 @@ public class SirenSound : MonoBehaviour
 
     public void StopSirenSound()
     {
-        if (soundGameObject == null)
-        {
-            Debug.LogWarning("Cannot stop a siren sound when it's not playing.");
-        }
-        else
+        if (soundGameObject != null)
         {
             soundGameObject.SetActive(false);
         }
