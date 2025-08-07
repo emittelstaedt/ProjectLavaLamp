@@ -133,7 +133,7 @@ public class KeyRebinding : MonoBehaviour
 
     private IEnumerator HideWarningAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         if (warningText != null)
         {
             warningBackground.gameObject.SetActive(false);

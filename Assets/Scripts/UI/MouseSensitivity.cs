@@ -15,12 +15,11 @@ public class MouseSensitivity : MonoBehaviour
         if (sensitivitySlider != null)
         {
             sensitivitySlider.value = CameraControls.Sensitivity * 100f;
-            sensitivitySlider.onValueChanged.AddListener(UpdateSensitivity);
             UpdateSensitivity(sensitivitySlider.value);
         }
     }
 
-    void UpdateSensitivity(float value)
+    public void UpdateSensitivity(float value)
     {
         CameraControls.Sensitivity = value / 100f;
         PlayerPrefs.SetFloat("MouseSensitivity", CameraControls.Sensitivity);

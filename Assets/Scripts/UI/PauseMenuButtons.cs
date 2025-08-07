@@ -16,7 +16,6 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void UnpauseGame()
     {
-        Time.timeScale = 1f;
         pauseMenuManager.WasUnpaused = true;
         currentMenu.SetActive(false);
 
@@ -26,18 +25,12 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void LoadOptionsMenu()
     {
-        Time.timeScale = 1f;
-        OptionsMenuButtons.LastMenu = currentMenu;
-        currentMenu.SetActive(false);
         optionsMenu.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f;
         confirmMainMenuPanel.gameObject.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void ConfirmMainMenuLoad()
