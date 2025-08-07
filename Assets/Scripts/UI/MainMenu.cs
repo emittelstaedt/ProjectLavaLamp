@@ -16,8 +16,6 @@ public class MainMenu : MonoBehaviour
 
     public void LoadOptionsMenu()
     {
-        OptionsMenuButtons.LastMenu = currentMenu;
-        currentMenu.SetActive(false);
         optionsMenu.gameObject.SetActive(true);
     }
 
@@ -28,6 +26,7 @@ public class MainMenu : MonoBehaviour
 
         SceneLoader.Instance.LoadScene(sceneName);
         MainMenuCamera.gameObject.SetActive(false);
+        InputSystem.actions.FindActionMap("Player").Enable();
     }
 
     public void QuitGame()
