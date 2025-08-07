@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    [SerializeField] private BoolEventChannelSO setCursorVisibility;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
@@ -62,6 +63,7 @@ public class PauseMenuManager : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 HUD.SetActive(false);
+                setCursorVisibility.RaiseEvent(true);
                 InputSystem.actions.FindActionMap("Player").Disable();
                 InputSystem.actions.FindAction("Pause").Enable();
             }
@@ -69,6 +71,7 @@ public class PauseMenuManager : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 HUD.SetActive(true);
+                setCursorVisibility.RaiseEvent(false);
                 InputSystem.actions.FindActionMap("Player").Enable();
                 wasUnpaused = false;
             }
