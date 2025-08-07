@@ -27,7 +27,7 @@ public class PauseMenuButtons : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        confirmMainMenuPanel.gameObject.SetActive(true);
+        confirmMainMenuPanel.SetActive(true);
     }
 
     public void ConfirmMainMenuLoad()
@@ -37,7 +37,7 @@ public class PauseMenuButtons : MonoBehaviour
 
         loadingScreen.SetActive(true);
 
-        mainMenu.gameObject.SetActive(true);
+        mainMenu.SetActive(true);
 
         SceneLoader.Instance.UnloadScene(sceneName);
     }
