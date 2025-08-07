@@ -9,20 +9,18 @@ public class MouseSensitivity : MonoBehaviour
 
     void Start()
     {
-        float savedSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 0.15f);
-        CameraControls.Sensitivity = savedSensitivity;
+        float savedSensitivity = PlayerPrefs.GetFloat("MouseSensitivity");
 
         if (sensitivitySlider != null)
         {
-            sensitivitySlider.value = CameraControls.Sensitivity * 100f;
+            sensitivitySlider.value = savedSensitivity * 100f;
             UpdateSensitivity(sensitivitySlider.value);
         }
     }
 
     public void UpdateSensitivity(float value)
     {
-        CameraControls.Sensitivity = value / 100f;
-        PlayerPrefs.SetFloat("MouseSensitivity", CameraControls.Sensitivity);
+        PlayerPrefs.SetFloat("MouseSensitivity", value / 100f);
 
         if (valueText != null)
         {
