@@ -9,7 +9,7 @@ public class InChute : MonoBehaviour, IInteractable
     [SerializeField] private GameObject outBox;
     [SerializeField] private GameObject itemSpawn;
     [SerializeField] private float delay = 0.5f;
-    private Material material;
+    private Material chuteMaterial;
     private Outline outline;
     private Queue<BoxItemsSO> boxItemsQueue;
     private Vector3 itemSpawnPosition;
@@ -20,8 +20,8 @@ public class InChute : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        material = GetComponent<Renderer>().material;
-        material.color = Color.green;
+        chuteMaterial = GetComponent<Renderer>().material;
+        chuteMaterial.color = Color.green;
 
         if (!TryGetComponent<Outline>(out outline))
         {
@@ -41,15 +41,6 @@ public class InChute : MonoBehaviour, IInteractable
         outBox = Instantiate(outBox, itemSpawnPosition + Vector3.right * 100f, Quaternion.identity);
         outBoxRigidbody = outBox.GetComponent<Rigidbody>();
         outBoxRigidbody.useGravity = false;
-    }
-
-    public void EnqueueItems(BoxItemsSO items)
-    {
-        boxItemsQueue.Enqueue(items);
-        if (boxItemsQueue.Count == 1)
-        {
-            material.color = Color.green;
-        }
     }
 
     public float GetInteractDistance()
@@ -85,6 +76,15 @@ public class InChute : MonoBehaviour, IInteractable
     public void StopHover()
     {
         outline.enabled = false;
+    }
+
+    public void AddBox(BoxItemsSO items)
+    {
+        boxItemsQueue.Enqueue(items);
+        if (boxItemsQueue.Count == 1)
+        {
+            chuteMaterial.color = Color.green;
+        }
     }
 
     private void GiveBox()
@@ -124,7 +124,7 @@ public class InChute : MonoBehaviour, IInteractable
 
         if (boxItemsQueue.Count <= 0 && outBox == null)
         {
-            material.color = Color.white;
+            chuteMaterial.color = Color.white;
         }
 
         isAnimating = false;

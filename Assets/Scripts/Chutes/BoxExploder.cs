@@ -4,15 +4,15 @@ using System.Collections;
 [RequireComponent(typeof(Fracture))]
 public class BoxExploder : MonoBehaviour
 {
-    [SerializeField] private BoxItemsSO boxItems;
     [SerializeField] private float minimumSmashSpeed = 15f;
     [SerializeField] private float despawnDelay = 3f;
     [SerializeField] private float despawnTime = 0.5f;
     private Fracture fracture;
-    private new Rigidbody rigidbody;
+    private Rigidbody boxRigidbody;
     private Vector3[] positions;
     private float[] deltaTimes;
-    private int speedSampleCount = 5;
+    private readonly int speedSampleCount = 5;
+    private BoxItemsSO boxItems;
 
     public BoxItemsSO BoxItems
     {
@@ -22,7 +22,7 @@ public class BoxExploder : MonoBehaviour
     void Awake()
     {
         fracture = GetComponent<Fracture>();
-        rigidbody = GetComponent<Rigidbody>();
+        boxRigidbody = GetComponent<Rigidbody>();
 
         positions = new Vector3[speedSampleCount];
         deltaTimes = new float[speedSampleCount];
@@ -56,7 +56,7 @@ public class BoxExploder : MonoBehaviour
     {
         InstantiateBoxItems();
 
-        rigidbody.useGravity = true;
+        boxRigidbody.useGravity = true;
         fracture.CauseFracture();
 
         // The object OpenFracture places the fragments under.

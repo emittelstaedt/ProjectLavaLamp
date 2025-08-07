@@ -6,7 +6,7 @@ public class PistonMover : MonoBehaviour
     [SerializeField] private float pushTime = 0.1f;
     [SerializeField] private float pushForce = 1f;
     [SerializeField] private float pushDistance = 1.75f;
-    private new Collider collider;
+    private Collider pistonCollider;
     private float defaultX;
     private float pushVelocity;
     private bool isPushing;
@@ -14,7 +14,7 @@ public class PistonMover : MonoBehaviour
     void Awake()
     {
         defaultX = transform.localPosition.x;
-        collider = GetComponent<BoxCollider>();
+        pistonCollider = GetComponent<BoxCollider>();
     }
 
     public void StartPush()
@@ -26,14 +26,14 @@ public class PistonMover : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
         Rigidbody rigidbody = collision.gameObject.GetComponent<Rigidbody>();
-        if (rigidbody && isPushing)
+        if (rigidbody != null && isPushing)
         {
             Transform collisionTransform = collision.gameObject.transform;
 
             // Prevents the pusher from clipping through the object.
             bool doesPenetrate = Physics.ComputePenetration
             (
-                collider, transform.position, transform.rotation,
+                pistonCollider, transform.position, transform.rotation,
                 collision.collider, collisionTransform.position, collisionTransform.rotation,
                 out Vector3 _, out float moveDistance
             );

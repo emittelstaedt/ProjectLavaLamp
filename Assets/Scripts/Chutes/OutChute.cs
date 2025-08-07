@@ -7,7 +7,7 @@ public class OutChute : MonoBehaviour
     [SerializeField] private VoidEventChannelSO winLevel;
     [SerializeField] private string acceptedItemName;
     [SerializeField] private float delay = 0.5f;
-    private Material material;
+    private Material chuteMaterial;
     private Mover doorMover;
     private PistonMover pistonMover;
     private Plane openingPlane;
@@ -15,8 +15,8 @@ public class OutChute : MonoBehaviour
 
     void Awake()
     {
-        material = GetComponent<Renderer>().material;
-        material.color = Color.white;
+        chuteMaterial = GetComponent<Renderer>().material;
+        chuteMaterial.color = Color.white;
         
         doorMover = GetComponentInChildren<Mover>();
         pistonMover = GetComponentInChildren<PistonMover>();
@@ -43,7 +43,6 @@ public class OutChute : MonoBehaviour
         
             isInChute = openingPlane.GetSide(objectCenter);
         }
-        
 
         if (isWaitingForItem && collider.gameObject != pistonMover.gameObject && isInChute)
         {
@@ -54,10 +53,10 @@ public class OutChute : MonoBehaviour
             GameObject colliderParent = collider.gameObject.transform.parent.gameObject;
             if (collider.gameObject.name == acceptedItemName || colliderParent.name == acceptedItemName)
             {
-                material.color = Color.green;
+                chuteMaterial.color = Color.green;
                 doorMover.MoveBack();
 
-                StartCoroutine(TakeItem(collider.gameObject));
+                StartCoroutine(AcceptItem());
             }
             else
             {
@@ -66,9 +65,9 @@ public class OutChute : MonoBehaviour
         }
     }
 
-    private IEnumerator TakeItem(GameObject item)
+    private IEnumerator AcceptItem()
     {
-        material.color = Color.green;
+        chuteMaterial.color = Color.green;
 
         yield return new WaitForSeconds(delay);
 
@@ -77,12 +76,12 @@ public class OutChute : MonoBehaviour
 
     private IEnumerator RejectItem()
     {
-        material.color = Color.red;
+        chuteMaterial.color = Color.red;
 
         pistonMover.StartPush();
         yield return new WaitForSeconds(delay);
 
         isWaitingForItem = true;
-        material.color = Color.white;
+        chuteMaterial.color = Color.white;
     }
 }
