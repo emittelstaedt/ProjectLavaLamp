@@ -36,9 +36,14 @@ public class OutChute : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        Vector3 objectCenter = collider.transform.parent.GetComponent<MeshRenderer>().bounds.center;
+        bool isInChute = false;
+        if (collider.transform.parent.TryGetComponent<Renderer>(out Renderer objectRenderer))
+        {
+            Vector3 objectCenter = objectRenderer.bounds.center;
         
-        bool isInChute = openingPlane.GetSide(objectCenter);
+            isInChute = openingPlane.GetSide(objectCenter);
+        }
+        
 
         if (isWaitingForItem && collider.gameObject != pistonMover.gameObject && isInChute)
         {

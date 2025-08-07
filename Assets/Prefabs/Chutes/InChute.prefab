@@ -128,9 +128,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706724650646961971}
-  - component: {fileID: 2454912186395702849}
   - component: {fileID: 7889971094184620577}
   - component: {fileID: 116430238319663717}
+  - component: {fileID: 2454912186395702849}
+  - component: {fileID: 2048428587318001733}
   m_Layer: 0
   m_Name: InChute
   m_TagString: Untagged
@@ -157,23 +158,6 @@ Transform:
   - {fileID: 8238299144896465427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &2454912186395702849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5004810627175594447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252379fce7c60784fac0ab330df8ad08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
-  packagedBox: {fileID: 3445593189116435998, guid: a1fa1200b364bc24e936d3a8e55a1ee2, type: 3}
-  outBox: {fileID: 1506996728426710096, guid: bfc82ef311cd071468ad1fa3ae3f90ed, type: 3}
-  itemSpawn: {fileID: 8327191055553835023}
-  delay: 0.5
 --- !u!33 &7889971094184620577
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -227,6 +211,51 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2454912186395702849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004810627175594447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252379fce7c60784fac0ab330df8ad08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
+  packagedBox: {fileID: 3445593189116435998, guid: a1fa1200b364bc24e936d3a8e55a1ee2, type: 3}
+  outBox: {fileID: 1506996728426710096, guid: bfc82ef311cd071468ad1fa3ae3f90ed, type: 3}
+  itemSpawn: {fileID: 8327191055553835023}
+  delay: 0.5
+--- !u!114 &2048428587318001733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004810627175594447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dba34802d674c4c8d87c4082b5cc05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: de89d8a4fa40e8d459efe23f1c970d8d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2454912186395702849}
+        m_TargetAssemblyTypeName: InChute, Assembly-CSharp
+        m_MethodName: EnqueueItems
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8327191055553835023
 GameObject:
   m_ObjectHideFlags: 0

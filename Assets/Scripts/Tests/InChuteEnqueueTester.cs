@@ -3,18 +3,13 @@ using UnityEngine;
 public class InChuteEnqueueTester : MonoBehaviour
 {
     [SerializeField] private BoxItemsSO testBoxItems;
-    private InChute chute;
-
-    void Awake()
-    {
-        chute = GetComponent<InChute>();
-    }
-
+    [SerializeField] private BoxItemsSOEventChannelSO enqueueBoxItems;
+    
     void Update()
     {
         if (Input.GetKeyDown("p"))
         {
-            chute.EnqueueItems(testBoxItems);
+            enqueueBoxItems.RaiseEvent(testBoxItems);
         }
     }
 }
