@@ -148,7 +148,7 @@ public class KeyRebinding : MonoBehaviour
             if (warningText != null)
             {
                 warningText.text = $"'{action.name}' was unbound due to duplicate keybindings.";
-                warningBackground.gameObject.SetActive(true);
+                warningBackground.SetActive(true);
 
                 StopAllCoroutines();
                 StartCoroutine(HideWarningAfterDelay(delay));
@@ -159,7 +159,7 @@ public class KeyRebinding : MonoBehaviour
         {
             if (warningText != null)
             {
-                warningBackground.gameObject.SetActive(false);
+                warningBackground.SetActive(false);
             }
         }
 
@@ -171,7 +171,7 @@ public class KeyRebinding : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay);
         if (warningText != null)
         {
-            warningBackground.gameObject.SetActive(false);
+            warningBackground.SetActive(false);
         }
     }
 
