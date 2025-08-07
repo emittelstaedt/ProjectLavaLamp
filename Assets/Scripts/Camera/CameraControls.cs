@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class CameraControls : MonoBehaviour
 {
     [SerializeField] private float sensitivity = 0.15f;
+    [SerializeField] private VoidEventChannelSO clearCrosshair;
+    [SerializeField] private VoidEventChannelSO defaultCrosshair;
     private Transform mainCamera;
     private float xRotation;
     private InputAction lookAction;
@@ -63,10 +65,12 @@ public class CameraControls : MonoBehaviour
         if (isVisible)
         {
             Cursor.lockState = CursorLockMode.None;
+            clearCrosshair.RaiseEvent();
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+            defaultCrosshair.RaiseEvent();
         }
 
         Cursor.visible = isVisible;

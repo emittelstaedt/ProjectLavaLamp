@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2995380884482932886}
   - component: {fileID: 209954417647320303}
   - component: {fileID: 490819900335312803}
+  - component: {fileID: 5236344303555323232}
   - component: {fileID: 6715487801881789034}
   - component: {fileID: 7952415085105415944}
   - component: {fileID: 1135752226171590681}
@@ -146,6 +147,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 0.15
+  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 11400000, guid: b79907616dd50a8408124f1811d8d3e9, type: 2}
+--- !u!114 &5236344303555323232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6905212619853310072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b582645dbdc5945a8a89816f34b35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 7f18adf6a3420704e845e1e7511ef534, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 490819900335312803}
+        m_TargetAssemblyTypeName: CameraControls, Assembly-CSharp
+        m_MethodName: SetCursorVisibility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6715487801881789034
 MonoBehaviour:
   m_ObjectHideFlags: 0
