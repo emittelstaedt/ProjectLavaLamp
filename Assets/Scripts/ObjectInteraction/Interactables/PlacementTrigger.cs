@@ -17,11 +17,6 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
     private GameObject lastItemheld;
     private readonly Collider[] potentialHits = new Collider[10];
 
-    public string RequiredItem
-    {
-        set => requiredItem = value;
-    }
-
     private void Awake()
     {
         ignoreCollisionLayer = ~(1 << LayerMask.NameToLayer("IgnoreItemCollision"));
@@ -49,8 +44,6 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         return false;
     }
 
-
-
     public void StartInteract()
     {
         Vector3 newPosition = placementContainer.position;
@@ -62,12 +55,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
             lastItemheld.transform.rotation = placementContainer.rotation;
 
             Vector3 itemSize = itemRenderer.bounds.size;
-            Vector3 scaleRatio = new
-            (
-                containerScale.x / itemSize.x,
-                containerScale.y / itemSize.y,
-                containerScale.z / itemSize.z
-            );
+            Vector3 scaleRatio = DivideVector3(containerScale, itemSize);
 
             float minimumScale = Mathf.Min(scaleRatio.x, scaleRatio.y, scaleRatio.z);
             lastItemheld.transform.localScale *= minimumScale;
@@ -78,12 +66,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         {
             // Gets the base child mesh in case objects have been added to parent mesh.
             Vector3 itemSize = GetWorldBoundSize(lastItemheld.transform.GetChild(0).gameObject);
-            Vector3 scaleRatio = new
-            (
-                containerScale.x / itemSize.x,
-                containerScale.y / itemSize.y,
-                containerScale.z / itemSize.z
-            );
+            Vector3 scaleRatio = DivideVector3(containerScale, itemSize);
 
             lastItemheld.transform.localScale = Vector3.Scale(lastItemheld.transform.localScale, scaleRatio);
         }
@@ -196,6 +179,16 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         {
             lastItemheld = currentItemHeld;
         }
+    }
+
+    private Vector3 DivideVector3(Vector3 numerator, Vector3 denominator)
+    {
+        return new
+        (
+            numerator.x / denominator.x,
+            numerator.y / denominator.y,
+            numerator.z / denominator.z
+        );
     }
 
     private Vector3 GetWorldBoundSize(GameObject gameObject)
