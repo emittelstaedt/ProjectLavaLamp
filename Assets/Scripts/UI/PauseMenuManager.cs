@@ -6,6 +6,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject HUD;
     private InputAction pauseAction;
     private bool wasUnpaused;
     private string sceneName = "MainGameOfficeBase";
@@ -60,12 +61,14 @@ public class PauseMenuManager : MonoBehaviour
             if (pauseMenu.activeSelf)
             {
                 Time.timeScale = 0f;
+                HUD.SetActive(false);
                 InputSystem.actions.FindActionMap("Player").Disable();
                 InputSystem.actions.FindAction("Pause").Enable();
             }
             else
             {
                 Time.timeScale = 1f;
+                HUD.SetActive(true);
                 InputSystem.actions.FindActionMap("Player").Enable();
                 wasUnpaused = false;
             }

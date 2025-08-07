@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject currentMenu;
+    [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject confirmQuitPanel;
-    [SerializeField] private GameObject MainMenuCamera;
+    [SerializeField] private GameObject HUD;
     private string sceneName = "MainGameOfficeBase";
 
     private void OnEnable()
@@ -21,11 +21,10 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        MainMenuCamera.GetComponent<AudioListener>().enabled = false;
-        currentMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        HUD.SetActive(true);
 
         SceneLoader.Instance.LoadScene(sceneName);
-        MainMenuCamera.gameObject.SetActive(false);
         InputSystem.actions.FindActionMap("Player").Enable();
     }
 
