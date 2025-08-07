@@ -9,7 +9,7 @@ public class PauseMenuButtons : MonoBehaviour
     [SerializeField] private PauseMenuManager pauseMenuManager;
     [SerializeField] private GameObject confirmMainMenuPanel;
     [SerializeField] private GameObject loadingScreen;
-    private string sceneName = "MainGameOfficeBase";
+    [SerializeField] private string sceneName = "OfficeWorkplace";
 
     public void UnpauseGame()
     {

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject confirmQuitPanel;
     [SerializeField] private GameObject HUD;
-    private string sceneName = "MainGameOfficeBase";
+    [SerializeField] private string sceneName = "OfficeWorkplace";
 
     private void OnEnable()
     {
