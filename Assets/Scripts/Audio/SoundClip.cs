@@ -1,11 +1,10 @@
 using UnityEngine;
 
 [System.Serializable]
-public class SoundClip
+public struct SoundClip
 {
-    [SerializeField] private AudioClip[] clips;
-    [SerializeField] private SoundType type;
-    public SoundType Type => type;
+    [SerializeField] public AudioClip[] clips;
+    [SerializeField] public SoundType type;
 
     public AudioClip GetAudioClip()
     {

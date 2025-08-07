@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         soundTypeToClip = new Dictionary<SoundType, SoundClip>();
         for (int i = 0; i < soundClips.Length; i++)
         {
-            soundTypeToClip.Add(soundClips[i].Type, soundClips[i]);
+            soundTypeToClip.Add(soundClips[i].type, soundClips[i]);
         }
         
         audioPlayer = GetComponent<AudioPlayer>();

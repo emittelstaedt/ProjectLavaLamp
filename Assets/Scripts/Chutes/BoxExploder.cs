@@ -84,7 +84,7 @@ public class BoxExploder : MonoBehaviour
             float distanceFromCenter = 1 - boxItems.Explosiveness;
             for (int i = 0; i < items.Length; i++)
             {
-                for (int j = 0; j < items[i].Count; j++)
+                for (int j = 0; j < items[i].count; j++)
                 {
                     // Ensures objects fly in different directions.
                     Vector3 randomization = new(Random.Range(-distanceFromCenter, distanceFromCenter),
@@ -92,9 +92,9 @@ public class BoxExploder : MonoBehaviour
                                                 Random.Range(-distanceFromCenter, distanceFromCenter));
                     Vector3 position = transform.position + randomization;
 
-                    GameObject item = Instantiate(items[i].Object, position, Quaternion.identity);
+                    GameObject item = Instantiate(items[i].gameObject, position, Quaternion.identity);
                     // Removes "(Clone)" from the name.
-                    item.name = items[i].Object.name;
+                    item.name = items[i].gameObject.name;
                 }
             }
         }
