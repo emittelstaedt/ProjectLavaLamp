@@ -14,7 +14,6 @@ public class KeyRebinding : MonoBehaviour
     [SerializeField] private TMP_Text warningText;
     [SerializeField] private GameObject warningBackground;
     [SerializeField] private float delay = 2f;
-
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
     private int bindingIndex;
 

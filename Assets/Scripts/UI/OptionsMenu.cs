@@ -26,37 +26,6 @@ public class OptionsMenuButtons : MonoBehaviour
         RefreshLastSubMenuHighlight();
     }
 
-    private void Update()
-    {
-        // This looks at which submenu is open and sets a bool to create a static appearing animation for the associated button.
-        foreach (GameObject menu in subMenus)
-        {
-            if (menu.activeSelf)
-            {
-                if (EventSystem.current.currentSelectedGameObject != lastSubMenu && IsSelectable(EventSystem.current.currentSelectedGameObject))
-                {
-                    SetStaticSelected(lastSubMenu, false);
-
-                    lastSubMenu = EventSystem.current.currentSelectedGameObject;
-                    SetStaticSelected(lastSubMenu, true);
-                }
-            }
-        }
-    }
-
-    private bool IsSelectable(GameObject selectable)
-    {
-        if (selectable == null)
-        {
-            return false;
-        }
-
-        string name = selectable.name;
-        return name == "ControlsPanelButton"
-            || name == "AudioPanelButton"
-            || name == "DisplayPanelButton";
-    }
-
     private void ResetSubmenus()
     {
         foreach (GameObject menu in subMenus)
@@ -79,7 +48,6 @@ public class OptionsMenuButtons : MonoBehaviour
         }
 
         lastSubMenu = GameObject.Find("AudioPanelButton");
-        SetStaticSelected(lastSubMenu, true);
     }
 
     public void LoadControls()
@@ -93,7 +61,6 @@ public class OptionsMenuButtons : MonoBehaviour
         }
 
         lastSubMenu = GameObject.Find("ControlsPanelButton");
-        SetStaticSelected(lastSubMenu, true);
     }
 
     public void LoadDisplay()
@@ -107,7 +74,6 @@ public class OptionsMenuButtons : MonoBehaviour
         }
 
         lastSubMenu = GameObject.Find("DisplayPanelButton");
-        SetStaticSelected(lastSubMenu, true);
     }
 
     public void ReturnToPreviousScene()
@@ -115,33 +81,22 @@ public class OptionsMenuButtons : MonoBehaviour
         Time.timeScale = 1f;
         currentMenu.SetActive(false);
 
-        if (LastSubMenu != null)
-        {
-            SetStaticSelected(lastSubMenu, false);
-        }
         Time.timeScale = 0f;
         lastMenu.gameObject.SetActive(true);
         
     }
 
-    private void SetStaticSelected(GameObject selectedButton, bool active)
+    private void RefreshLastSubMenuHighlight()
     {
-        if (selectedButton == null)
+        if (lastSubMenu == null)
         {
-            Time.timeScale = 0f;
             return;
         }
 
-        Animator selectedAnimator = selectedButton.GetComponent<Animator>();
-        if (selectedAnimator != null)
+        var button = lastSubMenu.GetComponent<UnityEngine.UI.Button>();
+        if (button != null && button.interactable)
         {
-            selectedAnimator.SetBool("isActiveButton", active);
+            button.onClick.Invoke();
         }
-        Time.timeScale = 0f;
-    }
-
-    private void RefreshLastSubMenuHighlight()
-    {
-        SetStaticSelected(lastSubMenu, true);
     }
 }
