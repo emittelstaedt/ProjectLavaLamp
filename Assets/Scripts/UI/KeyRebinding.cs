@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using Unity.VisualScripting;
 
 public class KeyRebinding : MonoBehaviour
 {   
@@ -67,53 +68,36 @@ public class KeyRebinding : MonoBehaviour
                 // Checks for conflicting keybindings in all actions except the current one.
                 foreach (InputActionMap map in actionReference.action.actionMap.asset.actionMaps)
                 {
+                    bool hasConflict = false;
                     foreach (InputAction action in map.actions)
                     {
-                        if (action == actionReference.action)
-                            continue;
-
-                        int conflictIndex = -1;
-                        for (int i = 0; i < action.bindings.Count; i++)
+                        if (action.bindings[0].isComposite)
                         {
-                            if (action.bindings[i].effectivePath == newBindingPath)
+                            foreach (InputBinding binding in action.bindings)
                             {
-                                conflictIndex = i;
-                                break;
-                            }
-                        }
-
-                        if (conflictIndex >= 0)
-                        {
-                            action.ApplyBindingOverride(conflictIndex, "<None>");
-
-                            PlayerPrefs.SetString(action.name + "_rebinds", action.SaveBindingOverridesAsJson());
-                            
-                            // Resets the text for all the keybindings.
-                            foreach (KeyRebinding button in FindObjectsByType<KeyRebinding>(FindObjectsSortMode.None))
-                            {
-                                if (button.actionReference.action == action && button.bindingIndex == conflictIndex)
+                                if (binding != action.bindings[bindingIndex] && !binding.isComposite)
                                 {
-                                    button.UpdateBindingDisplay();
-                                    break;
+                                    hasConflict = CheckForConflicts(action, newBindingPath);
+                                    if (hasConflict)
+                                    {
+                                        break;
+                                    }
                                 }
                             }
+                        }
+                        else if (action == actionReference.action)
+                        {
+                            continue;
+                        }
 
-                            if (warningText != null)
-                            {
-                                warningText.text = $"'{action.name}' was unbound due to duplicate keybindings.";
-                                warningBackground.gameObject.SetActive(true);
-
-                                StopAllCoroutines();
-                                StartCoroutine(HideWarningAfterDelay(delay));
-                            }
+                        if (hasConflict)
+                        {
                             break;
                         }
-                        else
+
+                        if (CheckForConflicts(action, newBindingPath))
                         {
-                            if (warningText != null)
-                            {
-                                warningBackground.gameObject.SetActive(false);
-                            }
+                            break;
                         }
                     }
                 }
@@ -129,6 +113,57 @@ public class KeyRebinding : MonoBehaviour
                 InputSystem.actions.FindAction("Pause").Enable();
             })
             .Start();
+    }
+
+    private bool CheckForConflicts(InputAction action, string newBindingPath)
+    {
+        int conflictIndex = -1;
+        for (int i = 0; i < action.bindings.Count; i++)
+        {
+            bool isSameBinding = action.bindings[i].effectivePath == newBindingPath;
+            bool isComposite = action.bindings[0].isComposite;
+            if (isSameBinding && (!isComposite || (i != bindingIndex && isComposite)))
+            {
+                conflictIndex = i;
+                break;
+            }
+        }
+
+        if (conflictIndex >= 0)
+        {
+            action.ApplyBindingOverride(conflictIndex, "<None>");
+
+            PlayerPrefs.SetString(action.name + "_rebinds", action.SaveBindingOverridesAsJson());
+
+            // Resets the text for all the keybindings.
+            foreach (KeyRebinding button in FindObjectsByType<KeyRebinding>(FindObjectsSortMode.None))
+            {
+                if (button.actionReference.action == action && button.bindingIndex == conflictIndex)
+                {
+                    button.UpdateBindingDisplay();
+                    break;
+                }
+            }
+
+            if (warningText != null)
+            {
+                warningText.text = $"'{action.name}' was unbound due to duplicate keybindings.";
+                warningBackground.gameObject.SetActive(true);
+
+                StopAllCoroutines();
+                StartCoroutine(HideWarningAfterDelay(delay));
+            }
+            return true;
+        }
+        else
+        {
+            if (warningText != null)
+            {
+                warningBackground.gameObject.SetActive(false);
+            }
+        }
+
+        return false;
     }
 
     private IEnumerator HideWarningAfterDelay(float delay)
