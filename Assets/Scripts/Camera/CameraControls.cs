@@ -27,13 +27,13 @@ public class CameraControls : MonoBehaviour
         sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", sensitivity);
         MovePlayerCamera();
 
-        Vector3 newLocalPoistion = new
+        Vector3 newLocalPosition = new
         (
             mainCamera.localPosition.x,
             (characterController.height / 2) - yCameraOffset,
             mainCamera.localPosition.z
         );
-        mainCamera.localPosition = newLocalPoistion;
+        mainCamera.localPosition = newLocalPosition;
     }
 
     private void MovePlayerCamera()
