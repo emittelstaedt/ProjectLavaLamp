@@ -1,17 +1,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 public class PauseMenuButtons : MonoBehaviour
 {
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject mainMenuCamera;
     [SerializeField] private PauseMenuManager pauseMenuManager;
     [SerializeField] private GameObject confirmMainMenuPanel;
     [SerializeField] private GameObject loadingScreen;
-    
     private string sceneName = "MainGameOfficeBase";
 
     public void UnpauseGame()
@@ -40,9 +37,7 @@ public class PauseMenuButtons : MonoBehaviour
 
         loadingScreen.SetActive(true);
 
-        mainMenuCamera.SetActive(true);
         mainMenu.gameObject.SetActive(true);
-        SetMainMenuAudioListener();
 
         SceneLoader.Instance.UnloadScene(sceneName);
     }
@@ -50,12 +45,5 @@ public class PauseMenuButtons : MonoBehaviour
     public void CancelMainMenuLoad()
     {
         confirmMainMenuPanel.SetActive(false);
-    }
-
-    private IEnumerator SetMainMenuAudioListener()
-    {
-        // Wait until main game is unloaded to avoid multiple audio listeners in the scene.
-        yield return new WaitForEndOfFrame();
-        mainMenuCamera.GetComponent<AudioListener>().enabled = true;
     }
 }
