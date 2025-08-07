@@ -101,9 +101,12 @@ public class PickupItem : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnCollisionEnter()
+    private void OnCollisionEnter(Collision collision)
     {
-        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, 0.05f, transform.position);
+        float soundVolume = Mathf.InverseLerp(0, 3, collision.relativeVelocity.magnitude);
+        soundVolume *= 0.05f;
+
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.ItemDrop, soundVolume, transform.position);
     }
 
     public float GetInteractDistance()
