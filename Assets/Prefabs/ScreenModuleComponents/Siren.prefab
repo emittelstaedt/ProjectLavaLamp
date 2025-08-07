@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9044038217072788546}
   - component: {fileID: 1014072477764820878}
   - component: {fileID: 7685517757112588412}
+  - component: {fileID: 1922592197702987235}
   m_Layer: 0
   m_Name: SirenLights
   m_TagString: Untagged
@@ -207,6 +208,21 @@ MonoBehaviour:
           m_StringArgument: StopSiren
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1922592197702987235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96750125194337278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: 966ade9961643b047ae8eccf91311fae, type: 2}
+  corrodeMaterial: {fileID: 2100000, guid: 1a087477e571638488cd9566469c33e9, type: 2}
+  ultraCorrodeMaterial: {fileID: 0}
 --- !u!1 &714931812414243961
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +234,7 @@ GameObject:
   - component: {fileID: 4187340896643013053}
   - component: {fileID: 9184880704974283725}
   - component: {fileID: 3851453545068017973}
+  - component: {fileID: 2166580244313104980}
   m_Layer: 0
   m_Name: SirenLens
   m_TagString: Untagged
@@ -293,6 +310,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2166580244313104980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714931812414243961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: 1690b6a2b0c97a84895a127e19c0c50f, type: 2}
+  corrodeMaterial: {fileID: 2100000, guid: b19af26ac2c710541801ffc2d5dada4d, type: 2}
+  ultraCorrodeMaterial: {fileID: 0}
 --- !u!1 &1507908120643649035
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4925220338219135731}
   - component: {fileID: 1911328405878888549}
+  - component: {fileID: 2823280999423652217}
   m_Layer: 0
   m_Name: Siren
   m_TagString: Untagged
@@ -349,6 +382,58 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.37207294, y: 0.4626996, z: 0.31724167}
   m_Center: {x: 0.0025304556, y: 0.014665134, z: -0.0053583086}
+--- !u!114 &2823280999423652217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507908120643649035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922592197702987235}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3856708903841431008}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2166580244313104980}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6262207720959266863
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +445,7 @@ GameObject:
   - component: {fileID: 2161932119822900645}
   - component: {fileID: 1596355569133138733}
   - component: {fileID: 3616567550684885712}
+  - component: {fileID: 3856708903841431008}
   m_Layer: 0
   m_Name: SirenHousing
   m_TagString: Untagged
@@ -435,6 +521,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3856708903841431008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6262207720959266863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: 966ade9961643b047ae8eccf91311fae, type: 2}
+  corrodeMaterial: {fileID: 2100000, guid: 1a087477e571638488cd9566469c33e9, type: 2}
+  ultraCorrodeMaterial: {fileID: 0}
 --- !u!1 &8410527108870840870
 GameObject:
   m_ObjectHideFlags: 0

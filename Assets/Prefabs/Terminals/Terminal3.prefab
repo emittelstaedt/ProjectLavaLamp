@@ -418,6 +418,9 @@ GameObject:
   - component: {fileID: 832515429229171948}
   - component: {fileID: 708687658936207863}
   - component: {fileID: 1715529813218670198}
+  - component: {fileID: 8662914936759543763}
+  - component: {fileID: 878136012133838205}
+  - component: {fileID: 2786972012009119030}
   m_Layer: 0
   m_Name: Terminal3
   m_TagString: Untagged
@@ -556,6 +559,77 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.25175175, y: 2.0135982, z: 0.8728813}
   m_Center: {x: 0.6128676, y: 0.20799422, z: 2.155991}
+--- !u!114 &8662914936759543763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634932608129576189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: 0f9b883826511e5478b904ef7a2d412c, type: 2}
+  corrodeMaterial: {fileID: 2100000, guid: afe3add6db152024884a317348f9ca4c, type: 2}
+  ultraCorrodeMaterial: {fileID: 2100000, guid: b907e6374f67b2846a8103b068cbc826, type: 2}
+--- !u!114 &878136012133838205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634932608129576189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8662914936759543763}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2786972012009119030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634932608129576189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdf3cf03da3cb648a17f3fc5c5fb4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 708687658936207863}
+        m_TargetAssemblyTypeName: ScreenModule, Assembly-CSharp
+        m_MethodName: SetCurrentItemHeld
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1195909588757951730
 PrefabInstance:
   m_ObjectHideFlags: 0

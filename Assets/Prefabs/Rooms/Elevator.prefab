@@ -76,6 +76,8 @@ GameObject:
   - component: {fileID: 7052750779085469060}
   - component: {fileID: 6540483024759352778}
   - component: {fileID: 1475465070371369780}
+  - component: {fileID: 6557683037817033757}
+  - component: {fileID: 3731199785119733809}
   m_Layer: 0
   m_Name: Trim
   m_TagString: Untagged
@@ -151,6 +153,49 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6557683037817033757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464869688443414530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: 56b6fae53c5153244a375f659710f827, type: 2}
+  corrodeMaterial: {fileID: 0}
+  ultraCorrodeMaterial: {fileID: 0}
+--- !u!114 &3731199785119733809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464869688443414530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6557683037817033757}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1480297371512433174
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +207,8 @@ GameObject:
   - component: {fileID: 5546835398993817789}
   - component: {fileID: 8954655555669014412}
   - component: {fileID: 2832272416067555277}
+  - component: {fileID: 5028979031539331536}
+  - component: {fileID: 6418304143165258847}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -243,6 +290,49 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5028979031539331536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480297371512433174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: bcdb638a5de5d9a438f630c914768e71, type: 2}
+  corrodeMaterial: {fileID: 2100000, guid: d0849a004d3600e48bcb084753c2dbbf, type: 2}
+  ultraCorrodeMaterial: {fileID: 0}
+--- !u!114 &6418304143165258847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480297371512433174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5028979031539331536}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2685275693639977436
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +930,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.7183528
       objectReference: {fileID: 0}
+    - target: {fileID: 1735792730575741461, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: cleanMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 56b6fae53c5153244a375f659710f827, type: 2}
     - target: {fileID: 2063206993508346980, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_Size.x
       value: 5.49596
@@ -996,6 +1090,10 @@ PrefabInstance:
       propertyPath: moveDistance.x
       value: -1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 4954342198824832642, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
+      propertyPath: cleanMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 56b6fae53c5153244a375f659710f827, type: 2}
     - target: {fileID: 5424940630448750236, guid: e2ca524a607c9f142909cc4932adc2cc, type: 3}
       propertyPath: m_Name
       value: ElevatorDoors

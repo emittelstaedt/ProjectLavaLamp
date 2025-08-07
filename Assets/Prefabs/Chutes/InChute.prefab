@@ -133,6 +133,8 @@ GameObject:
   - component: {fileID: 2454912186395702849}
   - component: {fileID: 2048428587318001733}
   - component: {fileID: 8196920973099487016}
+  - component: {fileID: 8727451913047284457}
+  - component: {fileID: 5094440206049431430}
   m_Layer: 0
   m_Name: InChute
   m_TagString: Untagged
@@ -276,6 +278,49 @@ MonoBehaviour:
       - m_Target: {fileID: 2454912186395702849}
         m_TargetAssemblyTypeName: InChute, Assembly-CSharp
         m_MethodName: SetOutBoxRequiredItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8727451913047284457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004810627175594447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cleanMaterial: {fileID: 2100000, guid: 1a418558e1627a8489d440c180cce3cc, type: 2}
+  corrodeMaterial: {fileID: 2100000, guid: 3fda1d296d3ac384095e1eec6afb30c8, type: 2}
+  ultraCorrodeMaterial: {fileID: 0}
+--- !u!114 &5094440206049431430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004810627175594447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8727451913047284457}
+        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
+        m_MethodName: SetMaterial
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
