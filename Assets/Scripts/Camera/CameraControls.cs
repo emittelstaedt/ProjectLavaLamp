@@ -7,6 +7,8 @@ public class CameraControls : MonoBehaviour
     private Transform mainCamera;
     private float xRotation;
     private InputAction lookAction;
+    CharacterController characterController;
+    float yCameraOffset;
 
     private void Awake()
     {
@@ -15,12 +17,23 @@ public class CameraControls : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        characterController = GetComponent<CharacterController>();
+        yCameraOffset = (characterController.height / 2) - mainCamera.localPosition.y;
     }
 
     public void Update()
     {
         sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", sensitivity);
         MovePlayerCamera();
+
+        Vector3 newLocalPoistion = new
+        (
+            mainCamera.localPosition.x,
+            (characterController.height / 2) - yCameraOffset,
+            mainCamera.localPosition.z
+        );
+        mainCamera.localPosition = newLocalPoistion;
     }
 
     private void MovePlayerCamera()
