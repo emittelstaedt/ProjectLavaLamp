@@ -13,6 +13,7 @@ public class InChute : MonoBehaviour, IInteractable
     private Outline outline;
     private Queue<BoxItemsSO> boxItemsQueue;
     private Vector3 itemSpawnPosition;
+    private Rigidbody outBoxRigidbody;
     private Mover doorMover;
     private PistonMover pistonMover;
     private bool isAnimating;
@@ -36,6 +37,10 @@ public class InChute : MonoBehaviour, IInteractable
 
         doorMover = GetComponentInChildren<Mover>();
         pistonMover = GetComponentInChildren<PistonMover>();
+
+        outBox = Instantiate(outBox, itemSpawnPosition + Vector3.right * 100f, Quaternion.identity);
+        outBoxRigidbody = outBox.GetComponent<Rigidbody>();
+        outBoxRigidbody.useGravity = false;
     }
 
     public void EnqueueItems(BoxItemsSO items)
@@ -93,7 +98,8 @@ public class InChute : MonoBehaviour, IInteractable
         }
         else
         {
-            Instantiate(outBox, itemSpawnPosition, Quaternion.identity);
+            outBox.transform.position = itemSpawnPosition;
+            outBoxRigidbody.useGravity = true;
             outBox = null;
         }
 

@@ -22,10 +22,9 @@ public class OutChute : MonoBehaviour
         pistonMover = GetComponentInChildren<PistonMover>();
 
         BoxCollider collider = GetComponent<BoxCollider>();
-        Vector3 planeNormal = Vector3.right * (collider.size.x / 2);
-        Vector3 planePoint = collider.center + planeNormal;
-        openingPlane = new Plane(transform.TransformDirection(planeNormal), transform.TransformPoint(planePoint)).flipped;
-        Debug.DrawRay(transform.TransformPoint(planePoint), transform.TransformDirection(planeNormal) * 5f, Color.red, 100f);
+        Vector3 planeLocalNormal = Vector3.left * (collider.size.x / 2);
+        Vector3 planeWorldPoint = transform.TransformPoint(collider.center - planeLocalNormal);
+        openingPlane = new Plane(transform.TransformDirection(planeLocalNormal), planeWorldPoint);
     }
 
     public void Open()
@@ -37,11 +36,16 @@ public class OutChute : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        bool isInChute = openingPlane.GetSide(collider.transform.position);
+        Vector3 objectCenter = collider.transform.parent.GetComponent<MeshRenderer>().bounds.center;
+        
+        bool isInChute = openingPlane.GetSide(objectCenter);
+
         if (isWaitingForItem && collider.gameObject != pistonMover.gameObject && isInChute)
         {
-            StopAllCoroutines();
             isWaitingForItem = false;
+
+            StopAllCoroutines();
+
             GameObject colliderParent = collider.gameObject.transform.parent.gameObject;
             if (collider.gameObject.name == acceptedItemName || colliderParent.name == acceptedItemName)
             {
