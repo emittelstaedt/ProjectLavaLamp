@@ -7,9 +7,9 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject HUD;
+    [SerializeField] private string sceneName = "OfficeWorkplace";
     private InputAction pauseAction;
     private bool wasUnpaused;
-    private string sceneName = "MainGameOfficeBase";
 
     public static PauseMenuManager Instance = null;
     public bool WasUnpaused
