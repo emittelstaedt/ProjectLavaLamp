@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadOptionsMenu()
     {
-        optionsMenu.gameObject.SetActive(true);
+        optionsMenu.SetActive(true);
     }
 
     public void LoadGame()
@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        confirmQuitPanel.gameObject.SetActive(true);
+        confirmQuitPanel.SetActive(true);
     }
 
     public void ConfirmQuit()
