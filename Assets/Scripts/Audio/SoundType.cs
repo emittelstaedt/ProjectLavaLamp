@@ -14,5 +14,6 @@ public enum SoundType
     ChuteIn,
     ChuteOut,
     MessageAlert,
-    MinigameComplete
+    MinigameComplete,
+    ScreenTransition,
 };
