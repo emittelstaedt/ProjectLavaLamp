@@ -4,12 +4,12 @@ using System.Collections;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance = null;
     [SerializeField] private LevelInfoSO levelInfo;
     [SerializeField] private BoxItemsSOEventChannelSO sendPackage;
     [SerializeField] private StringEventChannelSO setOutBoxItem;
     [SerializeField] private string mainSceneName;
 
+    public static SceneLoader Instance = null;
     private void Awake()
     {
         // Singleton functionality.
