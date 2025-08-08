@@ -252,6 +252,14 @@ public class PickupItem : MonoBehaviour, IInteractable
             }
         }
 
+        float distanceToTarget = Vector3.Distance(cameraPosition, targetPosition);
+        Vector3 directionToTarget = (targetPosition - cameraPosition).normalized;
+        if (Physics.Raycast(cameraPosition, directionToTarget, out RaycastHit _, distanceToTarget, ignoreCollisionLayer))
+        {
+            // Object is behind something but not penetrating, so disallow movement.
+            isValid = false;
+        }
+
         collider.enabled = false;
         return isValid;
     }
