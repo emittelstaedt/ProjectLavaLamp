@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; 
 
@@ -9,6 +10,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     [SerializeField] private Camera moduleCamera;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private float distanceFromCamera = 0.5f;
+    [SerializeField] private List<Minigame> playableMinigames;
     private Outline outline;
     private Camera mainCamera;
     private PlayerController playerController;
@@ -49,7 +51,25 @@ public class ScreenModule : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return !isBeingUsed && currentItemHeld == null;
+        if(isBeingUsed || currentItemHeld != null)
+        {
+            return false;
+        }
+        
+        if(playableMinigames == null || playableMinigames.Count == 0)
+        {
+            return false;
+        }
+
+        foreach (Minigame minigame in playableMinigames)
+        {
+            if (MinigameManager.Instance.IsMinigameTriggered(minigame))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void StartInteract()

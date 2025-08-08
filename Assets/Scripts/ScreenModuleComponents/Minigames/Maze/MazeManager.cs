@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MazeManager : MonoBehaviour
+public class MazeManager : Minigame
 {
     [SerializeField] private VoidEventChannelSO startMazeInteract;
     [SerializeField] private VoidEventChannelSO stopInteract;
@@ -10,9 +10,8 @@ public class MazeManager : MonoBehaviour
     private Vector3 startPosition;
     private int currentMazeIndex;
     private int previousMazeIndex;
-    private bool hasStartedMaze;
     
-    void Awake()
+    private void Awake()
     {
         startPosition = cursor.position;
 
@@ -22,15 +21,8 @@ public class MazeManager : MonoBehaviour
         TurnScreenOff(true);
     }
 
-    public void StartMazeInteraction()
+    public override void OnStartMinigame()
     {
-        if (hasStartedMaze)
-        {
-            return;
-        }
-
-        hasStartedMaze = true;
-
         if (startMazeInteract != null)
         {
             startMazeInteract.RaiseEvent();
@@ -60,10 +52,9 @@ public class MazeManager : MonoBehaviour
         previousMazeIndex = currentMazeIndex;
 
         mazePrefabs[currentMazeIndex].SetActive(true);
-        hasStartedMaze = false;
     }
 
-    public void StopMazeInteraction()
+    public override void OnStopMinigame()
     {
         AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
 
@@ -71,8 +62,12 @@ public class MazeManager : MonoBehaviour
         {
             stopInteract.RaiseEvent();
         }
+    }
 
+    public override void ResetMinigame()
+    {
+        ResetPlayerToStart();
         TurnScreenOff(true);
-        LoadNextMaze();
+        hasStarted = false;
     }
 }
