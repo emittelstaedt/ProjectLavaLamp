@@ -33,13 +33,18 @@ public class InstructionManager : MonoBehaviour, IScreen
         instructionCanvas.enabled = false;
     }
 
+    public void SetBuildInstructions(BuildInstructionsSO instructions)
+    {
+        this.instructions = instructions;
+    }
+
     public void NextPage()
     {
         if (!isActive())
         {
             return;
         }
-        
+
         if (currentPage < instructions.Pages.Length - 1)
         {
             currentPage++;

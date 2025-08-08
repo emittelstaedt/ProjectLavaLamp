@@ -3,5 +3,6 @@ using UnityEngine;
 public class BuildInstructionsSO : ScriptableObject
 {
     [SerializeField] private Sprite[] pages;
+    
     public Sprite[] Pages => pages;
 }

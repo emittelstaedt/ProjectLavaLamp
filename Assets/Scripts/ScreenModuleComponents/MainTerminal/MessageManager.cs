@@ -102,7 +102,7 @@ public class MessageManager : MonoBehaviour, IScreen
             }
 
             // Change button appearance
-            var buttonBackground = button.GetComponent<Image>();
+            Image buttonBackground = button.GetComponent<Image>();
             if (buttonBackground != null)
             {
                 buttonBackground.color = readColor;
