@@ -6,6 +6,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private LevelInfoSO levelInfo;
     [SerializeField] private BoxItemsSOEventChannelSO sendPackage;
+    [SerializeField] private BuildInstructionsSOEventChannelSO buildInstructions;
     [SerializeField] private StringEventChannelSO setOutBoxItem;
     [SerializeField] private string mainSceneName;
 
@@ -60,6 +61,7 @@ public class SceneLoader : MonoBehaviour
             }
 
             setOutBoxItem.RaiseEvent(levelInfo.BuildName);
+            buildInstructions.RaiseEvent(levelInfo.BuildInstructions);
         }
     }
 }
