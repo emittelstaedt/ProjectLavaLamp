@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 3026357596958054270}
   - component: {fileID: 336026711575276841}
   - component: {fileID: 6743386198720424046}
+  - component: {fileID: 1816935349621398068}
   m_Layer: 3
   m_Name: PlacementTrigger
   m_TagString: Untagged
@@ -896,3 +897,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1816935349621398068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231496034988701640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22c5e3d55a41904fbd593acc911e8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: d95419afc6587c8469f9728a445fc534, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3026357596958054270}
+        m_TargetAssemblyTypeName: PlacementTrigger, Assembly-CSharp
+        m_MethodName: SetRequiredItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

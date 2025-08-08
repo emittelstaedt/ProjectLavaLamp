@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
     public static SceneLoader Instance = null;
     [SerializeField] private LevelInfoSO levelInfo;
     [SerializeField] private BoxItemsSOEventChannelSO sendPackage;
+    [SerializeField] private StringEventChannelSO setOutBoxItem;
     [SerializeField] private string mainSceneName;
 
     private void Awake()
@@ -57,6 +58,8 @@ public class SceneLoader : MonoBehaviour
             {
                 sendPackage.RaiseEvent(package);
             }
+
+            setOutBoxItem.RaiseEvent(levelInfo.BuildName);
         }
     }
 }
