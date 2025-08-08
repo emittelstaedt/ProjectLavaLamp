@@ -1,4 +1,5 @@
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "BuildInstructionsSO", menuName = "Scriptable Objects/BuildInstructionsSO")]
 public class BuildInstructionsSO : ScriptableObject
 {

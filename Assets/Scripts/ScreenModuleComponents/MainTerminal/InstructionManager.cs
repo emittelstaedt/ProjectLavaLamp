@@ -8,7 +8,7 @@ public class InstructionManager : MonoBehaviour, IScreen
     [SerializeField] BuildInstructionsSO instructions;
     private int currentPage;
 
-    public bool isActive()
+    public bool IsActive()
     {
         if (!instructionCanvas.enabled)
         {
@@ -40,7 +40,7 @@ public class InstructionManager : MonoBehaviour, IScreen
 
     public void NextPage()
     {
-        if (!isActive())
+        if (!IsActive())
         {
             return;
         }
@@ -54,7 +54,7 @@ public class InstructionManager : MonoBehaviour, IScreen
 
     public void PreviousPage()
     {
-        if (!isActive())
+        if (!IsActive())
         {
             return;
         }

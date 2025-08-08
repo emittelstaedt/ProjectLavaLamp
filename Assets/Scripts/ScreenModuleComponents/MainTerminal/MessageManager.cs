@@ -7,7 +7,7 @@ public class MessageManager : MonoBehaviour, IScreen
 {
     [SerializeField] private Canvas messageBoard;
     [SerializeField] private TextMeshProUGUI messageBody;
-    [SerializeField] private List<string> messageBodies = new List<string>();
+    [SerializeField] private List<string> messageBodies;
     [SerializeField] private List<Button> unreadButtons;
     [SerializeField] private Transform readParent;
     [SerializeField] private Color readColor = Color.gray;
@@ -29,7 +29,7 @@ public class MessageManager : MonoBehaviour, IScreen
         messageBoard.enabled = false;
     }
 
-    public bool isActive()
+    public bool IsActive()
     {
         if (!messageBoard.enabled)
         {
@@ -43,7 +43,7 @@ public class MessageManager : MonoBehaviour, IScreen
     {
         currentMessageIndex = Mathf.Clamp(currentMessageIndex, 0, messageBodies.Count);
 
-        if (!isActive())
+        if (!IsActive())
         {
             return;
         }
@@ -63,7 +63,7 @@ public class MessageManager : MonoBehaviour, IScreen
 
     public void PreviousMessage()
     {
-        if (!isActive())
+        if (!IsActive())
         {
             return;
         }
@@ -102,8 +102,7 @@ public class MessageManager : MonoBehaviour, IScreen
             }
 
             // Change button appearance
-            Image buttonBackground = button.GetComponent<Image>();
-            if (buttonBackground != null)
+            if (button.TryGetComponent<Image>(out Image buttonBackground))
             {
                 buttonBackground.color = readColor;
             }
@@ -118,8 +117,7 @@ public class MessageManager : MonoBehaviour, IScreen
 
         if (currentMessageIndex < unreadButtons.Count)
         {
-            Image currentImg = unreadButtons[currentMessageIndex].GetComponent<Image>();
-            if (currentImg != null)
+            if (unreadButtons[currentMessageIndex].TryGetComponent<Image>(out Image currentImg))
             {
                 currentImg.color = highlightColor;
             }
@@ -130,8 +128,7 @@ public class MessageManager : MonoBehaviour, IScreen
     {
         for (int i = 0; i < unreadButtons.Count; i++)
         {
-            Image image = unreadButtons[i].GetComponent<Image>();
-            if (image != null)
+            if (unreadButtons[i].TryGetComponent<Image>(out Image image))
             {
                 if (unreadButtons[i].transform.parent == readParent)
                 {

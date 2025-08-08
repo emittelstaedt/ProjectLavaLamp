@@ -4,7 +4,7 @@ public class PlanetManager : MonoBehaviour, IScreen
 {
     [SerializeField] private Canvas planetCanvas;
 
-    public bool isActive()
+    public bool IsActive()
     {
         return true;
     }
