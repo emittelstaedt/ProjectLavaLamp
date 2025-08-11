@@ -14,13 +14,14 @@ public class MaterialCorroder : MonoBehaviour
     [SerializeField] private Material cleanMaterial;
     [SerializeField] private Material corrodeMaterial;
     [SerializeField] private Material ultraCorrodeMaterial;
-    private readonly Dictionary<CorrodeLevel, Material> materialList;
+    private Dictionary<CorrodeLevel, Material> materialList;
     private Renderer materialRenderer;
     
     private void Awake()
     {
         materialRenderer = GetComponent<Renderer>();
 
+        materialList = new();
         if (cleanMaterial != null)
         {
             materialList.Add(CorrodeLevel.Clean, cleanMaterial);
