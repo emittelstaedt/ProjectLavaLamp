@@ -13,10 +13,11 @@ public class InChute : MonoBehaviour, IInteractable
     private Outline outline;
     private Queue<BoxItemsSO> boxItemsQueue;
     private Vector3 itemSpawnPosition;
-    private Rigidbody outBoxRigidbody;
     private Mover doorMover;
     private PistonMover pistonMover;
     private bool isAnimating;
+    private bool hasGivenOutBox;
+    private string outBoxRequiredItem;
 
     void Awake()
     {
@@ -37,10 +38,6 @@ public class InChute : MonoBehaviour, IInteractable
 
         doorMover = GetComponentInChildren<Mover>();
         pistonMover = GetComponentInChildren<PistonMover>();
-
-        outBox = Instantiate(outBox, itemSpawnPosition + Vector3.right * 100f, Quaternion.identity);
-        outBoxRigidbody = outBox.GetComponent<Rigidbody>();
-        outBoxRigidbody.useGravity = false;
     }
 
     public float GetInteractDistance()
@@ -55,7 +52,7 @@ public class InChute : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return !isAnimating && (boxItemsQueue.Count > 0 || outBox != null);
+        return !isAnimating && (boxItemsQueue.Count > 0 || !hasGivenOutBox);
     }
 
     public void StartInteract()
@@ -78,6 +75,11 @@ public class InChute : MonoBehaviour, IInteractable
         outline.enabled = false;
     }
 
+    public void SetOutBoxRequiredItem(string requiredItem)
+    {
+        outBoxRequiredItem = requiredItem;
+    }
+
     public void AddBox(BoxItemsSO items)
     {
         boxItemsQueue.Enqueue(items);
@@ -89,7 +91,7 @@ public class InChute : MonoBehaviour, IInteractable
 
     private void GiveBox()
     {
-        if (boxItemsQueue.Count > 0)
+        if (hasGivenOutBox)
         {
             GameObject newBox = Instantiate(packagedBox, itemSpawnPosition, Quaternion.identity);
             // Removes "(Clone)" from the name.
@@ -98,9 +100,13 @@ public class InChute : MonoBehaviour, IInteractable
         }
         else
         {
-            outBox.transform.position = itemSpawnPosition;
-            outBoxRigidbody.useGravity = true;
-            outBox = null;
+            GameObject newOutBox = Instantiate(outBox, itemSpawnPosition, Quaternion.identity);
+            // Removes "(Clone)" from the name.
+            newOutBox.name = outBox.name;
+
+            newOutBox.GetComponentInChildren<PlacementTrigger>().SetRequiredItem(outBoxRequiredItem);
+
+            hasGivenOutBox = true;
         }
 
         StartCoroutine(GiveItemAnimation());
@@ -122,7 +128,7 @@ public class InChute : MonoBehaviour, IInteractable
 
         doorMover.MoveBack();
 
-        if (boxItemsQueue.Count <= 0 && outBox == null)
+        if (boxItemsQueue.Count <= 0 && hasGivenOutBox)
         {
             chuteMaterial.color = Color.white;
         }

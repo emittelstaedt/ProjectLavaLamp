@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 116430238319663717}
   - component: {fileID: 2454912186395702849}
   - component: {fileID: 2048428587318001733}
+  - component: {fileID: 8196920973099487016}
   m_Layer: 0
   m_Name: InChute
   m_TagString: Untagged
@@ -247,6 +248,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2454912186395702849}
         m_TargetAssemblyTypeName: InChute, Assembly-CSharp
         m_MethodName: AddBox
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8196920973099487016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004810627175594447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22c5e3d55a41904fbd593acc911e8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: d95419afc6587c8469f9728a445fc534, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2454912186395702849}
+        m_TargetAssemblyTypeName: InChute, Assembly-CSharp
+        m_MethodName: SetOutBoxRequiredItem
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
