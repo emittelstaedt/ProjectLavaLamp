@@ -136,7 +136,7 @@ public class KeyRebinding : MonoBehaviour
             PlayerPrefs.SetString(action.name + "_rebinds", action.SaveBindingOverridesAsJson());
 
             // Resets the text for all the keybindings.
-            foreach (KeyRebinding button in FindObjectsByType<KeyRebinding>(FindObjectsSortMode.None))
+            foreach (KeyRebinding button in FindObjectsByType<KeyRebinding>())
             {
                 if (button.actionReference.action == action && button.bindingIndex == conflictIndex)
                 {
