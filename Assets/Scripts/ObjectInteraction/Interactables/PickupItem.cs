@@ -209,12 +209,18 @@ public class PickupItem : MonoBehaviour, IInteractable
         collider.enabled = true;
         Vector3 extents = collider.bounds.extents;
 
-        int hitCount = Physics.OverlapSphereNonAlloc(targetPosition, extents.magnitude, potentialHits, ignoreCollisionLayer);
+        int hitCount = Physics.OverlapSphereNonAlloc(targetPosition, extents.magnitude, potentialHits, ignoreCollisionLayer, QueryTriggerInteraction.Ignore);
 
         for (int i = 0; i < hitCount; i++)
         {
             Collider potentialHit = potentialHits[i];
 
+			/*GameObject collisionExceptions = potentialHit.gameObject;
+			if(collisionExceptions.tag == "Player")
+			{
+				return isValid;
+			}*/
+			
             if (potentialHit.isTrigger)
             {
                 continue;
@@ -234,7 +240,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
                 float rayLength = Vector3.Distance(cameraPosition, boundsEdgePoint);
                 Vector3 rayDirection = (boundsEdgePoint - cameraPosition).normalized;
-                if (Physics.Raycast(cameraPosition, rayDirection, out RaycastHit hit, rayLength, ignoreCollisionLayer))
+                if (Physics.Raycast(cameraPosition, rayDirection, out RaycastHit hit, rayLength, ignoreCollisionLayer, QueryTriggerInteraction.Ignore))
                 {
                     float percentage = hit.distance / rayLength;
                     float newDistance = currentDistance * percentage;
@@ -254,7 +260,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
         float distanceToTarget = Vector3.Distance(cameraPosition, targetPosition);
         Vector3 directionToTarget = (targetPosition - cameraPosition).normalized;
-        if (Physics.Raycast(cameraPosition, directionToTarget, out RaycastHit _, distanceToTarget, ignoreCollisionLayer))
+        if (Physics.Raycast(cameraPosition, directionToTarget, out RaycastHit _, distanceToTarget, ignoreCollisionLayer, QueryTriggerInteraction.Ignore))
         {
             // Object is behind something but not penetrating, so disallow movement.
             isValid = false;
