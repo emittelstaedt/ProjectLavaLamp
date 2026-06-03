@@ -8,7 +8,7 @@ public class DoorMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hasEntered)
+        if ((other.CompareTag("Player") || other.CompareTag("Held")) && !hasEntered)
         {
             hasEntered = true;
             openingDoor.RaiseEvent();
@@ -19,7 +19,7 @@ public class DoorMover : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if ((other.CompareTag("Player") || other.CompareTag("Held")))
         {
             hasEntered = false;
             closingDoor.RaiseEvent();

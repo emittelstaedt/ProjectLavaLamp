@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 230822224819490625}
   - component: {fileID: 2524002036321300789}
   - component: {fileID: 1153199099902407358}
+  - component: {fileID: 887250908755443783}
   - component: {fileID: 3104121461044695243}
   - component: {fileID: 6217386034390086045}
   - component: {fileID: 3505195616726503424}
@@ -67,6 +68,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -88,9 +91,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &1153199099902407358
 Rigidbody:
@@ -99,10 +104,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3445593189116435998}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -119,6 +124,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &887250908755443783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445593189116435998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de840acf395acc4ab9e0a06020f8b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectRelocator
 --- !u!114 &3104121461044695243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99faa6ef036208946ad8d2ca443fc789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxItems: {fileID: 0}
   minimumSmashSpeed: 11
   despawnDelay: 3
   despawnTime: 0.5
