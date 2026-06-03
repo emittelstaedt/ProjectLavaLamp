@@ -22,12 +22,12 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     void Update()
     {
-        DetectInteractablesLookedAt();
-
-        if (currentInteraction != null && !IsWithinRange(currentInteraction))
-        {
-             ClearCurrentInteraction();
-        }
+		DetectInteractablesLookedAt();
+		
+		if (currentInteraction != null && !IsWithinRange(currentInteraction))
+		{
+			ClearCurrentInteraction();
+		}
     }
 
     private void DetectInteractablesLookedAt()
@@ -42,17 +42,19 @@ public class InteractableObjectSearcher : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++) 
         {
-            IInteractable interactable = hits[i].collider.GetComponentInParent<IInteractable>();
+			if(hits[i].collider.GetComponentInParent<IInteractable>() != currentInteraction){
+				IInteractable interactable = hits[i].collider.GetComponentInParent<IInteractable>();
 
-            if (interactable != null)
-            {
-                currentObjectsLookedAt.Add(interactable);
-            }
-            else
-            {
-                // Stop adding objects if line of sight is blocked by a non-interactable object.
-                break;
-            }
+				if (interactable != null)
+				{
+					currentObjectsLookedAt.Add(interactable);
+				}
+				else
+				{
+					// Stop adding objects if line of sight is blocked by a non-interactable object.
+					break;
+				}
+			}
         }
 
         HandleFoundInteractables(currentObjectsLookedAt);
