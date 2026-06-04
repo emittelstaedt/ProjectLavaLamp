@@ -25,11 +25,13 @@ public class PickupItem : MonoBehaviour, IInteractable
     private float closestAllowedDistance;
     private Quaternion objectRotation;
     private bool isHeld;
+	private bool readyToDisableCollision;
     private GameObject currentItemHeld;
     private readonly Collider[] potentialHits = new Collider[10];
-
+	
     private void Awake()
     {
+		readyToDisableCollision = true;
         ignoreCollisionLayer = ~(1 << LayerMask.NameToLayer("IgnoreItemCollision"));
 
         rotateAction = InputSystem.actions.FindAction("Rotate");
@@ -47,7 +49,7 @@ public class PickupItem : MonoBehaviour, IInteractable
     {
         if (isHeld)
         {
-            if (rotateAction.IsPressed())
+			if (rotateAction.IsPressed())
             {
                 lookAction.Disable();
 
@@ -101,6 +103,26 @@ public class PickupItem : MonoBehaviour, IInteractable
         }
     }
 
+	private void DisableBuildCollision(bool state)
+	{
+		if(state == readyToDisableCollision)
+		{
+			Collider[] objectColliders = GetComponentsInChildren<Collider>();
+			Collider[] allColliders = FindObjectsByType<Collider>();
+			foreach(Collider col in allColliders)
+			{
+				if (col.gameObject.layer == 3) //3 is the IgnoreItemCollision
+				{
+					foreach(Collider childCol in objectColliders)
+					{
+						Physics.IgnoreCollision(childCol, col, state);
+					}
+				}
+			}
+			readyToDisableCollision = !state;
+		}
+	}
+
     private void OnCollisionEnter(Collision collision)
     {
         float soundVolume = Mathf.InverseLerp(0, 3, collision.relativeVelocity.magnitude);
@@ -126,6 +148,11 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
+		foreach(Collider col in itemColliders)
+		{
+			Physics.IgnoreCollision(col, GameObject.FindWithTag("Player").GetComponent<Collider>(), true);
+		}
+		
         heldItemChanged.RaiseEvent(this.gameObject);
 
         Vector3 cameraToObject = transform.position - playerCameraTransform.position;
@@ -137,12 +164,28 @@ public class PickupItem : MonoBehaviour, IInteractable
         closestAllowedDistance = currentDistance * (1f - distancePercentageToDrop);
 
         SetHeldState(true);
+		this.gameObject.tag = "Held";
+		foreach(Transform childTransform in GetComponentsInChildren<Transform>(true))
+		{
+			childTransform.gameObject.tag = "Held";
+		}
     }
 
     public void StopInteract()
     {
+		foreach(Collider col in itemColliders)
+		{
+			Physics.IgnoreCollision(col, GameObject.FindWithTag("Player").GetComponent<Collider>(), false);
+		}
         heldItemChanged.RaiseEvent(null);
         SetHeldState(false);
+		readyToDisableCollision = false;
+		DisableBuildCollision(false);
+		this.gameObject.tag = "Untagged";
+		foreach(Transform childTransform in GetComponentsInChildren<Transform>(true))
+		{
+			childTransform.gameObject.tag = "Untagged";
+		}
     }
 
     public void StartHover()
@@ -203,19 +246,20 @@ public class PickupItem : MonoBehaviour, IInteractable
 
     private bool IsValidPosition(Vector3 cameraPosition, Collider collider, Vector3 targetPosition, Quaternion objectRotation)
     {
-        bool isValid = true;
+        
+		bool isValid = true;
 
-        // Must briefly enable collider to check for collisions.
         collider.enabled = true;
-        Vector3 extents = collider.bounds.extents;
+        DisableBuildCollision(true);
+		Vector3 extents = collider.bounds.extents;
 
-        int hitCount = Physics.OverlapSphereNonAlloc(targetPosition, extents.magnitude, potentialHits, ignoreCollisionLayer);
+        int hitCount = Physics.OverlapSphereNonAlloc(targetPosition, extents.magnitude, potentialHits, ignoreCollisionLayer, QueryTriggerInteraction.Ignore);
 
         for (int i = 0; i < hitCount; i++)
         {
             Collider potentialHit = potentialHits[i];
-
-            if (potentialHit.isTrigger)
+            
+			if (potentialHit.isTrigger)
             {
                 continue;
             }
@@ -234,7 +278,7 @@ public class PickupItem : MonoBehaviour, IInteractable
 
                 float rayLength = Vector3.Distance(cameraPosition, boundsEdgePoint);
                 Vector3 rayDirection = (boundsEdgePoint - cameraPosition).normalized;
-                if (Physics.Raycast(cameraPosition, rayDirection, out RaycastHit hit, rayLength, ignoreCollisionLayer))
+                if (Physics.Raycast(cameraPosition, rayDirection, out RaycastHit hit, rayLength, ignoreCollisionLayer, QueryTriggerInteraction.Ignore))
                 {
                     float percentage = hit.distance / rayLength;
                     float newDistance = currentDistance * percentage;
@@ -254,14 +298,13 @@ public class PickupItem : MonoBehaviour, IInteractable
 
         float distanceToTarget = Vector3.Distance(cameraPosition, targetPosition);
         Vector3 directionToTarget = (targetPosition - cameraPosition).normalized;
-        if (Physics.Raycast(cameraPosition, directionToTarget, out RaycastHit _, distanceToTarget, ignoreCollisionLayer))
+        if (Physics.Raycast(cameraPosition, directionToTarget, out RaycastHit _, distanceToTarget, ignoreCollisionLayer, QueryTriggerInteraction.Ignore))
         {
             // Object is behind something but not penetrating, so disallow movement.
             isValid = false;
         }
-
-        collider.enabled = false;
-        return isValid;
+        
+		return isValid;
     }
 
     private void SetHeldState(bool isHeld)
