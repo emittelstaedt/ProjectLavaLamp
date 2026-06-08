@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3473493556939304546
+--- !u!1 &1533206904195306881
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8037412955254802508}
-  - component: {fileID: 4408115707175106200}
-  - component: {fileID: 6687330191726399261}
-  - component: {fileID: 486417905655772660}
+  - component: {fileID: 1620237990500537049}
+  - component: {fileID: 2186203227601189590}
+  - component: {fileID: 6061407195988215738}
+  - component: {fileID: 5369095002156004729}
   m_Layer: 3
-  m_Name: ArmPincerCollider
+  m_Name: LockingPinCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8037412955254802508
+--- !u!4 &1620237990500537049
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3473493556939304546}
+  m_GameObject: {fileID: 1533206904195306881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 797862332696393568}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!33 &4408115707175106200
+  m_Father: {fileID: 9028264369191027248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2186203227601189590
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3473493556939304546}
-  m_Mesh: {fileID: 162338865723870621, guid: bfc9b2576a0edaf429dfc35047b3b30b, type: 3}
---- !u!23 &6687330191726399261
+  m_GameObject: {fileID: 1533206904195306881}
+  m_Mesh: {fileID: -6488417607933197718, guid: 9073ccfe8f1190646ad2ee5f8fd0edc0, type: 3}
+--- !u!23 &6061407195988215738
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3473493556939304546}
+  m_GameObject: {fileID: 1533206904195306881}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40444d1685bb35446a13353b48cf3f31, type: 2}
+  - {fileID: 2100000, guid: 15ab032004fc64a4495e444ab543ed98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,13 +91,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &486417905655772660
+--- !u!64 &5369095002156004729
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3473493556939304546}
+  m_GameObject: {fileID: 1533206904195306881}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -112,8 +112,8 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 162338865723870621, guid: bfc9b2576a0edaf429dfc35047b3b30b, type: 3}
---- !u!1 &7530675828604306934
+  m_Mesh: {fileID: -6488417607933197718, guid: 9073ccfe8f1190646ad2ee5f8fd0edc0, type: 3}
+--- !u!1 &7240244644341339053
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,53 +121,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 797862332696393568}
-  - component: {fileID: 170611017218502488}
-  - component: {fileID: 7710774274126701870}
-  - component: {fileID: 2533589589120584732}
-  - component: {fileID: 3473280149151527257}
-  - component: {fileID: 6676325364541471983}
-  - component: {fileID: 1351578500802378710}
-  - component: {fileID: 8285684846708903944}
-  - component: {fileID: 2070730950996453992}
+  - component: {fileID: 9028264369191027248}
+  - component: {fileID: 1700523713599487659}
+  - component: {fileID: 7092165725711532633}
+  - component: {fileID: 987346293552310722}
+  - component: {fileID: 607883232288229258}
+  - component: {fileID: 3334185549155447268}
+  - component: {fileID: 2607815513428970155}
+  - component: {fileID: 984255762005694926}
+  - component: {fileID: 1439989449447400652}
   m_Layer: 3
-  m_Name: ArmPincer
+  m_Name: LockingPin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &797862332696393568
+--- !u!4 &9028264369191027248
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8037412955254802508}
+  - {fileID: 1620237990500537049}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!33 &170611017218502488
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1700523713599487659
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
-  m_Mesh: {fileID: 162338865723870621, guid: bfc9b2576a0edaf429dfc35047b3b30b, type: 3}
---- !u!23 &7710774274126701870
+  m_GameObject: {fileID: 7240244644341339053}
+  m_Mesh: {fileID: -6488417607933197718, guid: 9073ccfe8f1190646ad2ee5f8fd0edc0, type: 3}
+--- !u!23 &7092165725711532633
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -209,13 +209,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2533589589120584732
+--- !u!54 &987346293552310722
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -236,18 +236,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3473280149151527257
+--- !u!114 &607883232288229258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e168e9ca5221dab4ea53b1267ce03374, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
   dropItem: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   heldItemChanged: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
   heldItemCollision: {fileID: 0}
@@ -258,50 +258,50 @@ MonoBehaviour:
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distancePercentageToDrop: 0.1
   rotationSpeed: 100
---- !u!114 &6676325364541471983
+--- !u!114 &3334185549155447268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 867101452e7cdcd4d9fc18f76fa4a555, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildOrderEnforcer
   finishedName: 
   mustBePlaced: 0
   buildFinished: {fileID: 0}
---- !u!114 &1351578500802378710
+--- !u!114 &2607815513428970155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2de840acf395acc4ab9e0a06020f8b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectRelocator
---- !u!114 &8285684846708903944
+--- !u!114 &984255762005694926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcdf3cf03da3cb648a17f3fc5c5fb4d7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameObjectEventChannelSubscriber
   eventChannel: {fileID: 11400000, guid: b678fc006b04c4a4eaabca6fff34bf8e, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3473280149151527257}
+      - m_Target: {fileID: 607883232288229258}
         m_TargetAssemblyTypeName: PickupItem, Assembly-CSharp
         m_MethodName: SetCurrentItemHeld
         m_Mode: 0
@@ -313,23 +313,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2070730950996453992
+--- !u!114 &1439989449447400652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530675828604306934}
+  m_GameObject: {fileID: 7240244644341339053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
   eventChannel: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6676325364541471983}
+      - m_Target: {fileID: 3334185549155447268}
         m_TargetAssemblyTypeName: BuildOrderEnforcer, Assembly-CSharp
         m_MethodName: CheckIfFinishedBuilding
         m_Mode: 1
@@ -341,7 +341,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3473280149151527257}
+      - m_Target: {fileID: 607883232288229258}
         m_TargetAssemblyTypeName: PickupItem, Assembly-CSharp
         m_MethodName: UpdateChildrenColliders
         m_Mode: 1

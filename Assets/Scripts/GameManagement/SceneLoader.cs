@@ -49,6 +49,8 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
+		//Will probably want to switch to scenemode.single for level manager, but for now
+		//It seems that certain vital components being left running with this mode making the game work
         var loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         yield return loading;
         yield return null;

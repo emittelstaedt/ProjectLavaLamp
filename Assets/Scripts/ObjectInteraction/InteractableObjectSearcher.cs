@@ -42,9 +42,9 @@ public class InteractableObjectSearcher : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++) 
         {
-			if(hits[i].collider.GetComponentInParent<IInteractable>() != currentInteraction){
+			if(hits[i].collider.gameObject.tag != "Held")
+			{
 				IInteractable interactable = hits[i].collider.GetComponentInParent<IInteractable>();
-
 				if (interactable != null)
 				{
 					currentObjectsLookedAt.Add(interactable);
@@ -54,6 +54,19 @@ public class InteractableObjectSearcher : MonoBehaviour
 					// Stop adding objects if line of sight is blocked by a non-interactable object.
 					break;
 				}
+			}
+			else if(hits[i].collider.GetComponentInParent<IInteractable>() != currentInteraction)
+			{
+				IInteractable interactable = hits[i].collider.GetComponentInParent<IInteractable>();
+				if (interactable != null)
+				{
+					currentObjectsLookedAt.Add(interactable);
+				}
+				else
+				{
+					// Stop adding objects if line of sight is blocked by a non-interactable object.
+					break;
+				}	
 			}
         }
 
