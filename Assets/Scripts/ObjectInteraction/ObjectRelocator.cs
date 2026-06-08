@@ -28,7 +28,9 @@ public class ObjectRelocator : MonoBehaviour
 			objectRigidbody.angularVelocity = Vector3.zero;
 			foreach(Collider col in itemColliders)
 			{
-				col.enabled = true;
+				if(col != null){
+					col.enabled = true;
+				}
 			}
 			objectRigidbody.useGravity = true;
 			isOutofBounds = false;
