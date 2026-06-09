@@ -16,6 +16,7 @@ public class BuildItemConstructor : MonoBehaviour
     [SerializeField] private VoidEventChannelSO openHandCrosshair;
     [SerializeField] private VoidEventChannelSO closedHandCrosshair;
     [SerializeField] private StringEventChannelSO itemNameHover;
+	
     [SerializeField] private string saveLocation = "Assets/Prefabs/";
     [Tooltip("These objects will be allowed to be place in any order.")]
     [SerializeField] private List<string> itemList;
@@ -128,6 +129,7 @@ public class BuildItemConstructor : MonoBehaviour
         parent.AddComponent<Rigidbody>();
         PickupItem pickupItem = parent.AddComponent<PickupItem>();
         BuildOrderEnforcer buildItemRenamer = parent.AddComponent<BuildOrderEnforcer>();
+		ObjectRelocator objectRelocator = parent.AddComponent<ObjectRelocator>();
         GameObjectEventChannelSubscriber gameObjectSubscriber = parent.AddComponent<GameObjectEventChannelSubscriber>();
         VoidEventChannelSubscriber voidSubscriber = parent.AddComponent<VoidEventChannelSubscriber>();
 
