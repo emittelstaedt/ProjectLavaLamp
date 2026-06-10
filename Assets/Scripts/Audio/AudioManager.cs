@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
         {
             Instance = GetComponent<AudioManager>();
         }
-        else if (Instance != gameObject)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }

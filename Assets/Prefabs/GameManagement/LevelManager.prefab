@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9054425470790906725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7842975273464218612}
+  - component: {fileID: 2149403798245145077}
+  - component: {fileID: -3075671009440027584}
+  - component: {fileID: 8379069061559631097}
+  - component: {fileID: 5046391715917970123}
+  - component: {fileID: 6509478108381067678}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: LevelManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7842975273464218612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2149403798245145077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec69c15d23b96342ad889d521e34c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  sendEmployeeID: {fileID: 11400000, guid: d43cba73a239a6f41b941379135f1c3c, type: 2}
+  enableButtons: {fileID: 11400000, guid: 55debc7be68618342a97f72a1fc2c235, type: 2}
+  profileNamePanel: {fileID: 0}
+  levels:
+  - {fileID: 11400000, guid: d25ff64c80c6032469459b11ef112be3, type: 2}
+  - {fileID: 11400000, guid: 99357d61402d5ed429423524f124e9e0, type: 2}
+  profiles: []
+  profilePaths: []
+  currentSession:
+    employeeName: 
+    employeeNumber: 0
+    currentDay: 1
+    buildCountHPC: 0
+    buildCountRebel: 0
+    coffeeLevel: 3
+    coffeeDrank: 0
+    coffeeThrown: 0
+    efficiency: 1000
+--- !u!114 &-3075671009440027584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 2a9e90c01b946e34cbafaac32f66f35c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2149403798245145077}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: selectEmployee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8379069061559631097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22c5e3d55a41904fbd593acc911e8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StringEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 370b504c0dc5e50438838fe7d192187d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2149403798245145077}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: setEmployeeName
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5046391715917970123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 95a9ad3610cc23d4ba547c45c5e2adac, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2149403798245145077}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: displayEmployeeIDs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6509478108381067678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 5b2e2ceac58d7e5449f1a65f710002db, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2149403798245145077}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: deleteEmployee
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -97,14 +98,15 @@ public class InChute : MonoBehaviour, IInteractable
             // Removes "(Clone)" from the name.
             newBox.name = packagedBox.name;
             newBox.GetComponent<BoxExploder>().BoxItems = boxItemsQueue.Dequeue();
+			SceneManager.MoveGameObjectToScene(newBox, SceneManager.GetSceneByName("OfficeWorkplace"));
         }
         else
         {
             GameObject newOutBox = Instantiate(outBox, itemSpawnPosition, Quaternion.identity);
             // Removes "(Clone)" from the name.
             newOutBox.name = outBox.name;
-
             newOutBox.GetComponentInChildren<PlacementTrigger>().SetRequiredItem(outBoxRequiredItem);
+			SceneManager.MoveGameObjectToScene(newOutBox, SceneManager.GetSceneByName("OfficeWorkplace"));
 
             hasGivenOutBox = true;
         }

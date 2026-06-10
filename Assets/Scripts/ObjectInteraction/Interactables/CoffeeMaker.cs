@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoffeeMaker : MonoBehaviour, IInteractable
 {
@@ -133,7 +134,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         GameObject fullCup = Instantiate(fullCupPrefab, lastItemheld.transform.position, lastItemheld.transform.rotation);
         fullCup.transform.localScale = lastItemheld.transform.localScale;
         fullCup.name = fullCupPrefab.name;
-
+		SceneManager.MoveGameObjectToScene(fullCup, SceneManager.GetSceneByName("OfficeWorkplace"));
         Destroy(lastItemheld);
 
         isPlacingCoffee = false;

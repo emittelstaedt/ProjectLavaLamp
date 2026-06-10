@@ -25,6 +25,6 @@ public class DespawnObject : MonoBehaviour
             yield return new WaitForSeconds(despawnTime / childCount);
         }
 
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

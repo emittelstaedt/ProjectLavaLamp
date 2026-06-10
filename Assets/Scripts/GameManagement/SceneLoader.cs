@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
         {
             Instance = GetComponent<SceneLoader>();
         }
-        else if (Instance != gameObject)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
