@@ -97,6 +97,9 @@ public class AudioPlayer : MonoBehaviour
     private IEnumerator DeactivateAfterSeconds(GameObject audioObject, float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        audioObject.SetActive(false);
+		if(audioObject != null)
+		{
+			audioObject.SetActive(false);
+		}
     }
 }

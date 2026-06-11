@@ -26,7 +26,7 @@ public class PauseMenuManager : MonoBehaviour
         {
             Instance = GetComponent<PauseMenuManager>();
         }
-        else if (Instance != gameObject)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class SceneLoader : MonoBehaviour
         {
             Instance = GetComponent<SceneLoader>();
         }
-        else if (Instance != gameObject)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -49,8 +50,6 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-		//Will probably want to switch to scenemode.single for level manager, but for now
-		//It seems that certain vital components being left running with this mode making the game work
         var loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         yield return loading;
         yield return null;
@@ -66,4 +65,9 @@ public class SceneLoader : MonoBehaviour
             buildInstructions.RaiseEvent(levelInfo.BuildInstructions);
         }
     }
+	
+	public void selectLevel(LevelInfoSO level)
+	{
+		levelInfo = level;
+	}
 }

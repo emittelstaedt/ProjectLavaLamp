@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 [RequireComponent(typeof(Fracture))]
@@ -74,6 +75,7 @@ public class BoxExploder : MonoBehaviour
 
         // Prevents other boxes with the same name from trying to despawn these fragments.
         fragmentParent.name = $"{name}DespawningFragments";
+		Destroy(gameObject);
     }
 
     private void InstantiateBoxItems()
@@ -95,6 +97,7 @@ public class BoxExploder : MonoBehaviour
                     GameObject item = Instantiate(items[i].gameObject, position, Quaternion.identity);
                     // Removes "(Clone)" from the name.
                     item.name = items[i].gameObject.name;
+					SceneManager.MoveGameObjectToScene(item, SceneManager.GetSceneByName("OfficeWorkplace"));
                 }
             }
         }

@@ -16,7 +16,7 @@ public class CameraSwapper : MonoBehaviour
         {
             Instance = GetComponent<CameraSwapper>();
         }
-        else if (Instance != gameObject)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
