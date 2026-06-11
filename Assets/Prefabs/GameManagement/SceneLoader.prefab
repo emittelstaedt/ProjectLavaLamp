@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9056325557327506744}
   - component: {fileID: 4898408042819545789}
+  - component: {fileID: 3341934999323036561}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -44,8 +45,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e42257194ea0248b48871fc4e66387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelInfo: {fileID: 11400000, guid: 99357d61402d5ed429423524f124e9e0, type: 2}
+  levelInfo: {fileID: 0}
   sendPackage: {fileID: 11400000, guid: de89d8a4fa40e8d459efe23f1c970d8d, type: 2}
   buildInstructions: {fileID: 11400000, guid: 390b8e74221d7944e8cf22c127fa0ec3, type: 2}
   setOutBoxItem: {fileID: 11400000, guid: d95419afc6587c8469f9728a445fc534, type: 2}
   mainSceneName: OfficeWorkplace
+--- !u!114 &3341934999323036561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784530481587848773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7292d42d037287478e99f35767eabf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelInfoSOEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: ec9ec9b579da19f4daa8fc92f3e853f0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4898408042819545789}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: selectLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

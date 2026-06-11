@@ -594,6 +594,7 @@ MonoBehaviour:
   sendProfileName: {fileID: 11400000, guid: 370b504c0dc5e50438838fe7d192187d, type: 2}
   displayIDs: {fileID: 11400000, guid: 95a9ad3610cc23d4ba547c45c5e2adac, type: 2}
   deleteProfile: {fileID: 11400000, guid: 5b2e2ceac58d7e5449f1a65f710002db, type: 2}
+  startGame: {fileID: 11400000, guid: e9a437e9a0bf08a4fbfa3dfb1e7ede2e, type: 2}
   HUD: {fileID: 0}
   sceneName: OfficeWorkplace
 --- !u!1 &1544957554146367059
@@ -1269,7 +1270,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LoadGame
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 2498448988377163892}
@@ -1281,7 +1282,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: LoadGame
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!95 &3054651903442118567
@@ -1334,13 +1335,13 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1824552356488964468}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 6844399913776252703}
+        m_TargetAssemblyTypeName: DisableButton, Assembly-CSharp
+        m_MethodName: checkSelectedProfile
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5851,13 +5852,13 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5610885597391608522}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 1893239718016838071}
+        m_TargetAssemblyTypeName: DisableButton, Assembly-CSharp
+        m_MethodName: checkSelectedProfile
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17902,7 +17903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1423667071326518691
 Transform:
   m_ObjectHideFlags: 0

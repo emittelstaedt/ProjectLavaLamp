@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,11 @@ public class LevelManager : MonoBehaviour
 {
 	[SerializeField] private EmployeeDataEventChannelSO sendEmployeeID;
 	[SerializeField] private VoidEventChannelSO enableButtons;
+	[SerializeField] private BoolEventChannelSO setCursorVisibility;
+	[SerializeField] private LevelInfoSOEventChannelSO sendLevel;
+	[SerializeField] private GameObject loadingScreen;
+	[SerializeField] private GameObject mainMenu;
+	[SerializeField] private GameObject HUD;
 	[SerializeField] private GameObject profileNamePanel;
 	[SerializeField] private LevelInfoSO[] levels;
 	[SerializeField] private EmployeeData[] profiles;
@@ -103,4 +110,29 @@ public class LevelManager : MonoBehaviour
 		displayEmployeeIDs();
 	}
 	
+	public void pushLevel(){
+		sendLevel.RaiseEvent(levels[currentSession.currentDay - 1]);
+	}
+	
+	public void levelComplete(){
+		if(currentSession.currentDay != levels.Length)
+		{
+			currentSession.currentDay++;
+		}else{
+			currentSession.currentDay = 1;
+		}
+		saveGame();
+		HUD.SetActive(false);
+		setCursorVisibility.RaiseEvent(true);
+		InputSystem.actions.FindActionMap("Player").Disable();
+        InputSystem.actions.FindAction("Pause").Enable();
+	    loadingScreen.SetActive(true);
+		StartCoroutine(WaitToUnloadScene());
+    }
+
+	private IEnumerator WaitToUnloadScene(){
+		SceneLoader.Instance.UnloadScene("OfficeWorkplace");
+		yield return null;
+		mainMenu.SetActive(true);
+	}
 }

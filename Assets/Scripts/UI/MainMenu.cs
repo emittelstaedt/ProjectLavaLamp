@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 	[SerializeField] private StringEventChannelSO sendProfileName;
 	[SerializeField] private VoidEventChannelSO displayIDs;
 	[SerializeField] private VoidEventChannelSO deleteProfile;
+	[SerializeField] private VoidEventChannelSO startGame;
     [SerializeField] private GameObject HUD;
     [SerializeField] private string sceneName = "OfficeWorkplace";
 	
@@ -28,13 +29,13 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
+		startGame.RaiseEvent();
         mainMenu.SetActive(false);
         HUD.SetActive(true);
-
-        SceneLoader.Instance.LoadScene(sceneName);
+		SceneLoader.Instance.LoadScene(sceneName);
         InputSystem.actions.FindActionMap("Player").Enable();
     }
-
+	
     public void QuitGame()
     {
         confirmQuitPanel.SetActive(true);

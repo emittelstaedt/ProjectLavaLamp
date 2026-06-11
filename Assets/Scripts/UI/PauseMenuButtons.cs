@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PauseMenuButtons : MonoBehaviour
 {
@@ -33,15 +35,18 @@ public class PauseMenuButtons : MonoBehaviour
     public void ConfirmMainMenuLoad()
     {
         confirmMainMenuPanel.SetActive(false);
-        UnpauseGame();
-
         loadingScreen.SetActive(true);
-
-        mainMenu.SetActive(true);
-
-        SceneLoader.Instance.UnloadScene(sceneName);
+		StartCoroutine(WaitToUnloadScene());
+		
     }
 
+	private IEnumerator WaitToUnloadScene(){
+		SceneLoader.Instance.UnloadScene(sceneName);
+		yield return null;
+		UnpauseGame();
+		mainMenu.SetActive(true);
+	}
+	
     public void CancelMainMenuLoad()
     {
         confirmMainMenuPanel.SetActive(false);
