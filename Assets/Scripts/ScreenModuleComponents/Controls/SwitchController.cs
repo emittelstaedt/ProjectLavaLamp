@@ -21,6 +21,7 @@ public class SwitchController : MonoBehaviour
     
     void OnMouseDown()
     {
+        //Debug.Log("SWITCH CLICKED");
         VoidEventChannelSO switchEvent;
         if (targetDirection == upDirection)
         {
