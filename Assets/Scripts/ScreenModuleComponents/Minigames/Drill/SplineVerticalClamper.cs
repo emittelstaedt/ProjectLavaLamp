@@ -9,20 +9,20 @@ public class SplineVerticalClamper : MonoBehaviour
     [SerializeField] private int splineIndex = 0;
 
     [Header("Settings")]
-    [Tooltip("Keep checked to align the object's rotation with the spline's incline.")]
+    [Tooltip("Keep checked to align the object's rotation with the spline's incline. (This is only for debugging!)")]
     [SerializeField] private bool updateRotation = true;
 
     void LateUpdate()
     {
         if (splineContainer == null) return;
 
-        // 1. Get the current position
+        //Get the current position
         Vector3 currentPosition = transform.position;
 
-        // 2. Convert the position to the local space of the spline container
+        //Convert the position to the local space of the spline container
         Vector3 localQuery = splineContainer.transform.InverseTransformPoint(currentPosition);
 
-        // 3. Find the nearest point on the mathematical curve relative to X coordinate
+        //Find the nearest point on the mathematical curve relative to X coordinate
         SplineUtility.GetNearestPoint(
             splineContainer.Splines[splineIndex], 
             localQuery, 
@@ -32,22 +32,22 @@ public class SplineVerticalClamper : MonoBehaviour
             2    // Subdivisions
         );
 
-        // 4. Convert the matched point back to world space coordinates
+        //Convert the matched point back to world space coordinates
         Vector3 worldNearestPoint = splineContainer.transform.TransformPoint(localNearestPoint);
 
-     
-        transform.position = new Vector3(currentPosition.x, worldNearestPoint.y, worldNearestPoint.z);
+        //UPDATED, now ONLY clamps vertically, used to clamp depthwise too
+        transform.position = new Vector3(currentPosition.x, worldNearestPoint.y, currentPosition.z);
 
-        // 6. Handle slope rotation alignment
+        //Handle slope rotation alignment (this is a debug setting, it is now handled by sprite animations instead)
         if (updateRotation)
         {
             Vector3 tangent = splineContainer.EvaluateTangent(splineIndex, normalizedTime);
             if (tangent != Vector3.zero)
             {
-                // 1. Convert the local spline tangent into a world-space direction
+                //Convert the local spline tangent into a world-space direction
                 Vector3 worldForward = splineContainer.transform.TransformDirection(tangent).normalized;
                 
-                // 2. Create a clean rotation using the world direction and standard global Up
+                //Create a clean rotation using the world direction and standard global Up
                 transform.rotation = Quaternion.LookRotation(worldForward, Vector3.up);
             }
         }

@@ -34,10 +34,10 @@ public class DrillNav : MonoBehaviour
             obstacleCollision.RaiseEvent();
             Debug.Log("Hit an Obstacle!");
         }
-        // 1. Try to find the junction script on the object we just bumped into
+        //Try to find the junction script on the object we just bumped into
         else if (other.TryGetComponent<Junction>(out var junction))
         {
-            // 2. verify that a target track was actually assigned in the inspector
+            //verify that a target track was actually assigned in the inspector
             if (junction.switchSpline != null && !junction.isInTruePosition)
             {
                 // Change: Update the vertical clamper instead of SplineAnimate
@@ -53,9 +53,8 @@ public class DrillNav : MonoBehaviour
                 // Change: Update the vertical clamper instead of SplineAnimate
                 verticalClamper.ChangeActiveSpline(initJunction.switchSpline, 0);
                 
-                // Note: You no longer need NormalizedTime = 0f or Restart()!
-                // Your custom horizontal movement script will naturally keep pushing the object forward,
-                // and the clamper will instantly calculate the vertical height on the new spline.
+                // Horizontal movement is handled by the background
+                // the clamper calculates where to move the drill vertically to make it visually sync with the spline
 
                 // Debug.Log("Successfully loaded onto new preset via Clamper!");
             }

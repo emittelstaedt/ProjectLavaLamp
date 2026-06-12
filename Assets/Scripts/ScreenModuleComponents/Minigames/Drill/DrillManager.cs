@@ -63,7 +63,7 @@ public class DrillManager : MonoBehaviour
 
         previousDrillIndex = currentDrillIndex;
 
-        DrillPrefabs[currentDrillIndex].SetActive(true);
+        //DrillPrefabs[currentDrillIndex].SetActive(true);
         hasStartedDrill = false;
     }
 
@@ -75,10 +75,9 @@ public class DrillManager : MonoBehaviour
         {
             stopInteract.RaiseEvent();
         }
-
+        DrillPrefabs[currentDrillIndex].SetActive(false);
         TurnScreenOff(true);    
         ResetDrillToStart();
-        DrillPrefabs[currentDrillIndex].SetActive(false);
         LoadNextDrill();
     }
 }
