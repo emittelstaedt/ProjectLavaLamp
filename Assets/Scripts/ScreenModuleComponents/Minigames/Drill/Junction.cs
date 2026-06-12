@@ -12,8 +12,8 @@ public class Junction : MonoBehaviour
     public bool isInTruePosition; //Keeps track of our state so we can alternate cleanly
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Initialize
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -26,12 +26,6 @@ public class Junction : MonoBehaviour
         else{
             spriteRenderer.sprite=switchSprite;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnSwitch(){ //When the corresponding switch is hit (assign both switch up and switch down to call this)

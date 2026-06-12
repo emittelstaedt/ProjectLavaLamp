@@ -5,7 +5,7 @@ public class TargetVelocityTracker : MonoBehaviour
     public Vector3 Velocity { get; private set; }
     private Vector3 lastPosition;
 
-    private void Start()
+    private void Awake()
     {
         lastPosition = transform.position;
     }

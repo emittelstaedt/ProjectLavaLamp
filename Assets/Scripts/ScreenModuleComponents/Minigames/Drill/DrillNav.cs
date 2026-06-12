@@ -11,16 +11,10 @@ public class DrillNav : MonoBehaviour
     [SerializeField] private Sprite upSprite;
     [SerializeField] private Sprite downSprite;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Initalize
     void Awake()
     {
         verticalClamper = GetComponent<SplineVerticalClamper>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
      // Automatically called by Unity when entering an "Is Trigger" collider
