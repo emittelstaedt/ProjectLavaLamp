@@ -26,7 +26,7 @@ public class InteractableObjectSearcher : MonoBehaviour
 		
 		if (currentInteraction != null && !IsWithinRange(currentInteraction))
 		{
-			ClearCurrentInteraction();
+			//ClearCurrentInteraction(); Evil Evil code that makes terminals not work based on camera distance, may be used to prevent hooking objects around things
 		}
     }
 
