@@ -5,6 +5,7 @@ public class DrillNav : MonoBehaviour
 {
     private SplineVerticalClamper verticalClamper;
     [SerializeField] private VoidEventChannelSO goalCollision;
+    [SerializeField] private VoidEventChannelSO turnoffSiren;
     [SerializeField] private VoidEventChannelSO obstacleCollision;
     [SerializeField] public float targetMovementSpeed = 1f;
     [SerializeField] private Sprite rightSprite;
@@ -22,6 +23,7 @@ public class DrillNav : MonoBehaviour
     {
         if(other.CompareTag("DrillGoal")){
             goalCollision.RaiseEvent();
+            turnoffSiren.RaiseEvent();
             Debug.Log("Hit the goal!");
         }
         else if(other.CompareTag("DrillObstacle")){
