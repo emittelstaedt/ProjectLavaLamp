@@ -600,9 +600,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment
       objectReference: {fileID: 0}
-    - target: {fileID: 1441038353389641116, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 239.99954
+    - target: {fileID: 3984717907930138422, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+      propertyPath: unlocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4638184226866400396, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: turnoffSiren
@@ -645,10 +645,54 @@ PrefabInstance:
       insertIndex: 0
       addedObject: {fileID: 2114416870}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5781970751115907668, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5200155845361281159, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1798059332}
+      addedObject: {fileID: 2146758476}
   m_SourcePrefab: {fileID: 100100000, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+--- !u!1 &2146758474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5200155845361281159, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2146758475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7075515507206473471, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146758474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88962aa77ed39db46892d6c4c11de37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2146758476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146758474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: dde4955e8dc45fa168a788754a53f3f7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2146758475}
+        m_TargetAssemblyTypeName: DoorMover, Assembly-CSharp
+        m_MethodName: enableMainDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
