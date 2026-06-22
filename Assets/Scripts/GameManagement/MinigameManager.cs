@@ -75,7 +75,7 @@ public class MinigameManager : MonoBehaviour
                 return;
             }
             else if(nextGame==-1){
-                Debug.Log("No triggerable minigame found!");
+                //Debug.Log("No triggerable minigame found!");
             }
             else{
                 sirenChannels[nextGame].RaiseEvent();
