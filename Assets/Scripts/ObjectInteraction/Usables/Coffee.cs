@@ -15,7 +15,7 @@ public class Coffee : MonoBehaviour, IUsable
         if (LevelManager.Instance != null && LevelManager.Instance.currentSession != null)
         {
             LevelManager.Instance.currentSession.coffeeDrank++;
-            Debug.Log($"Current Coffees Drank is: {LevelManager.Instance.currentSession.coffeeDrank}");
+            //Debug.Log($"Current Coffees Drank is: {LevelManager.Instance.currentSession.coffeeDrank}");
         }
         else
         {

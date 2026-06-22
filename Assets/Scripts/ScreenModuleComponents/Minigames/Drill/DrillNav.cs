@@ -22,13 +22,13 @@ public class DrillNav : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("DrillGoal")){
-            goalCollision.RaiseEvent();
+            StartCoroutine(SafeGoalCollision());
             turnoffSiren.RaiseEvent();
-            Debug.Log("Hit the goal!");
+            //Debug.Log("Hit the goal!");
         }
         else if(other.CompareTag("DrillObstacle")){
-            obstacleCollision.RaiseEvent();
-            Debug.Log("Hit an Obstacle!");
+            StartCoroutine(SafeObstacleCollision()); 
+            //Debug.Log("Hit an Obstacle!");
         }
         //Try to find the junction script on the object we just bumped into
         else if (other.TryGetComponent<Junction>(out var junction))
@@ -55,5 +55,23 @@ public class DrillNav : MonoBehaviour
                 // Debug.Log("Successfully loaded onto new preset via Clamper!");
             }
         }
+    }
+
+    System.Collections.IEnumerator SafeObstacleCollision(){
+
+        //Wait until its safe to deload
+        yield return new WaitForFixedUpdate(); 
+
+        //Register Collision
+        obstacleCollision.RaiseEvent();
+    }
+
+    System.Collections.IEnumerator SafeGoalCollision(){
+
+        //Wait until its safe to deload
+        yield return new WaitForFixedUpdate(); 
+
+        //Register Collision
+        goalCollision.RaiseEvent();
     }
 }
