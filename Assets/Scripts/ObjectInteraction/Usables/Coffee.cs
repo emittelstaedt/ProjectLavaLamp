@@ -10,6 +10,18 @@ public class Coffee : MonoBehaviour, IUsable
 
     public void UseItem()
     {
+
+        // Pull the data out of the Level Manager
+        if (LevelManager.Instance != null && LevelManager.Instance.currentSession != null)
+        {
+            LevelManager.Instance.currentSession.coffeeDrank++;
+            Debug.Log($"Current Coffees Drank is: {LevelManager.Instance.currentSession.coffeeDrank}");
+        }
+        else
+        {
+            Debug.LogWarning("Coffee could not find levelmanager!");
+        }
+
         stopInteraction.RaiseEvent();
         changePostProcess.RaiseEvent((int) PostProcess.Clean);
         coffeeDrank.RaiseEvent();
