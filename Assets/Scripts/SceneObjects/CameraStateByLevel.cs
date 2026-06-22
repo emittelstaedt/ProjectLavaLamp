@@ -14,7 +14,7 @@ public class CameraStateByLevel : MonoBehaviour
             for(int i=0;i<daysDisabled.Length;i++){
                 if(daysDisabled[i]==LevelManager.Instance.currentSession.currentDay){
                     gameObject.SetActive(false);
-                    Debug.Log("Camera disabled!");
+                    //Debug.Log("Camera disabled!");
                 }
             }    
         }
