@@ -12,6 +12,8 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private VoidEventChannelSO clearCrosshair;
     [SerializeField] private VoidEventChannelSO thumbsUpCrosshair;
+    [SerializeField] private VoidEventChannelSO cameraDisabled;
+    
 
 
     [SerializeField] private float rotationSpeed = 2f;
@@ -21,6 +23,8 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     private int state = 0; //0 is active, 1 is disabled, 2 is a unique "force splash" state for day 2.
     [SerializeField] private int dayForceSplash;
     [SerializeField] private int[] reActivateTimer;
+    Transform coffee;
+    Transform sparks;
 
     private void Awake()
     {
@@ -37,12 +41,16 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         disablePointTransform = transform.parent.Find("DisablePoint");
         mainCameraTransform = Camera.main.transform;
 
+        //Grab references to our two children so we can toggle them (Cofee Drip and Sparks)
+        coffee = transform.Find("Cofee Drip");
+        sparks = transform.Find("Sparks");
         //Make sure we can grab the level manager state
         if (LevelManager.Instance != null && LevelManager.Instance.currentSession != null)
         {
             if(LevelManager.Instance.currentSession.currentDay==dayForceSplash) //If we are on designated day
             {
                 state = 2;
+                sparks.gameObject.SetActive(true);
             }
         }
     }
@@ -109,7 +117,9 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         //Debug.Log("AAAAAAAA");
         if(state!=1)
         {
-            state=1;
+            state = 1;
+            coffee.gameObject.SetActive(true);
+            cameraDisabled.RaiseEvent();
             Invoke("reEnableByDayTimer", reActivateTimer[LevelManager.Instance.currentSession.currentDay-1]);
         }
     }
@@ -119,9 +129,11 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         if(LevelManager.Instance.currentSession.currentDay==dayForceSplash) //If we are on designated day
         {
             state = 2;
+            coffee.gameObject.SetActive(false);
         }
         else{
             state = 0;
+            coffee.gameObject.SetActive(false);
         }
     }
 
