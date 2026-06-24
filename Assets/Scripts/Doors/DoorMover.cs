@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DoorMover : MonoBehaviour
 {
@@ -29,7 +30,31 @@ public class DoorMover : MonoBehaviour
         }
     }
 
-    public void enableMainDoor(){
-        unlocked = true;
+    public void enableMainDoor()
+    {
+        GameObject camera = GameObject.FindWithTag("DoorCamera");
+        if (camera != null)
+        {
+            SecurityCameraFollow securityCam = camera.GetComponent<SecurityCameraFollow>();
+            if (securityCam != null)
+            {
+                if (securityCam.getState() != 2)
+                {
+                    unlocked = true;
+                }
+            }
+            else
+            {
+                unlocked = true;
+            }
+        }
+        else
+        {
+            unlocked = true;
+        }
+    }
+
+    public void trueUnlock(){
+        unlocked=true;
     }
 }
