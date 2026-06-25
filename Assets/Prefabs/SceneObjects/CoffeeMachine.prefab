@@ -68,6 +68,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -89,9 +91,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5438429106482369745
 MonoBehaviour:
@@ -108,7 +112,7 @@ MonoBehaviour:
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   requiredItem: EmptyCoffeeCup
   fullCupPrefab: {fileID: 7544416146807603691, guid: 76303dcb27b4b5148a291f2cbab0a128, type: 3}
-  Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
+  settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   numberOfUses: 1
   transitionTime: 0.5
   coffeeLocationBottom: {fileID: 4398285539582711890}
