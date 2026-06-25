@@ -65,13 +65,21 @@ public class Coffee : MonoBehaviour, IUsable
         {
             Invoke(nameof(heldDecay), 0.5f); 
         }
-        Invoke(nameof(checkHeldStatus), 0.3f);
+        else
+        {
+            Invoke(nameof(checkHeldStatus), 0.3f);
+        }
     }
 
     private void heldDecay()
     {
         wasHeldRecently = false;
         Invoke(nameof(checkHeldStatus), 0.3f); 
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 
 }
