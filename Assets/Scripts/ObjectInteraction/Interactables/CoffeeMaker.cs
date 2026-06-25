@@ -7,8 +7,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     [SerializeField] private VoidEventChannelSO stopInteraction;
     [SerializeField] private string requiredItem = "CoffeeCupEmpty";
     [SerializeField] private GameObject fullCupPrefab;
-    [SerializeField] private InteractableSettingsSO Settings;
-    [SerializeField] private int numberOfUses = 1;
+    [SerializeField] private InteractableSettingsSO settings;
     [SerializeField] private float transitionTime = .5f;
     [SerializeField] private Transform coffeeLocationBottom;
     [SerializeField] private ParticleSystem coffeeSteam;
@@ -19,19 +18,18 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        outline = GetComponent<Outline>();
-        if (outline == null)
+		if (!TryGetComponent<Outline>(out outline))
         {
             outline = gameObject.AddComponent<Outline>();
-            outline.enabled = false;
-            outline.OutlineWidth = 5;
-            outline.OutlineMode = Outline.Mode.OutlineVisible;
         }
+        outline.enabled = false;
+        outline.OutlineWidth = settings.OutlineWidth;
+        outline.OutlineMode = Outline.Mode.OutlineVisible;
     }
 
     public float GetInteractDistance()
     {
-        return Settings.InteractionDistance;
+        return settings.InteractionDistance + 3;
     }
 
     public Vector3 GetPosition()
@@ -41,7 +39,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        if (currentItemHeld != null && numberOfUses > 0 && !isPlacingCoffee)
+        if (currentItemHeld != null && !isPlacingCoffee)
         {
             return requiredItem.Equals(currentItemHeld.name);
         }
@@ -65,7 +63,6 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         isPlacingCoffee = true;
         StartCoroutine(MoveCoffeeToMachine(lastItemheld, coffeeLocation));
 
-        numberOfUses--;
     }
 
     public void StopInteract()
@@ -74,7 +71,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
 
     public void StartHover()
     {
-        outline.OutlineColor = Settings.HoverColor;
+        outline.OutlineColor = settings.HoverColor;
         outline.enabled = true;
     }
 
