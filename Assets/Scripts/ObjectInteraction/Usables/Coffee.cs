@@ -7,6 +7,13 @@ public class Coffee : MonoBehaviour, IUsable
     [SerializeField] private IntEventChannelSO changePostProcess;
     [SerializeField] private VoidEventChannelSO coffeeDrank;
     [SerializeField] private GameObject emptyCupPrefab;
+    private bool wasHeldRecently = false;
+
+    private void Awake()
+    {
+        //Debug.Log("AAAAAAAAAAAAAAAA IM REAL I SWEAR");
+        Invoke(nameof(checkHeldStatus), 0.3f); 
+    }
 
     public void UseItem()
     {
@@ -34,4 +41,37 @@ public class Coffee : MonoBehaviour, IUsable
 
         Destroy(gameObject);
     }
+
+    public void emptyThisCup(){
+        if(wasHeldRecently)
+        {
+        GameObject emptyCup = Instantiate(emptyCupPrefab, transform.position, transform.rotation);
+        emptyCup.transform.localScale = transform.localScale;
+        emptyCup.name = emptyCupPrefab.name;
+		SceneManager.MoveGameObjectToScene(emptyCup, SceneManager.GetSceneByName("OfficeWorkplace"));
+        Destroy(gameObject);
+        }
+    }
+
+    private void checkHeldStatus()
+    {
+        //Debug.Log($"Was held recently?: {wasHeldRecently}");
+        if(gameObject.CompareTag("Held")&&!wasHeldRecently)
+        {
+            wasHeldRecently = true;
+            Invoke(nameof(checkHeldStatus), 0.5f); 
+        }
+        else if(!gameObject.CompareTag("Held")&&wasHeldRecently)
+        {
+            Invoke(nameof(heldDecay), 0.5f); 
+        }
+        Invoke(nameof(checkHeldStatus), 0.3f);
+    }
+
+    private void heldDecay()
+    {
+        wasHeldRecently = false;
+        Invoke(nameof(checkHeldStatus), 0.3f); 
+    }
+
 }
