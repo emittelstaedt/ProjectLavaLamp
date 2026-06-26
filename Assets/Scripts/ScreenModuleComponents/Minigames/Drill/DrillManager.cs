@@ -28,6 +28,7 @@ public class DrillManager : MonoBehaviour
             return;
         }
         //Only activates prefab once the player interacts with the terminal(?)
+
         DrillPrefabs[currentDrillIndex].SetActive(true);
         //ResetDrillToStart();
 
@@ -62,22 +63,28 @@ public class DrillManager : MonoBehaviour
         } while (currentDrillIndex == previousDrillIndex && DrillPrefabs.Length > 1);
 
         previousDrillIndex = currentDrillIndex;
-
-        //DrillPrefabs[currentDrillIndex].SetActive(true);
-        hasStartedDrill = false;
     }
 
     public void StopDrillInteraction()
     {
-        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
+        if (!hasStartedDrill)
+        {
+            return;
+        }
 
-        if (stopInteract != null)
+        hasStartedDrill = false;
+
+
+        if(stopInteract != null)
         {
             stopInteract.RaiseEvent();
         }
-        DrillPrefabs[currentDrillIndex].SetActive(false);
-        TurnScreenOff(true);    
+        AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
+        TurnScreenOff(true);     
         ResetDrillToStart();
         LoadNextDrill();
+        DrillPrefabs[currentDrillIndex].SetActive(false);
+        hasStartedDrill=false;
     }
+    
 }
