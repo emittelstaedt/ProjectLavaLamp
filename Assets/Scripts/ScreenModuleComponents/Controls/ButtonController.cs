@@ -8,7 +8,8 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private Mode mode = Mode.Hold;
     [SerializeField] private float pressTime = 0.1f;
     private readonly float pressDistance = 0.1f;
-    private float defaultYPosition;
+    private Vector3 defaultLocalPosition;
+    private float pressProgress;
     private float pressVelocity;
     private bool isTargetStatePressed;
     private Coroutine moveButton;
@@ -21,7 +22,7 @@ public class ButtonController : MonoBehaviour
     
     void Awake()
     {
-        defaultYPosition = transform.localPosition.y;
+        defaultLocalPosition = transform.localPosition;
     }
 
     void OnMouseDown()
@@ -82,23 +83,19 @@ public class ButtonController : MonoBehaviour
     
     private IEnumerator MoveButton()
     {
-        float targetYPosition;
-        if (!isTargetStatePressed)
+        Vector3 pressDirection = transform.localRotation * Vector3.back;
+
+        float targetDistance = isTargetStatePressed ? pressDistance : 0f;
+
+        while(Mathf.Abs(pressProgress - targetDistance) > 0.001f)
         {
-            targetYPosition = defaultYPosition;
-        }
-        else
-        {
-            targetYPosition = defaultYPosition - pressDistance;
-        }
-        
-        while (Mathf.Abs(transform.localPosition.y - targetYPosition) > 0.001f)
-        {
-            Vector3 position = transform.localPosition;
-            position.y = Mathf.SmoothDamp(position.y, targetYPosition, ref pressVelocity, pressTime);
-            
-            transform.localPosition = position;
+            pressProgress = Mathf.SmoothDamp(pressProgress, targetDistance, ref pressVelocity, pressTime);
+            transform.localPosition = defaultLocalPosition + pressDirection * pressProgress;
             yield return null;
         }
+
+        pressProgress = targetDistance;
+        transform.localPosition = defaultLocalPosition + pressDirection * pressProgress;
+        
     }
 }
