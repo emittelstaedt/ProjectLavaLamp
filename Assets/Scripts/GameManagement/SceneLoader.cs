@@ -7,6 +7,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private LevelInfoSO levelInfo;
     [SerializeField] private BoxItemsSOEventChannelSO sendPackage;
+	[SerializeField] private BoxItemsSOEventChannelSO sendCMSPackage;
     [SerializeField] private BuildInstructionsSOEventChannelSO buildInstructions;
     [SerializeField] private StringEventChannelSO setOutBoxItem;
     [SerializeField] private string mainSceneName;
@@ -60,8 +61,11 @@ public class SceneLoader : MonoBehaviour
             {
                 sendPackage.RaiseEvent(package);
             }
-
-            setOutBoxItem.RaiseEvent(levelInfo.BuildName);
+			if(levelInfo.CMSPackage != null)
+			{
+				sendCMSPackage.RaiseEvent(levelInfo.CMSPackage);
+            }
+			setOutBoxItem.RaiseEvent(levelInfo.BuildName);
             buildInstructions.RaiseEvent(levelInfo.BuildInstructions);
         }
     }
