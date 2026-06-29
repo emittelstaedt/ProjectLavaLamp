@@ -14,8 +14,9 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private GameObject loadingScreen;
 	[SerializeField] private GameObject mainMenu;
 	[SerializeField] private GameObject HUD;
+	[SerializeField] private GameObject levelSuccess;
 	[SerializeField] private GameObject profileNamePanel;
-	[SerializeField] private LevelInfoSO[] levels;
+	public LevelInfoSO[] levels;
 	[SerializeField] private EmployeeData[] profiles;
 	[SerializeField] private string[] profilePaths;
 	
@@ -126,13 +127,44 @@ public class LevelManager : MonoBehaviour
 		setCursorVisibility.RaiseEvent(true);
 		InputSystem.actions.FindActionMap("Player").Disable();
         InputSystem.actions.FindAction("Pause").Enable();
-	    loadingScreen.SetActive(true);
-		StartCoroutine(WaitToUnloadScene());
+	    StartCoroutine(PauseBeforeLevelSuccess());
     }
 
-	private IEnumerator WaitToUnloadScene(){
+	public void activateMainMenu()
+	{
+		StartCoroutine(ReturnToMainMenu());
+	}
+	
+	public void activateNextLevel()
+	{
+		StartCoroutine(ContinueToNextLevel());
+	}
+	
+	private IEnumerator ReturnToMainMenu()
+	{
+		loadingScreen.SetActive(true);
+		levelSuccess.SetActive(false);
 		SceneLoader.Instance.UnloadScene("OfficeWorkplace");
 		yield return null;
 		mainMenu.SetActive(true);
+	}
+	
+	private IEnumerator ContinueToNextLevel()
+	{
+		loadingScreen.SetActive(true);
+		levelSuccess.SetActive(false);
+		SceneLoader.Instance.UnloadScene("OfficeWorkplace");
+		InputSystem.actions.FindAction("Pause").Disable();
+		yield return null;
+		SceneLoader.Instance.LoadScene("OfficeWorkplace");
+		InputSystem.actions.FindActionMap("Player").Enable();
+		HUD.SetActive(true);
+		
+	}
+	
+	private IEnumerator PauseBeforeLevelSuccess()
+	{
+		yield return new WaitForSeconds(0.5f);
+		levelSuccess.SetActive(true);
 	}
 }

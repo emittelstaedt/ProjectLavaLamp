@@ -17,9 +17,12 @@ public class CMS : MonoBehaviour
 			{
 				string childName = child.name;
 				int nameLength = childName.Length;
-				if(childName[nameLength - 8] == 'C')
+				if(nameLength >= 8)
 				{
-					child.gameObject.AddComponent<CMS>();
+					if(childName[nameLength - 8] == 'C')
+					{
+						child.gameObject.AddComponent<CMS>();
+					}
 				}
 			}
 			Destroy(this);
