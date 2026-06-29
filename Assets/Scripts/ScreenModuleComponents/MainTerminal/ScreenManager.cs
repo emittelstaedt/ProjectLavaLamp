@@ -5,7 +5,8 @@ public class ScreenManager : MonoBehaviour
     [SerializeField] private MonoBehaviour[] screenManagers;
     [SerializeField] private GameObject[] screenCovers;
     private IScreen[] screens;
-    private int activeScreenIndex;
+    private IScreen screen;
+	private int activeScreenIndex;
 
     private void Awake()
     {
