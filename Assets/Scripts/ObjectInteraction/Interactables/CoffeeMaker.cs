@@ -13,6 +13,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     [SerializeField] private ParticleSystem coffeeSteam;
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
+	private GameObject emptyCup;
     private Outline outline;
     private bool isPlacingCoffee;
 
@@ -61,7 +62,8 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         lastItemheld.transform.rotation = currentRotation;
 
         isPlacingCoffee = true;
-        StartCoroutine(MoveCoffeeToMachine(lastItemheld, coffeeLocation));
+		emptyCup = lastItemheld;
+        StartCoroutine(MoveCoffeeToMachine(emptyCup, coffeeLocation));
 
     }
 
@@ -128,11 +130,11 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
 
         coffeeSteam.Stop();
 
-        GameObject fullCup = Instantiate(fullCupPrefab, lastItemheld.transform.position, lastItemheld.transform.rotation);
-        fullCup.transform.localScale = lastItemheld.transform.localScale;
+        GameObject fullCup = Instantiate(fullCupPrefab, emptyCup.transform.position, emptyCup.transform.rotation);
+        fullCup.transform.localScale = emptyCup.transform.localScale;
         fullCup.name = fullCupPrefab.name;
 		SceneManager.MoveGameObjectToScene(fullCup, SceneManager.GetSceneByName("OfficeWorkplace"));
-        Destroy(lastItemheld);
+        Destroy(emptyCup);
 
         isPlacingCoffee = false;
     }
