@@ -87,7 +87,7 @@ Shader "Custom/URP_FullscreenCellOutline"
                 float sumYWeight[9] = {-1, -2, -1, 0, 0, 0, 1, 2, 1}; 
                 
                 int index = 0;
-                [unroll]
+                
                 for (int y = -1; y <= 1; y++)
                 {
                     for (int x = -1; x <= 1; x++)
@@ -99,6 +99,7 @@ Shader "Custom/URP_FullscreenCellOutline"
                         index++;
                     }
                 }
+               
                 return sqrt(sobelX * sobelX + sobelY * sobelY); 
             }
 
