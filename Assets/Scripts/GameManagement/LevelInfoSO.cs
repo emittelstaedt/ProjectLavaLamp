@@ -5,7 +5,7 @@ public class LevelInfoSO : ScriptableObject
 {
     [SerializeField] private BoxItemsSO[] packages;
 	[SerializeField] private BoxItemsSO CMSpackage;
-    [SerializeField] private string buildName;
+    public string buildName;
     [SerializeField] private BuildInstructionsSO buildInstructions;
 
     public BoxItemsSO[] Packages => packages;
