@@ -28,7 +28,7 @@ public class ItemNameShower : MonoBehaviour
 
         for (int i = 1; i < text.Length; i++)
         {
-            if (char.IsUpper(text[i]) && text[i - 1] != ' ')
+            if (char.IsUpper(text[i]) && text[i - 1] != ' ' && text[i - 1] != '.')
             {
                 newText.Append(' ');
             }
