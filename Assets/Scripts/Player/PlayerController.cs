@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
     [SerializeField] private PlayerStatsSO playerStats;
+	[SerializeField] private VoidEventChannelSO highlightParts;
+	[SerializeField] private VoidEventChannelSO unhighlightParts;
     private LayerMask ignoreCollisionLayer;
     private PlayerState currentState;
     private float crouchVelocity;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpAction;
     private InputAction crouchAction;
     private InputAction sprintAction;
+	private InputAction highlightAction;
 
     public PlayerStatsSO PlayerStats => playerStats;
     public bool IsJumpButtonPressed => jumpAction.IsPressed();
@@ -55,8 +58,22 @@ public class PlayerController : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         crouchAction = InputSystem.actions.FindAction("Crouch");
         sprintAction = InputSystem.actions.FindAction("Sprint");
+		highlightAction = InputSystem.actions.FindAction("Highlight");
     }
 
+	private void OnEnable()
+	{
+		highlightAction.Enable();
+		highlightAction.performed += OnHighlightPress;
+		highlightAction.canceled += OnHighlightRelease;
+	}
+	
+	private void OnDisable()
+	{
+		highlightAction.performed -= OnHighlightPress;
+		highlightAction.canceled -= OnHighlightRelease;
+		highlightAction.Enable();
+	}
     private void Update()
     {
         UpdateHeight();
@@ -165,4 +182,14 @@ public class PlayerController : MonoBehaviour
             velocity.y += playerStats.Gravity * Time.deltaTime;
         }
     }
+	
+	private void OnHighlightPress(InputAction.CallbackContext context)
+	{
+		highlightParts.RaiseEvent();
+	}
+	
+	private void OnHighlightRelease(InputAction.CallbackContext context)
+	{
+		unhighlightParts.RaiseEvent();
+	}
 }

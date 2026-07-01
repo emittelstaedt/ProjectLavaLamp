@@ -7,6 +7,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
+	[SerializeField] private GameObject levelSuccess;
     [SerializeField] private GameObject HUD;
     [SerializeField] private string sceneName = "OfficeWorkplace";
     private InputAction pauseAction;
@@ -55,7 +56,7 @@ public class PauseMenuManager : MonoBehaviour
             return;
         }
 
-        if (!optionsMenu.activeInHierarchy && !mainMenu.activeInHierarchy)
+        if (!optionsMenu.activeInHierarchy && !mainMenu.activeInHierarchy && !levelSuccess.activeInHierarchy)
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
 

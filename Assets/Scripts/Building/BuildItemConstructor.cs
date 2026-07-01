@@ -12,6 +12,8 @@ public class BuildItemConstructor : MonoBehaviour
     [SerializeField] private GameObjectEventChannelSO heldItemChanged;
     [SerializeField] private InteractableSettingsSO Settings;
     [SerializeField] private VoidEventChannelSO itemPlaced;
+	[SerializeField] private VoidEventChannelSO startHighlight;
+	[SerializeField] private VoidEventChannelSO stopHighlight;
     [SerializeField] private VoidEventChannelSO defaultCrosshair;
     [SerializeField] private VoidEventChannelSO openHandCrosshair;
     [SerializeField] private VoidEventChannelSO closedHandCrosshair;
@@ -130,9 +132,13 @@ public class BuildItemConstructor : MonoBehaviour
         PickupItem pickupItem = parent.AddComponent<PickupItem>();
         BuildOrderEnforcer buildItemRenamer = parent.AddComponent<BuildOrderEnforcer>();
 		ObjectRelocator objectRelocator = parent.AddComponent<ObjectRelocator>();
+		Outline outline = parent.AddComponent<Outline>();
+		Highlight highlight = parent.AddComponent<Highlight>();
         GameObjectEventChannelSubscriber gameObjectSubscriber = parent.AddComponent<GameObjectEventChannelSubscriber>();
         VoidEventChannelSubscriber voidSubscriber = parent.AddComponent<VoidEventChannelSubscriber>();
-
+		VoidEventChannelSubscriber voidHighlight = parent.AddComponent<VoidEventChannelSubscriber>();
+		VoidEventChannelSubscriber voidUnhighlight = parent.AddComponent<VoidEventChannelSubscriber>();
+		
         pickupItem.SetSettings(dropItem, heldItemChanged, Settings);
         pickupItem.SetCrosshairChannels(defaultCrosshair, openHandCrosshair, closedHandCrosshair, itemNameHover);
 
@@ -145,6 +151,13 @@ public class BuildItemConstructor : MonoBehaviour
         voidResponse.AddListener(pickupItem.UpdateChildrenColliders);
         voidSubscriber.SetChannelAndResponse(itemPlaced, voidResponse);
 
+		UnityEvent highlightResponse = new();
+		UnityEvent unhighlightResponse = new();
+		highlightResponse.AddListener(highlight.highlight);
+		unhighlightResponse.AddListener(highlight.unhighlight);
+		voidHighlight.SetChannelAndResponse(startHighlight, highlightResponse);
+		voidUnhighlight.SetChannelAndResponse(stopHighlight, unhighlightResponse);
+		
         // Properly serialize the response fields inside the prefab so they show in the inspector.
         UnityEditor.Events.UnityEventTools.AddPersistentListener
         (
