@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -81,6 +82,15 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "436f2f16-b63e-435c-ac05-e970b2f328b5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Highlight",
+                    "type": "Button",
+                    "id": "52052f25-ce43-40d7-9ba3-e0a689fc08de",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -226,8 +236,19 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "838f604f-64b0-4d77-a7e9-d3654fa96ca8",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Highlight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
