@@ -16,7 +16,7 @@ public class OutChute : MonoBehaviour
     void Awake()
     {
         chuteMaterial = GetComponent<Renderer>().material;
-        chuteMaterial.color = Color.white;
+        chuteMaterial.SetColor("_EmissiveColor", Color.white);
         
         doorMover = GetComponentInChildren<Mover>();
         pistonMover = GetComponentInChildren<PistonMover>();
@@ -53,7 +53,7 @@ public class OutChute : MonoBehaviour
             GameObject colliderParent = collider.gameObject.transform.parent.gameObject;
             if (collider.gameObject.name == acceptedItemName || colliderParent.name == acceptedItemName)
             {
-                chuteMaterial.color = Color.green;
+                chuteMaterial.SetColor("_EmissiveColor", Color.green);
                 doorMover.MoveBack();
 
                 StartCoroutine(AcceptItem());
@@ -67,7 +67,7 @@ public class OutChute : MonoBehaviour
 
     private IEnumerator AcceptItem()
     {
-        chuteMaterial.color = Color.green;
+        chuteMaterial.SetColor("_EmissiveColor", Color.green);
 
         yield return new WaitForSeconds(delay);
 
@@ -76,12 +76,12 @@ public class OutChute : MonoBehaviour
 
     private IEnumerator RejectItem()
     {
-        chuteMaterial.color = Color.red;
+        chuteMaterial.SetColor("_EmissiveColor", Color.red);
 
         pistonMover.StartPush();
         yield return new WaitForSeconds(delay);
 
         isWaitingForItem = true;
-        chuteMaterial.color = Color.white;
+        chuteMaterial.SetColor("_EmissiveColor", Color.white);
     }
 }
