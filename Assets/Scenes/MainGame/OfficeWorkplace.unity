@@ -231,7 +231,68 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42959394}
-  m_Mesh: {fileID: 587366007896238738, guid: 7fca8778bd1f4594cb47cf9e481fca01, type: 3}
+  m_Mesh: {fileID: 587366007896238738, guid: 46da6214c42fda548aec2f58a17c3c6b, type: 3}
+--- !u!1 &316231350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316231351}
+  - component: {fileID: 316231352}
+  m_Layer: 0
+  m_Name: Decal Projector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &316231351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316231350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -3.497, y: -0.748, z: 0.39}
+  m_LocalScale: {x: 0.60723054, y: 0.6072303, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1296593004}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &316231352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316231350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 88ac2a557071acb449205156804b9096, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_FadeFactor: 1
+  m_VisibleInScene: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1001 &363669132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -516,6 +577,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14e4e2c89b49dbd8a8993985432728c, type: 3}
+--- !u!4 &1296593004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7105223820691125842, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1631151506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1631151507}
+  - component: {fileID: 1631151508}
+  m_Layer: 0
+  m_Name: Decal Projector (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1631151507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631151506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -2.725, y: -12.836, z: 0.39}
+  m_LocalScale: {x: 0.60723054, y: 0.6072303, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1296593004}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1631151508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631151506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 88ac2a557071acb449205156804b9096, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_FadeFactor: 1
+  m_VisibleInScene: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1001 &1866908465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -685,7 +812,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956633428}
-  m_Mesh: {fileID: -3996760141626369306, guid: 7fca8778bd1f4594cb47cf9e481fca01, type: 3}
+  m_Mesh: {fileID: -3996760141626369306, guid: 46da6214c42fda548aec2f58a17c3c6b, type: 3}
 --- !u!1001 &2146758473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,7 +1372,7 @@ PrefabInstance:
     - target: {fileID: 3111449790902711432, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7489793750533197138, guid: 7fca8778bd1f4594cb47cf9e481fca01, type: 3}
+      objectReference: {fileID: -7489793750533197138, guid: 46da6214c42fda548aec2f58a17c3c6b, type: 3}
     - target: {fileID: 3146241291088546764, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: m_Size.x
       value: 13
@@ -1429,7 +1556,7 @@ PrefabInstance:
     - target: {fileID: 4890222162683657565, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2225674993185669183, guid: 1e53e6cf31f8409458e922c9b990e9d3, type: 3}
+      objectReference: {fileID: -2225674993185669183, guid: 46da6214c42fda548aec2f58a17c3c6b, type: 3}
     - target: {fileID: 4990208837810737458, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1729,7 +1856,7 @@ PrefabInstance:
     - target: {fileID: 6618250391843202853, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -1239982389901748669, guid: 7fca8778bd1f4594cb47cf9e481fca01, type: 3}
+      objectReference: {fileID: -1239982389901748669, guid: 46da6214c42fda548aec2f58a17c3c6b, type: 3}
     - target: {fileID: 6691537747310243288, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       propertyPath: m_Size.x
       value: 7.5
@@ -2160,6 +2287,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8717173353107891475, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 42959395}
+    - targetCorrespondingSourceObject: {fileID: 7105223820691125842, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 316231351}
+    - targetCorrespondingSourceObject: {fileID: 7105223820691125842, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1631151507}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3531332206043114963, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       insertIndex: -1
