@@ -23,7 +23,7 @@ public class InChute : MonoBehaviour, IInteractable
     void Awake()
     {
         chuteMaterial = GetComponent<Renderer>().material;
-        chuteMaterial.color = Color.green;
+        chuteMaterial.SetColor("_EmissiveColor", Color.green);
 
         if (!TryGetComponent<Outline>(out outline))
         {
@@ -86,7 +86,7 @@ public class InChute : MonoBehaviour, IInteractable
         boxItemsQueue.Enqueue(items);
         if (boxItemsQueue.Count == 1)
         {
-            chuteMaterial.color = Color.green;
+            chuteMaterial.SetColor("_EmissiveColor", Color.green);
         }
     }
 
@@ -132,7 +132,7 @@ public class InChute : MonoBehaviour, IInteractable
 
         if (boxItemsQueue.Count <= 0 && hasGivenOutBox)
         {
-            chuteMaterial.color = Color.white;
+            chuteMaterial.SetColor("_EmissiveColor", Color.white);
         }
 
         isAnimating = false;
