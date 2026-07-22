@@ -18,6 +18,8 @@ public abstract class ScreenModuleCursor : MonoBehaviour
 
     public virtual void Move(Vector2 movement)
     {
+        //Debug.Log(movement);
+        Debug.Log($"Local: {transform.localPosition}  World: {transform.position}");
         transform.localPosition += (Vector3) movement * speed * Time.deltaTime;
         
         Vector3 localPosition = transform.localPosition;
