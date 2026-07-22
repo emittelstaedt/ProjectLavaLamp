@@ -65,6 +65,7 @@ public class JoystickController : MonoBehaviour
             Vector3 localDirection = transform.localRotation * Vector3.forward;
             Vector2 inputDirection = (new Vector2(localDirection.x, localDirection.z)).normalized;
             Vector2 input = inputDirection * (Vector3.Angle(transform.forward, defaultForward) / maxTilt);
+            Debug.Log($"Input: {input}");
             moveStick.RaiseEvent(input);
         }
     }
@@ -84,6 +85,8 @@ public class JoystickController : MonoBehaviour
         Vector3 mouseWorldPosition = moduleCamera.ScreenToWorldPoint(mouseScreenPosition);
         
         Vector3 direction = (mouseWorldPosition - transform.position).normalized;
+        //Debug.DrawRay(transform.position, direction * 2f, Color.red, 0.1f);
+        //Debug.DrawRay(transform.position, defaultForward * 2f, Color.green, 0.1f);
         Vector3 clampedDirection = Vector3.RotateTowards(defaultForward, direction, maxTilt * Mathf.Deg2Rad, 0f);
         targetDirection = clampedDirection;
     }

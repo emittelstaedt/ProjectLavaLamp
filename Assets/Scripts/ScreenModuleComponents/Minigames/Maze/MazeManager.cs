@@ -57,6 +57,9 @@ public class MazeManager : MonoBehaviour
             currentMazeIndex = Random.Range(0, mazePrefabs.Length);
         } while (currentMazeIndex == previousMazeIndex && mazePrefabs.Length > 1);
 
+        //Debug.Log($"Previous: {previousMazeIndex}, New: {currentMazeIndex}");
+        //Debug.Log("LoadNextMaze called\n" + System.Environment.StackTrace);
+        
         previousMazeIndex = currentMazeIndex;
 
         mazePrefabs[currentMazeIndex].SetActive(true);
