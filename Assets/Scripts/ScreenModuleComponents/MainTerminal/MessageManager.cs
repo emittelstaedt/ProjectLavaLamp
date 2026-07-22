@@ -1,25 +1,27 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
+
+//Might incorporate a limitation to the number of emails to make some of this easier
 
 public class MessageManager : MonoBehaviour, IScreen
 {
     [SerializeField] private Canvas messageBoard;
-    [SerializeField] private TextMeshProUGUI messageBody;
-    [SerializeField] private List<string> messageBodies;
-    [SerializeField] private List<Button> unreadButtons;
-    [SerializeField] private Transform readParent;
-    [SerializeField] private Color readColor = Color.gray;
-    [SerializeField] private Color highlightColor = Color.cyan;
+    [SerializeField] private TextMeshProUGUI subject;
+	[SerializeField] private TextMeshProUGUI handle;
+	[SerializeField] private TextMeshProUGUI content;
+	[SerializeField] private TextMeshProUGUI[] shortHands;
+	[SerializeField] private Image[] shortHandHighlights;
+    [SerializeField] private LinkedList<email> emailList = new LinkedList<email>();
     private int currentMessageIndex = 0;
-
-    private void Awake()
-    {
-        //Commented out due to design decision to start with email screen open.
-        //DeactivateScreen();
-    }
-
+	
+	public void Awake()
+	{
+		StartCoroutine(InitialMessage());
+	}
+	
     public void ActivateScreen()
     {
         messageBoard.enabled = true;
@@ -42,24 +44,13 @@ public class MessageManager : MonoBehaviour, IScreen
 
     public void NextMessage()
     {
-        currentMessageIndex = Mathf.Clamp(currentMessageIndex, 0, messageBodies.Count);
-
         if (!IsActive())
         {
             return;
         }
-
-        if (currentMessageIndex >= messageBodies.Count)
-        {
-            messageBody.text = "No new messages!";
-            ClearHighlight();
-            return;
-        }
-
-        MarkAsRead(currentMessageIndex);
-        DisplayMessage(currentMessageIndex);
-        HighlightCurrent();
-        currentMessageIndex++;
+		currentMessageIndex++;
+		currentMessageIndex = Mathf.Clamp(currentMessageIndex, 0, emailList.Count - 1);
+        DisplayMessage();
     }
 
     public void PreviousMessage()
@@ -68,74 +59,60 @@ public class MessageManager : MonoBehaviour, IScreen
         {
             return;
         }
-
-        if (currentMessageIndex > 0)
-        {
-            currentMessageIndex--;
-            HighlightCurrent();
-            DisplayMessage(currentMessageIndex);
-        }
+        currentMessageIndex--;
+		currentMessageIndex = Mathf.Clamp(currentMessageIndex, 0, emailList.Count - 1);
+        DisplayMessage();
     }
 
-    private void DisplayMessage(int index)
+    private void DisplayMessage()
     {
-        if (index >= 0 && index < messageBodies.Count)
-        {
-            messageBody.text = messageBodies[index];
-        }
-        else
-        {
-            messageBody.text = "No more messages!";
-            ClearHighlight();
-        }
+		LinkedListNode<email> current = emailList.First;
+		int positionIndex = 0;
+		while(positionIndex != currentMessageIndex)
+		{
+			if(current != null)
+			{
+				current = current.Next;
+				positionIndex++;
+			}
+			else
+			{
+				break;
+			}
+		}
+		for(int i = 0; i < 6; i++)
+		{
+			shortHandHighlights[i].color = new Color(255f, 255f, 255f, 0f);
+			shortHands[i].color = Color.white;
+		}
+		shortHandHighlights[positionIndex].color = new Color(255f, 255f, 255f, 255f);
+		shortHands[positionIndex].color = Color.black;
+		subject.text = current.Value.responseSubject;
+		handle.text = current.Value.handle;
+		content.text = current.Value.responseContent;
     }
-
-    private void MarkAsRead(int index)
-    {
-        if (index < unreadButtons.Count)
-        {
-            Button button = unreadButtons[index];
-
-            // Do nothing if already marked.
-            if (button.transform.parent == readParent)
-            {
-                return;
-            }
-
-            // Change button appearance
-            if (button.TryGetComponent<Image>(out Image buttonBackground))
-            {
-                buttonBackground.color = readColor;
-            }
-
-            button.transform.SetParent(readParent, false);
-        }
-    }
-
-    private void HighlightCurrent()
-    {
-        ClearHighlight();
-
-        if (currentMessageIndex < unreadButtons.Count)
-        {
-            if (unreadButtons[currentMessageIndex].TryGetComponent<Image>(out Image currentImg))
-            {
-                currentImg.color = highlightColor;
-            }
-        }
-    }
-
-    private void ClearHighlight()
-    {
-        for (int i = 0; i < unreadButtons.Count; i++)
-        {
-            if (unreadButtons[i].TryGetComponent<Image>(out Image image))
-            {
-                if (unreadButtons[i].transform.parent == readParent)
-                {
-                    image.color = readColor;
-                }
-            }
-        }
-    }
+	
+	private void DisplayShortHands()
+	{
+		LinkedListNode<email> current = emailList.First;
+		int positionIndex = 0;
+		while(positionIndex != emailList.Count)
+		{
+			shortHands[positionIndex].text = current.Value.shortHand;
+			current = current.Next;
+			positionIndex++;
+		}
+	}
+	
+	public void AddMessage(email newMail)
+	{
+		emailList.AddLast(newMail);
+	}
+	
+	private IEnumerator InitialMessage()
+	{
+		yield return new WaitForSeconds(1.5f);
+		DisplayShortHands();
+		DisplayMessage();
+	}
 }
