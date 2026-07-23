@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1014072477764820878}
   - component: {fileID: 7685517757112588412}
   - component: {fileID: 1922592197702987235}
+  - component: {fileID: 3080487521172618118}
   m_Layer: 0
   m_Name: SirenLights
   m_TagString: Untagged
@@ -68,6 +69,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -89,9 +92,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &7335685034881385507
 Animator:
@@ -223,6 +228,46 @@ MonoBehaviour:
   cleanMaterial: {fileID: 2100000, guid: 966ade9961643b047ae8eccf91311fae, type: 2}
   corrodeMaterial: {fileID: 2100000, guid: 1a087477e571638488cd9566469c33e9, type: 2}
   ultraCorrodeMaterial: {fileID: 0}
+--- !u!114 &3080487521172618118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96750125194337278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bc54ed3fc59d2044da2c01f6d48d5ee1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7335685034881385507}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9044038217072788546}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &714931812414243961
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +279,6 @@ GameObject:
   - component: {fileID: 4187340896643013053}
   - component: {fileID: 9184880704974283725}
   - component: {fileID: 3851453545068017973}
-  - component: {fileID: 2166580244313104980}
   m_Layer: 0
   m_Name: SirenLens
   m_TagString: Untagged
@@ -285,6 +329,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -306,25 +352,12 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2166580244313104980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714931812414243961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cleanMaterial: {fileID: 2100000, guid: 1690b6a2b0c97a84895a127e19c0c50f, type: 2}
-  corrodeMaterial: {fileID: 2100000, guid: b19af26ac2c710541801ffc2d5dada4d, type: 2}
-  ultraCorrodeMaterial: {fileID: 0}
 --- !u!1 &1507908120643649035
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +368,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4925220338219135731}
   - component: {fileID: 1911328405878888549}
-  - component: {fileID: 2823280999423652217}
   m_Layer: 0
   m_Name: Siren
   m_TagString: Untagged
@@ -382,58 +414,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.37207294, y: 0.4626996, z: 0.31724167}
   m_Center: {x: 0.0025304556, y: 0.014665134, z: -0.0053583086}
---- !u!114 &2823280999423652217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507908120643649035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1922592197702987235}
-        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
-        m_MethodName: SetMaterial
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3856708903841431008}
-        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
-        m_MethodName: SetMaterial
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2166580244313104980}
-        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
-        m_MethodName: SetMaterial
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6262207720959266863
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +425,6 @@ GameObject:
   - component: {fileID: 2161932119822900645}
   - component: {fileID: 1596355569133138733}
   - component: {fileID: 3616567550684885712}
-  - component: {fileID: 3856708903841431008}
   m_Layer: 0
   m_Name: SirenHousing
   m_TagString: Untagged
@@ -496,6 +475,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -517,25 +498,12 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3856708903841431008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262207720959266863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cleanMaterial: {fileID: 2100000, guid: 966ade9961643b047ae8eccf91311fae, type: 2}
-  corrodeMaterial: {fileID: 2100000, guid: 1a087477e571638488cd9566469c33e9, type: 2}
-  ultraCorrodeMaterial: {fileID: 0}
 --- !u!1 &8410527108870840870
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,14 +545,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8410527108870840870}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 0
   m_Color: {r: 0.89433956, g: 0.55702484, b: 0.09280872, a: 1}
   m_Intensity: 3.06
   m_Range: 10
   m_SpotAngle: 120.13775
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -629,7 +597,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -646,17 +614,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &8612164570430897347
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,14 +672,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8612164570430897347}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 0
   m_Color: {r: 0.89411765, g: 0.5568628, b: 0.09411765, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 103.13065
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -750,7 +724,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -767,14 +741,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1

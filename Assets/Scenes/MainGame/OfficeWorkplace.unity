@@ -316,6 +316,149 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42959394}
   m_Mesh: {fileID: 587366007896238738, guid: 46da6214c42fda548aec2f58a17c3c6b, type: 3}
+--- !u!1 &284302040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 191626973426916593, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &284302041 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9114602682445595469, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284302040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11df0448f6d63824fa1518bfe537463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &284302042 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7364199725879345964, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &284302043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8159036090558376797, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &284302044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1004269139601290465, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284302043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11df0448f6d63824fa1518bfe537463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &284302045 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1558411554020209792, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &284302046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1793179527898410669, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &284302047 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7221519979716522257, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284302046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11df0448f6d63824fa1518bfe537463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &284302048 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8969068544055374192, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+  m_PrefabInstance: {fileID: 2146758473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &284302049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284302043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bc54ed3fc59d2044da2c01f6d48d5ee1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 284302045}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 284302044}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &284302050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284302046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bc54ed3fc59d2044da2c01f6d48d5ee1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 284302048}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 284302047}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &316231350
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +1044,46 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7105223820691125842, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
   m_PrefabInstance: {fileID: 2146758473}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1345676672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284302040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bc54ed3fc59d2044da2c01f6d48d5ee1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 284302042}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 284302041}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSiren
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &1553467704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2866,6 +3049,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1770164562979654752, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2146758476}
+    - targetCorrespondingSourceObject: {fileID: 1793179527898410669, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 284302050}
+    - targetCorrespondingSourceObject: {fileID: 8159036090558376797, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 284302049}
+    - targetCorrespondingSourceObject: {fileID: 191626973426916593, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1345676672}
     - targetCorrespondingSourceObject: {fileID: 2936472011630102174, guid: 7d8f642f8a6e6804bb10afb6d922529e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2874215}
