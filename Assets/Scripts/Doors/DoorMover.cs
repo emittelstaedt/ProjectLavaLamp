@@ -39,7 +39,7 @@ public class DoorMover : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if ((other.CompareTag("Player") || other.CompareTag("Held")))
+        if (((other.CompareTag("Player") || other.CompareTag("Held"))) && unlocked && hasEntered)
         {
             hasEntered = false;
             closingDoor.RaiseEvent();
