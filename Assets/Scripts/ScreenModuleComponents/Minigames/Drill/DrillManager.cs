@@ -9,7 +9,6 @@ public class DrillManager : MonoBehaviour
     [SerializeField] private GameObject[] DrillPrefabs;
     [SerializeField] private Vector3 drillStartPosition;
     private int currentDrillIndex;
-    private int previousDrillIndex;
 
     private bool hasStartedDrill;
     
@@ -56,13 +55,15 @@ public class DrillManager : MonoBehaviour
     {
         DrillPrefabs[currentDrillIndex].SetActive(false);
 
-        // Pick a Drill that is different from the last.
+        int oldIndex = currentDrillIndex;
+
         do
         {
             currentDrillIndex = Random.Range(0, DrillPrefabs.Length);
-        } while (currentDrillIndex == previousDrillIndex && DrillPrefabs.Length > 1);
+        }
+        while (currentDrillIndex == oldIndex && DrillPrefabs.Length > 1);
 
-        previousDrillIndex = currentDrillIndex;
+        DrillPrefabs[currentDrillIndex].SetActive(true);
     }
 
     public void StopDrillInteraction()

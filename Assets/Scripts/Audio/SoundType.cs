@@ -16,4 +16,8 @@ public enum SoundType
     MessageAlert,
     MinigameComplete,
     ScreenTransition,
+    DontForgetAnnouncement,
+    ReportToTerminalAnnouncement,
+    PleaseDrink,
+    GetMemo,
 };

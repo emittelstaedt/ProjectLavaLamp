@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,8 +9,26 @@ public class AudioManager : MonoBehaviour
     private AudioPlayer audioPlayer;
     private MixerController mixerController;
     private Dictionary<SoundType, SoundClip> soundTypeToClip;
+    //For the queue sound type
+    private Dictionary<AudioQueue, Queue<QueuedSound>> audioQueues;
+    private Dictionary<AudioQueue, bool> queuePlaying;
 
     public static AudioManager Instance = null;
+
+    //This is a helper class for specifically queued audio
+    private class QueuedSound
+    {
+        public MixerType mixerType;
+        public SoundType soundType;
+        public float volume;
+
+        public QueuedSound(MixerType mixerType, SoundType soundType, float volume)
+        {
+            this.mixerType = mixerType;
+            this.soundType = soundType;
+            this.volume = volume;
+        }
+    }
 
     void Awake()
     {
@@ -33,6 +52,15 @@ public class AudioManager : MonoBehaviour
         
         audioPlayer = GetComponent<AudioPlayer>();
         mixerController = GetComponent<MixerController>();
+
+        audioQueues = new Dictionary<AudioQueue, Queue<QueuedSound>>();
+        queuePlaying = new Dictionary<AudioQueue, bool>();
+
+        foreach (AudioQueue queue in System.Enum.GetValues(typeof(AudioQueue)))
+        {
+            audioQueues.Add(queue, new Queue<QueuedSound>());
+            queuePlaying.Add(queue, false);
+        }
     }
 
     private void Start()
@@ -124,4 +152,33 @@ public class AudioManager : MonoBehaviour
     {
         return soundTypeToClip[type].GetAudioClip();
     }
+
+    public void PlayQueuedSound(AudioQueue queue, MixerType mixerType, SoundType soundType, float volume)
+    {
+        audioQueues[queue].Enqueue(new QueuedSound(mixerType, soundType, volume));
+
+        if (!queuePlaying[queue])
+        {
+            StartCoroutine(ProcessQueue(queue));
+        }
+    }
+
+    private IEnumerator ProcessQueue(AudioQueue queue)
+    {
+        queuePlaying[queue] = true;
+
+        while (audioQueues[queue].Count > 0)
+        {
+            QueuedSound sound = audioQueues[queue].Dequeue();
+
+            var (mixerGroup, clip) = GetMixerAndClip(sound.mixerType, sound.soundType);
+
+            audioPlayer.PlaySound(mixerGroup, clip, sound.volume);
+
+            yield return new WaitForSeconds(clip.length);
+        }
+
+        queuePlaying[queue] = false;
+    }
+
 }

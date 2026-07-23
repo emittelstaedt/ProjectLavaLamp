@@ -11,11 +11,13 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     [SerializeField] private float transitionTime = .5f;
     [SerializeField] private Transform coffeeLocationBottom;
     [SerializeField] private ParticleSystem coffeeSteam;
+    [SerializeField] private SoundType onCoffeeMade; //Used for announcements, primarily
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
 	private GameObject emptyCup;
     private Outline outline;
     private bool isPlacingCoffee;
+    private bool hasPlayedSound = false;
 
     private void Awake()
     {
@@ -51,6 +53,12 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     public void StartInteract()
     {
         stopInteraction.RaiseEvent();
+        //Play announcement
+        if(!hasPlayedSound&&LevelManager.Instance.currentSession.currentDay==1)
+        {
+            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, onCoffeeMade, 1f);
+            hasPlayedSound = true;
+        }
 
         Quaternion currentRotation = lastItemheld.transform.rotation;
         lastItemheld.transform.rotation = Quaternion.identity;
