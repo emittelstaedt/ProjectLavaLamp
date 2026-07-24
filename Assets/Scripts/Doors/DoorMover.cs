@@ -8,6 +8,7 @@ public class DoorMover : MonoBehaviour
     [SerializeField] private bool unlocked;
     [SerializeField] private SoundType unlockedSound; //Used for announcements, primarily
     [SerializeField] private SoundType lockedSound; //Used for announcements, primarily
+    [SerializeField] private SoundType soundOfUnlocking; //Sound made when door unlocks
     [SerializeField] private float volume = 1f;
     private bool hasPlayedUnlockedSound = false;
     private bool hasPlayedlockedSound = false;
@@ -50,6 +51,12 @@ public class DoorMover : MonoBehaviour
 
     public void enableMainDoor()
     {
+
+        if(unlocked)
+        {
+            return;
+        }
+
         GameObject camera = GameObject.FindWithTag("DoorCamera");
         if (camera != null)
         {
@@ -58,6 +65,7 @@ public class DoorMover : MonoBehaviour
             {
                 if (securityCam.getState() != 2)
                 {
+                    AudioManager.Instance.PlaySound(MixerType.SFX, soundOfUnlocking, 1f, transform.position);
                     unlocked = true;
                 }
             }
@@ -73,6 +81,7 @@ public class DoorMover : MonoBehaviour
     }
 
     public void trueUnlock(){
+        AudioManager.Instance.PlaySound(MixerType.SFX, soundOfUnlocking, 1f, transform.position);
         unlocked=true;
     }
 }

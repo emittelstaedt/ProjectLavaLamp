@@ -57,6 +57,10 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     [Tooltip("Value that efficiency will be decreased by once signal is received.")]
 	[SerializeField] private IntEventChannelSO efficiencySubtract;
 
+    [SerializeField] private SoundType onCameraRestart;
+    [SerializeField] private SoundType onCameraSplashed;
+    [SerializeField] private SoundType onBoxBroken;
+
     private void Awake()
     {
         StopAllCoroutines();
@@ -171,6 +175,14 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         bool isSplashDay = LevelManager.Instance != null && LevelManager.Instance.currentSession != null
             && LevelManager.Instance.currentSession.currentDay == dayForceSplash;
 
+        //Check if we are coming out of a mobile/disabled state, if we are, play the reboot noise.
+        //Debug.Log("Updating state label...");
+        if(((arrived ? (isSplashDay ? 2 : 0) : 3) == 2 || (arrived ? (isSplashDay ? 2 : 0) : 3) == 0) && (state == 1 || state == 3))
+        {
+            //Debug.Log("Playing cameraRestart Noise!");
+            AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+        }
+
         // Idle label depends on which "idle" applies today - splash day idles at 2, otherwise 0.
         // Actively correcting toward the target always reports 3, regardless of which day it is.
         state = arrived ? (isSplashDay ? 2 : 0) : 3;
@@ -251,6 +263,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
             state = 1; //Set to disabled
             coffee.gameObject.SetActive(true); //Set our coffee drip particles active
             cameraDisabled.RaiseEvent(); //Send a signal (mainly for door to receive to know to open)
+            AudioManager.Instance.PlaySound(MixerType.SFX, onCameraSplashed, 1f, transform.position);
             objectMaterial.SetFloat(coffeeShaderAmount, 1);
             //Make sure we renable according to the right timer (30s if cannot find day)
             if(LevelManager.Instance!=null)
@@ -334,8 +347,16 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     IEnumerator DegradeEfficiencyRoutine()
     {
+        bool hasPlayedWarningSound = false;
+        if(!hasPlayedWarningSound)
+        {
+            AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
+            hasPlayedWarningSound = true;
+        }
+
         //Set our delay
         var delay = new WaitForSeconds(1f); 
+
         
         //Yes, this is meant to be an infinite loop
         while(true)
@@ -347,6 +368,11 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
             if(state!=1)
             {
                 efficiencySubtract.RaiseEvent(degradeEfficiencyRate);
+                if(!hasPlayedWarningSound)
+                {
+                    AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
+                    hasPlayedWarningSound = true;
+                }
             }
         }
     }
