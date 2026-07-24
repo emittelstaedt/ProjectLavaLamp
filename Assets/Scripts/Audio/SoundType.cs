@@ -20,4 +20,8 @@ public enum SoundType
     ReportToTerminalAnnouncement,
     PleaseDrink,
     GetMemo,
+    CameraRestart,
+    CameraSplash,
+    DoorUnlock,
+    CameraSeesBoxBreak,
 };
