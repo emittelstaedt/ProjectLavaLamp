@@ -29,7 +29,6 @@ public class TriggerReadable : MonoBehaviour, IUsable
 			HUD.SetActive(false);
 			setCursorVisibility.RaiseEvent(true);
 			readable.SetActive(true);
-			//Time.timeScale = 0f;
 			currentlyReading = true;
 			InputSystem.actions.FindActionMap("Player").Disable();
 			InputSystem.actions.FindAction("UseItem").Enable();
@@ -39,7 +38,6 @@ public class TriggerReadable : MonoBehaviour, IUsable
 			HUD.SetActive(true);
 			setCursorVisibility.RaiseEvent(false);
 			readable.SetActive(false);
-			//Time.timeScale = 1f;
 			currentlyReading = false;
 			InputSystem.actions.FindActionMap("Player").Enable();
 		}

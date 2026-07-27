@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
-  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
   requiredItem: LockingPin
   placementContainer: {fileID: 5278276663866149614}
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
-  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
   requiredItem: LockingPin
   placementContainer: {fileID: 1075991368407854284}
@@ -410,6 +410,8 @@ GameObject:
   - component: {fileID: 7594846948483926962}
   - component: {fileID: 297389562167606878}
   - component: {fileID: 8637196984445271095}
+  - component: {fileID: 6242262166504351767}
+  - component: {fileID: 7043312980191437325}
   m_Layer: 3
   m_Name: AtmosphereCoreCollider
   m_TagString: Untagged
@@ -439,7 +441,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778452285657962486}
-  m_Mesh: {fileID: -5593577123798112076, guid: 784c52279e977e34b9eb39fe5582a942, type: 3}
+  m_Mesh: {fileID: 6171877962291720422, guid: 8fc75ed96d3a30b498dd7a8ca5d10035, type: 3}
 --- !u!23 &297389562167606878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -465,7 +467,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 15ab032004fc64a4495e444ab543ed98, type: 2}
+  - {fileID: 2100000, guid: 7f9c4e58133f1ed47b6c034b9552098a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -510,7 +512,50 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -5593577123798112076, guid: 784c52279e977e34b9eb39fe5582a942, type: 3}
+  m_Mesh: {fileID: 6171877962291720422, guid: 8fc75ed96d3a30b498dd7a8ca5d10035, type: 3}
+--- !u!114 &6242262166504351767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778452285657962486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfea2e3f750f92046b2e86788d615d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CMS
+  disappear: {fileID: 2100000, guid: 7f9c4e58133f1ed47b6c034b9552098a, type: 2}
+  itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
+  CMSPlaced: {fileID: 11400000, guid: 28f60543a0d42f24dae6ee9078363a24, type: 2}
+--- !u!114 &7043312980191437325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778452285657962486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6242262166504351767}
+        m_TargetAssemblyTypeName: CMS, Assembly-CSharp
+        m_MethodName: spreadCMS
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2000226019164364879
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,14 +604,17 @@ GameObject:
   - component: {fileID: 7214763703804541886}
   - component: {fileID: 7663776342391927309}
   - component: {fileID: 3429128518590862153}
-  - component: {fileID: 8031806605294707790}
-  - component: {fileID: -950742791878214923}
+  - component: {fileID: 4550392787066587895}
+  - component: {fileID: -3242558228078613112}
   - component: {fileID: 413989794319165892}
   - component: {fileID: 8426452869903766260}
-  - component: {fileID: -3192359840466150004}
-  - component: {fileID: 4721599500137426827}
+  - component: {fileID: -4277845184928085768}
+  - component: {fileID: -3810017232940481435}
+  - component: {fileID: -3677012255533220884}
+  - component: {fileID: -6650035732912270109}
+  - component: {fileID: 7564869755571566087}
   m_Layer: 3
-  m_Name: AtmosphereCore
+  m_Name: NavigationCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -601,7 +649,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2686316716733918259}
-  m_Mesh: {fileID: -5593577123798112076, guid: 784c52279e977e34b9eb39fe5582a942, type: 3}
+  m_Mesh: {fileID: 6171877962291720422, guid: 8fc75ed96d3a30b498dd7a8ca5d10035, type: 3}
 --- !u!23 &8754060738700408977
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -726,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de840acf395acc4ab9e0a06020f8b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectRelocator
---- !u!114 &8031806605294707790
+--- !u!114 &4550392787066587895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -744,7 +792,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &-950742791878214923
+--- !u!114 &-3242558228078613112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -825,7 +873,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-3192359840466150004
+--- !u!114 &-4277845184928085768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -841,7 +889,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -950742791878214923}
+      - m_Target: {fileID: -3242558228078613112}
         m_TargetAssemblyTypeName: Highlight, Assembly-CSharp
         m_MethodName: highlight
         m_Mode: 1
@@ -853,7 +901,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4721599500137426827
+--- !u!114 &-3810017232940481435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -869,7 +917,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -950742791878214923}
+      - m_Target: {fileID: -3242558228078613112}
         m_TargetAssemblyTypeName: Highlight, Assembly-CSharp
         m_MethodName: unhighlight
         m_Mode: 1
@@ -881,6 +929,61 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-3677012255533220884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2686316716733918259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2b2acfce2ec944d90a795ce4399a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Disappear
+--- !u!114 &-6650035732912270109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2686316716733918259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: c87fc45fb4e4e9e49b6d9fabbebb934e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3677012255533220884}
+        m_TargetAssemblyTypeName: Disappear, Assembly-CSharp
+        m_MethodName: triggerDisappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7564869755571566087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2686316716733918259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfea2e3f750f92046b2e86788d615d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CMS
+  disappear: {fileID: 0}
+  itemPlaced: {fileID: 0}
+  CMSPlaced: {fileID: 0}
 --- !u!1 &3203445083582751224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
-  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
   requiredItem: LockingPin
   placementContainer: {fileID: 9205560963471672774}
@@ -1310,7 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
-  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
   requiredItem: LockingPin
   placementContainer: {fileID: 780042689626413873}
@@ -1756,7 +1859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
-  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
   requiredItem: LockingPin
   placementContainer: {fileID: 73407147395825477}
@@ -1932,7 +2035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopInteraction: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
-  clearCrosshair: {fileID: 11400000, guid: 9f6eaa9988847484a8766b48fdfadfb4, type: 2}
+  defaultCrosshair: {fileID: 0}
   thumbsUpCrosshair: {fileID: 11400000, guid: c3f1d90847028414daff4ff309ccd0ae, type: 2}
   requiredItem: LockingPin
   placementContainer: {fileID: 5046937523085103031}

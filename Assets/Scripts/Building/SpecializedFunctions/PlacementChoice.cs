@@ -39,7 +39,7 @@ public class PlacementChoice : MonoBehaviour
 		{
 			if(otherOption == null)
 			{
-				Debug.Log("Recieved sending back");
+				//Debug.Log("Recieved sending back");
 				otherOption = recieved.option;
 				callOtherOption.RaiseEvent(thisOption);
 			}
@@ -74,7 +74,7 @@ public class PlacementChoice : MonoBehaviour
 	{
 		if(chosen == false)
 		{
-			Debug.Log("I have been forsaken");
+			//Debug.Log("I have been forsaken");
 			foreach(Transform child in transform)
 			{
 				if(child.name.Contains("Collider") != true)

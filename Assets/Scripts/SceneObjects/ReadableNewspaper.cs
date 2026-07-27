@@ -25,27 +25,21 @@ public class ReadableNewspaper : MonoBehaviour
 	
 	public void setNewsPaper()
 	{
-			for(int i = 0; i < 9; i++)
-			{
-				if(i < 3)
-				{
-					newsPaperName.GetComponent<TMP_Text>().text = "Planet 1";
-					newsPaperTagline.GetComponent<TMP_Text>().text = "Slogan 1";
-					break;
-				}
-				if(i < 6)
-				{
-					newsPaperName.GetComponent<TMP_Text>().text = "Planet 2";
-					newsPaperTagline.GetComponent<TMP_Text>().text = "Slogan 2";
-					break;
-				}
-				if(i < 9)
-				{
-					newsPaperName.GetComponent<TMP_Text>().text = "Planet 3";
-					newsPaperTagline.GetComponent<TMP_Text>().text = "Slogan 3";
-					break;
-				}
-			}
+		if(currentSession.currentDay <= 9)
+		{
+			newsPaperName.GetComponent<TMP_Text>().text = "Crasis Tribune";
+			newsPaperTagline.GetComponent<TMP_Text>().text = "Corruption Withers in Ink";
+		}
+		if(currentSession.currentDay <= 6)
+		{
+			newsPaperName.GetComponent<TMP_Text>().text = "Melligo Herald";
+			newsPaperTagline.GetComponent<TMP_Text>().text = "Yesterday's News Tomorrow";
+		}
+		if(currentSession.currentDay <= 3)
+		{
+			newsPaperName.GetComponent<TMP_Text>().text = "Anathor Gazette";
+			newsPaperTagline.GetComponent<TMP_Text>().text = "Your Daily Disaster Bulletin";
+		}
 		string todayTitle = "No Title";
 		string todayTagline = "No Tagline";
 		string todayArticle = "No article";

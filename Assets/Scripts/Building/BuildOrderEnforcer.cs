@@ -41,7 +41,7 @@ public class BuildOrderEnforcer : MonoBehaviour
     {
 		yield return null;
         PlacementTrigger[] placementPoints = GetComponentsInChildren<PlacementTrigger>(true);
-
+		
         int placementCount = 0;
         for (int i = 0; i < placementPoints.Length; i++)
         {

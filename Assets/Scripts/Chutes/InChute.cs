@@ -19,7 +19,8 @@ public class InChute : MonoBehaviour, IInteractable
     private bool isAnimating;
     private bool hasGivenOutBox;
     private string outBoxRequiredItem;
-
+	[SerializeField] private VoidEventChannelSO buildFinished;
+	
     void Awake()
     {
         chuteMaterial = GetComponent<Renderer>().material;
@@ -92,7 +93,7 @@ public class InChute : MonoBehaviour, IInteractable
 
     private void GiveBox()
     {
-        if (hasGivenOutBox)
+        if (boxItemsQueue.Count > 0)
         {
             GameObject newBox = Instantiate(packagedBox, itemSpawnPosition, Quaternion.identity);
             // Removes "(Clone)" from the name.
@@ -137,4 +138,20 @@ public class InChute : MonoBehaviour, IInteractable
 
         isAnimating = false;
     }
+	
+	public void autoOutBox()
+	{
+		if(hasGivenOutBox == false)
+		{
+			hasGivenOutBox = true;
+			GiveBox();
+			StartCoroutine(delayedOpen());
+		}
+	}
+	
+	private IEnumerator delayedOpen()
+	{
+		yield return new WaitForSeconds(3f);
+		buildFinished.RaiseEvent();
+	}
 }

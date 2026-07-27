@@ -81,6 +81,10 @@ public class levelFailure : MonoBehaviour
 		{
 			termination = "Missed Deadlines";
 		}
+		if(LevelManager.Instance.coffeeUsed == true)
+		{
+			termination = "Compromised Build";
+		}
 		planetNameObject.GetComponent<TMP_Text>().text = planetName;
 		buildNameObject.GetComponent<TMP_Text>().text = spaceName;
 		deathReason.GetComponent<TMP_Text>().text = termination;

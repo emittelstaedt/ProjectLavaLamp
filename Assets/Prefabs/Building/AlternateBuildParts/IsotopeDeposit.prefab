@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 7505569764242370632}
   - component: {fileID: 5442446829880739126}
   - component: {fileID: 5938390821583461000}
+  - component: {fileID: -7607456468220214924}
+  - component: {fileID: -4009625092766376323}
+  - component: {fileID: 785269453016616420}
   m_Layer: 3
   m_Name: IsotopeDeposit
   m_TagString: Untagged
@@ -77,8 +80,7 @@ MeshRenderer:
   m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 3ec89f3dc43b0ec41895a9715ace9fab, type: 2}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,6 +335,61 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-7607456468220214924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258285499989484323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2b2acfce2ec944d90a795ce4399a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Disappear
+--- !u!114 &-4009625092766376323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258285499989484323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: c87fc45fb4e4e9e49b6d9fabbebb934e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7607456468220214924}
+        m_TargetAssemblyTypeName: Disappear, Assembly-CSharp
+        m_MethodName: triggerDisappear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &785269453016616420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258285499989484323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfea2e3f750f92046b2e86788d615d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CMS
+  disappear: {fileID: 0}
+  itemPlaced: {fileID: 0}
+  CMSPlaced: {fileID: 0}
 --- !u!1 &3548613576936341915
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +403,7 @@ GameObject:
   - component: {fileID: 7330443744286260986}
   - component: {fileID: 6884617085553479391}
   - component: {fileID: 4675967594927124453}
+  - component: {fileID: 6314240468234070125}
   m_Layer: 3
   m_Name: IsotopeDepositCollider
   m_TagString: Untagged
@@ -401,7 +459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e54e7b1d4d385d6499d0b054855da84d, type: 2}
+  - {fileID: 2100000, guid: 5b3a7d02cab32694fb92a463f6287e5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -459,6 +517,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfea2e3f750f92046b2e86788d615d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CMS
+  disappear: {fileID: 2100000, guid: 5b3a7d02cab32694fb92a463f6287e5d, type: 2}
+  itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
+  CMSPlaced: {fileID: 11400000, guid: 28f60543a0d42f24dae6ee9078363a24, type: 2}
+--- !u!114 &6314240468234070125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548613576936341915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4675967594927124453}
+        m_TargetAssemblyTypeName: CMS, Assembly-CSharp
+        m_MethodName: spreadCMS
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5177387871209289240
 GameObject:
   m_ObjectHideFlags: 0
