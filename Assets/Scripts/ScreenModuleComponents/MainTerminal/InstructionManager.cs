@@ -33,9 +33,9 @@ public class InstructionManager : MonoBehaviour, IScreen
         instructionCanvas.enabled = false;
     }
 
-    public void SetBuildInstructions(BuildInstructionsSO instructions)
+    public void SetBuildInstructions(BuildInstructionsSO newInstructions)
     {
-        this.instructions = instructions;
+        instructions = newInstructions;
 		instructionsImage.sprite = instructions.Pages[0];
     }
 
