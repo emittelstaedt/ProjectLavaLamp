@@ -11,6 +11,7 @@ public class SwitchController : MonoBehaviour
     private Vector3 downDirection;
     private Vector3 targetDirection;
     private Vector3 currentVelocity;
+    [SerializeField] private SoundType onSwitch;
     
     void Awake()
     {
@@ -27,11 +28,13 @@ public class SwitchController : MonoBehaviour
         {
             targetDirection = downDirection;
             switchEvent = switchDown;
+            AudioManager.Instance.PlaySound(MixerType.SFX, onSwitch, 1f, transform.position);
         }
         else
         {
             targetDirection = upDirection;
             switchEvent = switchUp;
+            AudioManager.Instance.PlaySound(MixerType.SFX, onSwitch, 1f, transform.position);
         }
         
         if (switchEvent != null)

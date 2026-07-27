@@ -295,21 +295,22 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void StartHover()
     {
-        if (thumbsUpCrosshair != null)
+        /*if (thumbsUpCrosshair != null)
         {
             thumbsUpCrosshair.RaiseEvent();
-        }
+        }*/
         outline.OutlineColor = Settings.HoverColor;
+        outline.OutlineWidth = Settings.OutlineWidth;
         outline.enabled = true;
         //Debug.Log("Hovering On Camera!");
     }
 
     public void StopHover()
     {
-        if (clearCrosshair != null)
+        /*if (clearCrosshair != null)
         {
             clearCrosshair.RaiseEvent();
-        }
+        }*/
         outline.enabled = false;
         //Debug.Log("No Longer Hovering!");
     }
@@ -333,6 +334,12 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
             // Wait until the next frame
             yield return null;
+        }
+
+        //This checks to see if we're current in the room we want to be, only plays the sound if we are.
+        if(Mathf.Approximately(pathT, targetAtPointB ? 1f : 0f) && lookBlend <= 0.01f)
+        {
+            AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
         }
 
         // Ensure it hits exactly 0 at the very end
