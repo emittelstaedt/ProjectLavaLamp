@@ -36,6 +36,7 @@ public class InstructionManager : MonoBehaviour, IScreen
     public void SetBuildInstructions(BuildInstructionsSO instructions)
     {
         this.instructions = instructions;
+		instructionsImage.sprite = instructions.Pages[0];
     }
 
     public void NextPage()
