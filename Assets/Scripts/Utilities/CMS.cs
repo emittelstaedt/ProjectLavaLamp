@@ -1,30 +1,56 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CMS : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        if(this.gameObject.transform.root != this.gameObject.transform && this.gameObject.transform.root.GetComponent<CMS>() == null)
+	public Material disappear; //Add this in editor different for each alt part
+	public VoidEventChannelSO itemPlaced;
+	public VoidEventChannelSO CMSPlaced;
+	
+	public void spreadCMS()
+	{
+		if(transform.root.GetComponent<CMS>() == null)
 		{
-			this.gameObject.transform.root.gameObject.AddComponent<CMS>();
+			CMSpayload(transform.root.gameObject);
+		}
+		if(transform.parent == null) //if this is the root object
+		{
 			foreach(Transform child in this.gameObject.transform.root)
 			{
-				string childName = child.name;
-				int nameLength = childName.Length;
-				if(nameLength >= 8)
+				if(child.gameObject.GetComponent<CMS>() == null)
 				{
-					if(childName[nameLength - 8] == 'C')
+					string childName = child.name;
+					int nameLength = childName.Length;
+					if(nameLength >= 8)
 					{
-						child.gameObject.AddComponent<CMS>();
+						if(childName[nameLength - 8] == 'C')
+						{
+							CMSpayload(child.gameObject);
+						}
 					}
 				}
 			}
-			Destroy(this);
 		}
-    }
+		CMSPlaced.RaiseEvent();
+	}
+	
+	private void CMSpayload(GameObject CMSmarked)
+	{
+		CMS newCMS = CMSmarked.AddComponent<CMS>();
+		newCMS.disappear = disappear;
+		newCMS.itemPlaced = itemPlaced;
+		newCMS.CMSPlaced = CMSPlaced;
+		CMSmarked.GetComponent<Renderer>().material = disappear;
+		VoidEventChannelSubscriber cmsPlaced = CMSmarked.AddComponent<VoidEventChannelSubscriber>();
+		UnityEvent cmsResponse = new();
+		cmsResponse.AddListener(newCMS.spreadCMS);
+		cmsPlaced.SetChannelAndResponse(itemPlaced, cmsResponse);
+		UnityEditor.Events.UnityEventTools.AddPersistentListener
+		(
+			cmsResponse, 
+			newCMS.spreadCMS
+		);
+		cmsPlaced.OnEnable();
+		newCMS.spreadCMS();
+	}
 }

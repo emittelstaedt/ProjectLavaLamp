@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 988980937023129253}
   - component: {fileID: 665876778682832675}
   - component: {fileID: 6917386287033389050}
+  - component: {fileID: 2299987727644425042}
+  - component: {fileID: 6101920915770655705}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: LevelManager
@@ -62,6 +64,8 @@ MonoBehaviour:
   setCursorVisibility: {fileID: 11400000, guid: 7f18adf6a3420704e845e1e7511ef534, type: 2}
   setProfilePointer: {fileID: 11400000, guid: 2ce9deaef702e4a4884d839305c7787a, type: 2}
   sendLevel: {fileID: 11400000, guid: ec9ec9b579da19f4daa8fc92f3e853f0, type: 2}
+  memo: {fileID: 0}
+  newspaper: {fileID: 0}
   loadingScreen: {fileID: 0}
   startMenu: {fileID: 0}
   menuButtons: {fileID: 0}
@@ -77,12 +81,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee4c0c57dc5ef1a4ea3fe25c3194ba2f, type: 2}
   - {fileID: 11400000, guid: 99357d61402d5ed429423524f124e9e0, type: 2}
   - {fileID: 11400000, guid: d25ff64c80c6032469459b11ef112be3, type: 2}
-  - {fileID: 11400000, guid: 8733d1c3dcd4357419445f051c182751, type: 2}
+  - {fileID: 11400000, guid: e01918b41f465c449bc61bf3f3137b50, type: 2}
   - {fileID: 11400000, guid: 8733d1c3dcd4357419445f051c182751, type: 2}
   - {fileID: 11400000, guid: cf69f9d3657b49f4ea9c88f6ff22722c, type: 2}
   - {fileID: 11400000, guid: 8733d1c3dcd4357419445f051c182751, type: 2}
   profiles: []
   profilePaths: []
+  coffeeUsed: 0
   currentSession:
     employeeName: 
     employeeNumber: 0
@@ -478,6 +483,62 @@ MonoBehaviour:
       - m_Target: {fileID: 2149403798245145077}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: stopProfileGameTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2299987727644425042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 28f60543a0d42f24dae6ee9078363a24, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2149403798245145077}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: CMSPlaced
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6101920915770655705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054425470790906725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: dde4955e8dc45fa168a788754a53f3f7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2149403798245145077}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: coffeeDrank
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private BoolEventChannelSO setCursorVisibility;
 	[SerializeField] private IntEventChannelSO setProfilePointer;
 	[SerializeField] private LevelInfoSOEventChannelSO sendLevel;
+	[SerializeField] private GameObject memo;
+	[SerializeField] private GameObject newspaper;	
 	[SerializeField] private GameObject loadingScreen;
 	[SerializeField] private GameObject startMenu;
 	[SerializeField] private GameObject menuButtons;
@@ -28,6 +30,8 @@ public class LevelManager : MonoBehaviour
 	private float totalTime;
 	private float profileStartTime;
 	private float profileEndTime;
+	private bool CMSUsed;
+	public bool coffeeUsed;
 	
 	public EmployeeData currentSession;
 	
@@ -195,6 +199,8 @@ public class LevelManager : MonoBehaviour
 		HUD.SetActive(false);
 		setCursorVisibility.RaiseEvent(true);
 		InputSystem.actions.FindActionMap("Player").Disable();
+		memo.SetActive(false);
+		newspaper.SetActive(false);
 		StartCoroutine(PauseBeforeLevelSuccess());
     }
 	
@@ -203,6 +209,8 @@ public class LevelManager : MonoBehaviour
 		HUD.SetActive(false);
 		setCursorVisibility.RaiseEvent(true);
 		InputSystem.actions.FindActionMap("Player").Disable();
+		memo.SetActive(false);
+		newspaper.SetActive(false);
 		StartCoroutine(PauseBeforeLevelFailure());
 	}
 	
@@ -242,6 +250,8 @@ public class LevelManager : MonoBehaviour
 	
 	private IEnumerator ContinueToNextLevel()
 	{
+		CMSUsed = false;
+		coffeeUsed = false;
 		loadGame();
 		currentSession = profiles[currentSession.employeeNumber];
 		if(currentSession.coffeeLevel != 0)
@@ -297,5 +307,25 @@ public class LevelManager : MonoBehaviour
 		currentSession = profiles[currentSession.employeeNumber];
 		currentSession.totalGameTime += additionalGameTime;
 		saveGame();
+	}
+	
+	public void CMSPlaced()
+	{
+		CMSUsed = true;
+	}
+	
+	public void coffeeDrank()
+	{
+		if(CMSUsed == true)
+		{
+			coffeeUsed = true;
+			StartCoroutine(delayedDisappear());
+		}
+	}
+	
+	public IEnumerator delayedDisappear()
+	{
+		yield return new WaitForSeconds(1.5f);
+		levelIncomplete();
 	}
 }

@@ -141,7 +141,7 @@ public class InteractableObjectSearcher : MonoBehaviour
 
     public void ClearCurrentInteraction()
     {
-        Debug.Log("Current interaction cleared!");
+        //Debug.Log("Current interaction cleared!");
         currentUsable = null;
 
         lastObjectLookedAt?.StopHover();

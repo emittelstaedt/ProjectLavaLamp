@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8196920973099487016}
   - component: {fileID: 8727451913047284457}
   - component: {fileID: 5094440206049431430}
+  - component: {fileID: 3767380208944201033}
   m_Layer: 0
   m_Name: InChute
   m_TagString: Untagged
@@ -235,6 +236,7 @@ MonoBehaviour:
   outBox: {fileID: 1506996728426710096, guid: bfc82ef311cd071468ad1fa3ae3f90ed, type: 3}
   itemSpawn: {fileID: 8327191055553835023}
   delay: 0.5
+  buildFinished: {fileID: 11400000, guid: 9135c7c6915fef847b64d42e1de290dc, type: 2}
 --- !u!114 &2048428587318001733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +328,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
         m_MethodName: SetMaterial
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3767380208944201033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5004810627175594447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 9135c7c6915fef847b64d42e1de290dc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2454912186395702849}
+        m_TargetAssemblyTypeName: InChute, Assembly-CSharp
+        m_MethodName: autoOutBox
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

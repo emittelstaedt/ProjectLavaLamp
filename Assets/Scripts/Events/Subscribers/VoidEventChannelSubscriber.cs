@@ -20,7 +20,7 @@ public class VoidEventChannelSubscriber : MonoBehaviour
         this.response = response;
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         if (eventChannel != null)
         {
