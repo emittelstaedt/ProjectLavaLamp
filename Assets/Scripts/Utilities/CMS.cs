@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CMS : MonoBehaviour
 {
-	public Material disappear; //Add this in editor different for each alt part
+	public List<Material> disappear; //Add this in editor different for each alt part
 	public VoidEventChannelSO itemPlaced;
 	public VoidEventChannelSO CMSPlaced;
 	
@@ -40,7 +42,7 @@ public class CMS : MonoBehaviour
 		newCMS.disappear = disappear;
 		newCMS.itemPlaced = itemPlaced;
 		newCMS.CMSPlaced = CMSPlaced;
-		CMSmarked.GetComponent<Renderer>().material = disappear;
+		CMSmarked.GetComponent<Renderer>().SetMaterials(disappear);
 		VoidEventChannelSubscriber cmsPlaced = CMSmarked.AddComponent<VoidEventChannelSubscriber>();
 		UnityEvent cmsResponse = new();
 		cmsResponse.AddListener(newCMS.spreadCMS);
