@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ef1b7c31ab122374a99928b799d4ff44, type: 2}
+  - {fileID: 2100000, guid: ad1d88d6f97f2af4389c2f32e7ed16a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfea2e3f750f92046b2e86788d615d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CMS
-  disappear: {fileID: 2100000, guid: 4ad878bdb10b00844a17543701f8578c, type: 2}
+  disappear:
+  - {fileID: 2100000, guid: ad1d88d6f97f2af4389c2f32e7ed16a4, type: 2}
+  - {fileID: 2100000, guid: ecf867eb35de44743b997df4bff74410, type: 2}
   itemPlaced: {fileID: 11400000, guid: 465a4afce6d01ca478b18f4dd8c31dc0, type: 2}
   CMSPlaced: {fileID: 11400000, guid: 28f60543a0d42f24dae6ee9078363a24, type: 2}
 --- !u!114 &5777094337986163203
@@ -544,6 +546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfea2e3f750f92046b2e86788d615d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CMS
-  disappear: {fileID: 0}
+  disappear: []
   itemPlaced: {fileID: 0}
   CMSPlaced: {fileID: 0}

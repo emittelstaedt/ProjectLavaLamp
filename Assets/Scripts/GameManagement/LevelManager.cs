@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private BoolEventChannelSO setCursorVisibility;
 	[SerializeField] private IntEventChannelSO setProfilePointer;
 	[SerializeField] private LevelInfoSOEventChannelSO sendLevel;
+	[SerializeField] private EmailEventChannelSO sendEmail;
+	[SerializeField] private email efficiencyMail;
 	[SerializeField] private GameObject memo;
 	[SerializeField] private GameObject newspaper;	
 	[SerializeField] private GameObject loadingScreen;
@@ -32,6 +34,7 @@ public class LevelManager : MonoBehaviour
 	private float profileEndTime;
 	private bool CMSUsed;
 	public bool coffeeUsed;
+	private int lossCounter; 
 	
 	public EmployeeData currentSession;
 	
@@ -56,6 +59,7 @@ public class LevelManager : MonoBehaviour
 			profilePaths[i] = Application.persistentDataPath + "/employee" + i.ToString() + ".json"; 
 		}
 		loadGame();
+		lossCounter = 0;
     }
 	
 	public void checkProfileSelection()
@@ -186,6 +190,7 @@ public class LevelManager : MonoBehaviour
 	
 	public void levelComplete()
 	{
+		lossCounter = 0;
 		endTime = Time.realtimeSinceStartup;
 		totalTime = endTime - startTime;
 		currentSession.levelCompleteTimes[currentSession.currentDay - 1] = totalTime;
@@ -206,6 +211,7 @@ public class LevelManager : MonoBehaviour
 	
 	public void levelIncomplete()
 	{
+		lossCounter++;
 		HUD.SetActive(false);
 		setCursorVisibility.RaiseEvent(true);
 		InputSystem.actions.FindActionMap("Player").Disable();
@@ -270,6 +276,10 @@ public class LevelManager : MonoBehaviour
 		SceneLoader.Instance.LoadScene("OfficeWorkplace");
 		InputSystem.actions.FindActionMap("Player").Enable();
 		startTime = Time.realtimeSinceStartup;
+		if(lossCounter >= 3)
+		{
+			StartCoroutine(efficiencyDelivery());
+		}
 	}
 	
 	private IEnumerator ContinueToEndGame()
@@ -327,5 +337,18 @@ public class LevelManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1.5f);
 		levelIncomplete();
+	}
+	
+	private IEnumerator efficiencyDelivery()
+	{
+		yield return new WaitForSeconds(0.75f);
+		sendEmail.RaiseEvent(efficiencyMail);
+		currentSession.efficiency += 200;
+		if(currentSession.efficiency > 1000)
+		{
+			currentSession.efficiency = 1000;
+		}
+		saveGame();
+		lossCounter = 0;
 	}
 }
