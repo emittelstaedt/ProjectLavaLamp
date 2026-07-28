@@ -15,6 +15,7 @@ public class MatchingManager : MonoBehaviour
 	[SerializeField] private Color[] colors;
 	[SerializeField] private GameObject[] buttons;
 	[SerializeField] private GameObject[] roundIndicators;
+	[SerializeField] private SoundType onWrongShape;
 	private int currentRound;
 	private int correctShapes;
 	private LinkedList<int> shapeSequence;
@@ -153,6 +154,9 @@ public class MatchingManager : MonoBehaviour
 	
 	private void wrongShape(int buttonID)
 	{
+		//Plays Audio Here now, move this line if this is wrong
+		AudioManager.Instance.PlaySound(MixerType.SFX, onWrongShape, 1f);
+
 		cancelShapeAnimations();
 		shapeVisual = shapeAnimation(buttonID);
 		StartCoroutine(shapeVisual);

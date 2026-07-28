@@ -27,4 +27,5 @@ public enum SoundType
     SwitchClick,
     ButtonDown,
     ButtonUp,
+    MinigameError,
 };
