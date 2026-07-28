@@ -23,8 +23,13 @@ public class CMS : MonoBehaviour
 				{
 					string childName = child.name;
 					int nameLength = childName.Length;
-					if(nameLength >= 8)
+					if(nameLength >= 8 || childName == "Lid1" || childName == "Lid2")
 					{
+						if(childName == "Lid1" || childName == "Lid2")
+						{
+							CMSpayload(child.gameObject);
+							continue;
+						}
 						if(childName[nameLength - 8] == 'C')
 						{
 							CMSpayload(child.gameObject);
@@ -42,7 +47,27 @@ public class CMS : MonoBehaviour
 		newCMS.disappear = disappear;
 		newCMS.itemPlaced = itemPlaced;
 		newCMS.CMSPlaced = CMSPlaced;
-		CMSmarked.GetComponent<Renderer>().SetMaterials(disappear);
+		if(CMSmarked.name == "OutBoxCollider" || CMSmarked.name ==  "Lid1" || CMSmarked.name ==  "Lid2")
+		{
+			Shader fadeShader = Shader.Find("Shader Graphs/BoxFade");
+			CMSmarked.GetComponent<Renderer>().material.shader = fadeShader;
+		}
+		else if(CMSmarked.name == "EmptyOutBox" || CMSmarked.name ==  "FullOutBox")
+		{
+			//Nothing
+		}
+		else
+		{
+			if(CMSmarked.GetComponent<Renderer>().materials.Length > 1)
+			{
+				CMSmarked.GetComponent<Renderer>().SetMaterials(disappear);
+			}
+			else if(CMSmarked.GetComponent<Renderer>().materials.Length == 1)
+			{
+				CMSmarked.GetComponent<Renderer>().material = disappear[0];
+			}
+			
+		}
 		VoidEventChannelSubscriber cmsPlaced = CMSmarked.AddComponent<VoidEventChannelSubscriber>();
 		UnityEvent cmsResponse = new();
 		cmsResponse.AddListener(newCMS.spreadCMS);
