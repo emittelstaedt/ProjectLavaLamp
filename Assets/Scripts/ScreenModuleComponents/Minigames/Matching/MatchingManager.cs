@@ -16,6 +16,10 @@ public class MatchingManager : MonoBehaviour
 	[SerializeField] private GameObject[] buttons;
 	[SerializeField] private GameObject[] roundIndicators;
 	[SerializeField] private SoundType onWrongShape;
+	[SerializeField] private SoundType Button1Sound;
+	[SerializeField] private SoundType Button2Sound;
+	[SerializeField] private SoundType Button3Sound;
+	[SerializeField] private SoundType Button4Sound;
 	private int currentRound;
 	private int correctShapes;
 	private LinkedList<int> shapeSequence;
@@ -120,6 +124,7 @@ public class MatchingManager : MonoBehaviour
 		}
 		if(current.Value == buttonID)
 		{
+			PlayCorrespondingSound(buttonID);
 			correctShape(buttonID);
 		}
 		else
@@ -172,6 +177,7 @@ public class MatchingManager : MonoBehaviour
 		LinkedListNode<int> current = shapeSequence.First;
 		while(current != null)
 		{
+			PlayCorrespondingSound(current.Value);
 			shapeDisplay.sprite = shapes[current.Value];
 			shapeDisplay.color = colors[current.Value];
 			yield return new WaitForSeconds(1f);
@@ -284,5 +290,23 @@ public class MatchingManager : MonoBehaviour
 		}
 		yield return new WaitForSeconds(0.5f);
 		StartCoroutine(matchingAnimation());
+	}
+
+	private void PlayCorrespondingSound(int which)
+	{
+		switch(which){
+				case 0:
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button1Sound, 0.7f);
+					break;
+				case 1:
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button2Sound, 0.7f);
+					break;
+				case 2:
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button3Sound, 0.7f);
+					break;
+				case 3:
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button4Sound, 0.7f);
+					break;
+		}
 	}
 }

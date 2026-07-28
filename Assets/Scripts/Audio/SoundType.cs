@@ -28,4 +28,8 @@ public enum SoundType
     ButtonDown,
     ButtonUp,
     MinigameError,
+    MatchingTone1,
+    MatchingTone2,
+    MatchingTone3,
+    MatchingTone4,
 };
