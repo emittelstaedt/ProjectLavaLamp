@@ -17,4 +17,12 @@ public class SirenSound : MonoBehaviour
             soundGameObject.SetActive(false);
         }
     }
+
+    void OnDisable()
+    {
+        if (soundGameObject != null)
+        {
+            soundGameObject.SetActive(false);
+        }
+    }
 }
