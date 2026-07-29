@@ -13,6 +13,9 @@ public class MatchingButtonController : MonoBehaviour
     private float pressVelocity;
     private bool isTargetStatePressed;
     private Coroutine moveButton;
+
+    [SerializeField] private SoundType onButtonDown;
+    [SerializeField] private SoundType onButtonUp;
     
     private enum Mode
     {
@@ -30,10 +33,12 @@ public class MatchingButtonController : MonoBehaviour
         if (mode == Mode.Hold || !isTargetStatePressed)
         {
             SetPressed(true);
+            AudioManager.Instance.PlaySound(MixerType.SFX, onButtonDown, 1f, transform.position);
         }
         else
         {
             SetPressed(false);
+            AudioManager.Instance.PlaySound(MixerType.SFX, onButtonUp, 1f, transform.position);
         }
     }
     
@@ -42,6 +47,7 @@ public class MatchingButtonController : MonoBehaviour
         if (mode == Mode.Hold)
         {
             SetPressed(false);
+            AudioManager.Instance.PlaySound(MixerType.SFX, onButtonUp, 1f, transform.position);
         }
     }
     

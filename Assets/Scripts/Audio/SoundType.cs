@@ -24,4 +24,12 @@ public enum SoundType
     CameraSplash,
     DoorUnlock,
     CameraSeesBoxBreak,
+    SwitchClick,
+    ButtonDown,
+    ButtonUp,
+    MinigameError,
+    MatchingTone1,
+    MatchingTone2,
+    MatchingTone3,
+    MatchingTone4,
 };

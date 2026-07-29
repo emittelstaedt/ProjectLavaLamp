@@ -11,6 +11,8 @@ public class DrillManager : MonoBehaviour
     private int currentDrillIndex;
 
     private bool hasStartedDrill;
+
+    [SerializeField] private SoundType onCrash;
     
     void Awake()
     {
@@ -86,6 +88,11 @@ public class DrillManager : MonoBehaviour
         LoadNextDrill();
         DrillPrefabs[currentDrillIndex].SetActive(false);
         hasStartedDrill=false;
+    }
+
+    public void PlayCrashSound()
+    {
+        AudioManager.Instance.PlaySound(MixerType.SFX, onCrash, 0.7f, transform.position);
     }
     
 }

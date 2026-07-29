@@ -10,6 +10,10 @@ public class MazeCollision : MonoBehaviour
         {
             if (mazeCollision != null)
             {
+                if (mazeCollision.name == "MazeCollision")
+                {
+                    AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameError, 1f, transform.position);
+                }
                 mazeCollision.RaiseEvent();
             }
         }
