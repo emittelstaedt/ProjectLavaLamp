@@ -119,6 +119,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8605070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1196582901741528276, guid: f7dbb7567a1d9b24aa091a87bd60b51a, type: 3}
+  m_PrefabInstance: {fileID: 466140734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &8605078
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605070}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: e16bf13a121bdc74fb14ab8c8d48fc98, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e16bf13a121bdc74fb14ab8c8d48fc98, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1001 &15388522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -293,6 +315,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 15388524}
+    - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 15388529}
   m_SourcePrefab: {fileID: 100100000, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
 --- !u!1 &15388523 stripped
 GameObject:
@@ -346,6 +371,23 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f78b0d7125742114dbafa5cffdc27c1d, type: 3}
   - {fileID: 2800000, guid: 5cdf7aa34c7bc644185fc77ab50f78cc, type: 3}
   planetNumber: 0
+--- !u!111 &15388529
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15388523}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: e16bf13a121bdc74fb14ab8c8d48fc98, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: e16bf13a121bdc74fb14ab8c8d48fc98, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &95936007
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +829,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1196582901741528276, guid: f7dbb7567a1d9b24aa091a87bd60b51a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8605078}
   m_SourcePrefab: {fileID: 100100000, guid: f7dbb7567a1d9b24aa091a87bd60b51a, type: 3}
 --- !u!20 &466140735 stripped
 Camera:
