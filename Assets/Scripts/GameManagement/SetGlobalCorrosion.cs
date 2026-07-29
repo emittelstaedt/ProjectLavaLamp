@@ -10,6 +10,11 @@ public class SetGlobalCorrosion : MonoBehaviour
 	[SerializeField] private float startingDisappear = 0f;
     [SerializeField] private float serializedDuration = 3f;
 	[SerializeField] private VoidEventChannelSO triggerDisappear;
+    //Sound Stuff
+    private GameObject soundGameObject;
+    bool coffeeHasBeenDrank = false;
+    [SerializeField] float musicVolume = 0.01f;
+
 	
     private static readonly int CorrosionID = Shader.PropertyToID("_Damage_Amount");
 	private static readonly int DisappearID = Shader.PropertyToID("_Fade_amount");
@@ -35,6 +40,8 @@ public class SetGlobalCorrosion : MonoBehaviour
             }
             Shader.SetGlobalFloat(CorrosionID, startingCorrosion);
 			Shader.SetGlobalFloat(DisappearID, startingDisappear);
+
+            Invoke(nameof(StartCorrespondingMusic), 0.7f);   
         }
         else
         {
@@ -44,6 +51,7 @@ public class SetGlobalCorrosion : MonoBehaviour
 
     public void onCoffeeDrank()
     {
+        coffeeHasBeenDrank = true;
         StartCoroutine(FadeOutCorrosion(serializedDuration)); // Fade over serializeduration seconds
     }
 
@@ -67,5 +75,59 @@ public class SetGlobalCorrosion : MonoBehaviour
         Shader.SetGlobalFloat(CorrosionID, 0f);
         startingCorrosion = 0f;
 		startingDisappear = 1f;
+        StartCorrespondingMusic();
+    }
+
+
+
+    void StartCorrespondingMusic()
+    {
+
+        if(soundGameObject!=null)
+        {
+            soundGameObject.SetActive(false);
+        }
+
+        if(coffeeHasBeenDrank)
+        {
+           soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic0, musicVolume); 
+        }
+        else
+        {
+            //Debug.Log($"Coffee level is:{LevelManager.Instance.currentSession.coffeeLevel}");
+            //Remember that coffeelevel is inverse of corrosion level :(
+            switch (LevelManager.Instance.currentSession.coffeeLevel)
+                {
+                    case 0:
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic3, musicVolume*2);
+                        //Debug.Log($"Switch read as 0.");
+                        break;
+                    case 1:
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic2, musicVolume);
+                        //Debug.Log($"Switch read as 1.");
+                        break;
+                    case 2:
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic1, musicVolume);
+                        //Debug.Log($"Switch read as 2.");
+                        break;
+                    default:
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic0, musicVolume);
+                        //Debug.Log($"Switch read as 3.");
+                        break;
+                }
+        }
+
+        if(soundGameObject!=null)
+        {
+            soundGameObject.SetActive(true);
+        }
+    }
+
+    void Ondisable()
+    {
+        if(soundGameObject!=null)
+        {
+            soundGameObject.SetActive(false);
+        } 
     }
 }

@@ -32,4 +32,8 @@ public enum SoundType
     MatchingTone2,
     MatchingTone3,
     MatchingTone4,
+    CorrosionMusic0,
+    CorrosionMusic1,
+    CorrosionMusic2,
+    CorrosionMusic3,
 };
