@@ -51,31 +51,35 @@ public class EndGame : MonoBehaviour
 	
 	public void setEndGameScreen()
 	{
-		string endTitle = "Quiet Quitting";
+		string endTitle = "Quiet Quitter";
 		Color endColor = new Color(186f/255f, 189f/255f, 189f/255f, 1f);
 		if(compareArrays(currentSession.levelBuildChoices, ScienceEnding))
 		{
-			//givenEnding = 1;
-			endTitle = "Science Spectacular";
+			currentSession.endings[1] = true;
+			endTitle = "Spectacular Scientist";
 			endColor = new Color(47f/255f, 213f/255f, 205f/255f, 1f);
 		}
 		else if(compareArrays(currentSession.levelBuildChoices, BadScienceEnding))
 		{
-			//givenEnding = 2;
+			currentSession.endings[2] = true;
 			endTitle = "Antiscience Anti-Superstar";
 			endColor = new Color(1f, 135f/255f, 65f/255f, 1f);
 		}
 		else if(compareArrays(currentSession.levelBuildChoices, HPCEnding))
 		{
-			//givenEnding = 3;
+			currentSession.endings[3] = true;
 			endTitle = "HPC Superstar";
 			endColor = new Color(1f, 0f, 0f, 1f);
 		}
 		else if(compareArrays(currentSession.levelBuildChoices, CMSEnding))
 		{
-			//givenEnding = 4;
+			currentSession.endings[4] = true;
 			endTitle = "CMS Believer";
 			endColor = new Color(240f/255f, 212f/255f, 57f/255f, 1f);
+		}
+		else
+		{
+			currentSession.endings[0] = true;
 		}
 		setStamps();
 		float averageTime = 0f;
@@ -92,18 +96,23 @@ public class EndGame : MonoBehaviour
 		score.GetComponent<TMP_Text>().text = LevelManager.Instance.currentSession.efficiency.ToString();
 		endGameTitleObject.GetComponent<TMP_Text>().text = endTitle;
 		endGameTitleObject.GetComponent<TMP_Text>().color = endColor;
-	}
-	
-	public void PressMainMenuButton()
-	{
+		//Reset signifcant values in current save file and then save
 		for(int i = 0; i < currentSession.levelBuildChoices.Length; i++)
 		{
 			currentSession.levelBuildChoices[i] = 0;
+			currentSession.levelCompleteTimes[i] = 0f;
 		}
+		currentSession.coffeeLevel = 3;
+		currentSession.efficiency = 1000;
 		if (LevelManager.Instance != null)
         {
 			LevelManager.Instance.saveGame();
 		}
+	}
+	
+	public void PressMainMenuButton()
+	{
+
 		triggerMainMenu.RaiseEvent();
 	}
 	

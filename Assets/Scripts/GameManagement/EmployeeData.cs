@@ -30,7 +30,6 @@ public class EmployeeData
 		}
 		coffeeLevel = 3;
 		coffeeDrank = 0;
-		coffeeThrown = 0;
 		efficiency = 1000;
 		endings = new bool[5];
 		for(int i = 0; i < 5; i++)
