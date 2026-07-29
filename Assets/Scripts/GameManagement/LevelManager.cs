@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private IntEventChannelSO setProfilePointer;
 	[SerializeField] private LevelInfoSOEventChannelSO sendLevel;
 	[SerializeField] private EmailEventChannelSO sendEmail;
+	[SerializeField] private VoidEventChannelSO planetCheck;
 	[SerializeField] private email efficiencyMail;
 	[SerializeField] private GameObject memo;
 	[SerializeField] private GameObject newspaper;	
@@ -267,6 +268,7 @@ public class LevelManager : MonoBehaviour
 		loadingScreen.SetActive(true);
 		levelSuccess.SetActive(false);
 		levelFailure.SetActive(false);
+		planetCheck.RaiseEvent();
 		if(SceneLoader.Instance.IsSceneLoaded("OfficeWorkplace"))
 		{
 			SceneLoader.Instance.UnloadScene("OfficeWorkplace");
@@ -287,6 +289,7 @@ public class LevelManager : MonoBehaviour
 		loadingScreen.SetActive(true);
 		levelSuccess.SetActive(false);
 		levelFailure.SetActive(false);
+		planetCheck.RaiseEvent();
 		SceneLoader.Instance.UnloadScene("OfficeWorkplace");
 		yield return null;
 		endGame.SetActive(true);
