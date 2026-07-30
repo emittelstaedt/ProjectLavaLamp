@@ -77,15 +77,55 @@ public class InteractableObjectSearcher : MonoBehaviour
     {
         UpdateHoverState(interactables);
 
-        if (interactAction.WasPressedThisFrame())
+        bool interactPressed = interactAction.WasPressedThisFrame();
+        bool usePressed = useItemAction.WasPressedThisFrame();
+
+        // Only if we're inside a terminal
+        if (currentInteraction != null && currentInteraction is IUsableInteractable)
+        {
+            // If the player presses E (usePressed) while actively engaged with a terminal,
+            // we bypass the look check and immediately clear the state machine.
+            if (usePressed)
+            {
+                ClearCurrentInteraction();
+            }
+            return; // Block standard world tracking loops while navigating the terminal
+        }
+
+        //Only if we're looking at the new class
+        if (lastObjectLookedAt is IUsableInteractable)
+        {
+            // E (usePressed) enters the special terminal state
+            if (usePressed)
+            {
+                TryInitiateInteraction(interactables);
+            }
+            
+            // Block the other keybind (Left-Click) from breaking the terminal look state
+            return; 
+        }
+
+        //Original code that runs if we aren't dealing with new class specifically
+        if (interactPressed)
         {
             TryInitiateInteraction(interactables);
         }
-        else if (useItemAction.WasPressedThisFrame())
+        else if (usePressed)
         {
             currentUsable?.UseItem();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 
     private void UpdateHoverState(List<IInteractable> interactables)
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CoffeeStack : MonoBehaviour, IInteractable
+public class CoffeeStack : MonoBehaviour, IUsableInteractable
 {
 	[SerializeField] private VoidEventChannelSO stopInteraction;
 	

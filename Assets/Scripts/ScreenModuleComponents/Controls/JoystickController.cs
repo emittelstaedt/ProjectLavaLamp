@@ -65,7 +65,7 @@ public class JoystickController : MonoBehaviour
             Vector3 localDirection = transform.localRotation * Vector3.forward;
             Vector2 inputDirection = (new Vector2(localDirection.x, localDirection.z)).normalized;
             Vector2 input = inputDirection * (Vector3.Angle(transform.forward, defaultForward) / maxTilt);
-            Debug.Log($"Input: {input}");
+            //Debug.Log($"Input: {input}");
             moveStick.RaiseEvent(input);
         }
     }
