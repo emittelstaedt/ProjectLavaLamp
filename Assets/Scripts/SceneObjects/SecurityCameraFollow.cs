@@ -61,6 +61,12 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     [SerializeField] private SoundType onCameraSplashed;
     [SerializeField] private SoundType onBoxBroken;
 
+    private bool isAngery = false;
+    private bool isHappe = false;
+
+    [SerializeField] private GameObject lightOfDoomAndEfficiencyLoss;
+
+
     private void Awake()
     {
         StopAllCoroutines();
@@ -94,6 +100,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
         objectMaterial = GetComponent<Renderer>().material;
         coffeeShaderAmount = Shader.PropertyToID("_Coffee_amount");
+        objectMaterial.SetColor("_Emiss_ON_Color", Color.yellow);
 
         BuildTransitionPath();
     }
@@ -180,7 +187,17 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         if(((arrived ? (isSplashDay ? 2 : 0) : 3) == 2 || (arrived ? (isSplashDay ? 2 : 0) : 3) == 0) && (state == 1 || state == 3))
         {
             //Debug.Log("Playing cameraRestart Noise!");
-            AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+            //Only play restart noise if camera is angry due to cms box breaking. This also prevents overlay with announcement on day 1.
+            if(isAngery)
+            {
+                AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+                objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
+                if(lightOfDoomAndEfficiencyLoss!=null)
+                {
+                    lightOfDoomAndEfficiencyLoss.SetActive(true);
+                }
+                
+            }
         }
 
         // Idle label depends on which "idle" applies today - splash day idles at 2, otherwise 0.
@@ -264,6 +281,13 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
             coffee.gameObject.SetActive(true); //Set our coffee drip particles active
             cameraDisabled.RaiseEvent(); //Send a signal (mainly for door to receive to know to open)
             AudioManager.Instance.PlaySound(MixerType.SFX, onCameraSplashed, 1f, transform.position);
+            //Set light to green, get rid of spotlight
+            objectMaterial.SetColor("_Emiss_ON_Color", Color.green);
+            if(lightOfDoomAndEfficiencyLoss!=null)
+            {
+                lightOfDoomAndEfficiencyLoss.SetActive(false);
+            }
+
             objectMaterial.SetFloat(coffeeShaderAmount, 1);
             //Make sure we renable according to the right timer (30s if cannot find day)
             if(LevelManager.Instance!=null)
@@ -273,7 +297,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
             }
             else
             {
-                Invoke("reEnableByDayTimer", 30);
+                Invoke("reEnableByDayTimer", 60);
             }
         }
     }
@@ -281,6 +305,26 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     private void reEnableByDayTimer()
     {
         coffee.gameObject.SetActive(false);
+        if(isAngery)
+        {
+            objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
+            if(lightOfDoomAndEfficiencyLoss!=null)
+            {
+                lightOfDoomAndEfficiencyLoss.SetActive(true);
+            }
+        }
+        else if(isHappe)
+        {
+            objectMaterial.SetColor("_Emiss_ON_Color", Color.green);
+            if(lightOfDoomAndEfficiencyLoss!=null)
+            {
+                lightOfDoomAndEfficiencyLoss.SetActive(false);
+            }
+        }
+        else
+        {
+            objectMaterial.SetColor("_Emiss_ON_Color", Color.yellow);
+        }
         if(LevelManager.Instance!=null)
         {
             state = (LevelManager.Instance.currentSession.currentDay == dayForceSplash) ? 2 : 0;   
@@ -349,6 +393,12 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void CMSBoxBroken()
     {
+        isAngery = true;
+        objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
+        if(lightOfDoomAndEfficiencyLoss!=null)
+        {
+            lightOfDoomAndEfficiencyLoss.SetActive(true);
+        }
         StartCoroutine(DegradeEfficiencyRoutine());
     }
 
@@ -381,6 +431,21 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
                     hasPlayedWarningSound = true;
                 }
             }
+        }
+    }
+
+    public void coffeeDrank()
+    {
+        if(isAngery)
+        {
+            return; //We don't want this overriding the cms box break since efficiency will still tick down
+        }
+        
+        isHappe = true;
+        objectMaterial.SetColor("_Emiss_ON_Color", Color.green);
+        if(lightOfDoomAndEfficiencyLoss!=null)
+        {
+            lightOfDoomAndEfficiencyLoss.SetActive(false);
         }
     }
 
