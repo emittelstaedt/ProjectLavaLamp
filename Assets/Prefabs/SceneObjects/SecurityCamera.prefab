@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 2968444329853537439}
   - component: {fileID: 343728594858216928}
   - component: {fileID: 3745274268890322026}
+  - component: {fileID: 6821706309069783045}
   m_Layer: 3
   m_Name: SecurityCameraBase
   m_TagString: DoorCamera
@@ -474,6 +475,7 @@ MonoBehaviour:
   onCameraRestart: 20
   onCameraSplashed: 21
   onBoxBroken: 23
+  lightOfDoomAndEfficiencyLoss: {fileID: 8582933477677594357}
 --- !u!65 &6893840139946072813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -570,6 +572,34 @@ MonoBehaviour:
       - m_Target: {fileID: 5396035760417835639}
         m_TargetAssemblyTypeName: SecurityCameraFollow, Assembly-CSharp
         m_MethodName: CMSBoxBroken
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6821706309069783045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8257725077776436638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: dde4955e8dc45fa168a788754a53f3f7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5396035760417835639}
+        m_TargetAssemblyTypeName: SecurityCameraFollow, Assembly-CSharp
+        m_MethodName: coffeeDrank
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
