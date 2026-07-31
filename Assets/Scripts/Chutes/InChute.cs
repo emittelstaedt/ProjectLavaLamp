@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
-public class InChute : MonoBehaviour, IInteractable
+public class InChute : MonoBehaviour, IUsableInteractable
 {
+    [SerializeField] private VoidEventChannelSO stopInteraction;
     [SerializeField] private InteractableSettingsSO settings;
     [SerializeField] private GameObject packagedBox;
     [SerializeField] private GameObject outBox;
@@ -20,6 +21,8 @@ public class InChute : MonoBehaviour, IInteractable
     private bool hasGivenOutBox;
     private string outBoxRequiredItem;
 	[SerializeField] private VoidEventChannelSO buildFinished;
+
+    private GameObject currentItemHeld;
 	
     void Awake()
     {
@@ -54,12 +57,13 @@ public class InChute : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return !isAnimating && (boxItemsQueue.Count > 0 || !hasGivenOutBox);
+        return !isAnimating && currentItemHeld == null && (boxItemsQueue.Count > 0 || !hasGivenOutBox);
     }
 
     public void StartInteract()
     {
         GiveBox();
+        stopInteraction.RaiseEvent();
     }
 
     public void StopInteract()
@@ -154,4 +158,9 @@ public class InChute : MonoBehaviour, IInteractable
 		yield return new WaitForSeconds(3f);
 		buildFinished.RaiseEvent();
 	}
+
+    public void SetCurrentItemHeld(GameObject newItemHeld)
+    {
+        currentItemHeld = newItemHeld;
+    }
 }

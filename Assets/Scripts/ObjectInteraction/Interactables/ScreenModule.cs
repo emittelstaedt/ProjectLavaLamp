@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem; 
 
-public class ScreenModule : MonoBehaviour, IInteractable
+public class ScreenModule : MonoBehaviour, IUsableInteractable
 {
     [SerializeField] private VoidEventChannelSO startInteract;
     [SerializeField] private VoidEventChannelSO stopInteract;
@@ -19,6 +19,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
     private GameObject currentItemHeld;
     private bool isBeingUsed;
     private InputAction interactAction;
+    private InputAction useItemAction;
     private InputActionMap playerActionMap;
 
     public void Start()
@@ -28,6 +29,7 @@ public class ScreenModule : MonoBehaviour, IInteractable
         playerMesh = playerController.gameObject.GetComponent<MeshRenderer>();
 
         interactAction = InputSystem.actions.FindAction("Interact");
+        useItemAction = InputSystem.actions.FindAction("UseItem");
         playerActionMap = InputSystem.actions.FindActionMap("Player");
 
         outline = GetComponent<Outline>();
@@ -62,7 +64,13 @@ public class ScreenModule : MonoBehaviour, IInteractable
     public void StartInteract()
     {
         isBeingUsed = true;
-        playerActionMap.Disable();
+
+        foreach (var action in playerActionMap.actions)
+        {
+            if (action != interactAction && action != useItemAction)
+                action.Disable();
+        }
+
         playerMesh.enabled = false;
         changeObject.RaiseEvent(gameObject);
         CameraSwapper.Instance.SwapCameras(mainCamera, moduleCamera, EnablePlayerInteract);
@@ -71,14 +79,11 @@ public class ScreenModule : MonoBehaviour, IInteractable
     
     public void StopInteract()
     {
-        //Add a check to only run stop interact if we are still currently interacting with a given terminal
         if(currentItemHeld!=null&&currentItemHeld==gameObject)
         {
-            //Debug.Log("Stopinteract called from ScreenModule!");
             stopInteract.RaiseEvent();
             changeObject.RaiseEvent(null);
             setCursorVisibility.RaiseEvent(false);
-            interactAction.Disable();
             playerMesh.enabled = true;
             
             CameraSwapper.Instance.SwapCameras(moduleCamera, mainCamera, EnablePlayerControls);
@@ -107,7 +112,6 @@ public class ScreenModule : MonoBehaviour, IInteractable
     {
         startInteract.RaiseEvent();
         setCursorVisibility.RaiseEvent(true);
-        interactAction.Enable();
     }
     
     private void EnablePlayerControls()
