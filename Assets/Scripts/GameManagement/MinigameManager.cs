@@ -4,9 +4,7 @@ using System.Collections;
 public class MinigameManager : MonoBehaviour
 {
     [Tooltip("Used for quick balancing.")]
-    [SerializeField] int effLossPerSirenPerSecond;
     [SerializeField] int effLossMegaFail;
-    [SerializeField] int effGainOnComplete;
 
     [Tooltip("The delay between sirens (excluding modifiers) depending on the day it is. 0 for none.")]
     [SerializeField] int[] DayExpectedTriggerWait;
@@ -19,11 +17,11 @@ public class MinigameManager : MonoBehaviour
     [Tooltip("An event channel for each siren.")]
 	[SerializeField] private VoidEventChannelSO[] sirenChannels;
 
-    [Tooltip("Signal for decreasing efficiency score:")]
-	[SerializeField] private IntEventChannelSO efficiencySubtract;
-
-    [Tooltip("Signal for increacing efficiency score:")]
-	[SerializeField] private IntEventChannelSO efficiencyAdd;
+	[Tooltip("Signal for modifying efficiency speed:")]
+	[SerializeField] private IntEventChannelSO modifySpeed;
+	
+	[Tooltip("Signal for directly modifying efficiency score:")]
+	[SerializeField] private IntEventChannelSO modifyValue;
 
     public static MinigameManager Instance = null;
     EmployeeData currentSession = null;
@@ -35,8 +33,6 @@ public class MinigameManager : MonoBehaviour
     int guaranteedNewMinigame = -1;
 
     [SerializeField] GameObject[] blocks;
-
-
 
     // Awake is called when object is made active
     void Awake()
@@ -60,59 +56,51 @@ public class MinigameManager : MonoBehaviour
             currentSession = LevelManager.Instance.currentSession;
             //Debug.Log($"Minigame pulled data for: {currentSession.employeeName} on day {currentSession.currentDay}.");
             //Check to make sure we aren't on day 1, and that we have a corresponding serializefield for the day
-            if(currentSession.currentDay!=0 && 
-                    DayExpectedTriggerWait.Length >= currentSession.currentDay)
+            if(currentSession.currentDay != 0 && DayExpectedTriggerWait.Length >= currentSession.currentDay)
             {
-
-                if(currentSession.currentDay<dayEnableMinigame1)
+                if(currentSession.currentDay < dayEnableMinigame1)
                 {
                     blocks[0].SetActive(true);
-                    //Debug.Log("Block 1 enabled!");
                 }
-                if(currentSession.currentDay<dayEnableMinigame2)
+                if(currentSession.currentDay < dayEnableMinigame2)
                 {
                     blocks[1].SetActive(true);
-                    //Debug.Log("Block 2 enabled!");
                 }
-                if(currentSession.currentDay<dayEnableMinigame3)
+                if(currentSession.currentDay < dayEnableMinigame3)
                 {
-                    blocks[2].SetActive(true); 
-                    //Debug.Log("Block 3 enabled!");   
+                    blocks[2].SetActive(true);   
                 }
-                if(currentSession.currentDay<dayEnableMinigame4)
+                if(currentSession.currentDay < dayEnableMinigame4)
                 {
-                    blocks[3].SetActive(true);
-                    //Debug.Log("Block 4 enabled!");
+					blocks[3].SetActive(true);
                 }
 
                 //If there's a new minigame today, setup so it will always trigger first.
-                if(currentSession.currentDay==dayEnableMinigame1)
+                if(currentSession.currentDay == dayEnableMinigame1)
                 {
-                    guaranteedNewMinigame=0;
-                    hasGuaranteedNewMinigame=true;
+                    guaranteedNewMinigame = 0;
+                    hasGuaranteedNewMinigame = true;
                 }
-                else if(currentSession.currentDay==dayEnableMinigame2)
+                else if(currentSession.currentDay == dayEnableMinigame2)
                 {
-                    guaranteedNewMinigame=1;
-                    hasGuaranteedNewMinigame=true;
+                    guaranteedNewMinigame = 1;
+                    hasGuaranteedNewMinigame = true;
                 }
-                else if(currentSession.currentDay==dayEnableMinigame3)
+                else if(currentSession.currentDay == dayEnableMinigame3)
                 {
-                    guaranteedNewMinigame=2;
-                    hasGuaranteedNewMinigame=true;
+                    guaranteedNewMinigame = 2;
+                    hasGuaranteedNewMinigame = true;
                 }
-                else if(currentSession.currentDay==dayEnableMinigame4)
+                else if(currentSession.currentDay == dayEnableMinigame4)
                 {
-                    guaranteedNewMinigame=3;
-                    hasGuaranteedNewMinigame=true;
+                    guaranteedNewMinigame = 3;
+                    hasGuaranteedNewMinigame = true;
                 }
                 else
                 {
-                    guaranteedNewMinigame=-1;
-                    hasGuaranteedNewMinigame=false;
+                    guaranteedNewMinigame =- 1;
+                    hasGuaranteedNewMinigame = false;
                 }
-
-                StartCoroutine(DegradeEfficiencyRoutine());
                 //Actually start the sequence, starting with the day's default timer
                 Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]);
             }       
@@ -125,7 +113,7 @@ public class MinigameManager : MonoBehaviour
 
     void nextTriggerTimer()
     {
-        if(sirenChannels!=null){ //Nullcheck
+        if(sirenChannels != null){ //Nullcheck
             //Randomly pick the next game we're going to alert
             //THIS WILL NEED TO ACCOUNT FOR THE DAY WE'RE ON TO EXCLUDE UNLOCKING GAMES EARLY
             int nextGame = 0;
@@ -176,7 +164,7 @@ public class MinigameManager : MonoBehaviour
     int findNextTriggerableMinigame(){
 
         if(!isAnyAvailableSirens()){
-            efficiencySubtract.RaiseEvent(effLossMegaFail);
+            modifyValue.RaiseEvent(effLossMegaFail);
             //Debug.Log("PAIN AND SUFFERING UPON YE");
             return -1;
         }
@@ -227,76 +215,53 @@ public class MinigameManager : MonoBehaviour
         return isThere;
     }
 
-    IEnumerator DegradeEfficiencyRoutine()
-    {
-        //Set our delay
-        var delay = new WaitForSeconds(1f); 
-        
-        //Yes, this is meant to be an infinite loop
-        while(true)
-        {
-            //This stops it from crashing things, making sure it only happens once per second.
-            yield return delay;
-            
-            int totalActiveSirens = 0;
-            
-            //Count amount of active sirens
-            for(int i = 0; i < terminalSirensAreActive.Length; i++)
-            {
-                if(terminalSirensAreActive[i])
-                {
-                    totalActiveSirens++;
-                }
-            }
-            
-            // Send signal with amount of sirens active to subtract each second.
-            if(totalActiveSirens > 0)
-            {
-                efficiencySubtract.RaiseEvent(totalActiveSirens*effLossPerSirenPerSecond);
-                //Debug.Log($"Tried to send signal!: {totalActiveSirens*effLossPerSirenPerSecond}");
-            }
-        }
-    }
-
     //How we track when our own signals are sent out to start a minigame siren
     public void siren2TurnedOn(){
         terminalSirensAreActive[0] = true;
+		modifySpeed.RaiseEvent(1);
     }
     public void siren3TurnedOn(){
         terminalSirensAreActive[1] = true;
+		modifySpeed.RaiseEvent(1);
     }
     public void siren4TurnedOn(){
         terminalSirensAreActive[2] = true;
+		modifySpeed.RaiseEvent(1);
     }
     public void siren5TurnedOn(){
         terminalSirensAreActive[3] = true;
+		modifySpeed.RaiseEvent(1);
     }
 
     //How we track when minigames have been completed
     public void siren2TurnedOff(){
         if(terminalSirensAreActive[0])
         {
-            efficiencyAdd.RaiseEvent(effGainOnComplete);
+            modifyValue.RaiseEvent(50);
             terminalSirensAreActive[0] = false;
+			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren3TurnedOff(){
         if(terminalSirensAreActive[1])
         {
-            efficiencyAdd.RaiseEvent(effGainOnComplete);
+            modifyValue.RaiseEvent(75);
             terminalSirensAreActive[1] = false;
+			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren4TurnedOff(){
         if(terminalSirensAreActive[2]){
-            efficiencyAdd.RaiseEvent(effGainOnComplete);
+            modifyValue.RaiseEvent(75);
             terminalSirensAreActive[2] = false;
+			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren5TurnedOff(){
         if(terminalSirensAreActive[3]){
-            efficiencyAdd.RaiseEvent(effGainOnComplete);
+            modifyValue.RaiseEvent(50);
             terminalSirensAreActive[3] = false;
+			modifySpeed.RaiseEvent(-1);
         }
     }
 

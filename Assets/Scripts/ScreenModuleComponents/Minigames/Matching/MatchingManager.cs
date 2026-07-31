@@ -68,17 +68,17 @@ public class MatchingManager : MonoBehaviour
 	
 	public void resetMatchingGame()
 	{
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 3; i++)
 		{
 			roundIndicators[i].GetComponent<SpriteRenderer>().color = Color.white;
 		}
 		indicateMatchingRound();
 		currentRound = 0;
 		correctShapes = 0;
-		shapeIndices = new int[8];
+		shapeIndices = new int[6];
 		shapeSequence = new LinkedList<int>();
 		shapeSequence.Clear();
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 6; i++)
 		{
 			int newIndex = Random.Range(0, 4);
 			if(i != 0)
@@ -144,7 +144,7 @@ public class MatchingManager : MonoBehaviour
 		{
 			currentRound++;
 			indicateMatchingRound();
-			if(currentRound == 5)
+			if(currentRound == 3)
 			{
 				StartCoroutine(completeMatchingGame());
 			}
@@ -211,7 +211,7 @@ public class MatchingManager : MonoBehaviour
 
 	private void indicateMatchingRound()
 	{
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 3; i++)
 		{
 			if(i == currentRound)
 			{
@@ -247,7 +247,7 @@ public class MatchingManager : MonoBehaviour
 		{
 			yield return null;
 		}
-		roundIndicators[4].GetComponent<SpriteRenderer>().color = colors[1];
+		roundIndicators[2].GetComponent<SpriteRenderer>().color = colors[1];
 		SpriteRenderer holderDisplay = shapeHolder.GetComponent<SpriteRenderer>();
 		holderDisplay.color = Color.white;
 		yield return new WaitForSeconds(0.5f);
@@ -260,7 +260,7 @@ public class MatchingManager : MonoBehaviour
 	private IEnumerator failedMatchingRound()
 	{
 		TurnButtonsOff(false);
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 3; i++)
 		{
 			if(i == currentRound)
 			{
@@ -277,7 +277,7 @@ public class MatchingManager : MonoBehaviour
 		}
 		shapeSequence.Clear();
 		resetMatchingGame();
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 3; i++)
 		{
 			if(i == 0)
 			{

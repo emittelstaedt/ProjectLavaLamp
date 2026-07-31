@@ -62,7 +62,12 @@ public class PickupItem : MonoBehaviour, IInteractable
             {
                 lookAction.Enable();
             }
-
+			//Vector3 averageColliderPosition = Vector3.zero;
+			//for(int i = 0; i < itemColliders.Length; i++)
+			//{
+			//	averageColliderPosition += itemColliders[i].transform.position;
+			//}
+			//averageColliderPosition = averageColliderPosition / itemColliders.Length;
             playerCameraTransform.GetPositionAndRotation(out Vector3 cameraPosition, out Quaternion cameraRotation);
             Vector3 predictedPosition = cameraPosition + (cameraRotation * grabOffset * currentDistance);
             Quaternion finalRotation = cameraRotation * objectRotation;

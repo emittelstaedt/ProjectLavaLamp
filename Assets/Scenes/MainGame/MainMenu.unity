@@ -2818,6 +2818,53 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &1236674522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236674519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bd8884785b83d214486d04f9a566e906, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1236674523}
+        m_TargetAssemblyTypeName: WindowPlanet, Assembly-CSharp
+        m_MethodName: checkPlanetHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1236674523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236674519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf771b80a143e6249adc866d3d94dd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowPlanet
+  health:
+  - {fileID: 2800000, guid: 5de61f6f2bdfb5046ada18ae41e3e1e6, type: 3}
+  - {fileID: 2800000, guid: 5de61f6f2bdfb5046ada18ae41e3e1e6, type: 3}
+  - {fileID: 2800000, guid: 28e108ea60f577f4fb882b3aa75e50bc, type: 3}
+  - {fileID: 2800000, guid: 08032000913f2a84783994f8286ee2b8, type: 3}
+  - {fileID: 2800000, guid: 6785fbf84e5c5b84fbd430116a0ffa7d, type: 3}
+  planetNumber: 0
 --- !u!1001 &1252799102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3246,6 +3293,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1236674523}
+    - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1236674522}
+    - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1236674521}
   m_SourcePrefab: {fileID: 100100000, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
 --- !u!1001 &1365543748
@@ -3652,6 +3705,53 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
+--- !u!114 &1616716455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616716452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bd8884785b83d214486d04f9a566e906, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1616716456}
+        m_TargetAssemblyTypeName: WindowPlanet, Assembly-CSharp
+        m_MethodName: checkPlanetHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1616716456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616716452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf771b80a143e6249adc866d3d94dd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowPlanet
+  health:
+  - {fileID: 2800000, guid: 9f830f82fbf4c4b41bd4568fdeb27c71, type: 3}
+  - {fileID: 2800000, guid: 9f830f82fbf4c4b41bd4568fdeb27c71, type: 3}
+  - {fileID: 2800000, guid: ba4b3811000b03144bc2010f3135fa8c, type: 3}
+  - {fileID: 2800000, guid: 1633b22dbaf64674d83201517743b1c8, type: 3}
+  - {fileID: 2800000, guid: 0b9d0c711031d1f48a23b751d1688a65, type: 3}
+  planetNumber: 0
 --- !u!1 &1783182497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3979,6 +4079,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1616716456}
+    - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1616716455}
     - targetCorrespondingSourceObject: {fileID: 626955730675568279, guid: 59436a7f775ca11438a5e17f4510fe8c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1616716454}
@@ -5039,8 +5145,16 @@ PrefabInstance:
       value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 4867870866109918459, guid: 280897e121a229541ae5bc6e8c8c101f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4867870866109918459, guid: 280897e121a229541ae5bc6e8c8c101f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4867870866109918459, guid: 280897e121a229541ae5bc6e8c8c101f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4867870866109918459, guid: 280897e121a229541ae5bc6e8c8c101f, type: 3}
       propertyPath: m_AnchorMin.y
@@ -5052,7 +5166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4867870866109918459, guid: 280897e121a229541ae5bc6e8c8c101f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 256.09
+      value: -93.91
       objectReference: {fileID: 0}
     - target: {fileID: 4867870866109918459, guid: 280897e121a229541ae5bc6e8c8c101f, type: 3}
       propertyPath: m_AnchoredPosition.y

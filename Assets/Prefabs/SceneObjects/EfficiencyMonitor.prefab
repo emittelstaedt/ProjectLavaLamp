@@ -365,7 +365,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5492276967997545225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2967821078308962026}
         m_TargetAssemblyTypeName: EfficiencyMonitor, Assembly-CSharp
-        m_MethodName: IncreaseEfficiencyScore
+        m_MethodName: modifyEfficiencyValue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -442,7 +442,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2967821078308962026}
         m_TargetAssemblyTypeName: EfficiencyMonitor, Assembly-CSharp
-        m_MethodName: DecreaseEfficiencyScore
+        m_MethodName: modifyEfficiencySpeed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
