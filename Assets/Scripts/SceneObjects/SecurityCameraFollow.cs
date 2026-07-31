@@ -7,10 +7,10 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     //Required for Interaction
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
-    private Outline outline;
+    //private Outline outline;
     [SerializeField] private string requiredItem = "CoffeeCupFull";
     [SerializeField] private InteractableSettingsSO Settings;
-    [SerializeField] private VoidEventChannelSO clearCrosshair;
+    [SerializeField] private VoidEventChannelSO defaultCrosshair;
     [SerializeField] private VoidEventChannelSO thumbsUpCrosshair;
     [SerializeField] private VoidEventChannelSO cameraDisabled;
     [SerializeField] private VoidEventChannelSO clearCoffee;
@@ -71,14 +71,14 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     {
         StopAllCoroutines();
 
-        outline = GetComponent<Outline>();
-        if (outline == null)
-        {
-            outline = gameObject.AddComponent<Outline>();
-            outline.enabled = false;
-            outline.OutlineWidth = 5;
-            outline.OutlineMode = Outline.Mode.OutlineVisible;
-        }
+        //outline = GetComponent<Outline>();
+        //if (outline == null)
+        //{
+            //outline = gameObject.AddComponent<Outline>();
+            //outline.enabled = false;
+            //outline.OutlineWidth = 5;
+            //outline.OutlineMode = Outline.Mode.OutlineVisible;
+        //}
 
         //Set the transforms for the camera to switch its look target between
         disablePointTransform = transform.parent.Find("DisablePoint");
@@ -339,23 +339,23 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void StartHover()
     {
-        /*if (thumbsUpCrosshair != null)
+        if (thumbsUpCrosshair != null)
         {
             thumbsUpCrosshair.RaiseEvent();
-        }*/
-        outline.OutlineColor = Settings.HoverColor;
-        outline.OutlineWidth = Settings.OutlineWidth;
-        outline.enabled = true;
+        }
+        //outline.OutlineColor = Settings.HoverColor;
+        //outline.OutlineWidth = Settings.OutlineWidth;
+        //outline.enabled = true;
         //Debug.Log("Hovering On Camera!");
     }
 
     public void StopHover()
     {
-        /*if (clearCrosshair != null)
+        if (defaultCrosshair != null)
         {
-            clearCrosshair.RaiseEvent();
-        }*/
-        outline.enabled = false;
+            defaultCrosshair.RaiseEvent();
+        }
+        //outline.enabled = false;
         //Debug.Log("No Longer Hovering!");
     }
 

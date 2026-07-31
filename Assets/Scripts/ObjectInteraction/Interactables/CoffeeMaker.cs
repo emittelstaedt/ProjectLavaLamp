@@ -8,6 +8,8 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     [SerializeField] private string requiredItem = "CoffeeCupEmpty";
     [SerializeField] private GameObject fullCupPrefab;
     [SerializeField] private InteractableSettingsSO settings;
+    [SerializeField] private VoidEventChannelSO defaultCrosshair;
+    [SerializeField] private VoidEventChannelSO thumbsUpCrosshair;
     [SerializeField] private float transitionTime = .5f;
     [SerializeField] private Transform coffeeLocationBottom;
     [SerializeField] private ParticleSystem coffeeSteam;
@@ -15,19 +17,19 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
     private GameObject currentItemHeld;
     private GameObject lastItemheld;
 	private GameObject emptyCup;
-    private Outline outline;
+    //private Outline outline;
     private bool isPlacingCoffee;
     private bool hasPlayedSound = false;
 
     private void Awake()
     {
-		if (!TryGetComponent<Outline>(out outline))
+		/*if (!TryGetComponent<Outline>(out outline))
         {
             outline = gameObject.AddComponent<Outline>();
         }
         outline.enabled = false;
         outline.OutlineWidth = settings.OutlineWidth;
-        outline.OutlineMode = Outline.Mode.OutlineVisible;
+        outline.OutlineMode = Outline.Mode.OutlineVisible;*/
     }
 
     public float GetInteractDistance()
@@ -81,13 +83,21 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
 
     public void StartHover()
     {
-        outline.OutlineColor = settings.HoverColor;
-        outline.enabled = true;
+        //outline.OutlineColor = settings.HoverColor;
+        //outline.enabled = true;
+        if (thumbsUpCrosshair != null)
+        {
+            thumbsUpCrosshair.RaiseEvent();
+        }
     }
 
     public void StopHover()
     {
-        outline.enabled = false;
+        //outline.enabled = false;
+        if (defaultCrosshair != null)
+        {
+            defaultCrosshair.RaiseEvent();
+        }
     }
 
     public void SetCurrentItemHeld(GameObject newItemHeld)
