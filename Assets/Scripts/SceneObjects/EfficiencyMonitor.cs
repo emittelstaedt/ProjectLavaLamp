@@ -1,124 +1,76 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class EfficiencyMonitor : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO lostGame;
-    private int hopper = 0;
-    private int transferRate = 1;
     private TMP_Text efficiencyDisplay;
     private bool lockOut;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+	private int speed;
+    
+	void Awake()
     {
-
         lockOut = false;
+		speed = -1;
         //Get our child TMP object so we can edit its display live
         efficiencyDisplay = GetComponentInChildren<TextMeshProUGUI>();
-
-        // Check for null manager
-        if (LevelManager.Instance != null)
-        {
-
-        }
-        else
-        {
-            Debug.LogError("Couldn't pull session data from levelmanager!");
-        }
-
         efficiencyDisplay.text = LevelManager.Instance.currentSession.efficiency.ToString();
-
+		StartCoroutine(effiencyCheck());
     }
+	
+	private IEnumerator effiencyCheck()
+	{
+		while(lockOut == false)
+		{
+			if(LevelManager.Instance.currentSession.efficiency <= 0)
+			{
+				lostGame.RaiseEvent();
+				lockOut = true;
+			}
+			if(speed > 0)
+			{
+				yield return new WaitForSeconds(1f / speed);
+				if(LevelManager.Instance.currentSession.efficiency > 0)
+				{
+					LevelManager.Instance.currentSession.efficiency -= 1;
+				}
+				else
+				{
+					LevelManager.Instance.currentSession.efficiency = 0;
+				}
+			}
+			if(speed < 0)
+			{
+				yield return new WaitForSeconds(-1f / speed);
+				if(LevelManager.Instance.currentSession.efficiency < 1000)
+				{
+					LevelManager.Instance.currentSession.efficiency += 1;
+				}
+				else
+				{
+					LevelManager.Instance.currentSession.efficiency = 1000;
+				}
+			}
+			else
+			{
+				yield return null;
+			}
+			efficiencyDisplay.text = LevelManager.Instance.currentSession.efficiency.ToString();
+		}
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Make sure we don't touch anything if we are locked out by a level ended state
-        if(lockOut)
-        {
-            return;
-        }
-
-        //Check to make sure efficiency is above 0
-        if(LevelManager.Instance.currentSession.efficiency<=0)
-        {
-            lostGame.RaiseEvent();
-        }
-
-        //Set transfer rate based on how large the hopper is, so that we can accelerate it when the difference is large.
-        if(Mathf.Abs(hopper)>=100)
-        {
-            transferRate = 3;
-        }
-        else if(Mathf.Abs(hopper)>=50)
-        {
-            transferRate = 2;
-        }
-        else
-        {
-            transferRate = 1;
-        }
-
-        if(hopper<0)
-        {
-            if(LevelManager.Instance.currentSession.efficiency-transferRate>=0)
-            {
-                //Debug.Log($"Tried to lower {LevelManager.Instance.currentSession.efficiency} by {transferRate}");
-                LevelManager.Instance.currentSession.efficiency-=transferRate;
-                hopper+=transferRate;
-                //Debug.Log($"New efficiency is {LevelManager.Instance.currentSession.efficiency}");
-            }
-            else
-            {
-                LevelManager.Instance.currentSession.efficiency = 0;
-                hopper = 0;
-            }
-        }
-        else if(hopper>0)
-        {            
-            if(LevelManager.Instance.currentSession.efficiency+transferRate<=1000)
-            {
-            //Debug.Log($"Tried to raise {LevelManager.Instance.currentSession.efficiency} by {transferRate}");
-            LevelManager.Instance.currentSession.efficiency+=transferRate;
-            hopper-=transferRate;
-            //Debug.Log($"New efficiency is {LevelManager.Instance.currentSession.efficiency}");
-            }
-            else
-            {
-                LevelManager.Instance.currentSession.efficiency = 1000;
-                hopper = 0;
-            }
-            
-            
-        }
-
-
-        efficiencyDisplay.text = LevelManager.Instance.currentSession.efficiency.ToString();
-
-    }
-
-    public void IncreaseEfficiencyScore(int additional)
-    {
-        //Make sure we don't go above 1000 efficiency
-        if(!(LevelManager.Instance.currentSession.efficiency+hopper>=1000))
-        {
-            hopper+=additional;
-        }
-        else
-        {
-            hopper = 1000 - LevelManager.Instance.currentSession.efficiency;
-        }
-        //Debug.Log($"Received increment: {additional}");
-    }
-
-    public void DecreaseEfficiencyScore(int decrement)
-    {
-        //Debug.Log($"Received decrement: {decrement}");
-        hopper-=decrement;
-    }
-
+	public void modifyEfficiencySpeed(int modification)
+	{
+		speed += modification;
+	}
+	
+	public void modifyEfficiencyValue(int modification)
+	{
+		LevelManager.Instance.currentSession.efficiency += modification;
+	}
+	
     public void LockOut()
     {
         lockOut = true;

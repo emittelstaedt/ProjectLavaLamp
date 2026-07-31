@@ -52,10 +52,8 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     private float[] cumulativeDist;
     private float totalPathLength;
 
-    [Tooltip("Signal for decreasing efficiency score:")]
-    [SerializeField] private int degradeEfficiencyRate = 1;
     [Tooltip("Value that efficiency will be decreased by once signal is received.")]
-	[SerializeField] private IntEventChannelSO efficiencySubtract;
+	[SerializeField] private IntEventChannelSO modifySpeed;
 
     [SerializeField] private SoundType onCameraRestart;
     [SerializeField] private SoundType onCameraSplashed;
@@ -70,15 +68,6 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     private void Awake()
     {
         StopAllCoroutines();
-
-        //outline = GetComponent<Outline>();
-        //if (outline == null)
-        //{
-            //outline = gameObject.AddComponent<Outline>();
-            //outline.enabled = false;
-            //outline.OutlineWidth = 5;
-            //outline.OutlineMode = Outline.Mode.OutlineVisible;
-        //}
 
         //Set the transforms for the camera to switch its look target between
         disablePointTransform = transform.parent.Find("DisablePoint");
@@ -273,6 +262,10 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
+		if(isAngery)
+		{
+			modifySpeed.RaiseEvent(-1);
+		}
         clearCoffee.RaiseEvent();
         //Debug.Log("AAAAAAAA");
         if (state != 1)
@@ -307,6 +300,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         coffee.gameObject.SetActive(false);
         if(isAngery)
         {
+			modifySpeed.RaiseEvent(1);
             objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
             if(lightOfDoomAndEfficiencyLoss!=null)
             {
@@ -343,9 +337,6 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         {
             thumbsUpCrosshair.RaiseEvent();
         }
-        //outline.OutlineColor = Settings.HoverColor;
-        //outline.OutlineWidth = Settings.OutlineWidth;
-        //outline.enabled = true;
         //Debug.Log("Hovering On Camera!");
     }
 
@@ -355,7 +346,6 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         {
             defaultCrosshair.RaiseEvent();
         }
-        //outline.enabled = false;
         //Debug.Log("No Longer Hovering!");
     }
 
@@ -393,16 +383,20 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void CMSBoxBroken()
     {
+		if(state != 1)
+		{
+			modifySpeed.RaiseEvent(1);
+		}
         isAngery = true;
         objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
         if(lightOfDoomAndEfficiencyLoss!=null)
         {
             lightOfDoomAndEfficiencyLoss.SetActive(true);
         }
-        StartCoroutine(DegradeEfficiencyRoutine());
+        DegradeEfficiency();
     }
 
-    IEnumerator DegradeEfficiencyRoutine()
+    private void DegradeEfficiency()
     {
         bool hasPlayedWarningSound = false;
         if(!hasPlayedWarningSound)
@@ -410,26 +404,14 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
             AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
             hasPlayedWarningSound = true;
         }
-
-        //Set our delay
-        var delay = new WaitForSeconds(1f); 
-
-        
-        //Yes, this is meant to be an infinite loop
-        while(true)
+		
+        // Send signal with amount of sirens active to subtract each second.
+        if(state!=1)
         {
-            //This stops it from crashing things, making sure it only happens once per second.
-            yield return delay;
-            
-            // Send signal with amount of sirens active to subtract each second.
-            if(state!=1)
+            if(!hasPlayedWarningSound)
             {
-                efficiencySubtract.RaiseEvent(degradeEfficiencyRate);
-                if(!hasPlayedWarningSound)
-                {
-                    AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
-                    hasPlayedWarningSound = true;
-                }
+                AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
+                hasPlayedWarningSound = true;
             }
         }
     }

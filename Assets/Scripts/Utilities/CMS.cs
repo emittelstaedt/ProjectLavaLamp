@@ -72,11 +72,11 @@ public class CMS : MonoBehaviour
 		UnityEvent cmsResponse = new();
 		cmsResponse.AddListener(newCMS.spreadCMS);
 		cmsPlaced.SetChannelAndResponse(itemPlaced, cmsResponse);
-		UnityEditor.Events.UnityEventTools.AddPersistentListener
-		(
-			cmsResponse, 
-			newCMS.spreadCMS
-		);
+		//UnityEditor.Events.UnityEventTools.AddPersistentListener
+		//(
+		//	cmsResponse, 
+		//	newCMS.spreadCMS
+		//);
 		cmsPlaced.OnEnable();
 		newCMS.spreadCMS();
 	}
