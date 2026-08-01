@@ -31,7 +31,8 @@ public class MinigameManager : MonoBehaviour
 
     bool hasGuaranteedNewMinigame = false;
     int guaranteedNewMinigame = -1;
-
+	private bool dayBegun;
+	
     [SerializeField] GameObject[] blocks;
 
     // Awake is called when object is made active
@@ -46,7 +47,7 @@ public class MinigameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+		dayBegun = false;
         //Make absolutely sure we aren't creating duplicate coroutines
         StopAllCoroutines();
 
@@ -101,8 +102,6 @@ public class MinigameManager : MonoBehaviour
                     guaranteedNewMinigame =- 1;
                     hasGuaranteedNewMinigame = false;
                 }
-                //Actually start the sequence, starting with the day's default timer
-                Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]);
             }       
         }
         else
@@ -111,6 +110,15 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+	public void beginDay()
+	{
+		if(dayBegun == false)
+		{
+			Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]);
+			dayBegun = true;
+		}
+	}
+	
     void nextTriggerTimer()
     {
         if(sirenChannels != null){ //Nullcheck

@@ -103,7 +103,7 @@ public class EndGame : MonoBehaviour
 			currentSession.levelCompleteTimes[i] = 0f;
 		}
 		currentSession.coffeeLevel = 3;
-		currentSession.efficiency = 1000;
+		currentSession.efficiency = 500;
 		if (LevelManager.Instance != null)
         {
 			LevelManager.Instance.saveGame();
@@ -112,7 +112,6 @@ public class EndGame : MonoBehaviour
 	
 	public void PressMainMenuButton()
 	{
-
 		triggerMainMenu.RaiseEvent();
 	}
 	

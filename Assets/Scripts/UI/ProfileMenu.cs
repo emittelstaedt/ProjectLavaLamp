@@ -14,6 +14,8 @@ public class ProfileMenu : MonoBehaviour
 	[SerializeField] private GameObject noProfilePanel;
 	[SerializeField] private GameObject header;
 	[SerializeField] private GameObject profileDetailPanel;
+	[SerializeField] private TMP_InputField profileField;
+	[SerializeField] private TMP_Text placementField;
 	[SerializeField] private GameObject footer;
 	[SerializeField] private StringEventChannelSO sendProfileName;
 	[SerializeField] private VoidEventChannelSO displayIDs;
@@ -27,6 +29,17 @@ public class ProfileMenu : MonoBehaviour
     [SerializeField] private GameObject HUD;
 	private EmployeeData previousSession;
 	
+	public void Update()
+	{
+		if(profileField.isFocused)
+		{
+			placementField.text = "";
+		}
+		else
+		{
+			placementField.text = "What is your name?";
+		}
+	}
     private void OnEnable()
     {
         Time.timeScale = 1f;
@@ -50,9 +63,7 @@ public class ProfileMenu : MonoBehaviour
 	
 	public void NameProfile()
     {
-		TMP_InputField profileField = confirmNamePanel.GetComponentInChildren<TMP_InputField>();
-		profileField.text = "Enter your name here";
-		
+		profileField.text = "";
     }
 
     public void ConfirmProfileName()
