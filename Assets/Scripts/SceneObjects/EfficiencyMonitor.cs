@@ -80,10 +80,10 @@ public class EfficiencyMonitor : MonoBehaviour
 	{
 		while(lockOut == false)
 		{
-			yield return new WaitForSeconds(30f);
+			yield return new WaitForSeconds(22.5f);
 			startTime++;
 			setClock();
-			if(startTime == endTime)
+			if(startTime == endTime && lockOut == false)
 			{
 				lostGame.RaiseEvent();
 				lockOut = true;

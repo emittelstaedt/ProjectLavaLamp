@@ -180,7 +180,7 @@ public class MatchingManager : MonoBehaviour
 			PlayCorrespondingSound(current.Value);
 			shapeDisplay.sprite = shapes[current.Value];
 			shapeDisplay.color = colors[current.Value];
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(0.66f);
 			current = current.Next;
 		}
 		shapeDisplay.sprite = null;

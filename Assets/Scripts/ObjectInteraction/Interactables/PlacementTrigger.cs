@@ -60,7 +60,12 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         Transform baseItem = lastItemheld.transform.GetChild(0);
         Vector3 newPosition = placementContainer.position;
         Vector3 containerScale = placementContainer.lossyScale;
-        
+        if(transform.root.name == "EmptyOutBox")
+		{
+			Destroy(lastItemheld);
+			stopInteraction.RaiseEvent();
+			return;
+		}
         if (scaleEntireObject)
         {
             MeshRenderer itemRenderer = lastItemheld.GetComponent<MeshRenderer>();

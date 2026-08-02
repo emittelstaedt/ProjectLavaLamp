@@ -271,6 +271,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         if (state != 1)
         {
             state = 1; //Set to disabled
+			sparks.gameObject.SetActive(false);
             coffee.gameObject.SetActive(true); //Set our coffee drip particles active
             cameraDisabled.RaiseEvent(); //Send a signal (mainly for door to receive to know to open)
             AudioManager.Instance.PlaySound(MixerType.SFX, onCameraSplashed, 1f, transform.position);

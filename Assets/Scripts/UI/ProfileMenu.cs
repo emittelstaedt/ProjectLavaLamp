@@ -68,12 +68,14 @@ public class ProfileMenu : MonoBehaviour
 
     public void ConfirmProfileName()
     {
-		previousSession = LevelManager.Instance.currentSession;
-		TMP_InputField profileField = confirmNamePanel.GetComponentInChildren<TMP_InputField>();
-		sendProfileName.RaiseEvent(profileField.text);
-		displayProfile(LevelManager.Instance.currentSession.employeeNumber);
-		setProfilePointer.RaiseEvent(LevelManager.Instance.currentSession.employeeNumber);
-		confirmNamePanel.SetActive(false);
+		if(profileField.text != "")
+		{
+			previousSession = LevelManager.Instance.currentSession;
+			sendProfileName.RaiseEvent(profileField.text);
+			displayProfile(LevelManager.Instance.currentSession.employeeNumber);
+			setProfilePointer.RaiseEvent(LevelManager.Instance.currentSession.employeeNumber);
+			confirmNamePanel.SetActive(false);
+		}
     }
 
     public void CancelProfileName()

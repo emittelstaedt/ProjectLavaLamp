@@ -4,6 +4,7 @@ public class DrillManager : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO startDrillInteract;
     [SerializeField] private VoidEventChannelSO stopInteract;
+	[SerializeField] private VoidEventChannelSO drillStopHelper;
     [SerializeField] private Transform drill;
     [SerializeField] private GameObject offScreen;
     [SerializeField] private GameObject[] DrillPrefabs;
@@ -82,6 +83,10 @@ public class DrillManager : MonoBehaviour
         {
             stopInteract.RaiseEvent();
         }
+		if(drillStopHelper != null)
+		{
+			drillStopHelper.RaiseEvent();
+		}
         AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
         TurnScreenOff(true);     
         ResetDrillToStart();
