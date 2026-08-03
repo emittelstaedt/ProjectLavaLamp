@@ -787,6 +787,7 @@ MonoBehaviour:
   moduleCamera: {fileID: 4958701667912424706}
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distanceFromCamera: 0.5
+  longRangeInteract: 0
 --- !u!114 &275502359470198780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1953,9 +1954,117 @@ PrefabInstance:
       propertyPath: eventChannel
       value: 
       objectReference: {fileID: 11400000, guid: 7c9be3ce742582140a191aeef5c5c426, type: 2}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1897182312430545883}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1897182312430545883}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014072477764820878, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1507908120643649035, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
       propertyPath: m_Name
       value: Siren
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 151806520776780730}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1897182312430545883}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopSirenSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SirenSound, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3080487521172618118, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 151806520776780730}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1897182312430545883}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopSirenSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SirenSound, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234880983753033829, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4925220338219135731, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
       propertyPath: m_LocalScale.x
@@ -2017,11 +2126,72 @@ PrefabInstance:
       propertyPath: eventChannel
       value: 
       objectReference: {fileID: 11400000, guid: 81115077bf01bbc4998fc8489a409ec0, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 151806520776780730}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1897182312430545883}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopSirenSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SirenSound, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685517757112588412, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044038217072788546, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044038217072788546, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+      propertyPath: sirenAnimator
+      value: 
+      objectReference: {fileID: 1897182312430545883}
+    m_RemovedComponents:
+    - {fileID: 1922592197702987235, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+--- !u!114 &151806520776780730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9044038217072788546, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+  m_PrefabInstance: {fileID: 9194577952238645240}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11df0448f6d63824fa1518bfe537463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1897182312430545883 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7335685034881385507, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}
+  m_PrefabInstance: {fileID: 9194577952238645240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4305535955357801739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4925220338219135731, guid: 574f815776aaf5d41a05f8ee80964437, type: 3}

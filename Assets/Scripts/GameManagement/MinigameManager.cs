@@ -31,7 +31,8 @@ public class MinigameManager : MonoBehaviour
 
     bool hasGuaranteedNewMinigame = false;
     int guaranteedNewMinigame = -1;
-
+	private bool dayBegun;
+	
     [SerializeField] GameObject[] blocks;
 
     // Awake is called when object is made active
@@ -46,7 +47,7 @@ public class MinigameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+		dayBegun = false;
         //Make absolutely sure we aren't creating duplicate coroutines
         StopAllCoroutines();
 
@@ -101,8 +102,6 @@ public class MinigameManager : MonoBehaviour
                     guaranteedNewMinigame =- 1;
                     hasGuaranteedNewMinigame = false;
                 }
-                //Actually start the sequence, starting with the day's default timer
-                Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]);
             }       
         }
         else
@@ -111,6 +110,15 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+	public void beginDay()
+	{
+		if(dayBegun == false)
+		{
+			Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]);
+			dayBegun = true;
+		}
+	}
+	
     void nextTriggerTimer()
     {
         if(sirenChannels != null){ //Nullcheck
@@ -237,7 +245,7 @@ public class MinigameManager : MonoBehaviour
     public void siren2TurnedOff(){
         if(terminalSirensAreActive[0])
         {
-            modifyValue.RaiseEvent(50);
+            modifyValue.RaiseEvent(25);
             terminalSirensAreActive[0] = false;
 			modifySpeed.RaiseEvent(-1);
         }
@@ -245,21 +253,21 @@ public class MinigameManager : MonoBehaviour
     public void siren3TurnedOff(){
         if(terminalSirensAreActive[1])
         {
-            modifyValue.RaiseEvent(75);
+            modifyValue.RaiseEvent(25);
             terminalSirensAreActive[1] = false;
 			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren4TurnedOff(){
         if(terminalSirensAreActive[2]){
-            modifyValue.RaiseEvent(75);
+            modifyValue.RaiseEvent(25);
             terminalSirensAreActive[2] = false;
 			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren5TurnedOff(){
         if(terminalSirensAreActive[3]){
-            modifyValue.RaiseEvent(50);
+            modifyValue.RaiseEvent(25);
             terminalSirensAreActive[3] = false;
 			modifySpeed.RaiseEvent(-1);
         }

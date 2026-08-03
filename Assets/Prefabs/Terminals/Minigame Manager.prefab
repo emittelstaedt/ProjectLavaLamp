@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 1882985700584190369}
   - component: {fileID: 1899457711460586267}
   - component: {fileID: 1938265988237166753}
+  - component: {fileID: -532473014840429146}
+  - component: {fileID: -8437506262047545800}
   m_Layer: 0
   m_Name: Minigame Manager
   m_TagString: Untagged
@@ -475,6 +477,62 @@ MonoBehaviour:
       - m_Target: {fileID: 7875041204411403159}
         m_TargetAssemblyTypeName: MinigameManager, Assembly-CSharp
         m_MethodName: siren5TurnedOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-532473014840429146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110044856490796021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: b0a7744a88b7dbe4e8399ded850ede6b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7875041204411403159}
+        m_TargetAssemblyTypeName: MinigameManager, Assembly-CSharp
+        m_MethodName: beginDay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-8437506262047545800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110044856490796021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: 0e65ca643202a8e47a42b1fe38ed21b0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7875041204411403159}
+        m_TargetAssemblyTypeName: MinigameManager, Assembly-CSharp
+        m_MethodName: beginDay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

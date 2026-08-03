@@ -2169,8 +2169,6 @@ GameObject:
   - component: {fileID: 862394038741097458}
   - component: {fileID: 4555639140992365930}
   - component: {fileID: 3861565667709715837}
-  - component: {fileID: 1563479723886224433}
-  - component: {fileID: 8318762475744531659}
   - component: {fileID: 4927219754695296549}
   - component: {fileID: 5079034066156902788}
   m_Layer: 0
@@ -2297,49 +2295,6 @@ MonoBehaviour:
   Settings: {fileID: 11400000, guid: 550a07fd7d877a444ada2902367f2a50, type: 2}
   distanceFromCamera: 0.5
   longRangeInteract: 0
---- !u!114 &1563479723886224433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3864463892556060292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cleanMaterial: {fileID: 2100000, guid: f5740e6fcd8e07c478643ae3d9bf0475, type: 2}
-  corrodeMaterial: {fileID: 2100000, guid: a317301ea4dd9344191ba41a0b749c08, type: 2}
-  ultraCorrodeMaterial: {fileID: 2100000, guid: 2ade37210a094de4caa2ef2424a07b14, type: 2}
---- !u!114 &8318762475744531659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3864463892556060292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5f01c6c165438499e822dc6883307c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventChannel: {fileID: 11400000, guid: ac60a04e3c5402349b11243fbfb81d10, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1563479723886224433}
-        m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
-        m_MethodName: SetMaterial
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4927219754695296549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4835,7 +4790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrillManager
   startDrillInteract: {fileID: 11400000, guid: e05f97740f7d99c5abe714b8036d3da0, type: 2}
-  stopInteract: {fileID: 11400000, guid: 0c69f7aa37e91cb26b63f14f44abf427, type: 2}
+  stopInteract: {fileID: 11400000, guid: 926885dd11d31814d8b85f38e0857a7a, type: 2}
+  drillStopHelper: {fileID: 11400000, guid: 0c69f7aa37e91cb26b63f14f44abf427, type: 2}
   drill: {fileID: 4739690742134849691}
   offScreen: {fileID: 585457561389808066}
   DrillPrefabs:
@@ -5122,7 +5078,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7504770079906271147}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MaterialCorroder, Assembly-CSharp
         m_MethodName: SetMaterial
         m_Mode: 0
@@ -5286,7 +5242,8 @@ GameObject:
   - component: {fileID: 1083897589891556874}
   - component: {fileID: 8978649617006673350}
   - component: {fileID: 1738484447930104372}
-  - component: {fileID: 7504770079906271147}
+  - component: {fileID: 429952999276937400}
+  - component: {fileID: 4156498413261422661}
   m_Layer: 0
   m_Name: SirenLights
   m_TagString: Untagged
@@ -5402,6 +5359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11df0448f6d63824fa1518bfe537463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sirenAnimator: {fileID: 1676941490553366123}
   volume: 0.5
 --- !u!114 &8978649617006673350
 MonoBehaviour:
@@ -5419,18 +5377,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1676941490553366123}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: StartSiren
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1083897589891556874}
         m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
         m_MethodName: StartSirenSound
@@ -5459,18 +5405,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1676941490553366123}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: StopSiren
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1083897589891556874}
         m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
         m_MethodName: StopSirenSound
@@ -5483,7 +5417,7 @@ MonoBehaviour:
           m_StringArgument: StopSiren
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7504770079906271147
+--- !u!114 &429952999276937400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5492,12 +5426,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 8349566451495205302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f396f485eadac23458223a0f2245bb2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  cleanMaterial: {fileID: 2100000, guid: 966ade9961643b047ae8eccf91311fae, type: 2}
-  corrodeMaterial: {fileID: 2100000, guid: 1a087477e571638488cd9566469c33e9, type: 2}
-  ultraCorrodeMaterial: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: bc54ed3fc59d2044da2c01f6d48d5ee1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1083897589891556874}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4156498413261422661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349566451495205302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c148139e0d34c4f91eefe4f066375c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoidEventChannelSubscriber
+  eventChannel: {fileID: 11400000, guid: a7730ec0998130afc9319f629a979b26, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1083897589891556874}
+        m_TargetAssemblyTypeName: SirenSound, Assembly-CSharp
+        m_MethodName: StopSirenSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8414618448399508282
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class InChute : MonoBehaviour, IUsableInteractable
     private bool hasGivenOutBox;
     private string outBoxRequiredItem;
 	[SerializeField] private VoidEventChannelSO buildFinished;
-
+	[SerializeField] private VoidEventChannelSO inChuteUsed;
     private GameObject currentItemHeld;
 	
     void Awake()
@@ -97,6 +97,7 @@ public class InChute : MonoBehaviour, IUsableInteractable
 
     private void GiveBox()
     {
+		inChuteUsed.RaiseEvent();
         if (boxItemsQueue.Count > 0)
         {
             GameObject newBox = Instantiate(packagedBox, itemSpawnPosition, Quaternion.identity);
