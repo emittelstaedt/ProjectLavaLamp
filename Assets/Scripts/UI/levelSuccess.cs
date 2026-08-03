@@ -103,11 +103,13 @@ public class LevelSuccess : MonoBehaviour
 	
 	public void PressMainMenuButton()
 	{
+		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
 		triggerMainMenu.RaiseEvent();
 	}
 	
 	public void PressNextLevelButton()
 	{
+		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
 		if(LevelManager.Instance.currentSession.currentDay == 1)
 		{
 			triggerEndGame.RaiseEvent();

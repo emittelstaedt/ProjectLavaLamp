@@ -36,4 +36,9 @@ public enum SoundType
     CorrosionMusic1,
     CorrosionMusic2,
     CorrosionMusic3,
+    MenuClick,
+    NewMiniGame1,
+    NewMiniGame2,
+    NewMiniGame3,
+    NewMiniGame4,
 };

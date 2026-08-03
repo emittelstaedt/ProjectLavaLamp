@@ -112,6 +112,7 @@ public class EndGame : MonoBehaviour
 	
 	public void PressMainMenuButton()
 	{
+		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
 		triggerMainMenu.RaiseEvent();
 	}
 	
