@@ -68,15 +68,11 @@ public class CMS : MonoBehaviour
 			}
 			
 		}
+		
 		VoidEventChannelSubscriber cmsPlaced = CMSmarked.AddComponent<VoidEventChannelSubscriber>();
 		UnityEvent cmsResponse = new();
 		cmsResponse.AddListener(newCMS.spreadCMS);
 		cmsPlaced.SetChannelAndResponse(itemPlaced, cmsResponse);
-		//UnityEditor.Events.UnityEventTools.AddPersistentListener
-		//(
-		//	cmsResponse, 
-		//	newCMS.spreadCMS
-		//);
 		cmsPlaced.OnEnable();
 		newCMS.spreadCMS();
 	}

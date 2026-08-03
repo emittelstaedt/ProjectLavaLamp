@@ -68,7 +68,7 @@ public class SetGlobalCorrosion : MonoBehaviour
 
             float t = elapsed / duration;
             Shader.SetGlobalFloat(CorrosionID, Mathf.Lerp(start, 0f, t));
-			Shader.SetGlobalFloat(DisappearID, Mathf.Lerp(start, 1f, t));
+			Shader.SetGlobalFloat(DisappearID, Mathf.Lerp(startDis, 1f, t));
             yield return null;
         }
 
@@ -123,7 +123,7 @@ public class SetGlobalCorrosion : MonoBehaviour
         }
     }
 
-    void Ondisable()
+    void OnDisable()
     {
         if(soundGameObject!=null)
         {

@@ -25,7 +25,6 @@ public class EndGame : MonoBehaviour
 		BadScienceEnding = new int[] {1, 1, 1, 1, 2, 1, 2, 1, 1};
 		HPCEnding = new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1};
 		CMSEnding = new int[] {1, 2, 2, 2, 2, 2, 2, 2, 2};
-		//givenEnding = 0;
 		
 		foreach(Transform child in gameObject.GetComponentsInChildren<Transform>())
 		{
