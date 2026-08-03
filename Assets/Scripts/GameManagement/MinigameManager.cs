@@ -35,6 +35,8 @@ public class MinigameManager : MonoBehaviour
 	
     [SerializeField] GameObject[] blocks;
 
+    [SerializeField] private float volume = 1f;
+
     // Awake is called when object is made active
     void Awake()
     {
@@ -130,6 +132,20 @@ public class MinigameManager : MonoBehaviour
             if(hasGuaranteedNewMinigame)
             {
                 nextGame = guaranteedNewMinigame;
+                switch(nextGame){
+                    case 0:
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame3, volume);
+                    break;
+                    case 1:
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame2, volume);
+                    break;
+                    case 2:
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame1, volume);
+                    break;
+                    case 3:
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame4, volume);
+                    break;
+                }
                 hasGuaranteedNewMinigame = false;
             }
             else//Default case of randomization

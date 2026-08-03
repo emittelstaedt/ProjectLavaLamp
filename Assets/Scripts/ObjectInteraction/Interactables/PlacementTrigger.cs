@@ -63,6 +63,7 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         if(transform.root.name == "EmptyOutBox")
 		{
 			Destroy(lastItemheld);
+			transform.root.gameObject.AddComponent<CMS>();
 			stopInteraction.RaiseEvent();
 			return;
 		}
