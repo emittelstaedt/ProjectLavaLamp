@@ -296,16 +296,16 @@ public class MatchingManager : MonoBehaviour
 	{
 		switch(which){
 				case 0:
-					AudioManager.Instance.PlaySound(MixerType.SFX, Button1Sound, 0.7f);
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button1Sound, 0.1f);
 					break;
 				case 1:
-					AudioManager.Instance.PlaySound(MixerType.SFX, Button2Sound, 0.7f);
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button2Sound, 0.1f);
 					break;
 				case 2:
-					AudioManager.Instance.PlaySound(MixerType.SFX, Button3Sound, 0.7f);
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button3Sound, 0.1f);
 					break;
 				case 3:
-					AudioManager.Instance.PlaySound(MixerType.SFX, Button4Sound, 0.7f);
+					AudioManager.Instance.PlaySound(MixerType.SFX, Button4Sound, 0.1f);
 					break;
 		}
 	}

@@ -14,9 +14,13 @@ public class DrillManager : MonoBehaviour
     private bool hasStartedDrill;
 
     [SerializeField] private SoundType onCrash;
+
+    private GameObject currentItemHeld;
+    [SerializeField] private GameObject terminal5;
     
     void Awake()
     {
+        currentItemHeld = null;
         currentDrillIndex = Random.Range(0, DrillPrefabs.Length);
         //DrillPrefabs[currentDrillIndex].SetActive(true); //Old method of loading, caused things to start before terminal got touched
 
@@ -79,14 +83,11 @@ public class DrillManager : MonoBehaviour
         hasStartedDrill = false;
 
 
-        if(stopInteract != null)
+        if(stopInteract != null&&currentItemHeld!=null&&currentItemHeld==terminal5)
         {
             stopInteract.RaiseEvent();
         }
-		if(drillStopHelper != null)
-		{
-			drillStopHelper.RaiseEvent();
-		}
+
         AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MinigameComplete, 1f, transform.position);
         TurnScreenOff(true);     
         ResetDrillToStart();
@@ -98,6 +99,12 @@ public class DrillManager : MonoBehaviour
     public void PlayCrashSound()
     {
         AudioManager.Instance.PlaySound(MixerType.SFX, onCrash, 0.7f, transform.position);
+    }
+
+    public void SetCurrentItemHeld(GameObject newItemHeld)
+    {
+        currentItemHeld = newItemHeld;
+        //Debug.Log($"Holding {currentItemHeld}");
     }
     
 }

@@ -115,7 +115,9 @@ public class AudioManager : MonoBehaviour
     {
         var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
 
-        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume);
+        GameObject loopObject = audioPlayer.PlaySoundLoop(mixerGroup, clip, volume);
+        TrackLoopedSound(loopObject);
+        return loopObject;
     }
 
     /// <summary>
@@ -126,7 +128,9 @@ public class AudioManager : MonoBehaviour
     {
         var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
 
-        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, position);
+        GameObject loopObject = audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, position);
+        TrackLoopedSound(loopObject);
+        return loopObject;
     }
 
     /// <summary>
@@ -137,7 +141,9 @@ public class AudioManager : MonoBehaviour
     {
         var (mixerGroup, clip) = GetMixerAndClip(mixerType, soundType);
 
-        return audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, parent);
+        GameObject loopObject = audioPlayer.PlaySoundLoop(mixerGroup, clip, volume, parent);
+        TrackLoopedSound(loopObject);
+        return loopObject;
     }
 
     private (AudioMixerGroup, AudioClip) GetMixerAndClip(MixerType mixerType, SoundType soundType)
@@ -179,6 +185,51 @@ public class AudioManager : MonoBehaviour
         }
 
         queuePlaying[queue] = false;
+    }
+
+    //This makes sure all looped audio is stopped when officeworkplace is loaded.
+    private const string OfficeSceneName = "OfficeWorkplace";
+
+    private readonly List<GameObject> activeLoopedSounds = new List<GameObject>();
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += HandleSceneUnloaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= HandleSceneUnloaded;
+    }
+
+    private void TrackLoopedSound(GameObject loopObject)
+    {
+        if (loopObject == null) return;
+        activeLoopedSounds.Add(loopObject);
+    }
+
+    private void HandleSceneUnloaded(UnityEngine.SceneManagement.Scene scene)
+    {
+        if (scene.name != OfficeSceneName) return;
+
+        StopAllLoopedSounds();
+    }
+
+    /// <summary>
+    /// Immediately stops (destroys) every looped sound currently tracked.
+    /// </summary>
+    public void StopAllLoopedSounds()
+    {
+        for (int i = 0; i < activeLoopedSounds.Count; i++)
+        {
+            GameObject loopObject = activeLoopedSounds[i];
+            if (loopObject != null)
+            {
+                Destroy(loopObject);
+            }
+        }
+
+        activeLoopedSounds.Clear();
     }
 
 }
