@@ -92,13 +92,13 @@ public class levelFailure : MonoBehaviour
 	
 	public void PressMainMenuButton()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 1f);
+		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
 		triggerMainMenu.RaiseEvent();
 	}
 	
 	public void PressRetryButton()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 1f);
+		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
 		startGame.RaiseEvent();
 		triggerNextLevel.RaiseEvent();
 	}
