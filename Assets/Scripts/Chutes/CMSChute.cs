@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class CMSChute : MonoBehaviour
 {
 	[SerializeField] private GameObject packagedBox;
+	[SerializeField] private GameObject newsPaper;
 	[SerializeField] private BoxItemsSO CMSItem;
 	private Vector3 itemSpawnPosition;
 	private PistonMover ventMover;
@@ -31,6 +32,9 @@ public class CMSChute : MonoBehaviour
 			newBox.name = packagedBox.name;
 			newBox.GetComponent<BoxExploder>().BoxItems = CMSItem;
 			SceneManager.MoveGameObjectToScene(newBox, SceneManager.GetSceneByName("OfficeWorkplace"));
+			GameObject newPaper = Instantiate(newsPaper, new Vector3(-6.5f, 1f, -3f), Quaternion.Euler(0f, -45f, -45f));
+			newPaper.name = newsPaper.name;
+			SceneManager.MoveGameObjectToScene(newPaper, SceneManager.GetSceneByName("OfficeWorkplace"));
 		}
         //StartCoroutine(GiveItemAnimation());
     }
