@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private LevelInfoSOEventChannelSO sendLevel;
 	[SerializeField] private EmailEventChannelSO sendEmail;
 	[SerializeField] private VoidEventChannelSO planetCheck;
+	[SerializeField] private IntEventChannelSO modifyValue;
 	[SerializeField] private VoidEventChannelSO stopInteract;
 	[SerializeField] private email efficiencyMail;
 	[SerializeField] private GameObject memo;
@@ -347,13 +348,9 @@ public class LevelManager : MonoBehaviour
 	
 	private IEnumerator efficiencyDelivery()
 	{
-		yield return new WaitForSeconds(0.75f);
+		yield return new WaitForSeconds(0.25f);
 		sendEmail.RaiseEvent(efficiencyMail);
-		currentSession.efficiency += 200;
-		if(currentSession.efficiency > 1000)
-		{
-			currentSession.efficiency = 1000;
-		}
+		modifyValue.RaiseEvent(200);
 		saveGame();
 		lossCounter = 0;
 	}
