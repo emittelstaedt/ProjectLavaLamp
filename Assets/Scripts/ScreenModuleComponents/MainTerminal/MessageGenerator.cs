@@ -89,7 +89,7 @@ public class MessageGenerator : MonoBehaviour
 	
 	private IEnumerator delayedSend(email newMail)
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 		sendEmail.RaiseEvent(newMail);
 	}
 }
