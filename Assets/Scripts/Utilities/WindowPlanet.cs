@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class WindowPlanet : MonoBehaviour
 {
-	[SerializeField] private Texture2D[] health;
+	[SerializeField] private Texture[] health;
 	[SerializeField] private int planetNumber;
 	private int planetHealth;
-	private Material planetMaterial;
+	private Renderer planetRenderer;
 	private bool isAlive;
 	
 	public void Awake()
 	{
-		planetMaterial = GetComponent<Renderer>().material;
+		planetRenderer = GetComponent<Renderer>();
 	}
 
 	public void checkPlanetHealth()
@@ -23,7 +23,6 @@ public class WindowPlanet : MonoBehaviour
 				if(LevelManager.Instance.currentSession.levelBuildChoices[0] == 1)
 				{
 					planetHealth++;
-					isAlive = true;
 				}
 				if(LevelManager.Instance.currentSession.levelBuildChoices[1] == 2)
 				{
@@ -74,10 +73,10 @@ public class WindowPlanet : MonoBehaviour
 				Debug.Log("Error setting window planet");
 				break;
 		}
-		if(isAlive == false)
+		if(isAlive == false && LevelManager.Instance.currentSession.currentDay == 1)
 		{
 			planetHealth = 0;
 		}
-		planetMaterial.mainTexture = health[planetHealth];
+		planetRenderer.material.SetTexture("_Planet", health[planetHealth]);
 	}
 }
