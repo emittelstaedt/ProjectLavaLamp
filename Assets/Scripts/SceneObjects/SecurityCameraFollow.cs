@@ -63,6 +63,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     private bool isHappe = false;
 
     [SerializeField] private GameObject lightOfDoomAndEfficiencyLoss;
+    bool hasPlayedWarningSound = false;
 
 
     private void Awake()
@@ -179,7 +180,15 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
             //Only play restart noise if camera is angry due to cms box breaking. This also prevents overlay with announcement on day 1.
             if(isAngery)
             {
-                AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+                if(!hasPlayedWarningSound)
+                {
+                    AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position); 
+                    hasPlayedWarningSound = true;
+                }
+                else
+                {
+                    AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+                }
                 objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
                 if(lightOfDoomAndEfficiencyLoss!=null)
                 {
@@ -319,6 +328,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         else
         {
             objectMaterial.SetColor("_Emiss_ON_Color", Color.yellow);
+            lightOfDoomAndEfficiencyLoss.SetActive(false);
         }
         if(LevelManager.Instance!=null)
         {
@@ -374,7 +384,15 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         //This checks to see if we're current in the room we want to be, only plays the sound if we are.
         if(Mathf.Approximately(pathT, targetAtPointB ? 1f : 0f) && lookBlend <= 0.01f)
         {
-            AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+            if(!hasPlayedWarningSound)
+            {
+                AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
+                hasPlayedWarningSound = true;
+            }
+            else
+            {
+                AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position);
+            }
         }
 
         // Ensure it hits exactly 0 at the very end
@@ -384,37 +402,21 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void CMSBoxBroken()
     {
+        isAngery = true; //Always set this
 		if(state != 1)
 		{
 			modifySpeed.RaiseEvent(1);
-		}
-        isAngery = true;
-        objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
-        if(lightOfDoomAndEfficiencyLoss!=null)
-        {
-            lightOfDoomAndEfficiencyLoss.SetActive(true);
-        }
-        DegradeEfficiency();
-    }
-
-    private void DegradeEfficiency()
-    {
-        bool hasPlayedWarningSound = false;
-        if(!hasPlayedWarningSound)
-        {
-            AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
-            hasPlayedWarningSound = true;
-        }
-		
-        // Send signal with amount of sirens active to subtract each second.
-        if(state!=1)
-        {
+            objectMaterial.SetColor("_Emiss_ON_Color", Color.red);
+            if(lightOfDoomAndEfficiencyLoss!=null)
+            {
+                lightOfDoomAndEfficiencyLoss.SetActive(true);
+            }
             if(!hasPlayedWarningSound)
             {
                 AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
                 hasPlayedWarningSound = true;
             }
-        }
+		}
     }
 
     public void coffeeDrank()
@@ -423,9 +425,11 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         {
             return; //We don't want this overriding the cms box break since efficiency will still tick down
         }
-        
-        isHappe = true;
-        objectMaterial.SetColor("_Emiss_ON_Color", Color.green);
+        if(LevelManager.Instance.currentSession.currentDay!=dayForceSplash){
+            isHappe = true;
+            objectMaterial.SetColor("_Emiss_ON_Color", Color.green);
+        }
+
         if(lightOfDoomAndEfficiencyLoss!=null)
         {
             lightOfDoomAndEfficiencyLoss.SetActive(false);
