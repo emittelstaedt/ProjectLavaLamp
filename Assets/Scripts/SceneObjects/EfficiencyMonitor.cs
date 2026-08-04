@@ -172,6 +172,7 @@ public class EfficiencyMonitor : MonoBehaviour
 		{
 			LevelManager.Instance.currentSession.efficiency += modification;
 		}
+		efficiencyDisplay.text = LevelManager.Instance.currentSession.efficiency.ToString();
 	}
 	
     public void LockOut()

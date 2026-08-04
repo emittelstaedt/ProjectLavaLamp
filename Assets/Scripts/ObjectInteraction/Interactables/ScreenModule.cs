@@ -116,7 +116,10 @@ public class ScreenModule : MonoBehaviour, IUsableInteractable
     
     private void EnablePlayerControls()
     {
-        playerActionMap.Enable();
+		if(GameObject.FindGameObjectWithTag("Lose") != true)
+		{
+			playerActionMap.Enable();
+		}
     }
 
     private void PutPlayerInFrontOfScreen()

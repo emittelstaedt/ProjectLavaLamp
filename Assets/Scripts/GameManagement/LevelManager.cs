@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private LevelInfoSOEventChannelSO sendLevel;
 	[SerializeField] private EmailEventChannelSO sendEmail;
 	[SerializeField] private VoidEventChannelSO planetCheck;
+	[SerializeField] private VoidEventChannelSO stopInteract;
 	[SerializeField] private email efficiencyMail;
 	[SerializeField] private GameObject memo;
 	[SerializeField] private GameObject newspaper;	
@@ -180,9 +181,10 @@ public class LevelManager : MonoBehaviour
 		for(int i = 0; i < currentSession.levelBuildChoices.Length; i++)
 		{
 			currentSession.levelBuildChoices[i] = 0;
+			currentSession.levelCompleteTimes[i] = 0f;
 		}
 		currentSession.coffeeLevel = 3;
-		currentSession.efficiency = 1000;
+		currentSession.efficiency = 500;
 	}
 	
 	public void pushLevel(){
@@ -202,22 +204,12 @@ public class LevelManager : MonoBehaviour
 			currentSession.currentDay = 1;
 		}
 		saveGame();
-		HUD.SetActive(false);
-		setCursorVisibility.RaiseEvent(true);
-		InputSystem.actions.FindActionMap("Player").Disable();
-		memo.SetActive(false);
-		newspaper.SetActive(false);
 		StartCoroutine(PauseBeforeLevelSuccess());
     }
 	
 	public void levelIncomplete()
 	{
 		lossCounter++;
-		HUD.SetActive(false);
-		setCursorVisibility.RaiseEvent(true);
-		InputSystem.actions.FindActionMap("Player").Disable();
-		memo.SetActive(false);
-		newspaper.SetActive(false);
 		StartCoroutine(PauseBeforeLevelFailure());
 	}
 	
@@ -299,12 +291,23 @@ public class LevelManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		levelSuccess.SetActive(true);
+		HUD.SetActive(false);
+		setCursorVisibility.RaiseEvent(true);
+		InputSystem.actions.FindActionMap("Player").Disable();
+		memo.SetActive(false);
+		newspaper.SetActive(false);
 	}
 	
 	private IEnumerator PauseBeforeLevelFailure()
 	{
 		yield return new WaitForSeconds(0.5f);
 		levelFailure.SetActive(true);
+		stopInteract.RaiseEvent();
+		HUD.SetActive(false);
+		setCursorVisibility.RaiseEvent(true);
+		InputSystem.actions.FindActionMap("Player").Disable();
+		memo.SetActive(false);
+		newspaper.SetActive(false);
 	}
 	
 	public void startProfileGameTime()
