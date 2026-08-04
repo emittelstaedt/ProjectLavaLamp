@@ -40,6 +40,7 @@ public class ProfileMenu : MonoBehaviour
 			placementField.text = "What is your name?";
 		}
 	}
+	
     private void OnEnable()
     {
         Time.timeScale = 1f;

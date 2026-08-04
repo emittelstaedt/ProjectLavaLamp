@@ -62,8 +62,11 @@ public class PlacementTrigger : MonoBehaviour, IInteractable
         Vector3 containerScale = placementContainer.lossyScale;
         if(transform.root.name == "EmptyOutBox")
 		{
+			if(lastItemheld.GetComponent<CMS>() == true)
+			{
+				transform.root.gameObject.AddComponent<CMS>();
+			}
 			Destroy(lastItemheld);
-			transform.root.gameObject.AddComponent<CMS>();
 			stopInteraction.RaiseEvent();
 			return;
 		}
