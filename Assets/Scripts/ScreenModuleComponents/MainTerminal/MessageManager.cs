@@ -80,7 +80,7 @@ public class MessageManager : MonoBehaviour, IScreen
 				break;
 			}
 		}
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i < 8; i++)
 		{
 			shortHandHighlights[i].color = new Color(255f, 255f, 255f, 0f);
 			shortHands[i].color = Color.white;
