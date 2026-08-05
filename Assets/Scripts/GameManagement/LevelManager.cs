@@ -291,24 +291,24 @@ public class LevelManager : MonoBehaviour
 	private IEnumerator PauseBeforeLevelSuccess()
 	{
 		yield return new WaitForSeconds(0.5f);
+		memo.SetActive(false);
+		newspaper.SetActive(false);
 		levelSuccess.SetActive(true);
 		HUD.SetActive(false);
 		setCursorVisibility.RaiseEvent(true);
 		InputSystem.actions.FindActionMap("Player").Disable();
-		memo.SetActive(false);
-		newspaper.SetActive(false);
 	}
 	
 	private IEnumerator PauseBeforeLevelFailure()
 	{
 		yield return new WaitForSeconds(0.5f);
+		memo.SetActive(false);
+		newspaper.SetActive(false);
 		levelFailure.SetActive(true);
 		stopInteract.RaiseEvent();
 		HUD.SetActive(false);
 		setCursorVisibility.RaiseEvent(true);
 		InputSystem.actions.FindActionMap("Player").Disable();
-		memo.SetActive(false);
-		newspaper.SetActive(false);
 	}
 	
 	public void startProfileGameTime()
