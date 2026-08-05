@@ -261,7 +261,7 @@ public class MinigameManager : MonoBehaviour
     public void siren2TurnedOff(){
         if(terminalSirensAreActive[0])
         {
-            modifyValue.RaiseEvent(25);
+            modifyValue.RaiseEvent((5 * currentSession.currentDay) + 5);
             terminalSirensAreActive[0] = false;
 			modifySpeed.RaiseEvent(-1);
         }
@@ -269,21 +269,21 @@ public class MinigameManager : MonoBehaviour
     public void siren3TurnedOff(){
         if(terminalSirensAreActive[1])
         {
-            modifyValue.RaiseEvent(25);
+            modifyValue.RaiseEvent((5 * currentSession.currentDay) + 5);
             terminalSirensAreActive[1] = false;
 			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren4TurnedOff(){
         if(terminalSirensAreActive[2]){
-            modifyValue.RaiseEvent(25);
+            modifyValue.RaiseEvent((5 * currentSession.currentDay) + 5);
             terminalSirensAreActive[2] = false;
 			modifySpeed.RaiseEvent(-1);
         }
     }
     public void siren5TurnedOff(){
         if(terminalSirensAreActive[3]){
-            modifyValue.RaiseEvent(25);
+            modifyValue.RaiseEvent((5 * currentSession.currentDay) + 5);
             terminalSirensAreActive[3] = false;
 			modifySpeed.RaiseEvent(-1);
         }
