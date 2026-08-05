@@ -13,6 +13,7 @@ public class LevelSuccess : MonoBehaviour
 	private GameObject score;
 	private GameObject buildTime;
 	private TMP_Text nextButton;
+	private GameObject mainMenuButton;
 	private int levelNumber;
 	private string planetName;
 	[SerializeField] private Sprite stampHPC;
@@ -58,6 +59,10 @@ public class LevelSuccess : MonoBehaviour
 			{
 				nextButton = child.gameObject.GetComponentInChildren<TMP_Text>();
 			}
+			if(child.name == "MainMenu")
+			{
+				mainMenuButton = child.gameObject;
+			}
 		}
         if (LevelManager.Instance != null && LevelManager.Instance.currentSession != null)
         {
@@ -72,6 +77,7 @@ public class LevelSuccess : MonoBehaviour
 		{
 			levelNumber = LevelManager.Instance.levels.Length - 1;
 			nextButton.text = "Continue";
+			mainMenuButton.SetActive(false);
 		}else
 		{
 			levelNumber = LevelManager.Instance.currentSession.currentDay - 2;
@@ -118,7 +124,6 @@ public class LevelSuccess : MonoBehaviour
 		{
 			startGame.RaiseEvent();
 			triggerNextLevel.RaiseEvent();
-
 		}
 		
 	}
