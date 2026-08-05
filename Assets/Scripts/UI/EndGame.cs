@@ -10,7 +10,7 @@ public class EndGame : MonoBehaviour
 	[SerializeField] private GameObject[] stamps;
 	[SerializeField] private Sprite stampHPC;
 	[SerializeField] private Sprite stampCMS;
-	[SerializeField] private VoidEventChannelSO triggerMainMenu;
+	[SerializeField] private VoidEventChannelSO triggerCredits;
 	private GameObject score;
 	private GameObject buildTime;
 	private int[] ScienceEnding;
@@ -109,10 +109,10 @@ public class EndGame : MonoBehaviour
 		}
 	}
 	
-	public void PressMainMenuButton()
+	public void PressCreditsButton()
 	{
 		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
-		triggerMainMenu.RaiseEvent();
+		triggerCredits.RaiseEvent();
 	}
 	
 	private void setStamps()

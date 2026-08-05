@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private GameObject levelSuccess;
 	[SerializeField] private GameObject levelFailure;
 	[SerializeField] private GameObject endGame;
+	[SerializeField] private GameObject credits;
 	[SerializeField] private GameObject confirmNamePanel;
     public LevelInfoSO[] levels;
 	public EmployeeData[] profiles;
@@ -229,12 +230,18 @@ public class LevelManager : MonoBehaviour
 		StartCoroutine(ContinueToEndGame());
 	}
 	
+	public void activateCredits()
+	{
+		StartCoroutine(ContinueToCredits());
+	}
+	
 	private IEnumerator ReturnToStartMenu()
 	{
 		loadingScreen.SetActive(true);
 		levelSuccess.SetActive(false);
 		levelFailure.SetActive(false);
 		endGame.SetActive(false);
+		credits.SetActive(false);
 		Animator buttonAnimator = menuButtons.GetComponent<Animator>();
 		Animator logoAnimator = menuLogo.GetComponent<Animator>();
 		if(SceneLoader.Instance.IsSceneLoaded("OfficeWorkplace") == true)
@@ -286,6 +293,14 @@ public class LevelManager : MonoBehaviour
 		SceneLoader.Instance.UnloadScene("OfficeWorkplace");
 		yield return null;
 		endGame.SetActive(true);
+	}
+	
+	private IEnumerator ContinueToCredits()
+	{
+		loadingScreen.SetActive(true);
+		endGame.SetActive(false);
+		yield return null;
+		credits.SetActive(true);
 	}
 	
 	private IEnumerator PauseBeforeLevelSuccess()
