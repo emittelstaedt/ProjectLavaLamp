@@ -37,7 +37,7 @@ public class ReadableNewspaper : MonoBehaviour
 		}
 		if(currentSession.currentDay <= 3)
 		{
-			newsPaperName.GetComponent<TMP_Text>().text = "Anathor Gazette";
+			newsPaperName.GetComponent<TMP_Text>().text = "Athanor Gazette";
 			newsPaperTagline.GetComponent<TMP_Text>().text = "Your Daily Disaster Bulletin";
 		}
 		string todayTitle = "No Title";

@@ -22,6 +22,19 @@ public class TriggerReadable : MonoBehaviour, IUsable
 			}
 		}
 	}
+	public void Update()
+	{
+		if(currentlyReading == true)
+		{
+			if(GameObject.FindWithTag("Held") == null){
+				HUD.SetActive(true);
+				setCursorVisibility.RaiseEvent(false);
+				readable.SetActive(false);
+				currentlyReading = false;
+				InputSystem.actions.FindActionMap("Player").Enable();
+			}
+		}
+	}
 	public void UseItem()
 	{
 		if(currentlyReading == false)

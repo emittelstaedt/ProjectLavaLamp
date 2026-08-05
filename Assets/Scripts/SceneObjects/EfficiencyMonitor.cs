@@ -58,7 +58,7 @@ public class EfficiencyMonitor : MonoBehaviour
 			}
 			if(speed < 0)
 			{
-				yield return new WaitForSeconds(-4f / speed);
+				yield return new WaitForSeconds(-2f / speed);
 				if(LevelManager.Instance.currentSession.efficiency < 1000)
 				{
 					LevelManager.Instance.currentSession.efficiency += 1;
