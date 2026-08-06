@@ -527,7 +527,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 505998112a10bba4c84be401fe740ea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -649,6 +649,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2673276882604203061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5264086851583392062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7490740627749603493}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7490740627749603493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264086851583392062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6011319383692662515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6439339545364985603
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,9 +716,9 @@ Transform:
   m_LocalScale: {x: 0.41117677, y: 0.41117677, z: 0.41117677}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6011319383692662515}
   - {fileID: 632758634076777025}
   - {fileID: 4305535955357801739}
+  - {fileID: 6011319383692662515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &4652843819492278163
@@ -977,7 +1008,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dea2d5df0a8e9d3cfbb7de44cc689235, type: 2}
+  - {fileID: 2100000, guid: 5ffd316a63fcd964eb6479b919de5982, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1929,7 +1960,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7091129957222823948, guid: 86b256c1a4fb3c6449774ad8b51a5019, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7490740627749603493}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86b256c1a4fb3c6449774ad8b51a5019, type: 3}
 --- !u!20 &4958701667912424706 stripped
