@@ -26,13 +26,13 @@ public class DoorMover : MonoBehaviour
             //We only want these to trigger on the first day.
             if(!hasPlayedUnlockedSound&&LevelManager.Instance.currentSession.currentDay==1)
             {
-                AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, unlockedSound, volume);
+                AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, unlockedSound, volume);
                 hasPlayedUnlockedSound = true;
             }
         }
         else if(!unlocked&&!hasPlayedlockedSound)
         {
-            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, lockedSound, volume);
+            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, lockedSound, volume);
             hasPlayedlockedSound = true;
         }
 

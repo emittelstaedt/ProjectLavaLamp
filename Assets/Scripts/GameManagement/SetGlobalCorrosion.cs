@@ -62,7 +62,9 @@ public class SetGlobalCorrosion : MonoBehaviour
 
         if(LevelManager.Instance.currentSession.coffeeLevel==0){
             if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.CoffeeWhileMaxCorrosion);}
+            //Debug.LogWarning("Coffeeachievement");
         }
+        //Debug.LogWarning($"LevelManager.Instance.currentSession.coffeeLevel");
 
         StartCoroutine(FadeOutCorrosion(serializedDuration)); // Fade over serializeduration seconds
     }
@@ -102,7 +104,7 @@ public class SetGlobalCorrosion : MonoBehaviour
 
         if(coffeeHasBeenDrank)
         {
-           soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic0, musicVolume); 
+           soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.Music, SoundType.CorrosionMusic0, musicVolume); 
         }
         else
         {
@@ -111,19 +113,19 @@ public class SetGlobalCorrosion : MonoBehaviour
             switch (LevelManager.Instance.currentSession.coffeeLevel)
                 {
                     case 0:
-                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic3, musicVolume*2);
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.Music, SoundType.CorrosionMusic3, musicVolume*2);
                         //Debug.Log($"Switch read as 0.");
                         break;
                     case 1:
-                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic2, musicVolume);
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.Music, SoundType.CorrosionMusic2, musicVolume);
                         //Debug.Log($"Switch read as 1.");
                         break;
                     case 2:
-                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic1, musicVolume);
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.Music, SoundType.CorrosionMusic1, musicVolume);
                         //Debug.Log($"Switch read as 2.");
                         break;
                     default:
-                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.SFX, SoundType.CorrosionMusic0, musicVolume);
+                        soundGameObject = AudioManager.Instance.PlaySoundLoop(MixerType.Music, SoundType.CorrosionMusic0, musicVolume);
                         //Debug.Log($"Switch read as 3.");
                         break;
                 }

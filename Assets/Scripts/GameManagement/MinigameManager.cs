@@ -134,16 +134,16 @@ public class MinigameManager : MonoBehaviour
                 nextGame = guaranteedNewMinigame;
                 switch(nextGame){
                     case 0:
-                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame3, volume);
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, SoundType.NewMiniGame3, volume);
                     break;
                     case 1:
-                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame2, volume);
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, SoundType.NewMiniGame2, volume);
                     break;
                     case 2:
-                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame1, volume);
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, SoundType.NewMiniGame1, volume);
                     break;
                     case 3:
-                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, SoundType.NewMiniGame4, volume);
+                    AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, SoundType.NewMiniGame4, volume);
                     break;
                 }
                 hasGuaranteedNewMinigame = false;
