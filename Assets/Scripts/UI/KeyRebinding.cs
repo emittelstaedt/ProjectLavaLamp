@@ -60,10 +60,12 @@ public class KeyRebinding : MonoBehaviour
 
         rebindingOperation = actionReference.action
             .PerformInteractiveRebinding(bindingIndex)
+            .WithCancelingThrough("<Keyboard>/escape")
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation =>
             {
                 string newBindingPath = actionReference.action.bindings[bindingIndex].effectivePath;
+                //Debug.LogWarning($"New Binding Path: {newBindingPath}");
 
                 // Checks for conflicting keybindings in all actions except the current one.
                 foreach (InputActionMap map in actionReference.action.actionMap.asset.actionMaps)
@@ -111,6 +113,12 @@ public class KeyRebinding : MonoBehaviour
                 PlayerPrefs.Save();
                 InputSystem.actions.FindActionMap("Player").Disable();
                 InputSystem.actions.FindAction("Pause").Enable();
+            })
+            .OnCancel(operation =>
+            {
+                actionReference.action.Enable();
+                operation.Dispose();
+                UpdateBindingDisplay(); // reverts to "Press any key" -> back to old binding text
             })
             .Start();
     }

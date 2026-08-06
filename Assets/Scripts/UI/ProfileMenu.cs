@@ -51,13 +51,13 @@ public class ProfileMenu : MonoBehaviour
 
 	public void BackButton()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		profileMenu.SetActive(false);
 	}
 	
     public void LoadGame()
     {
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		startMenu.SetActive(false);
         profileMenu.SetActive(false);
 		startGame.RaiseEvent();
@@ -72,7 +72,7 @@ public class ProfileMenu : MonoBehaviour
 
     public void ConfirmProfileName()
     {
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		if(profileField.text != "")
 		{
 			previousSession = LevelManager.Instance.currentSession;
@@ -85,26 +85,26 @@ public class ProfileMenu : MonoBehaviour
 
     public void CancelProfileName()
     {
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		LevelManager.Instance.currentSession = previousSession;
         confirmNamePanel.SetActive(false);
     }
 	
 	public void TrashProfile()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		confirmTrashPanel.SetActive(true);
 	}
 	
 	public void CancelTrash()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		confirmTrashPanel.SetActive(false);
 	}
 	
 	public void ConfirmTrash()
 	{	
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		deleteProfile.RaiseEvent();
 		displayProfile(-1);
 		setProfilePointer.RaiseEvent(-1);
@@ -113,19 +113,19 @@ public class ProfileMenu : MonoBehaviour
 	
 	public void ResetProfile()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		confirmResetPanel.SetActive(true);
 	}
 	
 	public void CancelReset()
 	{
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		confirmResetPanel.SetActive(false);
 	}
 	
 	public void ConfirmReset()
 	{	
-		AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.MenuClick, 0.5f);
+		AudioManager.Instance.PlaySound(MixerType.UI, SoundType.MenuClick, 0.5f);
 		resetProfile.RaiseEvent();
 		displayProfile(LevelManager.Instance.currentSession.employeeNumber);
 		setProfilePointer.RaiseEvent(LevelManager.Instance.currentSession.employeeNumber);
