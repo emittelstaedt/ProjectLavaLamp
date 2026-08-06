@@ -15,6 +15,7 @@ public class SetGlobalCorrosion : MonoBehaviour
     bool coffeeHasBeenDrank = false;
     int numCoffeesDrankToday = 0;
     [SerializeField] float musicVolume = 0.01f;
+    int startingCoffeeLevel = 3;
 
 	
     private static readonly int CorrosionID = Shader.PropertyToID("_Damage_Amount");
@@ -28,15 +29,19 @@ public class SetGlobalCorrosion : MonoBehaviour
             {
                 case 0:
                     startingCorrosion = corrosionTier3;
+                    startingCoffeeLevel = 0;
                     break;
                 case 1:
                     startingCorrosion = corrosionTier2;
+                    startingCoffeeLevel = 1;
                     break;
                 case 2:
                     startingCorrosion = corrosionTier1;
+                    startingCoffeeLevel = 2;
                     break;
                 default:
                     startingCorrosion = 0f;
+                    startingCoffeeLevel = 0;
                     break;
             }
             Shader.SetGlobalFloat(CorrosionID, startingCorrosion);
@@ -61,8 +66,11 @@ public class SetGlobalCorrosion : MonoBehaviour
 		}
 
         if(LevelManager.Instance.currentSession.coffeeLevel==0){
+        //We use startingcoffeelevel instead because otherwise the levelmanager gets to modify the value first internally
+        if(startingCoffeeLevel==0){
             if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.CoffeeWhileMaxCorrosion);}
         }
+        //Debug.LogWarning($"{LevelManager.Instance.currentSession.coffeeLevel}");
 
         StartCoroutine(FadeOutCorrosion(serializedDuration)); // Fade over serializeduration seconds
     }
