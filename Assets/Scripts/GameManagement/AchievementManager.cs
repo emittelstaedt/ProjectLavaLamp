@@ -88,24 +88,24 @@ public class AchievementManager : MonoBehaviour
 
     public void unlockAchievement(eAchievement _AchievementToUnlock)
     {
+		int achieveNum = (int)_AchievementToUnlock;
+		if(!(achieveNum >= 12 && achieveNum <= 16))
+		{
+			if(achieveNum >= 17)
+			{
+				achieveNum = achieveNum - 5;
+			}
+			int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
+			EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+			backUpProfile.achievements[achieveNum] = true;
+			string json = JsonUtility.ToJson(backUpProfile);
+			File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+			LevelManager.Instance.currentSession.achievements[achieveNum] = true;
+		}
         if(connectedToSteam)
         {
-			int achieveNum = (int)_AchievementToUnlock;
             var ach = new Steamworks.Data.Achievement("Achievement_" + achieveNum);
-            ach.Trigger();
-			if(!(achieveNum >= 12 && achieveNum <= 16))
-			{
-				if(achieveNum >= 17)
-				{
-					achieveNum = achieveNum - 5;
-				}
-				int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
-				EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
-				backUpProfile.achievements[achieveNum] = true;
-				string json = JsonUtility.ToJson(backUpProfile);
-				File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
-				LevelManager.Instance.currentSession.achievements[achieveNum] = true;
-			}
+			ach.Trigger();
             CheckForPlatinumAchievement();
         }
     }
@@ -113,24 +113,24 @@ public class AchievementManager : MonoBehaviour
     //An overload that allows the calling of achievements by number rather than enum, used for things like the Day achievements
     public void unlockAchievement(int _AchievementToUnlock)
     {
+		int achieveNum = _AchievementToUnlock;
+		if(!(achieveNum >= 12 && achieveNum <= 16))
+		{
+			if(achieveNum >= 17)
+			{
+				achieveNum = achieveNum - 5;
+			}
+			int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
+			EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+			backUpProfile.achievements[achieveNum] = true;
+			string json = JsonUtility.ToJson(backUpProfile);
+			File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+			LevelManager.Instance.currentSession.achievements[achieveNum] = true;
+		}
         if(connectedToSteam)
         {
-			int achieveNum = _AchievementToUnlock;
             var ach = new Steamworks.Data.Achievement("Achievement_" + _AchievementToUnlock);
             ach.Trigger();
-			if(!(achieveNum >= 12 && achieveNum <= 16))
-			{
-				if(achieveNum >= 17)
-				{
-					achieveNum = achieveNum - 5;
-				}
-				int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
-				EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
-				backUpProfile.achievements[achieveNum] = true;
-				string json = JsonUtility.ToJson(backUpProfile);
-				File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
-				LevelManager.Instance.currentSession.achievements[achieveNum] = true;
-			}
             CheckForPlatinumAchievement();
         }
     }
