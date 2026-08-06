@@ -863,8 +863,17 @@ MonoBehaviour:
         and slowly making the planet uninhabitable."
   - day: 1
     fact:
+      shortHand: HPC
+      handle: 'Re: Science Daily'
+      responseSubject: To Guide Your Decisions
+      responseContent: "We\u2019ve transcribed these scientific entries recovered
+        from the ruins of an ancient planet named Earth. It is our hope that this
+        knowledge from Old Earth will inform you in your journey as HPC Planetary
+        Engineer. "
+  - day: 1
+    fact:
       shortHand: Science Daily
-      handle: Attain Vast Knowledge
+      handle: 'Attain Vast Knowledge '
       responseSubject: Magnetosphere
       responseContent: "You may think that this is a supervillian, but actually it\u2019s
         the magnetic field that encompasses the Earth and protects the planet from
@@ -879,8 +888,7 @@ MonoBehaviour:
         crazy fast parts of atoms zoom out of the nearby star, galaxy, or even other
         galaxies. As a form of ionizing radiation, cosmic rays can wreak havoc on
         planetary inhabitants and electronics. Thankfully, they can be repelled by
-        a strong magnetic field. This is why the HPC supplies all orbital office
-        modules with magnetic shielding.
+        a strong magnetic field.
   - day: 2
     fact:
       shortHand: Science Daily
@@ -961,27 +969,13 @@ MonoBehaviour:
         afraid if you enter one, it won\u2019t pull you apart. Instead, an object
         at a Lagrange point would remain relatively stable due to the cancelling
         out of gravitational effects."
-  - day: 8
-    fact:
-      shortHand: Science Daily
-      handle: Attain Vast Knowledge
-      responseSubject: Stratosphere
-      responseContent: "This layer of the atmosphere contains the ozone layer (at
-        least that\u2019s the case on the Earth). We like the ozone layer. It helps
-        keeps us safe from the Sun\u2019s radiation. The stratosphere also has the
-        potential to change the Earth\u2019s reflectivity, bouncing more light back
-        into space. Oh, could this be an option to cool the planet? Maybe\u2026"
   - day: 5
     fact:
       shortHand: Science Daily
       handle: Attain Vast Knowledge
       responseSubject: Geoengineering
-      responseContent: One of the things we at the HPC do everyday. Specifically,
-        we modify the atmospheres and hydrospheres of planets to improve habitability!
-        Without our help, civilizations often are forced to undertake geoengineering
-        through ecologically and economically destructive factories. Through our
-        unique drone technology, the HPC is able to accomplish these same interventions
-        through a less destructive drone swarm approach.
+      responseContent: 'Modifying the atmospheres and hydrospheres of planets to
+        improve habitability! '
   - day: 5
     fact:
       shortHand: Science Daily
@@ -1019,11 +1013,11 @@ MonoBehaviour:
       shortHand: Science Daily
       handle: Attain Vast Knowledge
       responseSubject: Carbon Sequestration
-      responseContent: An HPC specialty! Modification of the carbon cycle by removing
-        carbon dioxide from the atmosphere and storing it in subterranean locations
-        such as drill holes, caves, or sediments. Carbon sequestration can be accomplished
-        through technological methods, called carbon capture, or by using the already
-        present mechanisms of biological organisms participating in the carbon cycle.
+      responseContent: Modification of the carbon cycle by removing carbon dioxide
+        from the atmosphere and storing it in subterranean locations such as drill
+        holes, caves, or sediments. Carbon sequestration can be accomplished through
+        technological methods, called carbon capture, or by using the already present
+        mechanisms of biological organisms participating in the carbon cycle.
   - day: 7
     fact:
       shortHand: Crasis
@@ -1072,6 +1066,16 @@ MonoBehaviour:
         planet. It\u2019s not all boring though because that trapped heat wants to
         get out and often does so in isolated volcanoes that pierce through the surface,
         erupt, and then go dormant - kind of like planetary pimples."
+  - day: 8
+    fact:
+      shortHand: Science Daily
+      handle: Attain Vast Knowledge
+      responseSubject: Stratosphere
+      responseContent: "This layer of the atmosphere contains the ozone layer (at
+        least that\u2019s the case on the Earth). We like the ozone layer. It helps
+        keeps us safe from the Sun\u2019s radiation. The stratosphere also has the
+        potential to change the Earth\u2019s reflectivity, bouncing more light back
+        into space. Oh, could this be an option to cool the planet? Maybe\u2026"
   - day: 8
     fact:
       shortHand: Science Daily
@@ -2602,10 +2606,10 @@ MonoBehaviour:
       and cosmic rays, we\u2019re introducing a state-of-the-art drone satellite
       swarm that can encircle a planet. It creates an orbital current of high-energy
       electrons that generate a protective artificial magnetosphere. Retrieve Boxes
-      from  In Chute. Smash boxes on the floor to access parts. Once complete, place
-      finished Build into Empty Out Box and place in Outgoing Chute to ship. Click
-      the Build Instructions to the left of this screen for visual instructions on
-      completing the Build."
+      from the In Chute. <b>Smash boxes on the floor</b> to access parts. Once complete,
+      place finished Build into the Empty Out Box and place in the Outgoing Chute
+      to ship. Click the Build Instructions to the left of this screen for visual
+      instructions on completing the Build."
     option1CMSResponseSubject: DON'T DRINK THE COFFEE
     option1CMSResponseContent: Honorable HPC Worker, My name is Professor [name redacted].
       I am contacting you on behalf of the Clockwork Multiplanetary Scientists (CMS).
@@ -2637,10 +2641,10 @@ MonoBehaviour:
     option1CMSResponseContent: "Greetings Esteemed Habitable Planet Coalition worker.
       The F.I.S.C.H. core that has been shipped to you has been made without proper
       shielding to withstand the immense pressure and temperature of the planet\u2019s
-      outer core for very long. We have shipped Dense Plate Shielding to upgrade
-      the Build\u2019s durability. It seems the process may have interfered with
-      your camera system. We worry the HPC Coffee may obscure the appearance of our
-      deliveries."
+      outer core for very long. We have smuggled in Dense Plate Shielding to upgrade
+      the Build\u2019s durability. In order to bypass HPC oversight, we had to interfere
+      with your camera system. We worry the HPC Coffee may obscure the appearance
+      of our deliveries."
     option2HPCResponseSubject: Introducing the F.I.S.C.H. Drone
     option2HPCResponseContent: "This phenomenal technology burrows into the planet\u2019s
       outer core and and swims through the molten metal, artificially creating a
@@ -2651,40 +2655,48 @@ MonoBehaviour:
     option2CMSResponseContent: "Greetings Esteemed Habitable Planet Coalition worker.
       The F.I.S.C.H. core that has been shipped to you has been made without proper
       shielding to withstand the immense pressure and temperature of the planet\u2019s
-      outer core for very long. We have shipped Dense Plate Shielding to upgrade
-      the Build\u2019s durability. It seems the process may have interfered with
-      your camera system. We worry the HPC Coffee may obscure the appearance of our
-      deliveries."
+      outer core for very long. We have smuggled in Dense Plate Shielding to upgrade
+      the Build\u2019s durability. In order to bypass HPC oversight, we had to interfere
+      with your camera system. We worry the HPC Coffee may obscure the appearance
+      of our deliveries."
   - HPCshortHand: HPC
     CMSshortHand: CMS
     HPChandle: Habitable Planet Coalition
     CMShandle: Clockwork Multiplanetary Scientists
     option1HPCResponseSubject: Introducing the Geodynamite
-    option1HPCResponseContent: At the HPC, we believe in things going BOOM. This
-      red-hot Drone Build will burrow to the Outer Core and detonate in a massive
-      blast, injecting an overwhelming amount of heat energy into the convective
-      current in one blast.
+    option1HPCResponseContent: "At the HPC, we believe in things going BOOM. This
+      red-hot Drone Build will burrow to the outer core and detonate in a massive
+      blast, injecting an overwhelming amount of heat energy to invigorate outer
+      core convection. This final step will restart the geodynamo which fuels planet
+      Athanor\u2019s magnetosphere. With the magnetosphere re-established, Athanor\u2019s
+      long-term habitability will be ensured. Make sure to reference build instructions.
+      Assembly order matters!"
     option1CMSResponseSubject: Thank You For Your Help
     option1CMSResponseContent: We understand you are under contractual obligations
       with the HPC, but being honest, scientists on Athanor are terrified. Our models
       indicate that explosions large enough to heat the outer core could trigger
-      a massive plume to rise to the surface, resulting in devastating volcanic activity.
-      Instead, we suggest injecting the convective current with short-lived radioactive
-      isotope deposits that will continually heat the core through radioactive decay
-      for centuries. We plead with you to make the right choice!
+      a massive upwelling of overheated rock to rise to the surface, resulting in
+      devastating volcanic activity. Instead, we suggest injecting the outer core
+      with short-lived radioactive Isotope Deposits that will continually heat the
+      core through radioactive decay for centuries. We plead with you to make the
+      right choice!
     option2HPCResponseSubject: Introducing the Geodynamite
-    option2HPCResponseContent: We at the HPC believe in things going BOOM. This red-hot
-      Drone Build will burrow to the Outer Core and detonate in a massive blast,
-      injecting an overwhelming amount of heat energy into the convective current
-      in one blast. This will be your final assignment for Planet Athanor
+    option2HPCResponseContent: "At the HPC, we believe in things going BOOM. This
+      red-hot Drone Build will burrow to the outer core and detonate in a massive
+      blast, injecting an overwhelming amount of heat energy to invigorate outer
+      core convection. This final step will restart the geodynamo which fuels planet
+      Athanor\u2019s magnetosphere. With the magnetosphere re-established, Athanor\u2019s
+      long-term habitability will be ensured. Make sure to reference build instructions.
+      Assembly order matters!"
     option2CMSResponseSubject: Please We Need Your Help
     option2CMSResponseContent: Being honest, scientists on Athanor are a tad bit
-      nervous over the consequences of an explosion large enough to heat the Outer
-      Core. Terrified really. Our models indicate these explosions could trigger
-      a massive plume to rise to the surface, resulting in devastating volcanic activity.
-      Instead, we suggest injecting the convective current with short-lived radioactive
-      isotope deposits that will continually heat the core through radioactive decay
-      for centuries. We plead with you to make the right choice!
+      nervous over the consequences of an explosion large enough to heat the outer
+      core. Terrified really. Our models indicate these explosions could trigger
+      a massive upwelling of overheated rock to rise to the surface, resulting in
+      devastating volcanic activity. Instead, we suggest injecting the outer core
+      with short-lived radioactive Isotope Deposits that will continually heat the
+      core through radioactive decay for centuries. We plead with you to make the
+      right choice!
   - HPCshortHand: HPC
     CMSshortHand: CMS
     HPChandle: Habitable Planet Coalition
@@ -2726,7 +2738,8 @@ MonoBehaviour:
     option1HPCResponseContent: "This cutting-edge drone system is sent from stations
       on the planet\u2019s moon into the stratosphere, where it releases carbon nanoparticles.
       Conventionally called \u201Cdiamond dust,\u201D these particles scatter and
-      reflect light back into space before it gets a chance to warm the planet."
+      reflect light back into space before it gets a chance to warm the planet. This
+      cooling strategy is called stratospheric aerosol injection."
     option1CMSResponseSubject: We Plead That You Will Help Us
     option1CMSResponseContent: Our research indicates that the exorbitantly expensive
       Atmospheric Rejuvenator is not attuned to the needs of our ecology. We propose
@@ -2738,7 +2751,8 @@ MonoBehaviour:
     option2HPCResponseContent: "This cutting-edge drone system is sent from stations
       on the planet\u2019s moon into the stratosphere, where it releases carbon nanoparticles.
       Conventionally called \u201Cdiamond dust,\u201D these particles scatter and
-      reflect light back into space before it gets a chance to warm the planet."
+      reflect light back into space before it gets a chance to warm the planet. This
+      cooling strategy is called stratospheric aerosol injection."
     option2CMSResponseSubject: You Have Truly Become Melligo's Friend
     option2CMSResponseContent: We once again need you to intervene on our behalf.
       Our research indicates that the exorbitantly expensive Atmospheric Rejuvenator
@@ -2777,9 +2791,9 @@ MonoBehaviour:
       thinking? Instead: using Macroalgae (aka seaweed) would borrow the power of
       the fastest growing biomass on the planet, mimicking the planet\u2019s own
       carbon storing mechanisms by sinking large quantities of seaweed into ocean
-      trenches. This removes it from the terrestrial carbon cycle entirely. Please,
-      you\u2019re the only one who can help us. Swap in the Algae Pods before shipping.
-      Our planet, and our very lives, are in peril."
+      trenches. This removes it from the terrestrial carbon cycle for millions of
+      years. Please, you\u2019re the only one who can help us. Swap in the Algae
+      Pods before shipping. Our planet, and our very lives, are in peril."
   - HPCshortHand: HPC
     CMSshortHand: CMS
     HPChandle: Habitable Planet Coalition
@@ -2842,21 +2856,19 @@ MonoBehaviour:
       insert this calcite particle filter Air Pump into the intake. While the air
       passes through, the calcite particles will interact chemically with the sulfur
       dioxide to nullify its harmful effects by binding together to create harmless
-      gypsum particles.. Please, we beg of you. Our infrastructure is too fragile
-      to weather these acid rains. If you do not work with us we will find a way
-      to force your hand."
+      gypsum particles. Please, we beg of you. Our infrastructure is too fragile
+      to weather these acid rains. "
   - HPCshortHand: HPC
     CMSshortHand: CMS
     HPChandle: Habitable Planet Coalition
     CMShandle: Clockwork Multiplanetary Scientists
-    option1HPCResponseSubject: Introducing the NORM (Naturally Occurring Radioactive
-      Material) Collector
-    option1HPCResponseContent: This new Build will scrub radioactive materials from
-      the planetary mantle in an attempt to slow convection. When executed correctly,
-      this process will cool the mantle enough to bring the convection down to a
-      reasonable level and stabilize plate tectonics. We believe this will be a long-term,
-      strategic solution to both the megaquake and volcanism problems of Planet Crasis.
-      This will be your final assignment.
+    option1HPCResponseSubject: Introducing the Mantle Radio-Scrubber
+    option1HPCResponseContent: 'This new Build will scrub naturally occurring radioactive
+      materials from the planetary mantle in an attempt to slow convection. When
+      executed correctly, this process will cool the mantle enough to bring the convection
+      down to a reasonable level and stabilize plate tectonics. We believe this will
+      be a long-term, strategic solution to both the megaquake and volcanism problems
+      of Planet Crasis. '
     option1CMSResponseSubject: We're Desperate
     option1CMSResponseContent: "Can you not see that the HPC is sending this planet
       to its doom? The effect of radioactive decay on Mantle Convection is negligible
@@ -2866,14 +2878,13 @@ MonoBehaviour:
       convection by creating large masses of dense material that will stand in the
       way of more rapid convection. Please build this final drone for us. It\u2019s
       our only hope."
-    option2HPCResponseSubject: Introducing the NORM (Naturally Occurring Radioactive
-      Material) Collector
-    option2HPCResponseContent: This new Build will scrub radioactive materials from
-      the planetary mantle in an attempt to slow convection. When executed correctly,
-      this process will cool the mantle enough to bring the convection down to a
-      reasonable level and stabilize plate tectonics. We believe this will be a long-term,
-      strategic solution to both the megaquake and volcanism problems of Planet Crasis.
-      This will be your final assignment.
+    option2HPCResponseSubject: Introducing the Mantle Radio-Scrubber
+    option2HPCResponseContent: 'This new Build will scrub naturally occurring radioactive
+      materials from the planetary mantle in an attempt to slow convection. When
+      executed correctly, this process will cool the mantle enough to bring the convection
+      down to a reasonable level and stabilize plate tectonics. We believe this will
+      be a long-term, strategic solution to both the megaquake and volcanism problems
+      of Planet Crasis. '
     option2CMSResponseSubject: A Final Request
     option2CMSResponseContent: "Thank you for all the help you have given us, but
       we need your help one more time. The HPC is wrong again! The effect of radioactive
