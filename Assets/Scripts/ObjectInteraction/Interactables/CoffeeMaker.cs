@@ -58,7 +58,7 @@ public class CoffeeMaker : MonoBehaviour, IInteractable
         //Play announcement
         if(!hasPlayedSound&&LevelManager.Instance.currentSession.currentDay==1)
         {
-            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, onCoffeeMade, 1f);
+            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, onCoffeeMade, 1f);
             hasPlayedSound = true;
         }
 
