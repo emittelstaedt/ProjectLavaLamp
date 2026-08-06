@@ -13,9 +13,9 @@ public enum eAchievement
     BeatDay7, //Implemented
     BeatDay8, //Implemented
     BeatDay9, //Implemented
-    Planet1GoodEnding,
-    Planet2GoodEnding,
-    Planet3GoodEnding,
+    Planet1GoodEnding, //Implemented
+    Planet2GoodEnding, //Implemented
+    Planet3GoodEnding, //Implemented
     NeutralEnding, //Implemented
     HPCEnding, //Implemented
     CMSEnding, //Implemented
@@ -24,18 +24,18 @@ public enum eAchievement
     TooSlowLoss, //Implemented
     PoorEfficiencyLoss, //Implemented
     CompromisedBuildLoss, //Implemented
-    OneThousandCups,
-    BuildUnder3Mins,
-    AvgBuildUnder5mins,
-    GameCompleteInUnder25Mins,
-    Drink10Coffee,
-    CoffeeWhileMaxCorrosion,
-    GetEfficiencyPity,
-    GetMaxEfficiencyPity,
-    BeatDayUnder100,
-    FirstCMSBuild,
-    SplashCamera,
-    AllAchievements,
+    OneThousandCups, //Implemented
+    BuildUnder3Mins, //Implemented
+    AvgBuildUnder5mins, //Implemented
+    GameCompleteInUnder25Mins, //Implemented
+    Drink10Coffee, //Implemented
+    CoffeeWhileMaxCorrosion, //Implemented
+    GetEfficiencyPity, //Implemented
+    GetMaxEfficiencyPity, //Implemented
+    BeatDayUnder100, //Implemented
+    FirstCMSBuild, //Implemented
+    SplashCamera, //Implemented
+    AllAchievements, //Implemented
 }
 
 public class AchievementManager : MonoBehaviour

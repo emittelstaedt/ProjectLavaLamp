@@ -10,6 +10,7 @@ public class CoffeeStack : MonoBehaviour, IUsableInteractable
 	[SerializeField] private Vector3 cupLocation;
 	private GameObject currentItemHeld;
 	private Outline outline;
+    private int cupsMadeInInstance = 0;
 	
 	private void Awake()
 	{
@@ -48,6 +49,10 @@ public class CoffeeStack : MonoBehaviour, IUsableInteractable
 		GameObject emptyCup = Instantiate(emptyCupPrefab, cupLocation, Quaternion.identity);
 		emptyCup.name = emptyCupPrefab.name;
 		SceneManager.MoveGameObjectToScene(emptyCup, SceneManager.GetSceneByName("OfficeWorkplace"));
+        cupsMadeInInstance++;
+        if(cupsMadeInInstance>=1000){
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.OneThousandCups);}
+		}
     }
 	
 	public void StopInteract()

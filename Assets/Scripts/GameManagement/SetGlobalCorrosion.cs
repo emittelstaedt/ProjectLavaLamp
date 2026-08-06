@@ -13,6 +13,7 @@ public class SetGlobalCorrosion : MonoBehaviour
     //Sound Stuff
     private GameObject soundGameObject;
     bool coffeeHasBeenDrank = false;
+    int numCoffeesDrankToday = 0;
     [SerializeField] float musicVolume = 0.01f;
 
 	
@@ -51,7 +52,18 @@ public class SetGlobalCorrosion : MonoBehaviour
 
     public void onCoffeeDrank()
     {
+
         coffeeHasBeenDrank = true;
+        numCoffeesDrankToday++;
+
+        if(numCoffeesDrankToday>=10){ //Heart attack achievement
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.Drink10Coffee);}
+		}
+
+        if(LevelManager.Instance.currentSession.coffeeLevel==0){
+            if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.CoffeeWhileMaxCorrosion);}
+        }
+
         StartCoroutine(FadeOutCorrosion(serializedDuration)); // Fade over serializeduration seconds
     }
 

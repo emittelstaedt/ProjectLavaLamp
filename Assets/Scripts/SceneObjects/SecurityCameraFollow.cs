@@ -271,6 +271,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
 
     public void StartInteract()
     {
+        if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.SplashCamera);}
 		if(isAngery)
 		{
 			modifySpeed.RaiseEvent(-1);
@@ -384,7 +385,7 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
         //This checks to see if we're current in the room we want to be, only plays the sound if we are.
         if(Mathf.Approximately(pathT, targetAtPointB ? 1f : 0f) && lookBlend <= 0.01f)
         {
-            if(!hasPlayedWarningSound)
+            if(!hasPlayedWarningSound&&isAngery)
             {
                 AudioManager.Instance.PlaySound(MixerType.SFX, onBoxBroken, 1f, transform.position);
                 hasPlayedWarningSound = true;

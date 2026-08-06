@@ -91,8 +91,17 @@ public class EndGame : MonoBehaviour
 		{
 			averageTime += LevelManager.Instance.currentSession.levelCompleteTimes[i];
 		}
+
+		if((averageTime/60)<25){ //25 minute achievement
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.AvgBuildUnder5mins);}
+		}
+
 		averageTime = averageTime / 9f;
 		int minutes = (int)(averageTime / 60);
+		
+		if(minutes<5){ //Avg under 5 minute achievement
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.AvgBuildUnder5mins);}
+		}
 		int seconds = (int)(averageTime - (minutes * 60));
 		int milliseconds = (int)(Mathf.Floor(1000f * (averageTime % 1f)));
 		string timeDisplayed = minutes.ToString("D2") + ":" + seconds.ToString("D2") + "." + milliseconds.ToString("D3");
