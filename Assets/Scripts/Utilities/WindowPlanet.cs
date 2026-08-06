@@ -33,6 +33,9 @@ public class WindowPlanet : MonoBehaviour
 				{
 					planetHealth++;
 					isAlive = true;
+					if(planetHealth>=4){
+						if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.Planet1GoodEnding);}
+					}
 				}
 				break;
 			case 1:
@@ -50,6 +53,9 @@ public class WindowPlanet : MonoBehaviour
 				{
 					planetHealth++;
 					isAlive = true;
+					if(planetHealth>=4){
+						if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.Planet2GoodEnding);}
+					}
 				}
 				break;
 			case 2:
@@ -67,6 +73,9 @@ public class WindowPlanet : MonoBehaviour
 				{
 					planetHealth++;
 					isAlive = true;
+					if(planetHealth>=4){
+						if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.Planet3GoodEnding);}
+					}
 				}
 				break;
 			default:

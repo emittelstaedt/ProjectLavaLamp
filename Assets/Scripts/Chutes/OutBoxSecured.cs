@@ -9,6 +9,7 @@ public class OutBoxSecured : MonoBehaviour
 		int buildChoice = 0;
 		if(this.gameObject.GetComponent<CMS>() != null)
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.FirstCMSBuild);}
 			buildChoice = 2;
 		}
 		else{

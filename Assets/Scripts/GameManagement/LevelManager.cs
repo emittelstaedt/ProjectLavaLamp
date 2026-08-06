@@ -197,10 +197,17 @@ public class LevelManager : MonoBehaviour
 	{
 		//Call corresponding level complete achievement
 		if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(currentSession.currentDay-1);} //Minus 1 since enum for it is 0-8
-		
+		//Check for completing day under 100 efficiency achievement
+		if(currentSession.efficiency<100){
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.BeatDayUnder100);}
+		}
+
 		lossCounter = 0;
 		endTime = Time.realtimeSinceStartup;
 		totalTime = endTime - startTime;
+		if((((float)totalTime)/60f)<3f){ //Build in under 3 minutes achievement
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.BuildUnder3Mins);}
+		}
 		currentSession.levelCompleteTimes[currentSession.currentDay - 1] = totalTime;
 		if(currentSession.currentDay != levels.Length)
 		{
@@ -367,8 +374,16 @@ public class LevelManager : MonoBehaviour
 	private IEnumerator efficiencyDelivery()
 	{
 		yield return new WaitForSeconds(0.25f);
+
+		if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.GetEfficiencyPity);}
+		
 		sendEmail.RaiseEvent(efficiencyMail);
 		modifyValue.RaiseEvent(200);
+
+		if(currentSession.efficiency>=1000){
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.GetMaxEfficiencyPity);}
+		}
+
 		saveGame();
 		lossCounter = 0;
 	}
