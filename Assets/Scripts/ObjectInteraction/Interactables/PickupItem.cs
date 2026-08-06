@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PickupItem : MonoBehaviour, IInteractable
 {
@@ -37,8 +39,14 @@ public class PickupItem : MonoBehaviour, IInteractable
         rotateAction = InputSystem.actions.FindAction("Rotate");
         lookAction = InputSystem.actions.FindAction("Look");
 
-        playerCameraTransform = Camera.main.transform;
-
+		if(Camera.main != null)
+		{
+			playerCameraTransform = Camera.main.transform;
+		}
+		else
+		{
+			StartCoroutine(cameraSearch());
+		}
         itemColliders = GetComponentsInChildren<Collider>();
 
         itemRigidbody = GetComponent<Rigidbody>();
@@ -345,4 +353,19 @@ public class PickupItem : MonoBehaviour, IInteractable
 
         this.isHeld = isHeld;
     }
+	
+	private IEnumerator cameraSearch()
+	{
+		Debug.Log("Mark we can't keep doing this...");
+		bool loop = true;
+		while(loop)
+		{
+			yield return new WaitForSeconds(0.5f);
+			if(Camera.main != null)
+			{
+				playerCameraTransform = Camera.main.transform;
+				loop = false;
+			}
+		}
+	}
 }

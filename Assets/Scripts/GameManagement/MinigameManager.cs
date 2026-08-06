@@ -116,7 +116,7 @@ public class MinigameManager : MonoBehaviour
 	{
 		if(dayBegun == false)
 		{
-			Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]);
+			Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay - 1]);
 			dayBegun = true;
 		}
 	}
@@ -153,14 +153,14 @@ public class MinigameManager : MonoBehaviour
                 nextGame = findNextTriggerableMinigame();
             }
 
-
-
             //Trigger corresponding event with sirenChannels[nextGame]
-            if(sirenChannels.Length<=nextGame){
+            if(sirenChannels.Length<=nextGame)
+			{
                 Debug.LogWarning("No corresponding siren channel found! List too short!");
                 return;
             }
-            else if(nextGame==-1){
+            else if(nextGame==-1)
+			{
                 //Debug.Log("No triggerable minigame found!");
             }
             else{
@@ -170,7 +170,8 @@ public class MinigameManager : MonoBehaviour
             //Randomize with currentSession.efficiency and rand
 
             // Normalize efficiency score between max and min multiplier
-            float effMultiplier = currentSession.efficiency * 0.0003f + 0.7f;
+            //float effMultiplier = currentSession.efficiency * 0.0003f + 0.7f;
+			float productiveEmployeeMultiplier = 1.0f - (currentSession.efficiency * 0.00025f);
             //Debug.Log($"Current mult with efficiency is: {effMultiplier}");
 
             // Random modifier (-10 to 10 seconds added randomly)
@@ -178,25 +179,33 @@ public class MinigameManager : MonoBehaviour
 
             //Debug.Log($"Expected minigame timer is: {DayExpectedTriggerWait[currentSession.currentDay-1]*effMultiplier+rawRandom}");
             //Recursive invoke, multiply by efficiency, add random seconds
-            Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]*effMultiplier+rawRandom);
+            //Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay-1]*effMultiplier+rawRandom);
+			Invoke("nextTriggerTimer", DayExpectedTriggerWait[currentSession.currentDay - 1] * productiveEmployeeMultiplier);
         }
-        else{
+        else
+		{
             Debug.LogWarning("No siren channels found!");
         }
     }
 
-    int findNextTriggerableMinigame(){
+    int findNextTriggerableMinigame()
+	{
 
-        if(!isAnyAvailableSirens()){
-            modifyValue.RaiseEvent(effLossMegaFail);
-            //Debug.Log("PAIN AND SUFFERING UPON YE");
-            return -1;
+        if(!isAnyAvailableSirens())
+		{
+			if(GameObject.FindWithTag("Lose") == null)
+			{
+				modifyValue.RaiseEvent(effLossMegaFail);
+				//Debug.Log("PAIN AND SUFFERING UPON YE");
+			}
+			return -1;
         }
 
         int range = 0;
         int currentChoice = -1;
         //Restrict minigame choice by current day
-        if(currentSession.currentDay>=dayEnableMinigame1){
+        if(currentSession.currentDay>=dayEnableMinigame1)
+		{
             range++;
         }
         if(currentSession.currentDay>=dayEnableMinigame2){
