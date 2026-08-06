@@ -93,7 +93,7 @@ public class EndGame : MonoBehaviour
 		}
 
 		if((averageTime/60)<25){ //25 minute achievement
-			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.AvgBuildUnder5mins);}
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.GameCompleteInUnder25Mins);}
 		}
 
 		averageTime = averageTime / 9f;
