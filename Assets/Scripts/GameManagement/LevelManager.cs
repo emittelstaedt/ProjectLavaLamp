@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private GameObject confirmNamePanel;
     public LevelInfoSO[] levels;
 	public EmployeeData[] profiles;
-	[SerializeField] private string[] profilePaths;
+	public string[] profilePaths;
 	private float startTime;
 	private float endTime;
 	private float totalTime;
@@ -157,7 +157,6 @@ public class LevelManager : MonoBehaviour
 		{
 			setProfilePointer.RaiseEvent(employeeNumber);
 		}
-		
 	}
 	
 	public void setEmployeeName(string employeeName)
@@ -247,6 +246,7 @@ public class LevelManager : MonoBehaviour
 	
 	private IEnumerator ReturnToStartMenu()
 	{
+		loadGame();
 		loadingScreen.SetActive(true);
 		levelSuccess.SetActive(false);
 		levelFailure.SetActive(false);

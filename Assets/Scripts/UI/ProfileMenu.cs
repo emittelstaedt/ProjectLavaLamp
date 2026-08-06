@@ -26,6 +26,7 @@ public class ProfileMenu : MonoBehaviour
 	[SerializeField] private VoidEventChannelSO startGame;
 	[SerializeField] private VoidEventChannelSO triggerNextLevel;
 	[SerializeField] private VoidEventChannelSO startProfileTimer;
+	[SerializeField] private VoidEventChannelSO achievementCheck;
     [SerializeField] private GameObject HUD;
 	private EmployeeData previousSession;
 	
@@ -182,8 +183,7 @@ public class ProfileMenu : MonoBehaviour
 						time.text = timeDisplayed;
 					}
 				}
-				updateEndings();
-				updateAchievements();
+				achievementCheck.RaiseEvent();
 				
 				header.SetActive(true);
 				profileDetailPanel.SetActive(true);
@@ -197,15 +197,5 @@ public class ProfileMenu : MonoBehaviour
 			footer.SetActive(false);
 			noProfilePanel.SetActive(true);
 		}
-	}
-	
-	private void updateEndings()
-	{
-		//no endings yet
-	}
-	
-	private void updateAchievements()
-	{
-		//no achievements yet
 	}
 }

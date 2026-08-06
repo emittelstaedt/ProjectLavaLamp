@@ -14,6 +14,7 @@ public class EmployeeData
 	public int coffeeDrank;
 	public int coffeeThrown;
 	public int efficiency;
+	public bool[] achievements;
 	public bool[] endings;
 	
 	public EmployeeData(){
@@ -35,6 +36,11 @@ public class EmployeeData
 		for(int i = 0; i < 5; i++)
 		{
 			endings[i] = false;
+		}
+		achievements = new bool[27];
+		for(int i = 0; i < 27; i++)
+		{
+			achievements[i] = false;
 		}
 	}
 }

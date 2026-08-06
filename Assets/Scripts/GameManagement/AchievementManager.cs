@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public enum eAchievement
@@ -89,8 +90,22 @@ public class AchievementManager : MonoBehaviour
     {
         if(connectedToSteam)
         {
-            var ach = new Steamworks.Data.Achievement("Achievement_" + (int)_AchievementToUnlock);
+			int achieveNum = (int)_AchievementToUnlock;
+            var ach = new Steamworks.Data.Achievement("Achievement_" + achieveNum);
             ach.Trigger();
+			if(!(achieveNum >= 12 && achieveNum <= 16))
+			{
+				if(achieveNum >= 17)
+				{
+					achieveNum = achieveNum - 5;
+				}
+				int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
+				EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+				backUpProfile.achievements[achieveNum] = true;
+				string json = JsonUtility.ToJson(backUpProfile);
+				File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+				LevelManager.Instance.currentSession.achievements[achieveNum] = true;
+			}
             CheckForPlatinumAchievement();
         }
     }
@@ -100,13 +115,27 @@ public class AchievementManager : MonoBehaviour
     {
         if(connectedToSteam)
         {
+			int achieveNum = _AchievementToUnlock;
             var ach = new Steamworks.Data.Achievement("Achievement_" + _AchievementToUnlock);
             ach.Trigger();
+			if(!(achieveNum >= 12 && achieveNum <= 16))
+			{
+				if(achieveNum >= 17)
+				{
+					achieveNum = achieveNum - 5;
+				}
+				int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
+				EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+				backUpProfile.achievements[achieveNum] = true;
+				string json = JsonUtility.ToJson(backUpProfile);
+				File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+				LevelManager.Instance.currentSession.achievements[achieveNum] = true;
+			}
             CheckForPlatinumAchievement();
         }
     }
 
-    private void CheckForPlatinumAchievement()
+    public void CheckForPlatinumAchievement()
     {
         int numberOfAchievementsRequired = totalAchievementNum - 1;
         int numberOfUnlockedAchievements = 0; //Calculated in loop

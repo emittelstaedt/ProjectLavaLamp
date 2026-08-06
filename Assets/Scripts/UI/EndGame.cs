@@ -85,6 +85,7 @@ public class EndGame : MonoBehaviour
 			currentSession.endings[0] = true;
 			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.NeutralEnding);}
 		}
+		AchievementManager.Instance.CheckForPlatinumAchievement();
 		setStamps();
 		float averageTime = 0f;
 		for(int i = 0; i < 9; i++)
