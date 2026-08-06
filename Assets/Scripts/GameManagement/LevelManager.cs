@@ -205,7 +205,7 @@ public class LevelManager : MonoBehaviour
 		lossCounter = 0;
 		endTime = Time.realtimeSinceStartup;
 		totalTime = endTime - startTime;
-		if(totalTime<3){ //Build in under 3 minutes achievement
+		if((((float)totalTime)/60f)<3f){ //Build in under 3 minutes achievement
 			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.BuildUnder3Mins);}
 		}
 		currentSession.levelCompleteTimes[currentSession.currentDay - 1] = totalTime;
