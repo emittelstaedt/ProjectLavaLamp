@@ -4,26 +4,26 @@ using UnityEngine;
 
 public enum eAchievement
 {
-    BeatDay1,
-    BeatDay2,
-    BeatDay3,
-    BeatDay4,
-    BeatDay5,
-    BeatDay6,
-    BeatDay7,
-    BeatDay8,
-    BeatDay9,
+    BeatDay1, //Implemented
+    BeatDay2, //Implemented
+    BeatDay3, //Implemented
+    BeatDay4, //Implemented
+    BeatDay5, //Implemented
+    BeatDay6, //Implemented
+    BeatDay7, //Implemented
+    BeatDay8, //Implemented
+    BeatDay9, //Implemented
     Planet1GoodEnding,
     Planet2GoodEnding,
     Planet3GoodEnding,
-    NeutralEnding,
-    HPCEnding,
-    CMSEnding,
-    AntiScienceEnding,
-    ScienceEnding,
-    TooSlowLoss,
-    PoorEfficiencyLoss,
-    CompromisedBuildLoss,
+    NeutralEnding, //Implemented
+    HPCEnding, //Implemented
+    CMSEnding, //Implemented
+    AntiScienceEnding, //Implemented
+    ScienceEnding, //Implemented
+    TooSlowLoss, //Implemented
+    PoorEfficiencyLoss, //Implemented
+    CompromisedBuildLoss, //Implemented
     OneThousandCups,
     BuildUnder3Mins,
     AvgBuildUnder5mins,
@@ -38,18 +38,18 @@ public enum eAchievement
     AllAchievements,
 }
 
-public class SteamManager : MonoBehaviour
+public class AchievementManager : MonoBehaviour
 {
-    public static SteamManager instance;
+    public static AchievementManager Instance;
     private uint appID = 4883240;
     private int totalAchievementNum = 32;
     private bool connectedToSteam = false;
 
     private void Awake()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -90,6 +90,17 @@ public class SteamManager : MonoBehaviour
         if(connectedToSteam)
         {
             var ach = new Steamworks.Data.Achievement("Achievement_" + (int)_AchievementToUnlock);
+            ach.Trigger();
+            CheckForPlatinumAchievement();
+        }
+    }
+
+    //An overload that allows the calling of achievements by number rather than enum, used for things like the Day achievements
+    public void unlockAchievement(int _AchievementToUnlock)
+    {
+        if(connectedToSteam)
+        {
+            var ach = new Steamworks.Data.Achievement("Achievement_" + _AchievementToUnlock);
             ach.Trigger();
             CheckForPlatinumAchievement();
         }

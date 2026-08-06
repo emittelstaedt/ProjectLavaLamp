@@ -54,24 +54,28 @@ public class EndGame : MonoBehaviour
 		Color endColor = new Color(186f/255f, 189f/255f, 189f/255f, 1f);
 		if(compareArrays(currentSession.levelBuildChoices, ScienceEnding))
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.ScienceEnding);}
 			currentSession.endings[1] = true;
 			endTitle = "Spectacular Scientist";
 			endColor = new Color(47f/255f, 213f/255f, 205f/255f, 1f);
 		}
 		else if(compareArrays(currentSession.levelBuildChoices, BadScienceEnding))
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.AntiScienceEnding);}
 			currentSession.endings[2] = true;
 			endTitle = "Antiscience Anti-Superstar";
 			endColor = new Color(1f, 135f/255f, 65f/255f, 1f);
 		}
 		else if(compareArrays(currentSession.levelBuildChoices, HPCEnding))
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.HPCEnding);}
 			currentSession.endings[3] = true;
 			endTitle = "HPC Superstar";
 			endColor = new Color(1f, 0f, 0f, 1f);
 		}
 		else if(compareArrays(currentSession.levelBuildChoices, CMSEnding))
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.CMSEnding);}
 			currentSession.endings[4] = true;
 			endTitle = "CMS Believer";
 			endColor = new Color(240f/255f, 212f/255f, 57f/255f, 1f);
@@ -79,6 +83,7 @@ public class EndGame : MonoBehaviour
 		else
 		{
 			currentSession.endings[0] = true;
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.NeutralEnding);}
 		}
 		setStamps();
 		float averageTime = 0f;

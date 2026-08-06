@@ -75,14 +75,17 @@ public class levelFailure : MonoBehaviour
 		}
 		if(LevelManager.Instance.currentSession.efficiency <= 0)
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.PoorEfficiencyLoss);}
 			termination = "Poor Efficiency";
 		}
 		else
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.TooSlowLoss);}
 			termination = "Missed Deadlines";
 		}
 		if(LevelManager.Instance.coffeeUsed == true)
 		{
+			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.CompromisedBuildLoss);}
 			termination = "Compromised Build";
 		}
 		planetNameObject.GetComponent<TMP_Text>().text = planetName;
