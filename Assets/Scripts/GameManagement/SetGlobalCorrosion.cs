@@ -65,7 +65,6 @@ public class SetGlobalCorrosion : MonoBehaviour
 			if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.Drink10Coffee);}
 		}
 
-        if(LevelManager.Instance.currentSession.coffeeLevel==0){
         //We use startingcoffeelevel instead because otherwise the levelmanager gets to modify the value first internally
         if(startingCoffeeLevel==0){
             if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(eAchievement.CoffeeWhileMaxCorrosion);}
