@@ -195,6 +195,9 @@ public class LevelManager : MonoBehaviour
 	
 	public void levelComplete()
 	{
+		//Call corresponding level complete achievement
+		if(AchievementManager.Instance!=null){AchievementManager.Instance.unlockAchievement(currentSession.currentDay-1);} //Minus 1 since enum for it is 0-8
+		
 		lossCounter = 0;
 		endTime = Time.realtimeSinceStartup;
 		totalTime = endTime - startTime;
