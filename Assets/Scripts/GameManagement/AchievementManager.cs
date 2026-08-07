@@ -99,6 +99,12 @@ public class AchievementManager : MonoBehaviour
 
     public void unlockAchievement(eAchievement _AchievementToUnlock)
     {
+        if(connectedToSteam)
+        {
+            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
+			ach.Trigger();
+            CheckForPlatinumAchievement();
+        }
 		int achieveNum = (int)_AchievementToUnlock;
 		if(!(achieveNum >= 12 && achieveNum <= 16))
 		{
@@ -118,17 +124,17 @@ public class AchievementManager : MonoBehaviour
 			File.WriteAllText(currentPath, writeJson);
 			LevelManager.Instance.currentSession.achievements[achieveNum] = true;
 		}
-        if(connectedToSteam)
-        {
-            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
-			ach.Trigger();
-            CheckForPlatinumAchievement();
-        }
     }
 
     //An overload that allows the calling of achievements by number rather than enum, used for things like the Day achievements
     public void unlockAchievement(int _AchievementToUnlock)
     {
+        if(connectedToSteam)
+        {
+            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
+            ach.Trigger();
+            CheckForPlatinumAchievement();
+        }
 		int achieveNum = _AchievementToUnlock;
 		if(!(achieveNum >= 12 && achieveNum <= 16))
 		{
@@ -148,12 +154,6 @@ public class AchievementManager : MonoBehaviour
 			File.WriteAllText(currentPath, writeJson);
 			LevelManager.Instance.currentSession.achievements[achieveNum] = true;
 		}
-        if(connectedToSteam)
-        {
-            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
-            ach.Trigger();
-            CheckForPlatinumAchievement();
-        }
     }
 
 	/*
