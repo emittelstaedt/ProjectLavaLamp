@@ -95,11 +95,16 @@ public class AchievementManager : MonoBehaviour
 			{
 				achieveNum = achieveNum - 5;
 			}
-			int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
-			EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+			string currentPath = Application.persistentDataPath + "/employee" + LevelManager.Instance.currentSession.employeeNumber.ToString() + ".json"; 
+			EmployeeData backUpProfile = new EmployeeData();
+			if(File.Exists(currentPath))
+			{
+				string readJson = File.ReadAllText(currentPath);
+				backUpProfile = JsonUtility.FromJson<EmployeeData>(readJson);
+			}
 			backUpProfile.achievements[achieveNum] = true;
-			string json = JsonUtility.ToJson(backUpProfile);
-			File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+			string writeJson = JsonUtility.ToJson(backUpProfile);
+			File.WriteAllText(currentPath, writeJson);
 			LevelManager.Instance.currentSession.achievements[achieveNum] = true;
 		}
         if(connectedToSteam)
@@ -120,11 +125,16 @@ public class AchievementManager : MonoBehaviour
 			{
 				achieveNum = achieveNum - 5;
 			}
-			int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
-			EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+			string currentPath = Application.persistentDataPath + "/employee" + LevelManager.Instance.currentSession.employeeNumber.ToString() + ".json"; 
+			EmployeeData backUpProfile = new EmployeeData();
+			if(File.Exists(currentPath))
+			{
+				string readJson = File.ReadAllText(currentPath);
+				backUpProfile = JsonUtility.FromJson<EmployeeData>(readJson);
+			}
 			backUpProfile.achievements[achieveNum] = true;
-			string json = JsonUtility.ToJson(backUpProfile);
-			File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+			string writeJson = JsonUtility.ToJson(backUpProfile);
+			File.WriteAllText(currentPath, writeJson);
 			LevelManager.Instance.currentSession.achievements[achieveNum] = true;
 		}
         if(connectedToSteam)
@@ -155,11 +165,16 @@ public class AchievementManager : MonoBehaviour
 			{
 				var ach = new Steamworks.Data.Achievement("Achievement_" + (int)eAchievement.AllAchievements);
 				ach.Trigger();
-				int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
-				EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+				string currentPath = Application.persistentDataPath + "/employee" + LevelManager.Instance.currentSession.employeeNumber.ToString() + ".json"; 
+				EmployeeData backUpProfile = new EmployeeData();
+				if(File.Exists(currentPath))
+				{
+					string readJson = File.ReadAllText(currentPath);
+					backUpProfile = JsonUtility.FromJson<EmployeeData>(readJson);
+				}
 				backUpProfile.achievements[26] = true;
-				string json = JsonUtility.ToJson(backUpProfile);
-				File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+				string writeJson = JsonUtility.ToJson(backUpProfile);
+				File.WriteAllText(currentPath, writeJson);
 				LevelManager.Instance.currentSession.achievements[26] = true;
 			}
 		}
