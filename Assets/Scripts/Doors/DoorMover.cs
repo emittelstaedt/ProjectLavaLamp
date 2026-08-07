@@ -12,13 +12,23 @@ public class DoorMover : MonoBehaviour
     [SerializeField] private float volume = 1f;
     private bool hasPlayedUnlockedSound = false;
     private bool hasPlayedlockedSound = false;
-    private bool hasEntered;
+    private bool hasEntered = false;
+    private bool lockThisDoorPERMANENTLY = false;
+
+    void Awake()
+    {
+        hasPlayedUnlockedSound = false;
+        hasPlayedlockedSound = false;
+        hasEntered = false;
+        lockThisDoorPERMANENTLY = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("Player") || other.CompareTag("Held")) && !hasEntered && unlocked)
+        if ((other.CompareTag("Player") || other.CompareTag("Held")) && !hasEntered && unlocked && !lockThisDoorPERMANENTLY)
         {
             hasEntered = true;
+            Debug.Log("Has Entered!");
             openingDoor.RaiseEvent();
 
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorOpen, 1f, transform.position);
@@ -26,13 +36,13 @@ public class DoorMover : MonoBehaviour
             //We only want these to trigger on the first day.
             if(!hasPlayedUnlockedSound&&LevelManager.Instance.currentSession.currentDay==1)
             {
-                AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, unlockedSound, volume);
+                AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, unlockedSound, volume);
                 hasPlayedUnlockedSound = true;
             }
         }
         else if(!unlocked&&!hasPlayedlockedSound)
         {
-            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.Voices, lockedSound, volume);
+            AudioManager.Instance.PlayQueuedSound(AudioQueue.Announcement, MixerType.SFX, lockedSound, volume);
             hasPlayedlockedSound = true;
         }
 
@@ -43,6 +53,7 @@ public class DoorMover : MonoBehaviour
         if (((other.CompareTag("Player") || other.CompareTag("Held"))) && unlocked && hasEntered)
         {
             hasEntered = false;
+            Debug.Log("Has Left!");
             closingDoor.RaiseEvent();
 
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorClose, 1.4f, transform.position);
@@ -83,5 +94,13 @@ public class DoorMover : MonoBehaviour
     public void trueUnlock(){
         AudioManager.Instance.PlaySound(MixerType.SFX, soundOfUnlocking, 1f, transform.position);
         unlocked=true;
+    }
+
+    public void KillElevatorDoors()
+    {
+        Debug.Log("These doors will never open again! Muahaha");
+        lockThisDoorPERMANENTLY = true;
+        hasEntered = false;
+        closingDoor.RaiseEvent();
     }
 }

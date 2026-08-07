@@ -169,6 +169,11 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
     {
         bool arrived = Mathf.Approximately(pathT, targetAtPointB ? 1f : 0f) && lookBlend <= 0.01f;
 
+        if(!arrived)
+        {
+            lightOfDoomAndEfficiencyLoss.SetActive(false);
+        }
+
         bool isSplashDay = LevelManager.Instance != null && LevelManager.Instance.currentSession != null
             && LevelManager.Instance.currentSession.currentDay == dayForceSplash;
 
@@ -195,6 +200,10 @@ public class SecurityCameraFollow : MonoBehaviour, IInteractable
                     lightOfDoomAndEfficiencyLoss.SetActive(true);
                 }
                 
+            }
+            else
+            {
+               AudioManager.Instance.PlaySound(MixerType.SFX, onCameraRestart, 1f, transform.position); 
             }
         }
 
