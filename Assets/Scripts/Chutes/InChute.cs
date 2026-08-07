@@ -108,7 +108,7 @@ public class InChute : MonoBehaviour, IUsableInteractable
         }
         else
         {
-            GameObject newOutBox = Instantiate(outBox, itemSpawnPosition, Quaternion.identity);
+            GameObject newOutBox = Instantiate(outBox, itemSpawnPosition, Quaternion.Euler(270, 0, 0));
             // Removes "(Clone)" from the name.
             newOutBox.name = outBox.name;
             newOutBox.GetComponentInChildren<PlacementTrigger>().SetRequiredItem(outBoxRequiredItem);

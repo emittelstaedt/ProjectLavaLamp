@@ -28,7 +28,7 @@ public class DoorMover : MonoBehaviour
         if ((other.CompareTag("Player") || other.CompareTag("Held")) && !hasEntered && unlocked && !lockThisDoorPERMANENTLY)
         {
             hasEntered = true;
-            Debug.Log("Has Entered!");
+            //Debug.Log("Has Entered!");
             openingDoor.RaiseEvent();
 
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorOpen, 1f, transform.position);
@@ -53,7 +53,7 @@ public class DoorMover : MonoBehaviour
         if (((other.CompareTag("Player") || other.CompareTag("Held"))) && unlocked && hasEntered)
         {
             hasEntered = false;
-            Debug.Log("Has Left!");
+            //Debug.Log("Has Left!");
             closingDoor.RaiseEvent();
 
             AudioManager.Instance.PlaySound(MixerType.SFX, SoundType.DoorClose, 1.4f, transform.position);
@@ -98,7 +98,7 @@ public class DoorMover : MonoBehaviour
 
     public void KillElevatorDoors()
     {
-        Debug.Log("These doors will never open again! Muahaha");
+        //Debug.Log("These doors will never open again! Muahaha");
         lockThisDoorPERMANENTLY = true;
         hasEntered = false;
         closingDoor.RaiseEvent();

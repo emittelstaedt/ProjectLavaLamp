@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
@@ -21,6 +23,12 @@ public class ReadableMemo : MonoBehaviour
 	
 	public void setMemo()
 	{
+		StartCoroutine(delay());
+	}
+	
+	private IEnumerator delay()
+	{
+		yield return null;
 		string profileName = currentSession.employeeName;
 		playerName.GetComponent<TMP_Text>().text = profileName;
 		string todaySubject = "No subject";

@@ -22,8 +22,13 @@ public class ScreenDisplay : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+			//float tolerance = 0.01f;
+			//float aspect = (float)resolutions[i].width / resolutions[i].height;
+			//if(!(Mathf.Abs(aspect - (4f / 3f)) < tolerance))
+			//{
+				string option = resolutions[i].width + " x " + resolutions[i].height;
+				options.Add(option);
+			//}
         }
         resolutionDropdown.AddOptions(options);
 
@@ -50,7 +55,7 @@ public class ScreenDisplay : MonoBehaviour
 
     public void SetQuality(int qualityIndex)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        QualitySettings.SetQualityLevel(qualityIndex, true);
         PlayerPrefs.SetInt("QualityIndex", qualityIndex);
         PlayerPrefs.Save();
     }

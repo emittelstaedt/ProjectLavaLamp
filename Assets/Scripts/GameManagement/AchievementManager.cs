@@ -43,7 +43,7 @@ public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager Instance;
     private uint appID = 4883240;
-    private int totalAchievementNum = 32;
+    //private int totalAchievementNum = 32;
     private bool connectedToSteam = false;
 
     private void Awake()
@@ -120,7 +120,7 @@ public class AchievementManager : MonoBehaviour
 		}
         if(connectedToSteam)
         {
-            var ach = new Steamworks.Data.Achievement("Ach_" + achieveNum);
+            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
 			ach.Trigger();
             CheckForPlatinumAchievement();
         }
@@ -156,6 +156,7 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+	/*
     public void CheckForPlatinumAchievement()
     {
 		if(connectedToSteam)
@@ -190,6 +191,45 @@ public class AchievementManager : MonoBehaviour
 			}
 		}
     }
-
-
+	*/
+	public  void CheckForPlatinumAchievement()
+	{
+		bool unlockedEndings = true;
+		bool unlockedAchieves = true;
+		string currentPath = Application.persistentDataPath + "/employee" + LevelManager.Instance.currentSession.employeeNumber.ToString() + ".json"; 
+		EmployeeData currentProfile = new EmployeeData();
+		if(File.Exists(currentPath))
+		{
+			string readJson = File.ReadAllText(currentPath);
+			currentProfile = JsonUtility.FromJson<EmployeeData>(readJson);
+		}
+		for(int i = 0; i < 5; i++)
+		{
+			if(currentProfile.endings[i] == false)
+			{
+				unlockedEndings = false;
+				break;
+			}
+		}
+		for(int i = 0; i < 26; i++)
+		{
+			if(currentProfile.achievements[i] == false)
+			{
+				unlockedAchieves = false;
+				break;
+			}
+		}
+		if(unlockedAchieves == true && unlockedEndings == true)
+		{
+			currentProfile.achievements[26] = true;
+			string writeJson = JsonUtility.ToJson(currentProfile);
+			File.WriteAllText(currentPath, writeJson);
+			LevelManager.Instance.currentSession.achievements[26] = true;
+			if(connectedToSteam)
+			{
+				var ach = new Steamworks.Data.Achievement("Ach_31");
+				ach.Trigger();
+			}
+		}
+	}
 }
