@@ -137,23 +137,26 @@ public class AchievementManager : MonoBehaviour
 
     public void CheckForPlatinumAchievement()
     {
-        int numberOfAchievementsRequired = totalAchievementNum - 1;
-        int numberOfUnlockedAchievements = 0; //Calculated in loop
-
-        for(int i=0;i<numberOfAchievementsRequired;i++)
+		if(connectedToSteam)
         {
-            var ach = new Steamworks.Data.Achievement("Achievement_" + i);
-            if(ach.State == true)
-            {
-                numberOfUnlockedAchievements++;
-            }
-        }
+			int numberOfAchievementsRequired = totalAchievementNum - 1;
+			int numberOfUnlockedAchievements = 0; //Calculated in loop
 
-        if(numberOfUnlockedAchievements == numberOfAchievementsRequired)
-        {
-            var ach = new Steamworks.Data.Achievement("Achievement_" + (int)eAchievement.AllAchievements);
-            ach.Trigger();
-        }
+			for(int i=0;i<numberOfAchievementsRequired;i++)
+			{
+				var ach = new Steamworks.Data.Achievement("Achievement_" + i);
+				if(ach.State == true)
+				{
+					numberOfUnlockedAchievements++;
+				}
+			}
+
+			if(numberOfUnlockedAchievements == numberOfAchievementsRequired)
+			{
+				var ach = new Steamworks.Data.Achievement("Achievement_" + (int)eAchievement.AllAchievements);
+				ach.Trigger();
+			}
+		}
     }
 
 
