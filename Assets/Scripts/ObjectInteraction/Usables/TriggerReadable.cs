@@ -22,11 +22,14 @@ public class TriggerReadable : MonoBehaviour, IUsable
 		if(currentlyReading == true)
 		{
 			if(GameObject.FindWithTag("Held") == null){
-				HUD.SetActive(true);
-				setCursorVisibility.RaiseEvent(false);
-				readable.SetActive(false);
-				currentlyReading = false;
-				InputSystem.actions.FindActionMap("Player").Enable();
+				if(GameObject.FindWithTag("Lose") == null)
+				{
+					HUD.SetActive(true);
+					setCursorVisibility.RaiseEvent(false);
+					readable.SetActive(false);
+					currentlyReading = false;
+					InputSystem.actions.FindActionMap("Player").Enable();
+				}
 			}
 		}
 	}
