@@ -155,6 +155,12 @@ public class AchievementManager : MonoBehaviour
 			{
 				var ach = new Steamworks.Data.Achievement("Achievement_" + (int)eAchievement.AllAchievements);
 				ach.Trigger();
+				int employeeNumber = LevelManager.Instance.currentSession.employeeNumber;
+				EmployeeData backUpProfile = LevelManager.Instance.profiles[employeeNumber];
+				backUpProfile.achievements[26] = true;
+				string json = JsonUtility.ToJson(backUpProfile);
+				File.WriteAllText(LevelManager.Instance.profilePaths[employeeNumber], json);
+				LevelManager.Instance.currentSession.achievements[26] = true;
 			}
 		}
     }

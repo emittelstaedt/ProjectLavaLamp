@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,16 +14,9 @@ public class TriggerReadable : MonoBehaviour, IUsable
 	public void Awake()
 	{
 		currentlyReading = false;
-		HUD = GameObject.Find("HUD");
-		Transform[] objects = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
-		for (int i = 0; i < objects.Length; i++)
-		{
-			if (objects[i].tag == readableTag)
-			{
-				readable = objects[i].gameObject;
-			}
-		}
+		StartCoroutine(GetOverlays());
 	}
+	
 	public void Update()
 	{
 		if(currentlyReading == true)
@@ -35,6 +30,7 @@ public class TriggerReadable : MonoBehaviour, IUsable
 			}
 		}
 	}
+	
 	public void UseItem()
 	{
 		if(currentlyReading == false)
@@ -53,6 +49,20 @@ public class TriggerReadable : MonoBehaviour, IUsable
 			readable.SetActive(false);
 			currentlyReading = false;
 			InputSystem.actions.FindActionMap("Player").Enable();
+		}
+	}
+	
+	private IEnumerator GetOverlays()
+	{
+		yield return new WaitForSeconds(0.1f);
+		HUD = GameObject.Find("HUD");
+		Transform[] objects = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+		for (int i = 0; i < objects.Length; i++)
+		{
+			if (objects[i].tag == readableTag)
+			{
+				readable = objects[i].gameObject;
+			}
 		}
 	}
 }

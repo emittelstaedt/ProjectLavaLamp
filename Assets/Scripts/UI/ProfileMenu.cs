@@ -183,11 +183,10 @@ public class ProfileMenu : MonoBehaviour
 						time.text = timeDisplayed;
 					}
 				}
-				achievementCheck.RaiseEvent();
-				
 				header.SetActive(true);
 				profileDetailPanel.SetActive(true);
 				footer.SetActive(true);
+				achievementCheck.RaiseEvent();
 			}
 		}
 		else
