@@ -101,7 +101,7 @@ public class AchievementManager : MonoBehaviour
     {
         if(connectedToSteam)
         {
-            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
+            var ach = new Steamworks.Data.Achievement("Ach_" + (int)_AchievementToUnlock);
 			ach.Trigger();
             CheckForPlatinumAchievement();
         }
