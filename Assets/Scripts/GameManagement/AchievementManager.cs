@@ -58,6 +58,12 @@ public class AchievementManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (Steamworks.SteamClient.IsValid)
+        {
+            connectedToSteam = true;
+            return;
+        }
+
         try
         {
             Steamworks.SteamClient.Init(appID);
@@ -76,6 +82,11 @@ public class AchievementManager : MonoBehaviour
         {
             Steamworks.SteamClient.RunCallbacks();
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        DisconnectFromSteam();
     }
 
     public void DisconnectFromSteam()
@@ -109,7 +120,7 @@ public class AchievementManager : MonoBehaviour
 		}
         if(connectedToSteam)
         {
-            var ach = new Steamworks.Data.Achievement("Achievement_" + achieveNum);
+            var ach = new Steamworks.Data.Achievement("Ach_" + achieveNum);
 			ach.Trigger();
             CheckForPlatinumAchievement();
         }
@@ -139,7 +150,7 @@ public class AchievementManager : MonoBehaviour
 		}
         if(connectedToSteam)
         {
-            var ach = new Steamworks.Data.Achievement("Achievement_" + _AchievementToUnlock);
+            var ach = new Steamworks.Data.Achievement("Ach_" + _AchievementToUnlock);
             ach.Trigger();
             CheckForPlatinumAchievement();
         }
@@ -154,7 +165,7 @@ public class AchievementManager : MonoBehaviour
 
 			for(int i=0;i<numberOfAchievementsRequired;i++)
 			{
-				var ach = new Steamworks.Data.Achievement("Achievement_" + i);
+				var ach = new Steamworks.Data.Achievement("Ach_" + i);
 				if(ach.State == true)
 				{
 					numberOfUnlockedAchievements++;
@@ -163,7 +174,7 @@ public class AchievementManager : MonoBehaviour
 
 			if(numberOfUnlockedAchievements == numberOfAchievementsRequired)
 			{
-				var ach = new Steamworks.Data.Achievement("Achievement_" + (int)eAchievement.AllAchievements);
+				var ach = new Steamworks.Data.Achievement("Ach_" + (int)eAchievement.AllAchievements);
 				ach.Trigger();
 				string currentPath = Application.persistentDataPath + "/employee" + LevelManager.Instance.currentSession.employeeNumber.ToString() + ".json"; 
 				EmployeeData backUpProfile = new EmployeeData();
